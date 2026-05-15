@@ -3,7 +3,9 @@ body {
     background: linear-gradient(
         to right,
         #292929 0%,
+        #141414 20%,
         #000000 50%,
+        #141414 80%,
         #292929 100%
     );
 
