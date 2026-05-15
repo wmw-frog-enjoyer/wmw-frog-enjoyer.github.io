@@ -1,1 +1,24 @@
-# Lunara-likesfrogs.github.io
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Website</title>
+    <style>
+        body {
+            background: black;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        h1 {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello World!</h1>
+    <p>I made a website :D</p>
+</body>
+</html>
