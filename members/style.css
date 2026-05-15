@@ -63,3 +63,10 @@ body {
     color: white;
     text-align: center;
 }
+
+.inter-main {
+    font-family: "Inter", sans-serif;
+    margin-top: 70px;
+    font-weight: 200;
+    font-size: 70px;
+}
