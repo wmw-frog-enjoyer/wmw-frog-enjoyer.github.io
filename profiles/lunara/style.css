@@ -1,17 +1,15 @@
 .topbar {
     display: flex;
-    justify-content: flex-end;
-    padding: 20px;
+    padding: 0px;
+    background-color: rgba(55, 55, 55, 0.15);
 }
 
 .home-button {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 
     text-decoration: none;
-
-    background-color: #1a1a1a;
     color: white;
 
     padding: 10px 16px;
@@ -22,4 +20,20 @@
 
 .home-logo {
     width: 32px;
+}
+
+body {
+    margin: 0px;
+    margin-top: 0px;
+    background: linear-gradient(
+        to right,
+        #141414 0%,
+        #111111 25%,
+        #000000 50%,
+        #111111 85%,
+        #141414 100%
+    );
+
+    color: white;
+    text-align: center;
 }

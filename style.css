@@ -1,5 +1,29 @@
+.topbar {
+    display: flex;
+    padding: 0px;
+    background-color: rgba(55, 55, 55, 0.15);
+}
+
+.home-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    text-decoration: none;
+    color: white;
+
+    padding: 10px 16px;
+    border-radius: 12px;
+
+    font-family: Arial, sans-serif;
+}
+
+.home-logo {
+    width: 32px;
+}
+
 body {
-    margin-top: 100px;
+    margin-top: 0px;
     background: linear-gradient(
         to right,
         #141414 0%,
@@ -14,5 +38,6 @@ body {
 }
 
 .vexorid-main {
+    margin-top: 100px;
     width: 256px;
 }
