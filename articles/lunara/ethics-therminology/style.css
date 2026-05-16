@@ -62,4 +62,28 @@ body {
 
     color: white;
     text-align: center;
+    margin: 0;
+    padding-top: 70px;
+}
+
+#article {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 20px;
+
+    font-family: "Inter", sans-serif;
+    color: white;
+
+    text-align: left;
+    line-height: 1.7;
+}
+
+#article h1,
+#article h2,
+#article h3 {
+    margin-top: 24px;
+}
+
+#article ul {
+    padding-left: 20px;
 }
