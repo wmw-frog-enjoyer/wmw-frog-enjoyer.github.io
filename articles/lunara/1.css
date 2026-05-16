@@ -1,0 +1,65 @@
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    background-color: rgba(55, 55, 55, 0.15);
+}
+
+.home-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    text-decoration: none;
+    color: white;
+
+    padding: 10px 16px;
+    border-radius: 12px;
+
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+}
+
+.home-logo {
+    width: 32px;
+}
+
+.center-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.members-button {
+    color: white;
+    text-decoration: none;
+
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+
+    padding: 8px 14px;
+    border-radius: 8px;
+
+    transition: 0.2s ease;
+}
+
+.members-button:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+body {
+    margin: 0px;
+    margin-top: 0px;
+    background: linear-gradient(
+        to right,
+        #141414 0%,
+        #111111 25%,
+        #000000 50%,
+        #111111 75%,
+        #141414 100%
+    );
+
+    color: white;
+    text-align: center;
+}
