@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px;
+    padding: 3px;
     background-color: rgba(55, 55, 55, 0.15);
 }
 
@@ -17,12 +17,13 @@
     padding: 10px 16px;
     border-radius: 12px;
 
+    font-size: 25px;
     font-family: "Inter", sans-serif;
-    font-weight: 300;
+    font-weight: 200;
 }
 
 .home-logo {
-    width: 32px;
+    width: 35px;
 }
 
 .center-nav {
@@ -35,8 +36,9 @@
     color: white;
     text-decoration: none;
 
+    font-size: 22px;
     font-family: "Inter", sans-serif;
-    font-weight: 300;
+    font-weight: 200;
 
     padding: 8px 14px;
     border-radius: 8px;
@@ -98,9 +100,11 @@ body {
 }
 
 .pfp {
-    margin: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
     border-radius: 100%;
-    width: 256px;
+    width: 170px;
 }
 
 .card-content {
@@ -108,10 +112,10 @@ body {
 }
 
 .card-title {
-    margin-top: -50px;
+    margin-top: 0px;
     font-family: "Inter", sans-serif;
     font-weight: 500;
-    font-size: 50px;
+    font-size: 35px;
 }
 
 .card-text {
@@ -119,14 +123,14 @@ body {
     text-align: left;
     font-family: "Inter", sans-serif;
     font-weight: 400;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .discord {
     color: white;
     font-family: "Inter", sans-serif;
     font-weight: 400;
-    font-size: 25px;
+    font-size: 20px;
     display: block;
     text-align: left;
 }
