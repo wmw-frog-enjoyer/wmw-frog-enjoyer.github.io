@@ -119,17 +119,23 @@ body {
 }
 
 .button-apply {
+    display: inline-block;
+
     text-decoration: none;
     color: white;
-    padding: 5px 20px;
-    margin-left: 680px;
-    margin-right: 680px;
-    border-radius: 5px;
-    background-color: rgb(37, 105, 63);
     font-family: "Inter", sans-serif;
     font-weight: 300;
     font-size: 20px;
-    transition: 0.2s ease;
+
+    padding: 0px 10px;
+    border-radius: 10px;
+    margin-bottom: 120px;
+
+    background-color: rgb(37, 105, 63);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
 }
 
 .button-apply:hover {
