@@ -3,7 +3,7 @@
    ===================================================== */
 
 .page-content {
-    max-width: 680px;
+    max-width: 850px;
     margin: 60px auto;
     padding: 0 24px;
     text-align: left;
@@ -23,9 +23,8 @@
 .page-title {
     font-family: "Inter", sans-serif;
     font-weight: 200;
-    font-size: 32px;
+    font-size: 60px;
     margin: 0 0 36px 0;
-    letter-spacing: -0.5px;
     color: white;
 }
 
@@ -57,34 +56,34 @@
 
 .card-number {
     font-family: "Inter", sans-serif;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.25);
 }
 
 .card-dot {
-    font-size: 12px;
+    font-size: 20px;
     color: rgba(255, 255, 255, 0.15);
 }
 
 .card-date {
     font-family: "Inter", sans-serif;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.28);
 }
 
 .card-title {
     font-family: "Inter", sans-serif;
-    font-size: 17px;
+    font-size: 28px;
     font-weight: 400;
     margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 
 .card-desc {
     font-family: "Inter", sans-serif;
-    font-size: 13px;
+    font-size: 17px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.48);
     margin-bottom: 8px;
@@ -92,7 +91,7 @@
 
 .card-author {
     font-family: "Inter", sans-serif;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.3);
 }
