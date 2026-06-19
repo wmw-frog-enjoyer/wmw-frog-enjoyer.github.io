@@ -98,6 +98,9 @@
                     }
 
                     const markdown = await mdResponse.text();
+                    // breaks: true makes single newlines in .md files render as line breaks
+                    // without this, you'd need a blank line between every line
+                    marked.use({ breaks: true });
                     postBody.innerHTML = marked.parse(markdown);
                 } catch (error) {
                     postBody.innerHTML =
