@@ -34,60 +34,93 @@
                 >
                     archivers
                 </a>
-                <a
-                    class="archivers"
-                    href="https://wmw-frog-enjoyer.github.io/articles"
-                >
-                    articles
-                </a>
             </div>
         </header>
         <!-- ==================== END COPY-PASTE HEADER ================== -->
 
         <div class="page-content">
             <h1 class="page-title">articles</h1>
+            <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="search by title or author..."
+                autocomplete="off"
+            />
             <div id="posts-container">
                 <p class="status-text">loading...</p>
             </div>
         </div>
 
         <script>
+            let allPosts = [];
+
+            function renderCards(filter) {
+                const container = document.getElementById("posts-container");
+                const query = filter.toLowerCase().trim();
+
+                // filter posts by title or author
+                const results = query
+                    ? allPosts.filter(
+                          (p) =>
+                              p.title.toLowerCase().includes(query) ||
+                              p.author.toLowerCase().includes(query),
+                      )
+                    : allPosts;
+
+                container.innerHTML = "";
+
+                if (results.length === 0) {
+                    container.innerHTML =
+                        '<p class="status-text">no articles found.</p>';
+                    return;
+                }
+
+                results.forEach((post) => {
+                    const card = document.createElement("a");
+                    card.className = "post-card";
+                    card.href = `reader.html?post=${post.id}`;
+
+                    card.innerHTML = `
+                        <div class="card-top-row">
+                            <span class="card-number">#${post.id}</span>
+                            <span class="card-dot">·</span>
+                            <span class="card-date">${post.date}</span>
+                        </div>
+                        <div class="card-title">${post.title}</div>
+                        ${post.description ? `<div class="card-desc">${post.description}</div>` : ""}
+                        <div class="card-author">${post.author}</div>
+                    `;
+
+                    container.appendChild(card);
+                });
+            }
+
             async function loadPosts() {
                 const container = document.getElementById("posts-container");
 
                 try {
                     const response = await fetch("posts/posts.json");
-                    const posts = await response.json();
+                    allPosts = await response.json();
 
-                    container.innerHTML = "";
-
-                    if (posts.length === 0) {
+                    if (allPosts.length === 0) {
                         container.innerHTML =
                             '<p class="status-text">nothing here yet.</p>';
                         return;
                     }
 
                     // sort by id number, highest (newest) first
-                    posts.sort((a, b) => Number(b.id) - Number(a.id));
+                    allPosts.sort((a, b) => Number(b.id) - Number(a.id));
 
-                    posts.forEach((post) => {
-                        const card = document.createElement("a");
-                        card.className = "post-card";
-                        card.href = `reader.html?post=${post.id}`;
+                    // render all posts initially
+                    renderCards("");
 
-                        card.innerHTML = `
-                            <div class="card-top-row">
-                                <span class="card-number">#${post.id}</span>
-                                <span class="card-dot">·</span>
-                                <span class="card-date">${post.date}</span>
-                            </div>
-                            <div class="card-title">${post.title}</div>
-                            ${post.description ? `<div class="card-desc">${post.description}</div>` : ""}
-                            <div class="card-author">${post.author}</div>
-                        `;
-
-                        container.appendChild(card);
-                    });
+                    // filter live as the user types
+                    document
+                        .getElementById("search-input")
+                        .addEventListener("input", (e) => {
+                            renderCards(e.target.value);
+                        });
                 } catch (error) {
                     container.innerHTML =
                         '<p class="status-text">could not load articles.</p>';
