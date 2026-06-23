@@ -112,10 +112,10 @@
                     // sort by id number, highest (newest) first
                     allPosts.sort((a, b) => Number(b.id) - Number(a.id));
 
-                    // render all posts initially
+                    // render all posts on load
                     renderCards("");
 
-                    // filter live as the user types
+                    // re-render filtered results as the user types
                     document
                         .getElementById("search-input")
                         .addEventListener("input", (e) => {
