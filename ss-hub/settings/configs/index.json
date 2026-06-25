@@ -1,9 +1,11 @@
-{
-  "id": "001",
-  "author": "Lunara",
-  "format": "ss",
-  "date": "2026-06-25",
-  "description": "Norm Low ad low multipler",
-  "video": "https://youtu.be/XSNlw3LsKAo?si=khUySBntHXMN7fvT",
-  "tags": ["high-ad", "2.3x"]
-}
+[
+  {
+    "id": "001",
+    "author": "Lunara",
+    "format": "ss",
+    "date": "2026-06-25",
+    "description": "Norm Low ad low multipler",
+    "video": "https://youtu.be/XSNlw3LsKAo?si=khUySBntHXMN7fvT",
+    "tags": ["high-ad", "2.3x"]
+  }
+]
