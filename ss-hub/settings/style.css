@@ -36,6 +36,7 @@ body {
 
 .search-input {
     width: 100%;
+    box-sizing: border-box;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -320,7 +321,7 @@ body {
     background-color: rgb(37, 105, 63);
     border: none;
     border-radius: 10px;
-    padding: 10px 15px;
+    padding: 0px 10px;
     cursor: pointer;
     transition:
         transform 0.2s ease,
