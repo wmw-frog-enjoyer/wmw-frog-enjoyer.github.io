@@ -22,14 +22,7 @@
     <body>
         <!-- topbar -->
         <div id="topbar-container"></div>
-        <script>
-            fetch("/topbar.html")
-                .then((r) => r.text())
-                .then((html) => {
-                    document.getElementById("topbar-container").innerHTML =
-                        html;
-                });
-        </script>
+        <script src="/nav.js"></script>
         <!-- this is the end of copy paste -->
 
         <img
