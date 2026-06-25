@@ -2,6 +2,11 @@
    settings — shared styles for index.html & reader.html
    ===================================================== */
 
+/* override global style.css body rules */
+body {
+    text-align: left;
+}
+
 .page-content {
     max-width: 850px;
     margin: 60px auto;
@@ -108,12 +113,12 @@
     margin-bottom: 20px;
 }
 
-.card-desc {
+.card-author-row {
     font-family: "Inter", sans-serif;
     font-size: 17px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.48);
-    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 6px;
 }
 
 .card-bottom-row {
@@ -295,4 +300,30 @@
     width: 100%;
     height: 100%;
     border: none;
+}
+
+/* =====================================================
+   action button — copy (ss) or download (ssp)
+   ===================================================== */
+
+.action-btn {
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 12px 24px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.22);
 }

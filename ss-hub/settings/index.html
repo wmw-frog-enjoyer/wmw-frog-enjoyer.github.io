@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>Ansilian</title>
+        <title>settings — Ansilian</title>
         <link
             rel="icon"
             type="image/png"
@@ -48,7 +48,7 @@
                 type="text"
                 id="search-input"
                 class="search-input"
-                placeholder="search by author, format or tag..."
+                placeholder="search by title, author, format or tag..."
                 autocomplete="off"
             />
             <div id="configs-container">
@@ -72,6 +72,8 @@
 
                 const results = query
                     ? allConfigs.filter((c) => {
+                          const inTitle =
+                              c.title && c.title.toLowerCase().includes(query);
                           const inAuthor = c.author
                               .toLowerCase()
                               .includes(query);
@@ -83,7 +85,7 @@
                               c.tags.some((t) =>
                                   t.toLowerCase().includes(query),
                               );
-                          return inAuthor || inFormat || inTags;
+                          return inTitle || inAuthor || inFormat || inTags;
                       })
                     : allConfigs;
 
@@ -107,8 +109,8 @@
                             <span class="card-date">${config.date}</span>
                             <span class="format-badge format-${config.format}">${config.format}</span>
                         </div>
-                        <div class="card-title">${config.author}</div>
-                        ${config.description ? `<div class="card-desc">${config.description}</div>` : ""}
+                        <div class="card-title">${config.title || config.author}</div>
+                        <div class="card-author-row">${config.author}</div>
                         <div class="card-bottom-row">
                             <div class="card-tags">${renderTags(config.tags)}</div>
                         </div>

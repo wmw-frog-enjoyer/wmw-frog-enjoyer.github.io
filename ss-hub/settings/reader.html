@@ -45,7 +45,6 @@
         <div class="page-content">
             <a class="back-link" href="index.html">← back to settings</a>
 
-            <!-- preface: id + format on the left, author + date on the right -->
             <div class="post-preface">
                 <div class="preface-left">
                     <span class="preface-number" id="preface-number"></span>
@@ -58,13 +57,10 @@
             </div>
             <hr class="preface-divider" />
 
-            <!-- tags -->
             <div id="preface-tags" class="preface-tags"></div>
 
-            <!-- stats grid: the extracted settings values -->
             <div id="stats-grid" class="stats-grid"></div>
 
-            <!-- youtube video embed -->
             <div
                 id="video-container"
                 class="video-container"
@@ -86,11 +82,13 @@
                 ></iframe>
             </div>
 
+            <!-- copy or download button, shown after the video -->
+            <div id="action-container"></div>
+
             <p class="status-text" id="status"></p>
         </div>
 
         <script>
-            // Which fields to pull from each format and what to label them
             const SS_FIELDS = [
                 { key: "ApproachRate", label: "Approach Rate" },
                 { key: "ApproachDistance", label: "Approach Distance" },
@@ -107,10 +105,8 @@
                 { key: "ui_parallax", label: "UI Parallax" },
             ];
 
-            // Converts any YouTube URL to an embed URL
             function getYouTubeEmbedUrl(url) {
                 if (!url) return null;
-                // handles youtu.be/ID and youtube.com/watch?v=ID
                 const match = url.match(/(?:youtu\.be\/|[?&]v=)([\w-]{11})/);
                 return match
                     ? `https://www.youtube.com/embed/${match[1]}`
@@ -120,12 +116,9 @@
             function renderStats(data, fields) {
                 const grid = document.getElementById("stats-grid");
                 grid.innerHTML = "";
-
                 fields.forEach(({ key, label }) => {
                     const value = data[key];
-                    // skip fields that don't exist in this config
                     if (value === undefined || value === null) return;
-
                     const box = document.createElement("div");
                     box.className = "stat-box";
                     box.innerHTML = `
@@ -136,9 +129,54 @@
                 });
             }
 
+            function addCopyButton(configData) {
+                const btn = document.createElement("button");
+                btn.className = "action-btn";
+                btn.textContent = "copy config";
+                btn.addEventListener("click", () => {
+                    // copies the raw JSON text to the clipboard
+                    navigator.clipboard
+                        .writeText(JSON.stringify(configData, null, 2))
+                        .then(() => {
+                            btn.textContent = "copied!";
+                            setTimeout(
+                                () => (btn.textContent = "copy config"),
+                                2000,
+                            );
+                        })
+                        .catch(() => {
+                            btn.textContent = "copy failed";
+                            setTimeout(
+                                () => (btn.textContent = "copy config"),
+                                2000,
+                            );
+                        });
+                });
+                document.getElementById("action-container").appendChild(btn);
+            }
+
+            function addDownloadButton(configData, author) {
+                const btn = document.createElement("button");
+                btn.className = "action-btn";
+                btn.textContent = "download config";
+                btn.addEventListener("click", () => {
+                    // creates a temporary download link and clicks it
+                    const blob = new Blob(
+                        [JSON.stringify(configData, null, 2)],
+                        { type: "application/json" },
+                    );
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = `${author}-ssp-settings.json`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                });
+                document.getElementById("action-container").appendChild(btn);
+            }
+
             async function loadConfig() {
                 const status = document.getElementById("status");
-
                 const params = new URLSearchParams(window.location.search);
                 const configId = params.get("config");
 
@@ -148,7 +186,6 @@
                 }
 
                 try {
-                    // fetch the index to get metadata (author, date, format, video, tags)
                     const indexResponse = await fetch("configs/index.json");
                     const allConfigs = await indexResponse.json();
                     const meta = allConfigs.find((c) => c.id === configId);
@@ -158,21 +195,19 @@
                         return;
                     }
 
-                    // fill in the preface
                     document.getElementById("preface-number").textContent =
                         `#${meta.id}`;
                     document.getElementById("preface-author").textContent =
                         meta.author;
                     document.getElementById("preface-date").textContent =
                         meta.date;
-                    document.title = `${meta.author}'s settings — Ansilian`;
+                    document.title = `${meta.title || meta.author} — Ansilian`;
 
                     const formatBadge =
                         document.getElementById("preface-format");
                     formatBadge.textContent = meta.format;
                     formatBadge.className = `format-badge format-${meta.format}`;
 
-                    // fill in tags
                     if (meta.tags && meta.tags.length > 0) {
                         document.getElementById("preface-tags").innerHTML =
                             meta.tags
@@ -183,7 +218,6 @@
                                 .join("");
                     }
 
-                    // fetch the actual settings JSON file
                     const configResponse = await fetch(
                         `configs/${configId}.json`,
                     );
@@ -193,12 +227,10 @@
                     }
                     const configData = await configResponse.json();
 
-                    // render the relevant stats based on format
                     const fields =
                         meta.format === "ssp" ? SSP_FIELDS : SS_FIELDS;
                     renderStats(configData, fields);
 
-                    // embed the youtube video if there is one
                     if (meta.video) {
                         const embedUrl = getYouTubeEmbedUrl(meta.video);
                         if (embedUrl) {
@@ -208,6 +240,13 @@
                                 "video-container",
                             ).style.display = "block";
                         }
+                    }
+
+                    // ss → copy button, ssp → download button
+                    if (meta.format === "ss") {
+                        addCopyButton(configData);
+                    } else if (meta.format === "ssp") {
+                        addDownloadButton(configData, meta.author);
                     }
                 } catch (error) {
                     status.textContent = "could not load config.";
