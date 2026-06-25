@@ -18,28 +18,15 @@
     </head>
     <body>
         <!-- ===================== COPY-PASTE HEADER ===================== -->
-        <header class="topbar">
-            <a class="home-button" href="https://wmw-frog-enjoyer.github.io/">
-                <img
-                    class="home-logo"
-                    src="https://wmw-frog-enjoyer.github.io/assets/ansilian.png"
-                    alt="home-Logo"
-                />
-                <span>Ansilian</span>
-            </a>
-            <div class="center-nav">
-                <a
-                    class="archivers"
-                    href="https://wmw-frog-enjoyer.github.io/archivers"
-                    >archivers</a
-                >
-                <a
-                    class="archivers"
-                    href="https://wmw-frog-enjoyer.github.io/articles"
-                    >articles</a
-                >
-            </div>
-        </header>
+        <div id="topbar-container"></div>
+        <script>
+            fetch("/topbar.html")
+                .then((r) => r.text())
+                .then((html) => {
+                    document.getElementById("topbar-container").innerHTML =
+                        html;
+                });
+        </script>
         <!-- ==================== END COPY-PASTE HEADER ================== -->
 
         <div class="page-content">
