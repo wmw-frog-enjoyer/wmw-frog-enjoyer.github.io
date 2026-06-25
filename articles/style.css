@@ -188,7 +188,7 @@
 .post-body h1 {
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    font-size: 26px;
+    font-size: 40px;
     margin: 0 0 18px 0;
     letter-spacing: -0.5px;
     color: white;
@@ -197,7 +197,7 @@
 .post-body h2 {
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    font-size: 19px;
+    font-size: 35px;
     margin: 34px 0 10px 0;
     color: rgba(255, 255, 255, 0.9);
 }
@@ -205,7 +205,7 @@
 .post-body h3 {
     font-family: "Inter", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 30px;
     margin: 26px 0 8px 0;
     color: rgba(255, 255, 255, 0.85);
 }
@@ -213,7 +213,7 @@
 .post-body p {
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    font-size: 15px;
+    font-size: 20px;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.76);
     margin: 0 0 15px 0;
