@@ -6,7 +6,11 @@
     "type": "ss-skin",
     "date": "2026-06-26",
     "video": "https://youtu.be/XSNlw3LsKAo?si=1X12e8G8MyquDQns",
-    "tags": ["minimal changes", "basic", "ss skin"]
+    "tags": [
+      "minimal changes",
+      "basic",
+      "ss skin"
+    ]
   },
   {
     "id": "002",
@@ -16,7 +20,10 @@
     "date": "2026-06-26",
     "file": "002.png",
     "code": "115283423768494",
-    "tags": ["non conventional", "ss cursor"]
+    "tags": [
+      "non conventional",
+      "ss cursor"
+    ]
   },
   {
     "id": "003",
@@ -25,7 +32,10 @@
     "type": "ssp-cursor",
     "date": "2026-06-26",
     "file": "003.png",
-    "tags": ["non conventional", "ssp cursor"]
+    "tags": [
+      "non conventional",
+      "ssp cursor"
+    ]
   },
   {
     "id": "004",
