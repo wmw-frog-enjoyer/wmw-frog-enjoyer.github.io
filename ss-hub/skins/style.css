@@ -57,57 +57,82 @@ body {
 }
 
 /* =====================================================
-   skin card
+   2-column grid
+   ===================================================== */
+
+#skins-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    align-items: start;
+}
+
+/* collapse to 1 column on small screens */
+@media (max-width: 600px) {
+    #skins-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================================================
+   skin card — vertical layout
    ===================================================== */
 
 .skin-card {
-    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 10px;
-    margin-bottom: 12px;
     background: rgba(255, 255, 255, 0.02);
 }
 
 .card-top-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 .card-number {
     font-family: "Inter", sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.25);
 }
 
 .card-dot {
-    font-size: 20px;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.15);
 }
 
 .card-date {
     font-family: "Inter", sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.28);
 }
 
 .card-title {
     font-family: "Inter", sans-serif;
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 400;
-    margin: 10px 0 6px 0;
+    margin: 6px 0 4px 0;
     color: white;
 }
 
 .card-author-row {
     font-family: "Inter", sans-serif;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.45);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+}
+
+.asset-preview-wrap {
+    margin-bottom: 14px;
+    flex: 1;
 }
 
 /* =====================================================
@@ -116,11 +141,11 @@ body {
 
 .type-badge {
     font-family: "Inter", sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 2px 8px;
+    padding: 2px 7px;
     border-radius: 5px;
 }
 
@@ -164,17 +189,28 @@ body {
    asset previews
    ===================================================== */
 
-.asset-preview-wrap {
-    margin-bottom: 16px;
+/* youtube embed */
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-/* cursor and mesh images */
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* cursor image */
 .asset-preview {
-    max-width: 200px;
-    max-height: 200px;
-    border-radius: 8px;
+    max-width: 100%;
+    max-height: 160px;
+    border-radius: 6px;
     display: block;
-    image-rendering: pixelated; /* keeps pixel art crisp */
+    image-rendering: pixelated;
 }
 
 /* audio player */
@@ -183,18 +219,48 @@ body {
     accent-color: rgb(37, 105, 63);
 }
 
-/* ss cursor code display */
+/* ss cursor code */
 .cursor-code {
     font-family: "Inter", sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.6);
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 6px;
     padding: 10px 14px;
-    margin-bottom: 16px;
     word-break: break-all;
+}
+
+/* mesh color swatches */
+.mesh-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+}
+
+.color-swatch {
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: transform 0.15s ease;
+    cursor: default;
+}
+
+.color-swatch:hover {
+    transform: scale(1.2);
+}
+
+.mesh-loading {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.3);
 }
 
 /* =====================================================
@@ -205,13 +271,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 .action-btn {
     font-family: "Inter", sans-serif;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 300;
     color: white;
     background-color: rgb(37, 105, 63);
@@ -238,11 +305,11 @@ body {
 
 .card-tag {
     font-family: "Inter", sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.45);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 6px;
-    padding: 2px 10px;
+    padding: 2px 8px;
 }

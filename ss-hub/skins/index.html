@@ -33,7 +33,6 @@
         <script>
             let allSkins = [];
 
-            // human-readable label for each type
             const TYPE_LABELS = {
                 "ss-skin": "ss skin",
                 "ss-cursor": "ss cursor",
@@ -43,7 +42,14 @@
                 "ssp-mesh": "ssp mesh",
             };
 
-            // copies a file's text content to clipboard
+            function getYouTubeEmbedUrl(url) {
+                if (!url) return null;
+                const match = url.match(/(?:youtu\.be\/|[?&]v=)([\w-]{11})/);
+                return match
+                    ? `https://www.youtube.com/embed/${match[1]}`
+                    : null;
+            }
+
             async function copyFile(path, btn) {
                 try {
                     const text = await fetch(path).then((r) => r.text());
@@ -57,7 +63,6 @@
                 }
             }
 
-            // copies a plain string to clipboard
             async function copyText(text, btn) {
                 try {
                     await navigator.clipboard.writeText(text);
@@ -70,7 +75,6 @@
                 }
             }
 
-            // triggers a file download
             function downloadFile(path, filename) {
                 const a = document.createElement("a");
                 a.href = path;
@@ -91,20 +95,32 @@
                               .join("")
                         : "";
 
-                // preview area: image, audio player, or nothing
+                // preview area
                 let preview = "";
-                if (skin.type === "ssp-cursor" || skin.type === "ssp-mesh") {
+                if (skin.type === "ss-skin") {
+                    const embedUrl = getYouTubeEmbedUrl(skin.video);
+                    if (embedUrl) {
+                        preview = `
+                            <div class="video-container">
+                                <iframe src="${embedUrl}" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>`;
+                    }
+                } else if (skin.type === "ss-cursor") {
+                    preview = `<div class="cursor-code">${skin.code}</div>`;
+                } else if (skin.type === "ssp-cursor") {
                     preview = `<img class="asset-preview" src="assets/${skin.file}" loading="lazy" alt="${skin.title}" />`;
                 } else if (
                     skin.type === "ssp-hit" ||
                     skin.type === "ssp-miss"
                 ) {
                     preview = `<audio class="audio-player" controls src="assets/${skin.file}"></audio>`;
-                } else if (skin.type === "ss-cursor") {
-                    preview = `<div class="cursor-code">${skin.code}</div>`;
+                } else if (skin.type === "ssp-mesh") {
+                    preview = `<div class="mesh-preview" data-file="assets/${skin.file}"><span class="mesh-loading">loading colors...</span></div>`;
                 }
 
-                // action button: copy for ss, download for ssp
+                // action button
                 let action = "";
                 if (skin.type === "ss-skin") {
                     action = `<button class="action-btn" onclick="copyFile('assets/${skin.id}.json', this)">copy skin</button>`;
@@ -134,6 +150,37 @@
                 `;
             }
 
+            async function loadMeshPreviews() {
+                document
+                    .querySelectorAll(".mesh-preview[data-file]")
+                    .forEach(async (el) => {
+                        try {
+                            const text = await fetch(el.dataset.file).then(
+                                (r) => r.text(),
+                            );
+                            const hexes = [
+                                ...new Set(
+                                    text.match(/[0-9a-fA-F]{6}/gi) || [],
+                                ),
+                            ];
+                            if (hexes.length === 0) {
+                                el.innerHTML =
+                                    '<span class="mesh-loading">no colors found</span>';
+                                return;
+                            }
+                            el.innerHTML = hexes
+                                .map(
+                                    (h) =>
+                                        `<div class="color-swatch" style="background:#${h};" title="#${h}"></div>`,
+                                )
+                                .join("");
+                        } catch {
+                            el.innerHTML =
+                                '<span class="mesh-loading">could not load colors</span>';
+                        }
+                    });
+            }
+
             function renderCards(filter) {
                 const container = document.getElementById("skins-container");
                 const query = filter.toLowerCase().trim();
@@ -161,6 +208,7 @@
                 }
 
                 container.innerHTML = results.map(buildCard).join("");
+                loadMeshPreviews();
             }
 
             async function loadSkins() {
