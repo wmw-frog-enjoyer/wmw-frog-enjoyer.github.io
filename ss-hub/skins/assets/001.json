@@ -1,0 +1,109 @@
+{
+  "MissesLabel": {
+    "Enabled": false,
+    "FontSize": 93,
+    "Color": "ffffff",
+    "Font": "Arcade",
+    "Panel": "Right",
+    "YOffset": 250
+  },
+  "MissIndicator": {
+    "Enabled": true,
+    "Font": "Arcade",
+    "FontSize": 150,
+    "Color": "ff5564"
+  },
+  "ComboLabel": {
+    "Enabled": false,
+    "FontSize": 120,
+    "Color": "ffffff",
+    "Font": "Arcade",
+    "Panel": "Left",
+    "YOffset": 450
+  },
+  "ScoreNumber": {
+    "Enabled": true,
+    "FontSize": 120,
+    "Color": "ffffff",
+    "Font": "Montserrat",
+    "Panel": "Right",
+    "YOffset": 72
+  },
+  "NotesNumber": {
+    "Enabled": true,
+    "FontSize": 120,
+    "Color": "ffffff",
+    "Font": "Montserrat",
+    "Panel": "Left",
+    "YOffset": 776
+  },
+  "ScoreMultiplier": {
+    "Panel": "Left",
+    "Font": "Montserrat",
+    "Style": 1,
+    "Color": "ffffff",
+    "Enabled": true,
+    "YOffset": 465
+  },
+  "GridOutline": { "Style": 1, "Enabled": false },
+  "NoteScore": {
+    "Enabled": true,
+    "Font": "Arcade",
+    "FontSize": 150,
+    "Color": "00a550"
+  },
+  "TimeBar": { "Style": 1, "Enabled": false },
+  "ComboNumber": {
+    "Enabled": true,
+    "FontSize": 120,
+    "Color": "ffffff",
+    "Font": "Montserrat",
+    "Panel": "Left",
+    "YOffset": 30
+  },
+  "PauseIndicator": {
+    "Panel": "Right",
+    "Font": "Arcade",
+    "Style": 2,
+    "Color": "ffb700",
+    "Enabled": false,
+    "YOffset": 745
+  },
+  "MissesNumber": {
+    "Enabled": true,
+    "FontSize": 150,
+    "Color": "c21807",
+    "Font": "Montserrat",
+    "Panel": "Right",
+    "YOffset": 413
+  },
+  "NotesLabel": {
+    "Enabled": false,
+    "FontSize": 70,
+    "Color": "ffffff",
+    "Font": "Montserrat",
+    "Panel": "Right",
+    "YOffset": 740
+  },
+  "HealthBar": { "Style": 2, "Enabled": false },
+  "Timestamp": {
+    "Enabled": false,
+    "Font": "Arcade",
+    "FontSize": 75,
+    "Color": "ffffff"
+  },
+  "AccuracyNumber": {
+    "Enabled": true,
+    "FontSize": 35,
+    "Color": "00a550",
+    "Font": "Montserrat",
+    "Panel": "Right",
+    "YOffset": 803
+  },
+  "FullComboBar": {
+    "Color": "d9d9d9",
+    "Enabled": false,
+    "Panel": "Left",
+    "YOffset": 280
+  }
+}

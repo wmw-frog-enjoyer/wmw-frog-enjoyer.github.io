@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+    <head>
+        <title>skins — Ansilian</title>
+        <link rel="icon" type="image/png" href="/assets/ansilian.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../../style.css" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="topbar-container"></div>
+        <script src="/nav.js"></script>
+
+        <div class="page-content">
+            <h1 class="page-title">skins</h1>
+            <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="search by title, author, type or tag..."
+                autocomplete="off"
+            />
+            <div id="skins-container">
+                <p class="status-text">loading...</p>
+            </div>
+        </div>
+
+        <script>
+            let allSkins = [];
+
+            // human-readable label for each type
+            const TYPE_LABELS = {
+                "ss-skin": "ss skin",
+                "ss-cursor": "ss cursor",
+                "ssp-cursor": "ssp cursor",
+                "ssp-hit": "ssp hit",
+                "ssp-miss": "ssp miss",
+                "ssp-mesh": "ssp mesh",
+            };
+
+            // copies a file's text content to clipboard
+            async function copyFile(path, btn) {
+                try {
+                    const text = await fetch(path).then((r) => r.text());
+                    await navigator.clipboard.writeText(text);
+                    const original = btn.textContent;
+                    btn.textContent = "copied!";
+                    setTimeout(() => (btn.textContent = original), 2000);
+                } catch {
+                    btn.textContent = "copy failed";
+                    setTimeout(() => (btn.textContent = "copy"), 2000);
+                }
+            }
+
+            // copies a plain string to clipboard
+            async function copyText(text, btn) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    const original = btn.textContent;
+                    btn.textContent = "copied!";
+                    setTimeout(() => (btn.textContent = original), 2000);
+                } catch {
+                    btn.textContent = "copy failed";
+                    setTimeout(() => (btn.textContent = "copy"), 2000);
+                }
+            }
+
+            // triggers a file download
+            function downloadFile(path, filename) {
+                const a = document.createElement("a");
+                a.href = path;
+                a.download = filename;
+                a.click();
+            }
+
+            function getExt(filename) {
+                return filename.split(".").pop();
+            }
+
+            function buildCard(skin) {
+                const label = TYPE_LABELS[skin.type] || skin.type;
+                const tags =
+                    skin.tags && skin.tags.length
+                        ? skin.tags
+                              .map((t) => `<span class="card-tag">${t}</span>`)
+                              .join("")
+                        : "";
+
+                // preview area: image, audio player, or nothing
+                let preview = "";
+                if (skin.type === "ssp-cursor" || skin.type === "ssp-mesh") {
+                    preview = `<img class="asset-preview" src="assets/${skin.file}" loading="lazy" alt="${skin.title}" />`;
+                } else if (
+                    skin.type === "ssp-hit" ||
+                    skin.type === "ssp-miss"
+                ) {
+                    preview = `<audio class="audio-player" controls src="assets/${skin.file}"></audio>`;
+                } else if (skin.type === "ss-cursor") {
+                    preview = `<div class="cursor-code">${skin.code}</div>`;
+                }
+
+                // action button: copy for ss, download for ssp
+                let action = "";
+                if (skin.type === "ss-skin") {
+                    action = `<button class="action-btn" onclick="copyFile('assets/${skin.id}.json', this)">copy skin</button>`;
+                } else if (skin.type === "ss-cursor") {
+                    action = `<button class="action-btn" onclick="copyText('${skin.code}', this)">copy cursor</button>`;
+                } else {
+                    const filename = `${skin.title}.${getExt(skin.file)}`;
+                    action = `<button class="action-btn" onclick="downloadFile('assets/${skin.file}', '${filename}')">download</button>`;
+                }
+
+                return `
+                    <div class="skin-card">
+                        <div class="card-top-row">
+                            <span class="card-number">#${skin.id}</span>
+                            <span class="card-dot">·</span>
+                            <span class="card-date">${skin.date}</span>
+                            <span class="type-badge type-${skin.type}">${label}</span>
+                        </div>
+                        <div class="card-title">${skin.title}</div>
+                        <div class="card-author-row">${skin.author}</div>
+                        ${preview ? `<div class="asset-preview-wrap">${preview}</div>` : ""}
+                        <div class="card-action-row">
+                            ${action}
+                            ${tags ? `<div class="card-tags">${tags}</div>` : ""}
+                        </div>
+                    </div>
+                `;
+            }
+
+            function renderCards(filter) {
+                const container = document.getElementById("skins-container");
+                const query = filter.toLowerCase().trim();
+
+                const results = query
+                    ? allSkins.filter((s) => {
+                          const inTitle = s.title.toLowerCase().includes(query);
+                          const inAuthor = s.author
+                              .toLowerCase()
+                              .includes(query);
+                          const inType = s.type.toLowerCase().includes(query);
+                          const inTags =
+                              s.tags &&
+                              s.tags.some((t) =>
+                                  t.toLowerCase().includes(query),
+                              );
+                          return inTitle || inAuthor || inType || inTags;
+                      })
+                    : allSkins;
+
+                if (results.length === 0) {
+                    container.innerHTML =
+                        '<p class="status-text">no skins found.</p>';
+                    return;
+                }
+
+                container.innerHTML = results.map(buildCard).join("");
+            }
+
+            async function loadSkins() {
+                const container = document.getElementById("skins-container");
+                try {
+                    const response = await fetch("assets/index.json");
+                    allSkins = await response.json();
+
+                    if (allSkins.length === 0) {
+                        container.innerHTML =
+                            '<p class="status-text">nothing here yet.</p>';
+                        return;
+                    }
+
+                    allSkins.sort((a, b) => Number(b.id) - Number(a.id));
+                    renderCards("");
+
+                    document
+                        .getElementById("search-input")
+                        .addEventListener("input", (e) => {
+                            renderCards(e.target.value);
+                        });
+                } catch (error) {
+                    container.innerHTML =
+                        '<p class="status-text">could not load skins.</p>';
+                    console.error(error);
+                }
+            }
+
+            loadSkins();
+        </script>
+    </body>
+</html>
