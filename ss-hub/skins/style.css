@@ -64,7 +64,6 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-    align-items: start;
 }
 
 /* collapse to 1 column on small screens */
