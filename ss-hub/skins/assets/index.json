@@ -35,5 +35,14 @@
     "date": "2026-06-26",
     "file": "004.mp3",
     "tags": ["clacky", "ssp hit"]
+  },
+  {
+    "id": "005",
+    "title": "green white",
+    "author": "Lunara",
+    "type": "ssp-mesh",
+    "date": "2026-06-26",
+    "file": "006.txt",
+    "tags": ["green", "white", "dual color", "ssp mesh"]
   }
 ]
