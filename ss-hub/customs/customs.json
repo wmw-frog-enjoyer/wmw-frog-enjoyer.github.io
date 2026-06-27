@@ -1,0 +1,22 @@
+[
+  {
+    "id": "001",
+    "name": "Song Name Here",
+    "mapper": "Mapper Name",
+    "rating": "8.2",
+    "pattern": "streams",
+    "link": "paste-in-game-code-here",
+    "date": "2026-06-26",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "002",
+    "name": "Another Song",
+    "mapper": "Another Mapper",
+    "rating": "6.5",
+    "pattern": "jacks",
+    "link": "another-in-game-code",
+    "date": "2026-06-26",
+    "archiver": "Lunara"
+  }
+]

@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+    <head>
+        <title>customs — Ansilian</title>
+        <link rel="icon" type="image/png" href="/assets/ansilian.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../../style.css" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="topbar-container"></div>
+        <script src="/nav.js"></script>
+
+        <div class="page-content">
+            <h1 class="page-title">customs</h1>
+
+            <!-- pattern toggle pills — populated once data loads -->
+            <div class="pattern-filter" id="pattern-filter">
+                <span class="pattern-filter-label">patterns</span>
+                <div class="pattern-pills" id="pattern-pills"></div>
+            </div>
+
+            <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="search by name, mapper or archiver..."
+                autocomplete="off"
+            />
+
+            <div id="customs-container">
+                <p class="status-text">loading...</p>
+            </div>
+        </div>
+
+        <script>
+            let allCustoms = [];
+            let selectedPatterns = new Set();
+
+            async function copyLink(link, btn) {
+                try {
+                    await navigator.clipboard.writeText(link);
+                    const original = btn.textContent;
+                    btn.textContent = "copied!";
+                    setTimeout(() => (btn.textContent = original), 2000);
+                } catch {
+                    btn.textContent = "copy failed";
+                    setTimeout(() => (btn.textContent = "copy link"), 2000);
+                }
+            }
+
+            function buildPatternPills(customs) {
+                // collect unique patterns from all customs
+                const patterns = [
+                    ...new Set(customs.map((c) => c.pattern).filter(Boolean)),
+                ].sort();
+                const pillsContainer = document.getElementById("pattern-pills");
+
+                pillsContainer.innerHTML = patterns
+                    .map(
+                        (p) => `
+                    <button class="pattern-pill" data-pattern="${p}" onclick="togglePattern('${p}', this)">
+                        ${p}
+                    </button>
+                `,
+                    )
+                    .join("");
+            }
+
+            function togglePattern(pattern, btn) {
+                if (selectedPatterns.has(pattern)) {
+                    selectedPatterns.delete(pattern);
+                    btn.classList.remove("active");
+                } else {
+                    selectedPatterns.add(pattern);
+                    btn.classList.add("active");
+                }
+                renderCards(document.getElementById("search-input").value);
+            }
+
+            function buildCard(custom) {
+                return `
+                    <div class="custom-card">
+                        <div class="card-top-row">
+                            <span class="card-number">#${custom.id}</span>
+                            <span class="card-dot">·</span>
+                            <span class="card-date">${custom.date}</span>
+                            ${custom.pattern ? `<span class="pattern-badge">${custom.pattern}</span>` : ""}
+                        </div>
+                        <div class="card-name">${custom.name}</div>
+                        <div class="card-mapper">mapped by ${custom.mapper}</div>
+                        <div class="card-meta-row">
+                            <span class="card-rating">⬦ ${custom.rating}</span>
+                            <span class="card-archiver">archived by ${custom.archiver}</span>
+                        </div>
+                        <button class="action-btn" onclick="copyLink('${custom.link}', this)">copy link</button>
+                    </div>
+                `;
+            }
+
+            function renderCards(filter) {
+                const container = document.getElementById("customs-container");
+                const query = filter.toLowerCase().trim();
+
+                const results = allCustoms.filter((c) => {
+                    const matchesSearch =
+                        !query ||
+                        c.name.toLowerCase().includes(query) ||
+                        c.mapper.toLowerCase().includes(query) ||
+                        c.archiver.toLowerCase().includes(query);
+                    const matchesPattern =
+                        selectedPatterns.size === 0 ||
+                        selectedPatterns.has(c.pattern);
+                    return matchesSearch && matchesPattern;
+                });
+
+                if (results.length === 0) {
+                    container.innerHTML =
+                        '<p class="status-text">no customs found.</p>';
+                    return;
+                }
+
+                container.innerHTML = results.map(buildCard).join("");
+            }
+
+            async function loadCustoms() {
+                const container = document.getElementById("customs-container");
+                try {
+                    const response = await fetch("customs.json");
+                    allCustoms = await response.json();
+
+                    if (allCustoms.length === 0) {
+                        container.innerHTML =
+                            '<p class="status-text">nothing here yet.</p>';
+                        return;
+                    }
+
+                    allCustoms.sort((a, b) => Number(b.id) - Number(a.id));
+
+                    buildPatternPills(allCustoms);
+                    renderCards("");
+
+                    document
+                        .getElementById("search-input")
+                        .addEventListener("input", (e) => {
+                            renderCards(e.target.value);
+                        });
+                } catch (error) {
+                    container.innerHTML =
+                        '<p class="status-text">could not load customs.</p>';
+                    console.error(error);
+                }
+            }
+
+            loadCustoms();
+        </script>
+    </body>
+</html>
