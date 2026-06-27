@@ -2,9 +2,11 @@
   "MissesLabel": {
     "Enabled": false,
     "FontSize": 93,
-    "Color": "ffffff",
     "Font": "Arcade",
     "Panel": "Right",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
     "YOffset": 250
   },
   "MissIndicator": {
@@ -16,94 +18,137 @@
   "ComboLabel": {
     "Enabled": false,
     "FontSize": 120,
-    "Color": "ffffff",
     "Font": "Arcade",
     "Panel": "Left",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
     "YOffset": 450
   },
   "ScoreNumber": {
     "Enabled": true,
     "FontSize": 120,
-    "Color": "ffffff",
     "Font": "Montserrat",
     "Panel": "Right",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
     "YOffset": 72
   },
   "NotesNumber": {
     "Enabled": true,
     "FontSize": 120,
-    "Color": "ffffff",
     "Font": "Montserrat",
     "Panel": "Left",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
     "YOffset": 776
   },
   "ScoreMultiplier": {
-    "Panel": "Left",
+    "Enabled": true,
+    "Color": "ffffff",
+    "Opacity": 100,
+    "YOffset": 465,
     "Font": "Montserrat",
     "Style": 1,
-    "Color": "ffffff",
-    "Enabled": true,
-    "YOffset": 465
+    "Width": 412,
+    "Panel": "Left",
+    "AccentColor": "ffffff",
+    "XOffset": 0
   },
-  "GridOutline": { "Style": 1, "Enabled": false },
+  "GridOutline": {
+    "Enabled": false,
+    "Opacity": 100,
+    "Style": 1,
+    "Color": "ffffff"
+  },
   "NoteScore": {
     "Enabled": true,
     "Font": "Arcade",
     "FontSize": 150,
     "Color": "00a550"
   },
-  "TimeBar": { "Style": 1, "Enabled": false },
+  "TimeBar": {
+    "Enabled": false,
+    "Style": 1,
+    "Color": "282828",
+    "Opacity": 100,
+    "AccentColor": "ffffff"
+  },
   "ComboNumber": {
     "Enabled": true,
     "FontSize": 120,
-    "Color": "ffffff",
     "Font": "Montserrat",
     "Panel": "Left",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
     "YOffset": 30
   },
   "PauseIndicator": {
-    "Panel": "Right",
+    "Enabled": false,
+    "Color": "ffb700",
+    "Opacity": 100,
+    "YOffset": 745,
     "Font": "Arcade",
     "Style": 2,
-    "Color": "ffb700",
-    "Enabled": false,
-    "YOffset": 745
+    "Width": 220,
+    "Panel": "Right",
+    "AccentColor": "ffffff",
+    "XOffset": 0
   },
   "MissesNumber": {
     "Enabled": true,
     "FontSize": 150,
-    "Color": "c21807",
     "Font": "Montserrat",
     "Panel": "Right",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "c21807",
     "YOffset": 413
   },
   "NotesLabel": {
     "Enabled": false,
     "FontSize": 70,
-    "Color": "ffffff",
     "Font": "Montserrat",
     "Panel": "Right",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
     "YOffset": 740
   },
-  "HealthBar": { "Style": 2, "Enabled": false },
+  "HealthBar": {
+    "Enabled": false,
+    "Style": 2,
+    "Color": "ff0044",
+    "Opacity": 100,
+    "AccentColor": "6eff00"
+  },
   "Timestamp": {
     "Enabled": false,
     "Font": "Arcade",
-    "FontSize": 75,
-    "Color": "ffffff"
+    "Color": "ffffff",
+    "Opacity": 100,
+    "FontSize": 75
   },
   "AccuracyNumber": {
     "Enabled": true,
-    "FontSize": 35,
-    "Color": "00a550",
+    "FontSize": 140,
     "Font": "Montserrat",
     "Panel": "Right",
-    "YOffset": 803
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "00a550",
+    "YOffset": 740
   },
   "FullComboBar": {
-    "Color": "d9d9d9",
-    "Enabled": false,
     "Panel": "Left",
-    "YOffset": 280
+    "YOffset": 280,
+    "Enabled": false,
+    "Color": "d9d9d9",
+    "Opacity": 100,
+    "XOffset": 0,
+    "Width": 400
   }
 }
