@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+    <head>
+        <title>sspm archive — Ansilian</title>
+        <link rel="icon" type="image/png" href="/assets/ansilian.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../../style.css" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="topbar-container"></div>
+        <script src="/nav.js"></script>
+
+        <div class="page-content">
+            <h1 class="page-title">sspm archive</h1>
+
+            <div class="pattern-filter" id="pattern-filter">
+                <span class="pattern-filter-label">patterns</span>
+                <div class="pattern-pills" id="pattern-pills"></div>
+            </div>
+
+            <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="search by name, mapper or archiver..."
+                autocomplete="off"
+            />
+
+            <div id="sspm-container">
+                <p class="status-text">loading...</p>
+            </div>
+        </div>
+
+        <script>
+            let allMaps = [];
+            let patternStates = new Map(); // pattern → 0 (neutral), 1 (include), 2 (exclude)
+
+            function openLink(link) {
+                window.open(link, "_blank");
+            }
+
+            function buildPatternPills(maps) {
+                const patterns = [
+                    ...new Set(
+                        maps.flatMap((m) =>
+                            Array.isArray(m.pattern)
+                                ? m.pattern
+                                : m.pattern
+                                  ? [m.pattern]
+                                  : [],
+                        ),
+                    ),
+                ].sort();
+
+                const pillsContainer = document.getElementById("pattern-pills");
+                pillsContainer.innerHTML = patterns
+                    .map(
+                        (p) => `
+                        <button class="pattern-pill" data-pattern="${p}" onclick="togglePattern('${p}', this)">
+                            ${p}
+                        </button>
+                    `,
+                    )
+                    .join("");
+            }
+
+            function togglePattern(pattern, btn) {
+                const current = patternStates.get(pattern) || 0;
+                const next = (current + 1) % 3;
+                patternStates.set(pattern, next);
+
+                btn.classList.remove("include", "exclude");
+                if (next === 1) btn.classList.add("include");
+                if (next === 2) btn.classList.add("exclude");
+
+                renderCards(document.getElementById("search-input").value);
+            }
+
+            function buildCard(map) {
+                const patternsArray = Array.isArray(map.pattern)
+                    ? map.pattern
+                    : map.pattern
+                      ? [map.pattern]
+                      : [];
+
+                const badgesHtml = patternsArray
+                    .map((p) => `<span class="pattern-badge">${p}</span>`)
+                    .join("");
+
+                return `
+                    <div class="custom-card">
+                        <div class="card-top-row">
+                            <span class="card-number">#${map.id}</span>
+                            <span class="card-dot">·</span>
+                            <span class="card-date">${map.date}</span>
+                            ${badgesHtml}
+                        </div>
+                        <div class="card-name">${map.name}</div>
+                        <div class="card-mapper">mapped by ${map.mapper}</div>
+                        <div class="card-meta-row">
+                            <span class="card-rating">⬦ ${map.rating}</span>
+                            <span class="card-archiver">archived by ${map.archiver}</span>
+                        </div>
+                        <button class="action-btn" onclick="openLink('${map.link}')">download</button>
+                    </div>
+                `;
+            }
+
+            function renderCards(filter) {
+                const container = document.getElementById("sspm-container");
+                const query = filter.toLowerCase().trim();
+
+                const included = [...patternStates.entries()]
+                    .filter(([, v]) => v === 1)
+                    .map(([k]) => k);
+                const excluded = [...patternStates.entries()]
+                    .filter(([, v]) => v === 2)
+                    .map(([k]) => k);
+
+                const results = allMaps.filter((m) => {
+                    const matchesSearch =
+                        !query ||
+                        m.name.toLowerCase().includes(query) ||
+                        m.mapper.toLowerCase().includes(query) ||
+                        m.archiver.toLowerCase().includes(query);
+
+                    const currentPatterns = Array.isArray(m.pattern)
+                        ? m.pattern
+                        : m.pattern
+                          ? [m.pattern]
+                          : [];
+
+                    const notExcluded = !currentPatterns.some((p) =>
+                        excluded.includes(p),
+                    );
+                    const matchesInclude =
+                        included.length === 0 ||
+                        currentPatterns.some((p) => included.includes(p));
+
+                    return matchesSearch && notExcluded && matchesInclude;
+                });
+
+                if (results.length === 0) {
+                    container.innerHTML =
+                        '<p class="status-text">no maps found.</p>';
+                    return;
+                }
+
+                container.innerHTML = results.map(buildCard).join("");
+            }
+
+            async function loadMaps() {
+                const container = document.getElementById("sspm-container");
+                try {
+                    const response = await fetch("sspm.json");
+                    allMaps = await response.json();
+
+                    if (allMaps.length === 0) {
+                        container.innerHTML =
+                            '<p class="status-text">nothing here yet.</p>';
+                        return;
+                    }
+
+                    allMaps.sort((a, b) => Number(b.id) - Number(a.id));
+
+                    buildPatternPills(allMaps);
+                    renderCards("");
+
+                    document
+                        .getElementById("search-input")
+                        .addEventListener("input", (e) => {
+                            renderCards(e.target.value);
+                        });
+                } catch (error) {
+                    container.innerHTML =
+                        '<p class="status-text">could not load maps.</p>';
+                    console.error(error);
+                }
+            }
+
+            loadMaps();
+        </script>
+    </body>
+</html>
