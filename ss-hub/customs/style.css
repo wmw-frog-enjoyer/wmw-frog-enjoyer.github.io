@@ -7,7 +7,7 @@ body {
 }
 
 .page-content {
-    max-width: 850px;
+    max-width: 1200px;
     margin: 60px auto;
     padding: 0 24px;
     text-align: left;
@@ -127,7 +127,7 @@ body {
 
 #customs-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
 }
 
