@@ -18,6 +18,13 @@
 
         <div class="page-content">
             <h1 class="page-title">Skins</h1>
+
+            <!-- type toggle pills -->
+            <div class="type-filter">
+                <span class="type-filter-label">type</span>
+                <div class="type-pills" id="type-pills"></div>
+            </div>
+
             <input
                 type="text"
                 id="search-input"
@@ -32,6 +39,7 @@
 
         <script>
             let allSkins = [];
+            let typeStates = new Map(); // type → 0 (neutral), 1 (include), 2 (exclude)
 
             const TYPE_LABELS = {
                 "ss-skin": "ss skin",
@@ -86,6 +94,34 @@
                 return filename.split(".").pop();
             }
 
+            function buildTypePills(skins) {
+                // collect only types that actually exist in the data
+                const types = [...new Set(skins.map((s) => s.type))].sort();
+                const container = document.getElementById("type-pills");
+
+                container.innerHTML = types
+                    .map(
+                        (t) => `
+                    <button class="type-pill" data-type="${t}" onclick="toggleType('${t}', this)">
+                        ${TYPE_LABELS[t] || t}
+                    </button>
+                `,
+                    )
+                    .join("");
+            }
+
+            function toggleType(type, btn) {
+                const current = typeStates.get(type) || 0;
+                const next = (current + 1) % 3;
+                typeStates.set(type, next);
+
+                btn.classList.remove("include", "exclude");
+                if (next === 1) btn.classList.add("include");
+                if (next === 2) btn.classList.add("exclude");
+
+                renderCards(document.getElementById("search-input").value);
+            }
+
             function buildCard(skin) {
                 const label = TYPE_LABELS[skin.type] || skin.type;
                 const tags =
@@ -95,7 +131,6 @@
                               .join("")
                         : "";
 
-                // preview area
                 let preview = "";
                 if (skin.type === "ss-skin") {
                     const embedUrl = getYouTubeEmbedUrl(skin.video);
@@ -122,7 +157,6 @@
                     preview = `<div class="mesh-preview" data-file="assets/${skin.file}"><span class="mesh-loading">loading colors...</span></div>`;
                 }
 
-                // action button
                 let action = "";
                 if (skin.type === "ss-skin") {
                     action = `<button class="action-btn" onclick="copyFile('assets/${skin.id}.json', this)">copy skin</button>`;
@@ -157,13 +191,17 @@
                     .querySelectorAll(".mesh-preview[data-file]")
                     .forEach(async (el) => {
                         try {
-                            const text = await fetch(el.dataset.file).then(
-                                (r) => r.text(),
-                            );
+                            const response = await fetch(el.dataset.file);
+                            if (!response.ok) {
+                                el.innerHTML =
+                                    '<span class="mesh-loading">file not found</span>';
+                                return;
+                            }
+                            const text = await response.text();
+                            const matches =
+                                text.match(/#[0-9a-fA-F]{6}/gi) || [];
                             const hexes = [
-                                ...new Set(
-                                    text.match(/[0-9a-fA-F]{6}/gi) || [],
-                                ),
+                                ...new Set(matches.map((h) => h.toUpperCase())),
                             ];
                             if (hexes.length === 0) {
                                 el.innerHTML =
@@ -173,7 +211,7 @@
                             el.innerHTML = hexes
                                 .map(
                                     (h) =>
-                                        `<div class="color-swatch" style="background:#${h};" title="#${h}"></div>`,
+                                        `<div class="color-swatch" style="background:${h};" title="${h}"></div>`,
                                 )
                                 .join("");
                         } catch {
@@ -187,21 +225,28 @@
                 const container = document.getElementById("skins-container");
                 const query = filter.toLowerCase().trim();
 
-                const results = query
-                    ? allSkins.filter((s) => {
-                          const inTitle = s.title.toLowerCase().includes(query);
-                          const inAuthor = s.author
-                              .toLowerCase()
-                              .includes(query);
-                          const inType = s.type.toLowerCase().includes(query);
-                          const inTags =
-                              s.tags &&
-                              s.tags.some((t) =>
-                                  t.toLowerCase().includes(query),
-                              );
-                          return inTitle || inAuthor || inType || inTags;
-                      })
-                    : allSkins;
+                const included = [...typeStates.entries()]
+                    .filter(([, v]) => v === 1)
+                    .map(([k]) => k);
+                const excluded = [...typeStates.entries()]
+                    .filter(([, v]) => v === 2)
+                    .map(([k]) => k);
+
+                const results = allSkins.filter((s) => {
+                    const matchesSearch =
+                        !query ||
+                        s.title.toLowerCase().includes(query) ||
+                        s.author.toLowerCase().includes(query) ||
+                        s.type.toLowerCase().includes(query) ||
+                        (s.tags &&
+                            s.tags.some((t) =>
+                                t.toLowerCase().includes(query),
+                            ));
+                    const notExcluded = !excluded.includes(s.type);
+                    const matchesInclude =
+                        included.length === 0 || included.includes(s.type);
+                    return matchesSearch && notExcluded && matchesInclude;
+                });
 
                 if (results.length === 0) {
                     container.innerHTML =
@@ -226,6 +271,7 @@
                     }
 
                     allSkins.sort((a, b) => Number(b.id) - Number(a.id));
+                    buildTypePills(allSkins);
                     renderCards("");
 
                     document
