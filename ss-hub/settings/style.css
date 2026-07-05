@@ -61,26 +61,14 @@ body {
     background: rgba(255, 255, 255, 0.06);
 }
 
-#configs-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-}
-
-@media (max-width: 700px) {
-    #configs-container {
-        grid-template-columns: 1fr;
-    }
-}
-
 .post-card {
-    display: flex;
-    flex-direction: column;
+    display: block;
     text-decoration: none;
     color: white;
     padding: 18px 20px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 10px;
+    margin-bottom: 10px;
     transition:
         background 0.15s ease,
         border-color 0.15s ease;
@@ -95,8 +83,7 @@ body {
 .card-top-row {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 6px;
 }
 
@@ -140,8 +127,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     gap: 12px;
-    margin-top: auto;
-    padding-top: 10px;
+    margin-top: 4px;
 }
 
 .card-tags {
@@ -164,12 +150,14 @@ body {
     border-radius: 5px;
 }
 
+/* ss = Sound Space */
 .format-ss {
     color: rgba(150, 200, 255, 0.9);
     background: rgba(150, 200, 255, 0.1);
     border: 1px solid rgba(150, 200, 255, 0.2);
 }
 
+/* ssp = Sound Space Plus */
 .format-ssp {
     color: rgba(180, 150, 255, 0.9);
     background: rgba(180, 150, 255, 0.1);
@@ -266,6 +254,7 @@ body {
     margin: 0 0 28px 0;
 }
 
+/* grid of stat boxes displaying the settings values */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -298,6 +287,7 @@ body {
     letter-spacing: -0.5px;
 }
 
+/* youtube embed */
 .video-container {
     width: 100%;
     aspect-ratio: 16 / 9;
