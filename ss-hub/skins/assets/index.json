@@ -44,5 +44,134 @@
     "date": "2026-06-26",
     "file": "005.txt",
     "tags": ["green", "white", "dual color", "ssp mesh"]
+  },
+  {
+    "id": "006",
+    "title": "Frieren 1",
+    "author": "Lunara",
+    "type": "ssp-cursor",
+    "date": "2026-07-05",
+    "file": "006.png",
+    "tags": ["squircle", "ssp cursor"]
+  },
+  {
+    "id": "007",
+    "title": "Mikupink",
+    "author": "Lunara",
+    "type": "ssp-cursor",
+    "date": "2026-07-05",
+    "file": "007.png",
+    "tags": ["squircle", "ssp cursor"]
+  },
+  {
+    "id": "008",
+    "title": "Mao mao pink",
+    "author": "Lunara",
+    "type": "ssp-cursor",
+    "date": "2026-07-05",
+    "file": "008.png",
+    "tags": ["squircle", "ssp cursor"]
+  },
+  {
+    "id": "009",
+    "title": "Mao mao pink",
+    "author": "Lunara",
+    "type": "ss-cursor",
+    "date": "2026-07-05",
+    "file": "008.png",
+    "code": "77884259596525",
+    "tags": ["squircle", "ss cursor"]
+  },
+  {
+    "id": "010",
+    "title": "Mikupink",
+    "author": "Lunara",
+    "type": "ss-cursor",
+    "date": "2026-07-05",
+    "file": "007.png",
+    "code": "72140257062794",
+    "tags": ["squircle", "ss cursor"]
+  },
+  {
+    "id": "011",
+    "title": "Frieren 1",
+    "author": "Lunara",
+    "type": "ss-cursor",
+    "date": "2026-07-05",
+    "file": "006.png",
+    "code": "135930509007087",
+    "tags": ["squircle", "ss cursor"]
+  },
+  {
+    "id": "012",
+    "title": "cyber soft",
+    "author": "Lunara",
+    "type": "ssp-mesh",
+    "date": "2026-07-05",
+    "file": "012.txt",
+    "tags": ["purple", "cyan", "penta color", "ssp mesh"]
+  },
+  {
+    "id": "013",
+    "title": "spring",
+    "author": "Lunara",
+    "type": "ssp-mesh",
+    "date": "2026-07-05",
+    "file": "013.txt",
+    "tags": ["green", "penta color", "ssp mesh"]
+  },
+  {
+    "id": "014",
+    "title": "aurora",
+    "author": "Lunara",
+    "type": "ssp-mesh",
+    "date": "2026-07-05",
+    "file": "014.txt",
+    "tags": ["colorful", "penta color", "ssp mesh"]
+  },
+  {
+    "id": "015",
+    "title": "frog",
+    "author": "Lunara",
+    "type": "ssp-mesh",
+    "date": "2026-07-05",
+    "file": "015.txt",
+    "tags": ["green", "quad color", "ssp mesh"]
+  },
+  {
+    "id": "016",
+    "title": "matcha latte",
+    "author": "Lunara",
+    "type": "ssp-mesh",
+    "date": "2026-07-05",
+    "file": "016.txt",
+    "tags": ["colorful", "quad color", "ssp mesh"]
+  },
+  {
+    "id": "017",
+    "title": "kiwi",
+    "author": "Lunara",
+    "type": "ssp-mesh",
+    "date": "2026-07-05",
+    "file": "017.txt",
+    "tags": ["green", "tri color", "ssp mesh"]
+  },
+  {
+    "id": "018",
+    "title": "Lunas simple hud",
+    "author": "Lunara",
+    "type": "ss-skin",
+    "date": "2026-07-05",
+    "video": "https://youtu.be/BbJ2bJGyRJs",
+    "tags": ["major changes", "minimal", "simple hud", "ss skin"]
+  },
+  {
+    "id": "019",
+    "title": "Lunas dual spec hud",
+    "author": "Lunara",
+    "type": "ss-skin",
+    "date": "2026-07-05",
+    "video": "https://youtu.be/P8A8v91cttg",
+    "tags": ["major changes", "ss skin"]
   }
 ]

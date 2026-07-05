@@ -1,0 +1,159 @@
+{
+  "PauseIndicator": {
+    "Enabled": false,
+    "Color": "ffb700",
+    "Opacity": 100,
+    "YOffset": 745,
+    "Font": "Arcade",
+    "Style": 2,
+    "Width": 220,
+    "Panel": "Right",
+    "AccentColor": "ffffff",
+    "XOffset": 0
+  },
+  "VsPanelDim": { "Enabled": false, "Opacity": 100, "Color": "2b2b2b" },
+  "RightPanelDim": { "Enabled": false, "Opacity": 100, "Color": "222222" },
+  "MissIndicator": {
+    "Enabled": true,
+    "Font": "Arcade",
+    "FontSize": 150,
+    "Color": "ff5564"
+  },
+  "ComboLabel": {
+    "Enabled": false,
+    "FontSize": 120,
+    "Font": "Arcade",
+    "Panel": "Left",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
+    "YOffset": 450
+  },
+  "ScoreNumber": {
+    "Enabled": false,
+    "FontSize": 120,
+    "Font": "Montserrat",
+    "Panel": "Right",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
+    "YOffset": 72
+  },
+  "ScoreMultiplier": {
+    "Enabled": true,
+    "Color": "ffffff",
+    "Opacity": 100,
+    "YOffset": 360,
+    "Font": "Montserrat",
+    "Style": 1,
+    "Width": 412,
+    "Panel": "Left",
+    "AccentColor": "ffffff",
+    "XOffset": 0
+  },
+  "NotesNumber": {
+    "Enabled": false,
+    "FontSize": 120,
+    "Font": "Montserrat",
+    "Panel": "Left",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
+    "YOffset": 776
+  },
+  "HealthBar": {
+    "Enabled": false,
+    "Style": 2,
+    "Color": "ff0044",
+    "Opacity": 100,
+    "AccentColor": "6eff00"
+  },
+  "TimePanelDim": { "Enabled": false, "Opacity": 100, "Color": "000000" },
+  "MissesLabel": {
+    "Enabled": false,
+    "FontSize": 93,
+    "Font": "Arcade",
+    "Panel": "Right",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
+    "YOffset": 250
+  },
+  "GridOutline": {
+    "Enabled": false,
+    "Opacity": 100,
+    "Style": 1,
+    "Color": "ffffff"
+  },
+  "NotesLabel": {
+    "Enabled": false,
+    "FontSize": 70,
+    "Font": "Montserrat",
+    "Panel": "Right",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
+    "YOffset": 740
+  },
+  "TimeBar": {
+    "Enabled": false,
+    "Style": 1,
+    "Color": "282828",
+    "Opacity": 100,
+    "AccentColor": "ffffff"
+  },
+  "ComboNumber": {
+    "Enabled": true,
+    "FontSize": 150,
+    "Font": "Montserrat",
+    "Panel": "Left",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "ffffff",
+    "YOffset": 720
+  },
+  "MissesNumber": {
+    "Enabled": true,
+    "FontSize": 150,
+    "Font": "Montserrat",
+    "Panel": "Right",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "c21807",
+    "YOffset": 300
+  },
+  "AccuracyNumber": {
+    "Enabled": true,
+    "FontSize": 140,
+    "Font": "Montserrat",
+    "Panel": "Right",
+    "XOffset": 0,
+    "Opacity": 100,
+    "Color": "00a550",
+    "YOffset": 650
+  },
+  "GridGuides": { "Enabled": false, "Opacity": 100, "Color": "4a4a4a" },
+  "Timestamp": {
+    "Enabled": false,
+    "Font": "Arcade",
+    "Color": "ffffff",
+    "Opacity": 100,
+    "FontSize": 75
+  },
+  "LeftPanelDim": { "Enabled": false, "Opacity": 100, "Color": "222222" },
+  "NoteScore": {
+    "Enabled": true,
+    "Font": "Arcade",
+    "FontSize": 150,
+    "Color": "ff007f"
+  },
+  "FullComboBar": {
+    "Panel": "Left",
+    "YOffset": 280,
+    "Enabled": false,
+    "Color": "d9d9d9",
+    "Opacity": 100,
+    "XOffset": 0,
+    "Width": 400
+  }
+}
