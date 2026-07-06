@@ -131,12 +131,10 @@ body {
     gap: 12px;
 }
 
-@media (max-width: 600px) {
-    #sspm-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-    }
+#sspm-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
 }
 
 /* =====================================================
