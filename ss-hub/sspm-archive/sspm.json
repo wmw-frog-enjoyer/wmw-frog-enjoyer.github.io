@@ -8,5 +8,165 @@
     "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/LHBHW/jump/ssqe_export_-_dive_-_tanger_-_bike.sspm",
     "date": "2026-07-05",
     "archiver": "Lunara"
+  },
+  {
+    "id": "002",
+    "name": "t+pazolite - Tempestissimo",
+    "mapper": "Cruwev",
+    "rating": "s--",
+    "pattern": ["jump","tech","slide"],
+    "link": "hhttps://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/cruwev_tpazolite_-_tempestissimo.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "003",
+    "name": "Ludicin - Echoes of Memoria",
+    "mapper": "Drako",
+    "rating": "s-",
+    "pattern": ["jump","slide","stamina"],
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/ddrk_-_ludicin_-_echoes_of_memoria.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "004",
+    "name": "PSYQUI - Hype feat. Such",
+    "mapper": "Drako",
+    "rating": "NM",
+    "pattern": ["jump","slide","stamina","vibro"],
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/drakooo_-_psyqui_-_hype_feat._such.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "005",
+    "name": "DJ Myosuke feat. Filthy - OVERLOAD",
+    "mapper": "Dyamo",
+    "rating": "s---",
+    "pattern": ["jump","slide","stamina"],
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/dyamodash_dj_myosuke_feat_filthy_-_overload.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "006",
+    "name": "Laur - Ultima Weapon",
+    "mapper": "Dyamo",
+    "rating": "s+",
+    "pattern": ["jump","slide"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/dyamodash_laur_-_ultima_weapon.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "007",
+    "name": "Seifuku Yangire - Fucking Disgusting Scum",
+    "mapper": "Dyamo",
+    "rating": "s--",
+    "pattern": ["jump","slide","stamina"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/dyamodash_seifuku_yangire_-_fucking_disgusting_scum.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "008",
+    "name": "treacherous rhapsody - MetaHumanBoi",
+    "mapper": "Pinchyl",
+    "rating": "NM",
+    "pattern": ["jump","slide"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/pinchyl%20-%20treacherous%20rhapsody%20-%20metahumanboi.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "009",
+    "name": "Camellia - K.Y.A.F.A.",
+    "mapper": "S.P.O.O.B",
+    "rating": "s-",
+    "pattern": ["tech","slide"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/spoob_camellia_-_kyafa.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "010",
+    "name": "7_7 - 笑H❓mせ名naudlypわ打て宵打pss合ynp打rieIr音o笑Hnオa画打はんB✊ぶ良テ打li打こnn?打ho打suぶに々XDoIid前eEs木cがaaiL'真mm?打阿cんgl花の",
+    "mapper": "Allusionist",
+    "rating": "s--",
+    "pattern": ["stamina","jump","slide"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/ssqe_export_-_allusionist_-_7_7_-_ongidkthefuckinname.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "011",
+    "name": "Camellia - tanasinn",
+    "mapper": "Dive",
+    "rating": "s--",
+    "pattern": ["stamina","jump","burst"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/ssqe_export_-_dive_-_camellia_-_tanasinn.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "012",
+    "name": "dive-TEK - IWANTOBLEED (DRRREMASTERED)",
+    "mapper": "Dive",
+    "rating": "s--",
+    "pattern": ["jump","stack"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/ssqe_export_-_dive_-_dive-tek_-_iwantobleed_(drrremastered).sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "013",
+    "name": "DJ Myosuke - Livingdead [Full]",
+    "mapper": "Dive",
+    "rating": "s-",
+    "pattern": ["slide","jump"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/ssqe_export_-_dive_-_dj_myosuke_-_livingdead_%5Bfull%5D.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "014",
+    "name": "m1dy - 959BPM (REMAP)",
+    "mapper": "Dive",
+    "rating": "s--",
+    "pattern": ["slide","jump","stamina"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/ssqe_export_-_dive_-_m1dy_-_959bpm_(remap).sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "014",
+    "name": "7_7 - tanabata",
+    "mapper": "Suro",
+    "rating": "s-",
+    "pattern": ["slide","jump"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/ssqe_export_-_suro_-_7_7_-_tanabata.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "015",
+    "name": "haunt - song to keep myself from relapsing",
+    "mapper": "Teft2oo",
+    "rating": "s-",
+    "pattern": ["slide","jump","stamina"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/teft2oo_haunt_-_song_to_keep_myself_from_relapsing.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "016",
+    "name": "NormalM ft. Usagi Denki - Luminous Entities Lost Heart",
+    "mapper": "XR & Cruwev",
+    "rating": "NM",
+    "pattern": ["slide","jump","tech","quantum"]
+    "link": "https://github.com/wmw-frog-enjoyer/sspm-maps/raw/refs/heads/main/Ansilian/vmapimp_luminous_entities_lost_heart.sspm",
+    "date": "2026-07-06",
+    "archiver": "Lunara"
   }
 ]
