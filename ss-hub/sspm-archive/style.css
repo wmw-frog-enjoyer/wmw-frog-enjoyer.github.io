@@ -133,7 +133,9 @@ body {
 
 @media (max-width: 600px) {
     #sspm-container {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
     }
 }
 
