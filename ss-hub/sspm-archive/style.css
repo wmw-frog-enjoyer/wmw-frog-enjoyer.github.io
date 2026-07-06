@@ -132,8 +132,8 @@ body {
 }
 
 @media (max-width: 600px) {
-    #customs-container {
-        grid-template-columns: (3, 1fr);
+    #sspm-container {
+        grid-template-columns: 1fr;
     }
 }
 
