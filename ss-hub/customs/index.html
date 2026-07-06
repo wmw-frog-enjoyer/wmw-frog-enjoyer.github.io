@@ -28,7 +28,7 @@
                 type="text"
                 id="search-input"
                 class="search-input"
-                placeholder="search by name, mapper or archiver..."
+                placeholder="search by name, mapper, archiver, id, or pattern..."
                 autocomplete="off"
             />
 
@@ -135,18 +135,23 @@
                     .map(([k]) => k);
 
                 const results = allCustoms.filter((c) => {
-                    const matchesSearch =
-                        !query ||
-                        c.name.toLowerCase().includes(query) ||
-                        c.mapper.toLowerCase().includes(query) ||
-                        c.archiver.toLowerCase().includes(query);
-
                     // Safely normalize patterns for matching filters
                     const currentPatterns = Array.isArray(c.pattern)
                         ? c.pattern
                         : c.pattern
                           ? [c.pattern]
                           : [];
+
+                    // Combined search logic for name, mapper, archiver, id, and pattern
+                    const matchesSearch =
+                        !query ||
+                        c.name.toLowerCase().includes(query) ||
+                        c.mapper.toLowerCase().includes(query) ||
+                        c.archiver.toLowerCase().includes(query) ||
+                        c.id.includes(query) || // Added ID search
+                        currentPatterns.some((p) =>
+                            p.toLowerCase().includes(query),
+                        ); // Added pattern search
 
                     // Hide card if it contains ANY excluded patterns
                     const notExcluded = !currentPatterns.some((p) =>

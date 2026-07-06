@@ -28,7 +28,7 @@
                 type="text"
                 id="search-input"
                 class="search-input"
-                placeholder="search by name, mapper or archiver..."
+                placeholder="search by name, mapper, archiver, id, or pattern..."
                 autocomplete="off"
             />
 
@@ -124,17 +124,22 @@
                     .map(([k]) => k);
 
                 const results = allMaps.filter((m) => {
-                    const matchesSearch =
-                        !query ||
-                        m.name.toLowerCase().includes(query) ||
-                        m.mapper.toLowerCase().includes(query) ||
-                        m.archiver.toLowerCase().includes(query);
-
                     const currentPatterns = Array.isArray(m.pattern)
                         ? m.pattern
                         : m.pattern
                           ? [m.pattern]
                           : [];
+
+                    // Restore original search conditions and add pattern search
+                    const matchesSearch =
+                        !query ||
+                        m.name.toLowerCase().includes(query) ||
+                        m.mapper.toLowerCase().includes(query) ||
+                        m.archiver.toLowerCase().includes(query) ||
+                        m.id.includes(query) ||
+                        currentPatterns.some((p) =>
+                            p.toLowerCase().includes(query),
+                        );
 
                     const notExcluded = !currentPatterns.some((p) =>
                         excluded.includes(p),
