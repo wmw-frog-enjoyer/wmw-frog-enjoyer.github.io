@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. DESKTOP TOPBAR & NAVIGATION (Your Exact Original Rules)
+   1. DESKTOP TOPBAR & NAVIGATION (Your Exact Original style_3.css Layout)
    ========================================================================= */
 
 .topbar {
@@ -51,7 +51,7 @@
     color: white;
     font-family: "Inter", sans-serif;
     font-size: 18px;
-    font-weight: 250; /* Keeps your custom font weight adjustment */
+    font-weight: 250; /* Your preferred desktop weight */
 }
 
 /* ==========================================================================
@@ -74,12 +74,12 @@ body {
 }
 
 /* ==========================================================================
-   3. HERO / MAIN CONTENT (Restored Entirely)
+   3. HERO / MAIN CONTENT (Restored to Exact Original Measurements)
    ========================================================================== */
 
 .logo {
     margin-top: 70px;
-    width: 256px;
+    width: 256px; /* Limits the main page center logo asset from exploding */
 }
 
 .subtitle {
@@ -97,7 +97,7 @@ body {
 }
 
 /* ==========================================================================
-   4. CARDS & GRIDS (Restored Entirely)
+   4. CARDS & GRIDS (Restored to Exact Original Measurements)
    ========================================================================== */
 
 .card-grid {
@@ -109,7 +109,7 @@ body {
 }
 
 .card {
-    width: 400px;
+    width: 400px; /* Restored size constraint for cards */
     background-color: rgba(55, 55, 55, 0.25);
     border-radius: 50px;
 }
@@ -211,7 +211,6 @@ body {
         align-items: center !important;
         gap: 20px !important;
         padding: 40px 0px !important;
-        flex-wrap: Offers wrapping support !important;
     }
 
     .card {
