@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. DESKTOP NAVIGATION (Your Exact Original Rules)
+   1. DESKTOP NAVIGATION (Your New Page's Desktop Topbar Layout)
    ========================================================================== */
 
 .topbar {
@@ -48,13 +48,13 @@
     background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Default rule to keep mobile icons hidden on desktop viewports */
+/* Default rule to hide mobile graphics on desktop views */
 .nav-icon {
     display: none;
 }
 
 /* ==========================================================================
-   2. DESKTOP BODY, MAIN HERO, & PROFILE CARDS (Your Exact Original Rules)
+   2. DESKTOP GLOBAL STYLES & CONTENT LAYOUT
    ========================================================================== */
 
 body {
@@ -161,51 +161,56 @@ body {
 }
 
 /* ==========================================================================
-   3. GLOBAL MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
+   3. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
    ========================================================================== */
 @media (max-width: 767px) {
-    /* 1. Topbar Navigation Layout Overrides (Matched to Main Page) */
+    /* Topbar Layout Overrides - Matched directly to main page requirements */
     .topbar {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: center !important; /* Centers all 4 buttons side-by-side */
+        justify-content: center !important; /* Center all 4 navigation elements side-by-side */
         padding: 10px !important;
-        gap: 20px !important; /* Spacing between elements */
+        gap: 20px !important; /* Outer spacing balance */
     }
 
     .center-nav {
-        gap: 15px !important;
+        gap: 15px !important; /* Tight matching inner icon tracking gap */
     }
 
-    /* Hide text strings on mobile viewports */
+    /* Kills default underlines completely on mobile link variants */
+    .topbar a {
+        text-decoration: none !important;
+    }
+
+    /* Clear text layers entirely on small display screens */
     .home-text,
     .nav-text {
         display: none !important;
     }
 
-    /* Force responsive visual graphics/icons to show */
+    /* Expose active navigation graphics */
     .nav-icon {
         display: block !important;
     }
 
-    /* Custom Mobile Sizing Rules for Top Navigation Graphic Tags */
+    /* Mobile Icon Dimensions */
     .icon-size-small {
-        width: 45px !important; /* SS Hub scaled up */
+        width: 45px !important; /* SS Hub upsized */
         height: 45px !important;
     }
 
     .icon-size-medium {
-        width: 65px !important; /* Archivers and Articles scaled up */
+        width: 65px !important; /* Archivers and Articles upsized */
         height: 65px !important;
     }
 
     .home-logo {
-        width: 35px !important; /* Keeps Ansilian image scale constrained */
+        width: 35px !important; /* Keep main logo asset balanced in row height context */
     }
 
-    /* 2. Content & Profile Grid Layout Overrides */
+    /* Grid Layout Responsive Formats */
     .title {
-        font-size: 50px !important; /* Stops giant 110px font from clipping pages */
+        font-size: 50px !important;
         margin-top: 40px !important;
     }
 
@@ -215,7 +220,7 @@ body {
     }
 
     .grid {
-        grid-template-columns: 1fr !important; /* Stack user profile cards vertically */
+        grid-template-columns: 1fr !important;
         justify-items: center !important;
         padding: 0 20px !important;
         gap: 30px !important;
@@ -223,7 +228,7 @@ body {
     }
 
     .card {
-        flex-direction: column !important; /* Stack avatar pfp on top of description */
+        flex-direction: column !important;
         text-align: center !important;
         width: 100% !important;
         max-width: 400px !important;
@@ -232,7 +237,7 @@ body {
     }
 
     .pfp {
-        margin-left: 0 !important; /* Safely centers avatar photo */
+        margin-left: 0 !important;
         margin-bottom: 10px !important;
         width: 130px !important;
     }
@@ -244,7 +249,7 @@ body {
 
     .card-text,
     .discord {
-        text-align: center !important; /* Center profile text cleanly */
+        text-align: center !important;
         font-size: 18px !important;
     }
 }
