@@ -1,25 +1,15 @@
 /* ==========================================================================
-   1. TOPBAR & NAVIGATION (Row Layout, No Underlines, Centered Mobile)
+   1. DESKTOP TOPBAR & NAVIGATION (Restored Sizes & Added Hover Animations)
    ========================================================================= */
 
 .topbar {
     display: flex;
-    justify-content: space-between; /* Desktop layout: Logo left, nav center */
+    justify-content: space-between; /* Required for nav.js centering math */
     align-items: center;
     padding: 10px 20px;
     background-color: rgba(55, 55, 55, 0.15);
     position: relative;
     box-sizing: border-box;
-}
-
-/* Force side-by-side row layout and center EVERYTHING on mobile */
-@media (max-width: 767px) {
-    .topbar {
-        flex-direction: row;
-        justify-content: center; /* Pulls everything away from the edges to the center */
-        padding: 10px;
-        gap: 20px; /* Space between the logo and the nav icon group */
-    }
 }
 
 .center-nav {
@@ -50,49 +40,30 @@
     object-fit: contain;
 }
 
-@media (max-width: 767px) {
-    .home-logo {
-        width: 35px;
-    }
-}
-
-/* Base rule: Hide icons on desktop */
+/* Base rule: Hide icons on desktop views */
 .nav-icon {
     display: none !important;
 }
 
-/* Base rule: Show text links on desktop */
+/* Base rule: Restored font size, weights, and clean background hover animations */
 .nav-text {
-    display: inline;
+    display: inline-block;
     color: white;
     font-family: "Inter", sans-serif;
-    font-size: 18px;
-    font-weight: 250; /* Increased font weight by 50 for desktop readability */
+    font-size: 22px; /* Restored font scale */
+    font-weight: 200; /* Restored light weight */
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
 }
 
-/* Mobile Swap: Hide text, show sizing classes for icons */
-@media (max-width: 767px) {
-    .nav-text,
-    .home-text {
-        display: none;
-    }
-
-    .nav-icon {
-        display: block !important;
-    }
-
-    .icon-size-small {
-        width: 45px; /* SS Hub upsized to 45px */
-        height: 45px;
-    }
-    .icon-size-medium {
-        width: 65px; /* Archivers and Articles upsized to 65px */
-        height: 65px;
-    }
-    .icon-size-large {
-        width: 75px;
-        height: 75px;
-    }
+.nav-text:hover {
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.08
+    ); /* Re-added original hover block */
 }
 
 /* ==========================================================================
@@ -115,12 +86,13 @@ body {
 }
 
 /* ==========================================================================
-   3. HERO / MAIN CONTENT
+   3. HERO / MAIN CONTENT (Fixed Giant Image Size Boundaries)
    ========================================================================== */
 
 .logo {
     margin-top: 70px;
-    width: 256px;
+    width: 256px !important; /* Forces your main display graphic back to 256px */
+    height: auto;
 }
 
 .subtitle {
@@ -138,7 +110,7 @@ body {
 }
 
 /* ==========================================================================
-   4. CARDS & GRIDS
+   4. CARDS & GRIDS (Restored Layout Structures)
    ========================================================================== */
 
 .card-grid {
@@ -149,26 +121,10 @@ body {
     flex-wrap: nowrap;
 }
 
-@media (max-width: 767px) {
-    .card-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 40px 0px;
-    }
-}
-
 .card {
-    width: 400px;
+    width: 400px !important; /* Restored structural width threshold */
     background-color: rgba(55, 55, 55, 0.25);
     border-radius: 50px;
-}
-
-@media (max-width: 767px) {
-    .card {
-        width: 80%;
-        max-width: 400px;
-    }
 }
 
 .card-title {
@@ -180,13 +136,6 @@ body {
     font-weight: 400;
 }
 
-@media (max-width: 767px) {
-    .card-title {
-        font-size: 30px;
-        margin-top: 30px;
-    }
-}
-
 .card-text {
     margin-top: 25px;
     margin-left: 25px;
@@ -195,12 +144,6 @@ body {
     font-size: 20px;
     font-family: "Inter", sans-serif;
     font-weight: 350;
-}
-
-@media (max-width: 767px) {
-    .card-text {
-        font-size: 18px;
-    }
 }
 
 /* ==========================================================================
@@ -228,9 +171,77 @@ body {
     background-color: rgb(45, 133, 79);
 }
 
+/* ==========================================================================
+   6. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
+   ========================================================================== */
 @media (max-width: 767px) {
+    /* Working Centered Mobile Navigation Topbar Layout */
+    .topbar {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        padding: 10px !important;
+        gap: 20px !important;
+    }
+
+    .center-nav {
+        gap: 15px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .home-logo {
+        width: 35px !important;
+    }
+
+    /* Mobile Swap Hide Rules */
+    .nav-text,
+    .home-text {
+        display: none !important;
+    }
+
+    .nav-icon {
+        display: block !important;
+    }
+
+    /* Dynamic Icon Adaptations */
+    .icon-size-small {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    .icon-size-medium {
+        width: 65px !important;
+        height: 65px !important;
+    }
+    .icon-size-large {
+        width: 75px !important;
+        height: 75px !important;
+    }
+
+    /* Clean Mobile Stacking Properties for Home Cards */
+    .card-grid {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        padding: 40px 0px !important;
+    }
+
+    .card {
+        width: 80% !important;
+        max-width: 400px !important;
+    }
+
+    .card-title {
+        font-size: 30px !important;
+        margin-top: 30px !important;
+    }
+
+    .card-text {
+        font-size: 18px !important;
+    }
+
     .button-apply {
-        font-size: 18px;
-        margin-bottom: 80px;
+        font-size: 18px !important;
+        margin-bottom: 80px !important;
     }
 }
