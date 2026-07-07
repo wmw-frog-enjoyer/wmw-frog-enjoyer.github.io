@@ -79,18 +79,26 @@
     transition: 0.2s ease;
 }
 
-.nav-icon {
-    width: 50px;
-    height: 50px;
-    display: none;
-}
-
 @media (max-width: 767px) {
     .nav-text {
         display: none;
     }
     .nav-icon {
         display: block;
+    }
+    .archivers {
+        padding: 6px;
+    }
+    /* Special sizing for specific icons */
+    .nav-icon[alt="SS Hub"],
+    .nav-icon[alt="Home"] {
+        width: 35px;
+        height: 35px;
+    }
+    .nav-icon[alt="Archivers"],
+    .nav-icon[alt="Articles"] {
+        width: 45px;
+        height: 45px;
     }
 }
 
