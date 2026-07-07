@@ -1,10 +1,10 @@
 /* ==========================================================================
-   1. DESKTOP TOPBAR & NAVIGATION (Fixed Font Sizes, Hover, & Tracking)
+   1. DESKTOP TOPBAR & NAVIGATION (Restored Sizes & Added Hover Animations)
    ========================================================================= */
 
 .topbar {
     display: flex;
-    justify-content: space-between; /* Desktop layout: Logo left, nav center */
+    justify-content: space-between; /* Required for nav_2.js centering math */
     align-items: center;
     padding: 10px 20px;
     background-color: rgba(55, 55, 55, 0.15);
@@ -21,7 +21,6 @@
 /* Kills default underlines completely on all header links */
 .topbar a {
     text-decoration: none !important;
-    color: white;
 }
 
 .home-button {
@@ -41,26 +40,30 @@
     object-fit: contain;
 }
 
-/* Base rule: Hide icons on desktop */
+/* Base rule: Hide icons on desktop views */
 .nav-icon {
     display: none !important;
 }
 
-/* Base rule: Show text links on desktop with explicit Hover properties */
+/* Base rule: Restored font size, weights, and clean background hover animations */
 .nav-text {
     display: inline-block;
     color: white;
     font-family: "Inter", sans-serif;
-    font-size: 22px; /* Restored size matching archivers view */
-    font-weight: 200; /* Matching weight */
+    font-size: 22px; /* Restored font scale */
+    font-weight: 200; /* Restored light weight */
     padding: 8px 14px;
     border-radius: 8px;
     transition: background-color 0.2s ease;
 }
 
-/* Hover background trigger matching archivers styling */
 .nav-text:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.08
+    ); /* Re-added original hover block */
 }
 
 /* ==========================================================================
@@ -83,67 +86,82 @@ body {
 }
 
 /* ==========================================================================
-   3. HERO / MAIN CONTENT (Strict Dimensions Applied)
+   3. HERO / MAIN CONTENT (Archivers Page Text Content Sizes)
    ========================================================================== */
 
-.logo {
+.title {
+    font-family: "Inter", sans-serif;
     margin-top: 70px;
-    width: 256px !important; /* Force asset boundary limits */
-    max-width: 100%;
-    height: auto;
-}
-
-.subtitle {
-    font-family: "Inter", sans-serif;
-    margin-top: -60px;
-    font-weight: 300;
-    font-size: 25px;
-}
-
-.inter-main {
-    font-family: "Inter", sans-serif;
-    margin-top: 0px;
     font-weight: 200;
     font-size: 110px;
 }
 
+.subtitle {
+    font-family: "Inter", sans-serif;
+    margin-top: -50px;
+    font-weight: 300;
+    font-size: 25px;
+}
+
 /* ==========================================================================
-   4. CARDS & GRIDS (Original Structural Specifications)
+   4. CARDS & GRIDS (Fixed to Prevent Big Exploding Images)
    ========================================================================== */
 
-.card-grid {
-    display: flex;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
     justify-content: center;
     gap: 50px;
-    padding: 80px 0px;
-    flex-wrap: nowrap;
+    margin-top: 80px;
+    margin-bottom: 120px;
 }
 
 .card {
-    width: 400px;
-    max-width: 400px; /* Enforces the maximum size bounds */
+    display: flex;
+    align-items: center;
+    gap: 20px;
     background-color: rgba(55, 55, 55, 0.25);
     border-radius: 50px;
-    box-sizing: border-box;
+}
+
+/* Kept strict size controls on profile pictures so they can never break the layout */
+.pfp {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 30px;
+    border-radius: 100%;
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+}
+
+.card-content {
+    margin-right: 50px;
 }
 
 .card-title {
-    margin-top: 50px;
-    margin-left: 25px;
-    margin-right: 25px;
-    font-size: 38px;
+    margin-top: 0px;
     font-family: "Inter", sans-serif;
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 35px;
+    text-align: left;
 }
 
 .card-text {
-    margin-top: 25px;
-    margin-left: 25px;
-    margin-right: 25px;
-    line-height: 1.7;
-    font-size: 20px;
+    margin-top: 0px;
+    text-align: left;
     font-family: "Inter", sans-serif;
-    font-weight: 350;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.discord {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    display: block;
+    text-align: left;
 }
 
 /* ==========================================================================
@@ -175,7 +193,7 @@ body {
    6. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
    ========================================================================== */
 @media (max-width: 767px) {
-    /* Centered Mobile Topbar configuration */
+    /* Working Centered Mobile Navigation Topbar Layout */
     .topbar {
         display: flex !important;
         flex-direction: row !important;
@@ -194,7 +212,7 @@ body {
         width: 35px !important;
     }
 
-    /* Hide text layers, expose icons on mobile */
+    /* Mobile Swap Hide Rules */
     .nav-text,
     .home-text {
         display: none !important;
@@ -204,7 +222,7 @@ body {
         display: block !important;
     }
 
-    /* Mobile Icon Scales */
+    /* Dynamic Icon Adaptations */
     .icon-size-small {
         width: 45px !important;
         height: 45px !important;
@@ -218,25 +236,51 @@ body {
         height: 75px !important;
     }
 
-    /* Stacking layout for main page components on mobile */
-    .card-grid {
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 20px !important;
-        padding: 40px 0px !important;
+    /* Clean Mobile Stacking Properties for Archivers Page Grid */
+    .title {
+        font-size: 50px !important;
+        margin-top: 40px !important;
+    }
+
+    .subtitle {
+        margin-top: 10px !important;
+        font-size: 18px !important;
+        padding: 0 15px !important;
+    }
+
+    .grid {
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+        padding: 0 20px !important;
+        gap: 30px !important;
+        margin-top: 40px !important;
     }
 
     .card {
-        width: 80% !important;
+        flex-direction: column !important;
+        text-align: center !important;
+        width: 100% !important;
         max-width: 400px !important;
+        padding-bottom: 30px !important;
+        border-radius: 30px !important;
     }
 
-    .card-title {
-        font-size: 30px !important;
-        margin-top: 30px !important;
+    .pfp {
+        margin-left: 0 !important;
+        margin-bottom: 10px !important;
+        width: 130px !important;
+        height: 130px !important;
     }
 
-    .card-text {
+    .card-content {
+        margin-right: 0 !important;
+        padding: 0 20px !important;
+    }
+
+    .card-title,
+    .card-text,
+    .discord {
+        text-align: center !important;
         font-size: 18px !important;
     }
 
