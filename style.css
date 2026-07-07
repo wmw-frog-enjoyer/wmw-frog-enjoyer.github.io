@@ -1,4 +1,10 @@
 .topbar {
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+        grid-template-columns: auto;
+        justify-content: center;
+        padding: 10px;
+    }
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -7,6 +13,12 @@
 }
 
 .center-nav {
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+        margin-top: 10px;
+        gap: 15px;
+        justify-content: center;
+    }
     display: flex;
     gap: 4px;
     justify-content: center;
@@ -14,6 +26,11 @@
 }
 
 .home-button {
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+        font-size: 20px;
+        padding: 8px 12px;
+    }
     display: flex;
     align-items: center;
     gap: 5px;
@@ -34,6 +51,11 @@
 }
 
 .archivers {
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+        font-size: 18px;
+        padding: 6px 10px;
+    }
     color: white;
     text-decoration: none;
 
@@ -89,6 +111,13 @@ body {
 }
 
 .card-grid {
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 40px 0px;
+    }
     display: flex;
     justify-content: center;
     gap: 50px;
@@ -97,12 +126,22 @@ body {
 }
 
 .card {
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+        width: 80%; /* Adjust width for mobile */
+        max-width: 400px; /* Max width to prevent it from becoming too wide on slightly larger screens */
+    }
     width: 400px;
     background-color: rgba(55, 55, 55, 0.25);
     border-radius: 50px;
 }
 
 .card-title {
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+        font-size: 30px;
+        margin-top: 30px;
+    }
     margin-top: 50px;
     margin-left: 25px;
     margin-right: 25px;
@@ -112,6 +151,10 @@ body {
 }
 
 .card-text {
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+        font-size: 18px;
+    }
     margin-top: 25px;
     margin-left: 25px;
     margin-right: 25px;
@@ -122,6 +165,11 @@ body {
 }
 
 .button-apply {
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+        font-size: 18px;
+        margin-bottom: 80px;
+    }
     display: inline-block;
 
     text-decoration: none;
