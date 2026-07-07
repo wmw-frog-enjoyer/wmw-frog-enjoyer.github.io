@@ -55,6 +55,10 @@
     }
 }
 
+.home-logo {
+    width: 35px;
+}
+
 .archivers {
     /* Mobile specific styles */
     @media (max-width: 767px) {
