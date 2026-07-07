@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. TOPBAR & NAVIGATION (Row Layout, No Underlines)
+   1. TOPBAR & NAVIGATION (Row Layout, No Underlines, Centered Mobile)
    ========================================================================== */
 
 .topbar {
@@ -12,13 +12,13 @@
     box-sizing: border-box;
 }
 
-/* Force side-by-side row layout on mobile instead of stacking */
+/* Force side-by-side row layout and center EVERYTHING on mobile */
 @media (max-width: 767px) {
     .topbar {
-        flex-direction: row; /* Keeps logo and nav on the exact same line */
-        justify-content: space-between;
+        flex-direction: row;
+        justify-content: center; /* Pulls everything away from the edges to the center */
         padding: 10px;
-        gap: 10px;
+        gap: 20px; /* Space between the logo and the nav icon group */
     }
 }
 
@@ -40,7 +40,7 @@
     color: white;
     font-size: 25px;
     font-family: "Inter", sans-serif;
-    font-weight: 200;
+    font-weight: 200; /* Thin font weight */
 }
 
 /* Tame the Ansilian logo size */
@@ -52,7 +52,7 @@
 
 @media (max-width: 767px) {
     .home-logo {
-        width: 35px; /* Keep it uniform on mobile so it fits the row */
+        width: 35px;
     }
 }
 
@@ -67,6 +67,7 @@
     color: white;
     font-family: "Inter", sans-serif;
     font-size: 18px;
+    font-weight: 200; /* Lowered weight by ~100+ for a sleeker look */
 }
 
 /* Mobile Swap: Hide text, show sizing classes for icons */
