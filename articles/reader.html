@@ -92,7 +92,8 @@
                         "$1  \n$2",
                     );
                     postBody.innerHTML = marked.parse(processed);
-                } catch (error) {\n                    postBody.innerHTML =
+                } catch (error) {
+                    postBody.innerHTML =
                         '<p class="status-text">could not load article.</p>';
                     console.error(error);
                 }
