@@ -90,8 +90,7 @@
         padding: 6px;
     }
     /* Special sizing for specific icons */
-    .nav-icon[alt="SS Hub"],
-    .nav-icon[alt="Home"] {
+    .nav-icon[alt="SS Hub"] {
         width: 35px;
         height: 35px;
     }
