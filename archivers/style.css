@@ -1,43 +1,29 @@
 /* ==========================================================================
-   1. TOPBAR & NAVIGATION (Responsive & Clean)
+   1. ORIGINAL DESKTOP TOPBAR & NAVIGATION (Restored Exactly)
    ========================================================================== */
 
 .topbar {
-    display: flex;
-    justify-content: space-between; /* Desktop layout: Logo left, nav center */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 10px 20px;
+    padding: 3px;
     background-color: rgba(55, 55, 55, 0.15);
-    position: relative;
-    box-sizing: border-box;
-}
-
-/* Force side-by-side row layout and center EVERYTHING on mobile */
-@media (max-width: 767px) {
-    .topbar {
-        flex-direction: row;
-        justify-content: center; /* Pulls everything to the center */
-        padding: 10px;
-        gap: 20px; /* Space between logo and nav icon group */
-    }
 }
 
 .center-nav {
     display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-/* Kills default underlines completely on all header links */
-.topbar a {
-    text-decoration: none !important;
+    justify-content: center;
+    gap: 4px;
 }
 
 .home-button {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
+    text-decoration: none;
     color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
     font-size: 25px;
     font-family: "Inter", sans-serif;
     font-weight: 200;
@@ -45,15 +31,14 @@
 
 .home-logo {
     width: 35px;
-    height: auto;
-    object-fit: contain;
 }
 
 .archivers {
     color: white;
+    text-decoration: none;
     font-size: 22px;
     font-family: "Inter", sans-serif;
-    font-weight: 250; /* Increased by 50 for desktop readability */
+    font-weight: 200;
     padding: 8px 14px;
     border-radius: 8px;
     transition: 0.2s ease;
@@ -63,39 +48,9 @@
     background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Base rule: Hide icons on desktop */
+/* Hide mobile icons on desktop view */
 .nav-icon {
     display: none !important;
-}
-
-/* Base rule: Show text links on desktop */
-.nav-text {
-    display: inline;
-}
-
-/* Mobile Swap: Hide text, show sizing classes for icons */
-@media (max-width: 767px) {
-    .nav-text,
-    .home-text {
-        display: none;
-    }
-
-    .nav-icon {
-        display: block !important;
-    }
-
-    .icon-size-small {
-        width: 45px; /* SS Hub */
-        height: 45px;
-    }
-    .icon-size-medium {
-        width: 65px; /* Archivers and Articles */
-        height: 65px;
-    }
-    .icon-size-large {
-        width: 75px;
-        height: 75px;
-    }
 }
 
 /* ==========================================================================
@@ -128,25 +83,11 @@ body {
     font-size: 110px;
 }
 
-@media (max-width: 767px) {
-    .title {
-        font-size: 50px; /* Scale down giant text on small screens */
-        margin-top: 40px;
-    }
-}
-
 .subtitle {
     font-family: "Inter", sans-serif;
     margin-top: -50px;
     font-weight: 300;
     font-size: 25px;
-}
-
-@media (max-width: 767px) {
-    .subtitle {
-        margin-top: 10px;
-        font-size: 18px;
-    }
 }
 
 /* ==========================================================================
@@ -162,34 +103,12 @@ body {
     margin-bottom: 120px;
 }
 
-/* Mobile responsive adjustments for the grid and profile cards */
-@media (max-width: 767px) {
-    .grid {
-        grid-template-columns: 1fr; /* Stack cards vertically instead of 2 columns */
-        justify-items: center;
-        padding: 0 20px;
-        gap: 30px;
-        margin-top: 40px;
-    }
-}
-
 .card {
     display: flex;
     align-items: center;
     gap: 20px;
     background-color: rgba(55, 55, 55, 0.25);
     border-radius: 50px;
-}
-
-@media (max-width: 767px) {
-    .card {
-        flex-direction: column; /* Stack pfp on top of text on mobile screens */
-        text-align: center;
-        width: 100%;
-        max-width: 400px;
-        padding-bottom: 30px;
-        border-radius: 30px;
-    }
 }
 
 .pfp {
@@ -200,23 +119,8 @@ body {
     width: 170px;
 }
 
-@media (max-width: 767px) {
-    .pfp {
-        margin-left: 0; /* Center profile picture on mobile layout */
-        margin-bottom: 10px;
-        width: 130px; /* Slightly smaller pfp for screens with limited space */
-    }
-}
-
 .card-content {
     margin-right: 50px;
-}
-
-@media (max-width: 767px) {
-    .card-content {
-        margin-right: 0; /* Clear desktop margins */
-        padding: 0 20px;
-    }
 }
 
 .card-title {
@@ -234,13 +138,6 @@ body {
     font-size: 20px;
 }
 
-@media (max-width: 767px) {
-    .card-text {
-        text-align: center; /* Center bio description on mobile screens */
-        font-size: 18px;
-    }
-}
-
 .discord {
     color: white;
     font-family: "Inter", sans-serif;
@@ -248,12 +145,6 @@ body {
     font-size: 20px;
     display: block;
     text-align: left;
-}
-
-@media (max-width: 767px) {
-    .discord {
-        text-align: center; /* Center discord tag handle on mobile */
-    }
 }
 
 /* ==========================================================================
@@ -279,4 +170,90 @@ body {
 .button-apply:hover {
     transform: scale(1.05);
     background-color: rgb(45, 133, 79);
+}
+
+/* ==========================================================================
+   6. ISOLATED MOBILE OVERRIDES (max-width: 767px)
+   ========================================================================== */
+@media (max-width: 767px) {
+    /* Topbar & Navigation Overrides */
+    .topbar {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        padding: 10px !important;
+        gap: 20px !important;
+    }
+
+    .center-nav {
+        gap: 15px !important;
+    }
+
+    .home-text,
+    .nav-text {
+        display: none !important; /* Hide text on mobile views */
+    }
+
+    .nav-icon {
+        display: block !important; /* Force icons to show on mobile views */
+    }
+
+    .icon-size-small {
+        width: 45px !important; /* SS Hub upsized */
+        height: 45px !important;
+    }
+
+    .icon-size-medium {
+        width: 65px !important; /* Archivers & Articles upsized */
+        height: 65px !important;
+    }
+
+    .home-logo {
+        width: 35px !important; /* Keeps the Ansilian icon properly bounded */
+    }
+
+    /* Content & Profile Grid Mobile Overrides */
+    .title {
+        font-size: 50px !important;
+        margin-top: 40px !important;
+    }
+
+    .subtitle {
+        margin-top: 10px !important;
+        font-size: 18px !important;
+    }
+
+    .grid {
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+        padding: 0 20px !important;
+        gap: 30px !important;
+        margin-top: 40px !important;
+    }
+
+    .card {
+        flex-direction: column !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        padding-bottom: 30px !important;
+        border-radius: 30px !important;
+    }
+
+    .pfp {
+        margin-left: 0 !important;
+        margin-bottom: 10px !important;
+        width: 130px !important;
+    }
+
+    .card-content {
+        margin-right: 0 !important;
+        padding: 0 20px !important;
+    }
+
+    .card-text,
+    .discord {
+        text-align: center !important;
+        font-size: 18px !important;
+    }
 }
