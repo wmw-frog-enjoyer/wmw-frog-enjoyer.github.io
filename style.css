@@ -62,9 +62,11 @@
 .archivers {
     /* Mobile specific styles */
     @media (max-width: 767px) {
-        font-size: 18px;
-        padding: 6px 10px;
+        padding: 6px;
     }
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color: white;
     text-decoration: none;
 
@@ -76,6 +78,21 @@
     border-radius: 8px;
 
     transition: 0.2s ease;
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .nav-text {
+        display: none;
+    }
+    .nav-icon {
+        display: block;
+    }
 }
 
 .archivers:hover {
