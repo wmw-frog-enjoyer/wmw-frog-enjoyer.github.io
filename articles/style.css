@@ -1,6 +1,94 @@
-/* =====================================================
-   articles — shared styles for index.html & reader.html
-   ===================================================== */
+/* ==========================================================================
+   1. DESKTOP TOPBAR & NAVIGATION (Restored Sizes & Added Hover Animations)
+   ========================================================================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between; /* Required for nav.js centering math */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(55, 55, 55, 0.15);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.center-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Kills default underlines completely on all header links */
+.topbar a {
+    text-decoration: none !important;
+    color: white;
+}
+
+.home-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 25px;
+    font-family: "Inter", sans-serif;
+    font-weight: 200;
+}
+
+/* Tame the Ansilian logo size */
+.home-logo {
+    width: 35px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Base rule: Hide icons on desktop views */
+.nav-icon {
+    display: none !important;
+}
+
+/* Base rule: Restored font size, weights, and clean background hover animations */
+.nav-text {
+    display: inline-block;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 22px; /* Restored font scale */
+    font-weight: 200; /* Restored light weight */
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-text:hover {
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.08
+    ); /* Re-added original hover block */
+}
+
+/* ==========================================================================
+   2. GLOBAL BODY STYLES (Background & Typography)
+   ========================================================================== */
+
+body {
+    margin: 0px;
+    margin-top: 0px;
+    background: linear-gradient(
+        to right,
+        #141414 0%,
+        #111111 25%,
+        #000000 50%,
+        #111111 75%,
+        #141414 100%
+    );
+    color: white;
+    text-align: center;
+}
+
+/* ==========================================================================
+   3. ARTICLES LOGIC — SHARED CORE LAYOUTS (index.html & reader.html)
+   ========================================================================= */
 
 .page-content {
     max-width: 850px;
@@ -16,9 +104,9 @@
     color: rgba(255, 255, 255, 0.3);
 }
 
-/* =====================================================
-   index.html — article list
-   ===================================================== */
+/* ==========================================================================
+   4. INDEX VIEW LAYOUTS — ARTICLE BROWSING LIST
+   ========================================================================= */
 
 .page-title {
     font-family: "Inter", sans-serif;
@@ -124,9 +212,9 @@
     color: rgba(255, 255, 255, 0.3);
 }
 
-/* =====================================================
-   reader.html — article preface & body
-   ===================================================== */
+/* ==========================================================================
+   5. READER VIEW LAYOUTS — MARKDOWN CONTENT ENGINE
+   ========================================================================= */
 
 .back-link {
     display: inline-block;
@@ -286,9 +374,9 @@
     border-radius: 8px;
 }
 
-/* =====================================================
-   tags — used in both index.html and reader.html
-   ===================================================== */
+/* ==========================================================================
+   6. ARTICLE META TAG STYLING PROPERTIES
+   ========================================================================= */
 
 .card-bottom-row {
     display: flex;
@@ -332,4 +420,95 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 6px;
     padding: 3px 12px;
+}
+
+/* ==========================================================================
+   7. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
+   ========================================================================== */
+@media (max-width: 767px) {
+    /* Working Centered Mobile Navigation Topbar Layout */
+    .topbar {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        padding: 10px !important;
+        gap: 20px !important;
+    }
+
+    .center-nav {
+        gap: 15px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .home-logo {
+        width: 35px !important;
+    }
+
+    /* Mobile Swap Hide Rules */
+    .nav-text,
+    .home-text {
+        display: none !important;
+    }
+
+    .nav-icon {
+        display: block !important;
+    }
+
+    /* Dynamic Icon Adaptations */
+    .icon-size-small {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    .icon-size-medium {
+        width: 65px !important;
+        height: 65px !important;
+    }
+    .icon-size-large {
+        width: 75px !important;
+        height: 75px !important;
+    }
+
+    /* Responsive scaling for Article Content containers */
+    .page-content {
+        margin: 30px auto !important;
+        padding: 0 16px !important;
+    }
+
+    .page-title {
+        font-size: 42px !important;
+    }
+
+    .post-card {
+        padding: 14px 16px !important;
+    }
+
+    .card-title {
+        font-size: 22px !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Forces text wrap and column handling for tags on tiny views */
+    .card-bottom-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+    }
+
+    .card-tags {
+        justify-content: flex-start !important;
+    }
+
+    .post-body h1 {
+        font-size: 32px !important;
+    }
+
+    .post-body h2 {
+        font-size: 26px !important;
+    }
+
+    .post-body p {
+        font-size: 17px !important;
+        line-height: 1.7 !important;
+    }
 }
