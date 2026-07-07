@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
     <head>
+        <!-- FIX 1: Active viewport tracking parameters for media queries -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>settings</title>
         <link rel="icon" type="image/png" href="/assets/ansilian.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -10,7 +13,8 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="../../style.css" />
-        <link rel="stylesheet" href="style.css" />
+        <!-- FIX 2: Applied the version parameter cache buster directly here -->
+        <link rel="stylesheet" href="style.css?v=1" />
     </head>
     <body>
         <!-- ===================== COPY-PASTE HEADER ===================== -->
@@ -110,7 +114,6 @@
                 btn.className = "action-btn";
                 btn.textContent = "copy config";
                 btn.addEventListener("click", () => {
-                    // copies the raw JSON text to the clipboard
                     navigator.clipboard
                         .writeText(JSON.stringify(configData, null, 2))
                         .then(() => {
@@ -136,7 +139,6 @@
                 btn.className = "action-btn";
                 btn.textContent = "download config";
                 btn.addEventListener("click", () => {
-                    // creates a temporary download link and clicks it
                     const blob = new Blob(
                         [JSON.stringify(configData, null, 2)],
                         { type: "application/json" },
@@ -218,7 +220,6 @@
                         }
                     }
 
-                    // ss → copy button, ssp → download button
                     if (meta.format === "ss") {
                         addCopyButton(configData);
                     } else if (meta.format === "ssp") {
