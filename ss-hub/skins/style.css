@@ -369,3 +369,57 @@ body {
     border-radius: 6px;
     padding: 2px 8px;
 }
+
+/* =====================================================
+   Isolated Mobile Structural Overrides (< 768px Viewports)
+   ===================================================== */
+@media (max-width: 767px) {
+    .page-content {
+        margin: 30px auto !important;
+        padding: 0 16px !important;
+    }
+
+    .page-title {
+        font-size: 42px !important;
+        margin-bottom: 16px !important;
+    }
+
+    /* Converts the 3-column configuration grid smoothly into 1 robust column */
+    #skins-container {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .skin-card {
+        padding: 16px !important;
+    }
+
+    .card-title {
+        font-size: 20px !important;
+    }
+
+    /* Allows filter pills to flow and wrap cleanly across small device widths */
+    .type-pills {
+        gap: 6px !important;
+    }
+
+    .type-pill {
+        padding: 5px 10px !important;
+        font-size: 13px !important;
+    }
+
+    .card-action-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+    }
+
+    .action-btn {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .card-tags {
+        justify-content: flex-start !important;
+    }
+}

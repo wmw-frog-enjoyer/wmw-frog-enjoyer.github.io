@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
     <head>
+        <!-- FIX 1: Active mobile viewport engine scaling rules -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Skins</title>
         <link rel="icon" type="image/png" href="/assets/ansilian.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -10,7 +13,8 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="../../style.css" />
-        <link rel="stylesheet" href="style.css" />
+        <!-- FIX 2: Applied the cache buster string to load updates instantly -->
+        <link rel="stylesheet" href="style.css?v=1" />
     </head>
     <body>
         <div id="topbar-container"></div>
@@ -95,7 +99,6 @@
             }
 
             function buildTypePills(skins) {
-                // collect only types that actually exist in the data
                 const types = [...new Set(skins.map((s) => s.type))].sort();
                 const container = document.getElementById("type-pills");
 
