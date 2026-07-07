@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. DESKTOP TOPBAR & NAVIGATION (From your home page style_3.css)
+   1. DESKTOP TOPBAR & NAVIGATION (Your Exact Original Rules)
    ========================================================================= */
 
 .topbar {
@@ -51,7 +51,7 @@
     color: white;
     font-family: "Inter", sans-serif;
     font-size: 18px;
-    font-weight: 250; /* Increased font weight by 50 for desktop readability */
+    font-weight: 250; /* Keeps your custom font weight adjustment */
 }
 
 /* ==========================================================================
@@ -74,7 +74,7 @@ body {
 }
 
 /* ==========================================================================
-   3. HERO / MAIN CONTENT (From your home page style_3.css)
+   3. HERO / MAIN CONTENT (Restored Entirely)
    ========================================================================== */
 
 .logo {
@@ -97,7 +97,7 @@ body {
 }
 
 /* ==========================================================================
-   4. CARDS & GRIDS (From your home page style_3.css)
+   4. CARDS & GRIDS (Restored Entirely)
    ========================================================================== */
 
 .card-grid {
@@ -134,7 +134,7 @@ body {
 }
 
 /* ==========================================================================
-   5. BUTTONS (From your home page style_3.css)
+   5. BUTTONS (Restored Entirely)
    ========================================================================== */
 
 .button-apply {
@@ -162,13 +162,13 @@ body {
    6. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
    ========================================================================== */
 @media (max-width: 767px) {
-    /* Force side-by-side row layout and center EVERYTHING on mobile */
+    /* Working Mobile Topbar Layout */
     .topbar {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: center !important; /* Pulls everything away from the edges to the center */
+        justify-content: center !important; /* Centers everything exactly how you wanted it */
         padding: 10px !important;
-        gap: 20px !important; /* Space between the logo and the nav icon group */
+        gap: 20px !important;
     }
 
     .center-nav {
@@ -181,7 +181,7 @@ body {
         width: 35px !important;
     }
 
-    /* Mobile Swap: Hide text strings, show layout graphics */
+    /* Mobile Swap: Hide texts, show icons */
     .nav-text,
     .home-text {
         display: none !important;
@@ -191,7 +191,7 @@ body {
         display: block !important;
     }
 
-    /* Standardized Mobile Icon Scale */
+    /* Mobile Icon Scaling */
     .icon-size-small {
         width: 45px !important;
         height: 45px !important;
@@ -205,12 +205,13 @@ body {
         height: 75px !important;
     }
 
-    /* Home Page Content Responsive Layouts */
+    /* Responsive adjustments for your home page content layout */
     .card-grid {
         flex-direction: column !important;
         align-items: center !important;
         gap: 20px !important;
         padding: 40px 0px !important;
+        flex-wrap: Offers wrapping support !important;
     }
 
     .card {
