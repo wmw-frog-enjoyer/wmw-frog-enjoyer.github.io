@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. ORIGINAL DESKTOP TOPBAR & NAVIGATION (Restored Exactly)
+   1. DESKTOP NAVIGATION (Your Exact Original Rules)
    ========================================================================== */
 
 .topbar {
@@ -48,13 +48,13 @@
     background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Hide mobile icons on desktop view */
+/* Default rule to keep mobile icons hidden on desktop viewports */
 .nav-icon {
-    display: none !important;
+    display: none;
 }
 
 /* ==========================================================================
-   2. GLOBAL BODY STYLES
+   2. DESKTOP BODY, MAIN HERO, & PROFILE CARDS (Your Exact Original Rules)
    ========================================================================== */
 
 body {
@@ -72,10 +72,6 @@ body {
     text-align: center;
 }
 
-/* ==========================================================================
-   3. HERO / MAIN CONTENT
-   ========================================================================== */
-
 .title {
     font-family: "Inter", sans-serif;
     margin-top: 70px;
@@ -89,10 +85,6 @@ body {
     font-weight: 300;
     font-size: 25px;
 }
-
-/* ==========================================================================
-   4. STAFF CARDS & GRID LAYOUT
-   ========================================================================== */
 
 .grid {
     display: grid;
@@ -147,10 +139,6 @@ body {
     text-align: left;
 }
 
-/* ==========================================================================
-   5. BUTTONS
-   ========================================================================== */
-
 .button-apply {
     display: inline-block;
     text-decoration: none;
@@ -173,48 +161,51 @@ body {
 }
 
 /* ==========================================================================
-   6. ISOLATED MOBILE OVERRIDES (max-width: 767px)
+   3. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
    ========================================================================== */
 @media (max-width: 767px) {
-    /* Topbar & Navigation Overrides */
+    /* 1. Topbar Navigation Layout Overrides */
     .topbar {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: center !important;
+        justify-content: center !important; /* Centers all 4 buttons side-by-side */
         padding: 10px !important;
-        gap: 20px !important;
+        gap: 20px !important; /* Spacing between elements */
     }
 
     .center-nav {
         gap: 15px !important;
     }
 
+    /* Hide text strings on mobile viewports */
     .home-text,
     .nav-text {
-        display: none !important; /* Hide text on mobile views */
+        display: none !important;
     }
 
+    /* Force responsive visual graphics/icons to show */
     .nav-icon {
-        display: block !important; /* Force icons to show on mobile views */
+        display: block !important;
     }
 
+    /* Custom Mobile Sizing Rules for Top Navigation Graphic Tags */
     .icon-size-small {
-        width: 45px !important; /* SS Hub upsized */
+        width: 45px !important; /* SS Hub scaled up */
         height: 45px !important;
     }
 
     .icon-size-medium {
-        width: 65px !important; /* Archivers & Articles upsized */
+        width: 65px !important; /* Archivers and Articles scaled up */
         height: 65px !important;
     }
 
     .home-logo {
-        width: 35px !important; /* Keeps the Ansilian icon properly bounded */
+        width: 35px !important; /* Keeps Ansilian image scale constrained */
     }
 
-    /* Content & Profile Grid Mobile Overrides */
+    /* 2. Page Content & Profile Grid Layout Overrides */
     .title {
-        font-size: 50px !important;
+        font-size: 50px !important; /* Stops giant 110px font from clipping pages */
         margin-top: 40px !important;
     }
 
@@ -224,7 +215,7 @@ body {
     }
 
     .grid {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: 1fr !important; /* Stack user profile cards vertically */
         justify-items: center !important;
         padding: 0 20px !important;
         gap: 30px !important;
@@ -232,7 +223,7 @@ body {
     }
 
     .card {
-        flex-direction: column !important;
+        flex-direction: column !important; /* Stack avatar pfp on top of description */
         text-align: center !important;
         width: 100% !important;
         max-width: 400px !important;
@@ -241,7 +232,7 @@ body {
     }
 
     .pfp {
-        margin-left: 0 !important;
+        margin-left: 0 !important; /* Safely centers avatar photo */
         margin-bottom: 10px !important;
         width: 130px !important;
     }
@@ -253,7 +244,7 @@ body {
 
     .card-text,
     .discord {
-        text-align: center !important;
+        text-align: center !important; /* Center profile text cleanly */
         font-size: 18px !important;
     }
 }
