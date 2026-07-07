@@ -259,3 +259,60 @@ body {
     cursor: default;
     transform: none;
 }
+
+/* =====================================================
+   Mobile Responsive Rules (Viewports < 768px)
+   ===================================================== */
+@media (max-width: 767px) {
+    .page-content {
+        margin: 30px auto !important;
+        padding: 0 16px !important;
+    }
+
+    .page-title {
+        font-size: 42px !important;
+        margin-bottom: 16px !important;
+    }
+
+    /* Collapse both structural containers safely into 1 vertical column */
+    #customs-container,
+    #sspm-container {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .custom-card {
+        padding: 16px !important;
+    }
+
+    .card-name {
+        font-size: 20px !important;
+    }
+
+    /* Keeps top metadata and badges wrapped neatly without clipping text */
+    .card-top-row {
+        gap: 6px !important;
+    }
+
+    .card-meta-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+
+    /* Wraps sorting pills layout nicely on tight screens */
+    .pattern-pills {
+        gap: 6px !important;
+    }
+
+    .pattern-pill {
+        padding: 5px 12px !important;
+        font-size: 13px !important;
+    }
+
+    /* Optimization for active click targets on mobile devices */
+    .action-btn {
+        padding: 10px 16px !important;
+        font-size: 15px !important;
+    }
+}

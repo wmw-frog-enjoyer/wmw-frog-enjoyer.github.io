@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
     <head>
+        <!-- FIX 1: Added mobile viewport meta tag for responsive scaling -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>sspm archive</title>
         <link rel="icon" type="image/png" href="/assets/ansilian.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -10,7 +13,8 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="../../style.css" />
-        <link rel="stylesheet" href="style.css" />
+        <!-- FIX 2: Applied cache-busting version query string to style.css -->
+        <link rel="stylesheet" href="style.css?v=1" />
     </head>
     <body>
         <div id="topbar-container"></div>
