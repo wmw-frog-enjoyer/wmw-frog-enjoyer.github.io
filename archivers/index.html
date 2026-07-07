@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
     <head>
+        <!-- FIX 1: This tag tells mobile browsers to scale properly -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Ansilian</title>
 
         <link rel="icon" type="image/png" href="/assets/ansilian.png" />
@@ -12,7 +15,8 @@
             rel="stylesheet"
         />
 
-        <link rel="stylesheet" href="style.css" />
+        <!-- FIX 2: Appended ?v=1 to force your phone to drop its old cached styles -->
+        <link rel="stylesheet" href="style.css?v=1" />
     </head>
 
     <body>
