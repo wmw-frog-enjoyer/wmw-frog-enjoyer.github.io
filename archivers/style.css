@@ -1,60 +1,61 @@
 /* ==========================================================================
-   1. DESKTOP NAVIGATION (Your New Page's Desktop Topbar Layout)
-   ========================================================================== */
+   1. DESKTOP TOPBAR & NAVIGATION (From your home page style_3.css)
+   ========================================================================= */
 
 .topbar {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between; /* Desktop layout: Logo left, nav center */
     align-items: center;
-    padding: 3px;
+    padding: 10px 20px;
     background-color: rgba(55, 55, 55, 0.15);
+    position: relative;
+    box-sizing: border-box;
 }
 
 .center-nav {
     display: flex;
-    justify-content: center;
-    gap: 4px;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Kills default underlines completely on all header links */
+.topbar a {
+    text-decoration: none !important;
 }
 
 .home-button {
     display: flex;
     align-items: center;
-    gap: 5px;
-    text-decoration: none;
+    gap: 10px;
     color: white;
-    padding: 10px 16px;
-    border-radius: 12px;
     font-size: 25px;
     font-family: "Inter", sans-serif;
     font-weight: 200;
 }
 
+/* Tame the Ansilian logo size */
 .home-logo {
     width: 35px;
+    height: auto;
+    object-fit: contain;
 }
 
-.archivers {
-    color: white;
-    text-decoration: none;
-    font-size: 22px;
-    font-family: "Inter", sans-serif;
-    font-weight: 200;
-    padding: 8px 14px;
-    border-radius: 8px;
-    transition: 0.2s ease;
-}
-
-.archivers:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-}
-
-/* Default rule to hide mobile graphics on desktop views */
+/* Base rule: Hide icons on desktop */
 .nav-icon {
-    display: none;
+    display: none !important;
+}
+
+/* Base rule: Show text links on desktop */
+.nav-text {
+    display: inline;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 250; /* Increased font weight by 50 for desktop readability */
 }
 
 /* ==========================================================================
-   2. DESKTOP GLOBAL STYLES & CONTENT LAYOUT
+   2. GLOBAL BODY STYLES (Background & Typography)
    ========================================================================== */
 
 body {
@@ -72,72 +73,69 @@ body {
     text-align: center;
 }
 
-.title {
-    font-family: "Inter", sans-serif;
+/* ==========================================================================
+   3. HERO / MAIN CONTENT (From your home page style_3.css)
+   ========================================================================== */
+
+.logo {
     margin-top: 70px;
-    font-weight: 200;
-    font-size: 110px;
+    width: 256px;
 }
 
 .subtitle {
     font-family: "Inter", sans-serif;
-    margin-top: -50px;
+    margin-top: -60px;
     font-weight: 300;
     font-size: 25px;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
+.inter-main {
+    font-family: "Inter", sans-serif;
+    margin-top: 0px;
+    font-weight: 200;
+    font-size: 110px;
+}
+
+/* ==========================================================================
+   4. CARDS & GRIDS (From your home page style_3.css)
+   ========================================================================== */
+
+.card-grid {
+    display: flex;
     justify-content: center;
     gap: 50px;
-    margin-top: 80px;
-    margin-bottom: 120px;
+    padding: 80px 0px;
+    flex-wrap: nowrap;
 }
 
 .card {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    width: 400px;
     background-color: rgba(55, 55, 55, 0.25);
     border-radius: 50px;
 }
 
-.pfp {
-    margin-top: 25px;
-    margin-bottom: 25px;
-    margin-left: 30px;
-    border-radius: 100%;
-    width: 170px;
-}
-
-.card-content {
-    margin-right: 50px;
-}
-
 .card-title {
-    margin-top: 0px;
+    margin-top: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-size: 38px;
     font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 35px;
+    font-weight: 400;
 }
 
 .card-text {
-    margin-top: 0px;
-    text-align: left;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+    line-height: 1.7;
     font-size: 20px;
+    font-family: "Inter", sans-serif;
+    font-weight: 350;
 }
 
-.discord {
-    color: white;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    display: block;
-    text-align: left;
-}
+/* ==========================================================================
+   5. BUTTONS (From your home page style_3.css)
+   ========================================================================== */
 
 .button-apply {
     display: inline-block;
@@ -161,95 +159,76 @@ body {
 }
 
 /* ==========================================================================
-   3. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
+   6. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
    ========================================================================== */
 @media (max-width: 767px) {
-    /* Topbar Layout Overrides - Matched directly to main page requirements */
+    /* Force side-by-side row layout and center EVERYTHING on mobile */
     .topbar {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: center !important; /* Center all 4 navigation elements side-by-side */
+        justify-content: center !important; /* Pulls everything away from the edges to the center */
         padding: 10px !important;
-        gap: 20px !important; /* Outer spacing balance */
+        gap: 20px !important; /* Space between the logo and the nav icon group */
     }
 
     .center-nav {
-        gap: 15px !important; /* Tight matching inner icon tracking gap */
+        gap: 15px !important;
+        display: flex !important;
+        align-items: center !important;
     }
 
-    /* Kills default underlines completely on mobile link variants */
-    .topbar a {
-        text-decoration: none !important;
+    .home-logo {
+        width: 35px !important;
     }
 
-    /* Clear text layers entirely on small display screens */
-    .home-text,
-    .nav-text {
+    /* Mobile Swap: Hide text strings, show layout graphics */
+    .nav-text,
+    .home-text {
         display: none !important;
     }
 
-    /* Expose active navigation graphics */
     .nav-icon {
         display: block !important;
     }
 
-    /* Mobile Icon Dimensions */
+    /* Standardized Mobile Icon Scale */
     .icon-size-small {
-        width: 45px !important; /* SS Hub upsized */
+        width: 45px !important;
         height: 45px !important;
     }
-
     .icon-size-medium {
-        width: 65px !important; /* Archivers and Articles upsized */
+        width: 65px !important;
         height: 65px !important;
     }
-
-    .home-logo {
-        width: 35px !important; /* Keep main logo asset balanced in row height context */
+    .icon-size-large {
+        width: 75px !important;
+        height: 75px !important;
     }
 
-    /* Grid Layout Responsive Formats */
-    .title {
-        font-size: 50px !important;
-        margin-top: 40px !important;
-    }
-
-    .subtitle {
-        margin-top: 10px !important;
-        font-size: 18px !important;
-    }
-
-    .grid {
-        grid-template-columns: 1fr !important;
-        justify-items: center !important;
-        padding: 0 20px !important;
-        gap: 30px !important;
-        margin-top: 40px !important;
+    /* Home Page Content Responsive Layouts */
+    .card-grid {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        padding: 40px 0px !important;
     }
 
     .card {
-        flex-direction: column !important;
-        text-align: center !important;
-        width: 100% !important;
+        width: 80% !important;
         max-width: 400px !important;
-        padding-bottom: 30px !important;
-        border-radius: 30px !important;
     }
 
-    .pfp {
-        margin-left: 0 !important;
-        margin-bottom: 10px !important;
-        width: 130px !important;
+    .card-title {
+        font-size: 30px !important;
+        margin-top: 30px !important;
     }
 
-    .card-content {
-        margin-right: 0 !important;
-        padding: 0 20px !important;
-    }
-
-    .card-text,
-    .discord {
-        text-align: center !important;
+    .card-text {
         font-size: 18px !important;
+    }
+
+    .button-apply {
+        font-size: 18px !important;
+        margin-bottom: 80px !important;
     }
 }
