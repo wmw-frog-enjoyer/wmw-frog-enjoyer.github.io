@@ -4,19 +4,19 @@
 
 .topbar {
     display: flex;
-    justify-content: space-between; /* Keeps logo left, center-nav centered */
+    justify-content: space-between; /* Desktop layout: Logo left, nav center */
     align-items: center;
     padding: 10px 20px;
     background-color: rgba(55, 55, 55, 0.15);
-    position: relative; /* Essential context for your JS calculation */
+    position: relative;
     box-sizing: border-box;
 }
 
-/* Mobile specific overrides */
+/* Force side-by-side row layout on mobile instead of stacking */
 @media (max-width: 767px) {
     .topbar {
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: row; /* Keeps logo and nav on the exact same line */
+        justify-content: space-between;
         padding: 10px;
         gap: 10px;
     }
@@ -28,11 +28,15 @@
     align-items: center;
 }
 
+/* Base style for all topbar links to kill default underlines completely */
+.topbar a {
+    text-decoration: none !important;
+}
+
 .home-button {
     display: flex;
     align-items: center;
     gap: 10px;
-    text-decoration: none;
     color: white;
     font-size: 25px;
     font-family: "Inter", sans-serif;
@@ -41,27 +45,26 @@
 
 /* Explicitly tame the Ansilian logo size */
 .home-logo {
-    width: 35px; /* Adjust this value to change its size on desktop */
+    width: 35px;
     height: auto;
     object-fit: contain;
 }
 
 @media (max-width: 767px) {
     .home-logo {
-        width: 45px; /* Keeps it readable but sane on mobile layout */
+        width: 35px; /* Keep it uniform on mobile so it doesn't push things down */
     }
 }
 
 /* Base rule: Hide icons on desktop */
 .nav-icon {
-    display: none !important; /* !important guarantees specific size classes won't force it visible */
+    display: none !important;
 }
 
 /* Base rule: Show text links on desktop */
 .nav-text {
     display: inline;
     color: white;
-    text-decoration: none;
     font-family: "Inter", sans-serif;
     font-size: 18px;
 }
@@ -78,159 +81,15 @@
     }
 
     .icon-size-small {
+        width: 25px; /* Slightly scaled down for mobile row fit */
+        height: 25px;
+    }
+    .icon-size-medium {
         width: 30px;
         height: 30px;
     }
-    .icon-size-medium {
-        width: 40px;
-        height: 40px;
-    }
     .icon-size-large {
-        width: 50px;
-        height: 50px;
-    }
-}
-
-/* ==========================================================================
-   2. GLOBAL BODY STYLES (Background & Typography)
-   ========================================================================== */
-
-body {
-    margin: 0px;
-    margin-top: 0px;
-    background: linear-gradient(
-        to right,
-        #141414 0%,
-        #111111 25%,
-        #000000 50%,
-        #111111 75%,
-        #141414 100%
-    );
-
-    color: white;
-    text-align: center;
-}
-
-/* ==========================================================================
-   3. HERO / MAIN CONTENT
-   ========================================================================== */
-
-.logo {
-    margin-top: 70px;
-    width: 256px;
-}
-
-.subtitle {
-    font-family: "Inter", sans-serif;
-    margin-top: -60px;
-    font-weight: 300;
-    font-size: 25px;
-}
-
-.inter-main {
-    font-family: "Inter", sans-serif;
-    margin-top: 0px;
-    font-weight: 200;
-    font-size: 110px;
-}
-
-/* ==========================================================================
-   4. CARDS & GRIDS
-   ========================================================================== */
-
-.card-grid {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    padding: 80px 0px;
-    flex-wrap: nowrap;
-}
-
-@media (max-width: 767px) {
-    .card-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 40px 0px;
-    }
-}
-
-.card {
-    width: 400px;
-    background-color: rgba(55, 55, 55, 0.25);
-    border-radius: 50px;
-}
-
-@media (max-width: 767px) {
-    .card {
-        width: 80%; /* Adjust width for mobile */
-        max-width: 400px; /* Max width to prevent it from becoming too wide on slightly larger screens */
-    }
-}
-
-.card-title {
-    margin-top: 50px;
-    margin-left: 25px;
-    margin-right: 25px;
-    font-size: 38px;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-}
-
-@media (max-width: 767px) {
-    .card-title {
-        font-size: 30px;
-        margin-top: 30px;
-    }
-}
-
-.card-text {
-    margin-top: 25px;
-    margin-left: 25px;
-    margin-right: 25px;
-    line-height: 1.7;
-    font-size: 20px;
-    font-family: "Inter", sans-serif;
-    font-weight: 350;
-}
-
-@media (max-width: 767px) {
-    .card-text {
-        font-size: 18px;
-    }
-}
-
-/* ==========================================================================
-   5. BUTTONS
-   ========================================================================== */
-
-.button-apply {
-    display: inline-block;
-    text-decoration: none;
-    color: white;
-    font-family: "Inter", sans-serif;
-    font-weight: 300;
-    font-size: 20px;
-
-    padding: 0px 10px;
-    border-radius: 10px;
-    margin-bottom: 120px;
-
-    background-color: rgb(37, 105, 63);
-
-    transition:
-        transform 0.2s ease,
-        background-color 0.2s ease;
-}
-
-.button-apply:hover {
-    transform: scale(1.05);
-    background-color: rgb(45, 133, 79);
-}
-
-@media (max-width: 767px) {
-    .button-apply {
-        font-size: 18px;
-        margin-bottom: 80px;
+        width: 35px;
+        height: 35px;
     }
 }
