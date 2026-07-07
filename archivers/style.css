@@ -1,28 +1,43 @@
+/* ==========================================================================
+   1. TOPBAR & NAVIGATION (Responsive & Clean)
+   ========================================================================== */
+
 .topbar {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between; /* Desktop layout: Logo left, nav center */
     align-items: center;
-    padding: 3px;
+    padding: 10px 20px;
     background-color: rgba(55, 55, 55, 0.15);
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Force side-by-side row layout and center EVERYTHING on mobile */
+@media (max-width: 767px) {
+    .topbar {
+        flex-direction: row;
+        justify-content: center; /* Pulls everything to the center */
+        padding: 10px;
+        gap: 20px; /* Space between logo and nav icon group */
+    }
 }
 
 .center-nav {
     display: flex;
-    justify-content: center;
-    gap: 4px;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Kills default underlines completely on all header links */
+.topbar a {
+    text-decoration: none !important;
 }
 
 .home-button {
     display: flex;
     align-items: center;
-    gap: 5px;
-
-    text-decoration: none;
+    gap: 10px;
     color: white;
-
-    padding: 10px 16px;
-    border-radius: 12px;
-
     font-size: 25px;
     font-family: "Inter", sans-serif;
     font-weight: 200;
@@ -30,25 +45,62 @@
 
 .home-logo {
     width: 35px;
+    height: auto;
+    object-fit: contain;
 }
 
 .archivers {
     color: white;
-    text-decoration: none;
-
     font-size: 22px;
     font-family: "Inter", sans-serif;
-    font-weight: 200;
-
+    font-weight: 250; /* Increased by 50 for desktop readability */
     padding: 8px 14px;
     border-radius: 8px;
-
     transition: 0.2s ease;
 }
 
 .archivers:hover {
     background-color: rgba(255, 255, 255, 0.08);
 }
+
+/* Base rule: Hide icons on desktop */
+.nav-icon {
+    display: none !important;
+}
+
+/* Base rule: Show text links on desktop */
+.nav-text {
+    display: inline;
+}
+
+/* Mobile Swap: Hide text, show sizing classes for icons */
+@media (max-width: 767px) {
+    .nav-text,
+    .home-text {
+        display: none;
+    }
+
+    .nav-icon {
+        display: block !important;
+    }
+
+    .icon-size-small {
+        width: 45px; /* SS Hub */
+        height: 45px;
+    }
+    .icon-size-medium {
+        width: 65px; /* Archivers and Articles */
+        height: 65px;
+    }
+    .icon-size-large {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+/* ==========================================================================
+   2. GLOBAL BODY STYLES
+   ========================================================================== */
 
 body {
     margin: 0px;
@@ -61,12 +113,13 @@ body {
         #111111 75%,
         #141414 100%
     );
-
     color: white;
     text-align: center;
 }
 
-/* this is the end of copy paste */
+/* ==========================================================================
+   3. HERO / MAIN CONTENT
+   ========================================================================== */
 
 .title {
     font-family: "Inter", sans-serif;
@@ -75,12 +128,30 @@ body {
     font-size: 110px;
 }
 
+@media (max-width: 767px) {
+    .title {
+        font-size: 50px; /* Scale down giant text on small screens */
+        margin-top: 40px;
+    }
+}
+
 .subtitle {
     font-family: "Inter", sans-serif;
     margin-top: -50px;
     font-weight: 300;
     font-size: 25px;
 }
+
+@media (max-width: 767px) {
+    .subtitle {
+        margin-top: 10px;
+        font-size: 18px;
+    }
+}
+
+/* ==========================================================================
+   4. STAFF CARDS & GRID LAYOUT
+   ========================================================================== */
 
 .grid {
     display: grid;
@@ -91,12 +162,34 @@ body {
     margin-bottom: 120px;
 }
 
+/* Mobile responsive adjustments for the grid and profile cards */
+@media (max-width: 767px) {
+    .grid {
+        grid-template-columns: 1fr; /* Stack cards vertically instead of 2 columns */
+        justify-items: center;
+        padding: 0 20px;
+        gap: 30px;
+        margin-top: 40px;
+    }
+}
+
 .card {
     display: flex;
     align-items: center;
     gap: 20px;
     background-color: rgba(55, 55, 55, 0.25);
     border-radius: 50px;
+}
+
+@media (max-width: 767px) {
+    .card {
+        flex-direction: column; /* Stack pfp on top of text on mobile screens */
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+        padding-bottom: 30px;
+        border-radius: 30px;
+    }
 }
 
 .pfp {
@@ -107,8 +200,23 @@ body {
     width: 170px;
 }
 
+@media (max-width: 767px) {
+    .pfp {
+        margin-left: 0; /* Center profile picture on mobile layout */
+        margin-bottom: 10px;
+        width: 130px; /* Slightly smaller pfp for screens with limited space */
+    }
+}
+
 .card-content {
     margin-right: 50px;
+}
+
+@media (max-width: 767px) {
+    .card-content {
+        margin-right: 0; /* Clear desktop margins */
+        padding: 0 20px;
+    }
 }
 
 .card-title {
@@ -126,6 +234,13 @@ body {
     font-size: 20px;
 }
 
+@media (max-width: 767px) {
+    .card-text {
+        text-align: center; /* Center bio description on mobile screens */
+        font-size: 18px;
+    }
+}
+
 .discord {
     color: white;
     font-family: "Inter", sans-serif;
@@ -135,21 +250,27 @@ body {
     text-align: left;
 }
 
+@media (max-width: 767px) {
+    .discord {
+        text-align: center; /* Center discord tag handle on mobile */
+    }
+}
+
+/* ==========================================================================
+   5. BUTTONS
+   ========================================================================== */
+
 .button-apply {
     display: inline-block;
-
     text-decoration: none;
     color: white;
     font-family: "Inter", sans-serif;
     font-weight: 300;
     font-size: 20px;
-
     padding: 0px 10px;
     border-radius: 10px;
     margin-bottom: 120px;
-
     background-color: rgb(37, 105, 63);
-
     transition:
         transform 0.2s ease,
         background-color 0.2s ease;
