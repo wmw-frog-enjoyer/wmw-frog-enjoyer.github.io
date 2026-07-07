@@ -1,6 +1,6 @@
 /* ==========================================================================
    1. TOPBAR & NAVIGATION (Row Layout, No Underlines, Centered Mobile)
-   ========================================================================== */
+   ========================================================================= */
 
 .topbar {
     display: flex;
@@ -40,7 +40,7 @@
     color: white;
     font-size: 25px;
     font-family: "Inter", sans-serif;
-    font-weight: 200; /* Thin font weight */
+    font-weight: 200;
 }
 
 /* Tame the Ansilian logo size */
@@ -67,7 +67,7 @@
     color: white;
     font-family: "Inter", sans-serif;
     font-size: 18px;
-    font-weight: 200; /* Lowered weight by ~100+ for a sleeker look */
+    font-weight: 250; /* Increased font weight by 50 for desktop readability */
 }
 
 /* Mobile Swap: Hide text, show sizing classes for icons */
@@ -82,16 +82,16 @@
     }
 
     .icon-size-small {
-        width: 25px;
-        height: 25px;
+        width: 45px; /* SS Hub upsized to 45px */
+        height: 45px;
     }
     .icon-size-medium {
-        width: 30px;
-        height: 30px;
+        width: 65px; /* Archivers and Articles upsized to 65px */
+        height: 65px;
     }
     .icon-size-large {
-        width: 35px;
-        height: 35px;
+        width: 75px;
+        height: 75px;
     }
 }
 
