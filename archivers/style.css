@@ -161,10 +161,10 @@ body {
 }
 
 /* ==========================================================================
-   3. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
+   3. GLOBAL MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
    ========================================================================== */
 @media (max-width: 767px) {
-    /* 1. Topbar Navigation Layout Overrides */
+    /* 1. Topbar Navigation Layout Overrides (Matched to Main Page) */
     .topbar {
         display: flex !important;
         flex-direction: row !important;
@@ -203,7 +203,7 @@ body {
         width: 35px !important; /* Keeps Ansilian image scale constrained */
     }
 
-    /* 2. Page Content & Profile Grid Layout Overrides */
+    /* 2. Content & Profile Grid Layout Overrides */
     .title {
         font-size: 50px !important; /* Stops giant 110px font from clipping pages */
         margin-top: 40px !important;
