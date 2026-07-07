@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Ansilian</title>
         <link rel="icon" type="image/png" href="/assets/ansilian.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -9,19 +11,15 @@
             href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
             rel="stylesheet"
         />
+
         <link rel="stylesheet" href="../style.css" />
-        <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="style.css?v=1" />
 
-        <!-- marked.js converts .md files into HTML -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
     </head>
     <body>
-        <!-- ===================== COPY-PASTE HEADER ===================== -->
         <div id="topbar-container"></div>
         <script src="/nav.js"></script>
-        <!-- ==================== END COPY-PASTE HEADER ================== -->
-
         <div class="page-content">
             <a class="back-link" href="index.html">← back to articles</a>
 
@@ -34,7 +32,6 @@
             </div>
             <hr class="preface-divider" />
 
-            <!-- tags shown between the preface and the article body -->
             <div id="preface-tags" class="preface-tags"></div>
 
             <div id="post-body" class="post-body">
@@ -95,8 +92,7 @@
                         "$1  \n$2",
                     );
                     postBody.innerHTML = marked.parse(processed);
-                } catch (error) {
-                    postBody.innerHTML =
+                } catch (error) {\n                    postBody.innerHTML =
                         '<p class="status-text">could not load article.</p>';
                     console.error(error);
                 }
