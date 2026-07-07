@@ -1,42 +1,125 @@
+/* ==========================================================================
+   1. MAIN CONTENT ENGINE (Logo, Headings & Baseline Container Elements)
+   ========================================================================== */
+
 .logo {
-    margin-top: 0px;
-    margin-bottom: -50px;
+    margin-top: 40px;
+    margin-bottom: -20px;
     width: 400px;
+    max-width: 90%;
+    height: auto;
+}
+
+.inter-main {
+    font-family: "Inter", sans-serif;
+    font-size: 55px;
+    font-weight: 200;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 .subtitle {
-    margin-bottom: 40px;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 50px;
+    padding: 0 20px;
 }
 
-/* New container class for the links */
+/* ==========================================================================
+   2. HUB NAVIGATION LINK ARCHITECTURE
+   ========================================================================== */
+
 .links-container {
     display: flex;
-    flex-direction: column; /* Stacks the links vertically */
-    gap: 15px; /* Adds space between the links */
-    align-items: flex-start; /* Aligns them to the left. Change to 'center' if you want them centered on the page */
+    flex-direction: column;
+    gap: 18px;
+    align-items: center; /* Centers items cleanly on desktop viewport */
 }
 
 .ss-hub {
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    font-size: 25px;
+    font-size: 26px;
     opacity: 0.6;
-    transition: opacity 0.2s ease;
     text-decoration: none;
     color: white;
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    display: inline-block;
 }
 
+/* Hover behaviors matching your animations criteria */
 .ss-hub:hover {
     opacity: 1;
-}
-
-.links-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center; /* This will pull the links back to the center of the page */
+    transform: translateX(4px); /* Sleek micro-movement to hint clickability */
 }
 
 body {
-    padding-bottom: 100px;
+    padding-bottom: 120px;
+}
+
+/* ==========================================================================
+   3. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
+   ========================================================================== */
+@media (max-width: 767px) {
+    /* Working Centered Mobile Navigation Topbar Layout */
+    .topbar {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        padding: 10px !important;
+        gap: 20px !important;
+    }
+
+    .center-nav {
+        gap: 15px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .home-logo {
+        width: 35px !important;
+    }
+
+    /* Mobile Swap Hide Rules */
+    .nav-text,
+    .home-text {
+        display: none !important;
+    }
+
+    .nav-icon {
+        display: block !important;
+    }
+
+    /* Dynamic Icon Adaptations */
+    .icon-size-small {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    .icon-size-medium {
+        width: 65px !important;
+        height: 65px !important;
+    }
+    .icon-size-large {
+        width: 75px !important;
+        height: 75px !important;
+    }
+
+    /* Responsive scaling for Sound Space Hub elements */
+    .inter-main {
+        font-size: 38px !important;
+        margin-top: 20px !important;
+    }
+
+    .subtitle {
+        font-size: 17px !important;
+        margin-bottom: 40px !important;
+    }
+
+    .ss-hub {
+        font-size: 22px !important;
+    }
 }
