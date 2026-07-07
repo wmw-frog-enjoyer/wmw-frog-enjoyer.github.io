@@ -259,3 +259,59 @@ body {
     cursor: default;
     transform: none;
 }
+
+/* =====================================================
+   Mobile Responsive Rules (Viewports < 768px)
+   ===================================================== */
+@media (max-width: 767px) {
+    .page-content {
+        margin: 30px auto !important;
+        padding: 0 16px !important;
+    }
+
+    .page-title {
+        font-size: 42px !important;
+        margin-bottom: 16px !important;
+    }
+
+    /* Collapse the 3-column grid smoothly into 1 standard vertical block */
+    #customs-container {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .custom-card {
+        padding: 16px !important;
+    }
+
+    .card-name {
+        font-size: 20px !important;
+    }
+
+    /* Ensures metadata elements and pattern badges wrap neatly on smaller widths */
+    .card-top-row {
+        gap: 6px !important;
+    }
+
+    .card-meta-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+
+    /* Wrap filtering pills gracefully on mobile screens */
+    .pattern-pills {
+        gap: 6px !important;
+    }
+
+    .pattern-pill {
+        padding: 5px 12px !important;
+        font-size: 13px !important;
+    }
+
+    /* Give full tapping targets to the copy action buttons */
+    .action-btn {
+        padding: 10px 16px !important;
+        font-size: 15px !important;
+    }
+}
