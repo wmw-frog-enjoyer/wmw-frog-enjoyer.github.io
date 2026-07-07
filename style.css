@@ -1,17 +1,21 @@
 .topbar {
-    /* Mobile specific styles */
-    @media (max-width: 767px) {
-        grid-template-columns: 1fr;
+    display: flex;
+    justify-content: space-between; /* Keeps logo left, center-nav centered */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(55, 55, 55, 0.15);
+    position: relative; /* Essential context for your JS calculation */
+    box-sizing: border-box;
+}
+
+/* Mobile specific overrides */
+@media (max-width: 767px) {
+    .topbar {
+        flex-direction: column;
         justify-content: center;
         padding: 10px;
         gap: 10px;
     }
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgba(55, 55, 55, 0.15);
-    gap: 20px;
 }
 
 .center-nav {
@@ -23,7 +27,7 @@
 .home-button {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     text-decoration: none;
     color: white;
     font-size: 25px;
@@ -31,148 +35,54 @@
     font-weight: 200;
 }
 
+/* Explicitly tame the Ansilian logo size */
+.home-logo {
+    width: 35px; /* Adjust this value to change its size on desktop */
+    height: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 767px) {
+    .home-logo {
+        width: 45px; /* Keeps it readable but sane on mobile layout */
+    }
+}
+
+/* Base rule: Hide icons on desktop */
 .nav-icon {
-    display: block; /* Default to showing them */
+    display: none !important; /* !important guarantees specific size classes won't force it visible */
 }
 
-/* Specific sizing classes for icons */
-.icon-size-small {
-    width: 30px;
-    height: 30px;
-}
-.icon-size-medium {
-    width: 40px;
-    height: 40px;
-}
-.icon-size-large {
-    width: 50px;
-    height: 50px;
+/* Base rule: Show text links on desktop */
+.nav-text {
+    display: inline;
+    color: white;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
 }
 
+/* Mobile Swap: Hide text, show sizing classes for icons */
 @media (max-width: 767px) {
     .nav-text,
     .home-text {
         display: none;
     }
-}
 
-body {
-    margin: 0px;
-    margin-top: 0px;
-    background: linear-gradient(
-        to right,
-        #141414 0%,
-        #111111 25%,
-        #000000 50%,
-        #111111 75%,
-        #141414 100%
-    );
-
-    color: white;
-    text-align: center;
-}
-
-/* this is the end of copy paste */
-
-.logo {
-    margin-top: 70px;
-    width: 256px;
-}
-
-.subtitle {
-    font-family: "Inter", sans-serif;
-    margin-top: -60px;
-    font-weight: 300;
-    font-size: 25px;
-}
-
-.inter-main {
-    font-family: "Inter", sans-serif;
-    margin-top: 0px;
-    font-weight: 200;
-    font-size: 110px;
-}
-
-.card-grid {
-    /* Mobile specific styles */
-    @media (max-width: 767px) {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 40px 0px;
+    .nav-icon {
+        display: block !important;
     }
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    padding: 80px 0px;
-    flex-wrap: nowrap;
-}
 
-.card {
-    /* Mobile specific styles */
-    @media (max-width: 767px) {
-        width: 80%; /* Adjust width for mobile */
-        max-width: 400px; /* Max width to prevent it from becoming too wide on slightly larger screens */
+    .icon-size-small {
+        width: 30px;
+        height: 30px;
     }
-    width: 400px;
-    background-color: rgba(55, 55, 55, 0.25);
-    border-radius: 50px;
-}
-
-.card-title {
-    /* Mobile specific styles */
-    @media (max-width: 767px) {
-        font-size: 30px;
-        margin-top: 30px;
+    .icon-size-medium {
+        width: 40px;
+        height: 40px;
     }
-    margin-top: 50px;
-    margin-left: 25px;
-    margin-right: 25px;
-    font-size: 38px;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-}
-
-.card-text {
-    /* Mobile specific styles */
-    @media (max-width: 767px) {
-        font-size: 18px;
+    .icon-size-large {
+        width: 50px;
+        height: 50px;
     }
-    margin-top: 25px;
-    margin-left: 25px;
-    margin-right: 25px;
-    line-height: 1.7;
-    font-size: 20px;
-    font-family: "Inter", sans-serif;
-    font-weight: 350;
-}
-
-.button-apply {
-    /* Mobile specific styles */
-    @media (max-width: 767px) {
-        font-size: 18px;
-        margin-bottom: 80px;
-    }
-    display: inline-block;
-
-    text-decoration: none;
-    color: white;
-    font-family: "Inter", sans-serif;
-    font-weight: 300;
-    font-size: 20px;
-
-    padding: 0px 10px;
-    border-radius: 10px;
-    margin-bottom: 120px;
-
-    background-color: rgb(37, 105, 63);
-
-    transition:
-        transform 0.2s ease,
-        background-color 0.2s ease;
-}
-
-.button-apply:hover {
-    transform: scale(1.05);
-    background-color: rgb(45, 133, 79);
 }
