@@ -1,10 +1,10 @@
 .topbar {
     /* Mobile specific styles */
     @media (max-width: 767px) {
-        grid-template-columns: auto;
+        grid-template-columns: 1fr;
         justify-content: center;
         padding: 10px;
-        gap: 10px;
+        gap: 0;
     }
     display: grid;
     grid-template-columns: auto 1fr;
@@ -30,8 +30,7 @@
 .home-button {
     /* Mobile specific styles */
     @media (max-width: 767px) {
-        font-size: 20px;
-        padding: 8px 12px;
+        display: none;
     }
     display: flex;
     align-items: center;

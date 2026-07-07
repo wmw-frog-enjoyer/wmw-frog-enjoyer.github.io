@@ -5,6 +5,12 @@ function alignCenterNav() {
   const nav = document.querySelector(".center-nav");
   if (!nav) return;
 
+  // On mobile (max-width: 767px), just let it be centered by standard flexbox
+  if (window.innerWidth <= 767) {
+    nav.style.transform = "";
+    return;
+  }
+
   const links = [...nav.querySelectorAll("a")];
   const count = links.length;
   if (count === 0) return;
