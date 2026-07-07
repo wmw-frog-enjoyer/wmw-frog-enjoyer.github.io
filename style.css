@@ -4,105 +4,56 @@
         grid-template-columns: 1fr;
         justify-content: center;
         padding: 10px;
-        gap: 0;
+        gap: 10px;
     }
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 3px 20px;
+    padding: 10px 20px;
     background-color: rgba(55, 55, 55, 0.15);
+    gap: 20px;
 }
 
 .center-nav {
-    /* Mobile specific styles */
-    @media (max-width: 767px) {
-        margin-top: 0;
-        gap: 10px;
-        justify-content: center;
-        width: 100%;
-        display: flex;
-    }
     display: flex;
-    gap: 10px;
-    justify-content: flex-end;
+    gap: 15px;
+    align-items: center;
 }
 
 .home-button {
-    /* Mobile specific styles */
-    @media (max-width: 767px) {
-        display: none;
-    }
     display: flex;
     align-items: center;
     gap: 5px;
-
     text-decoration: none;
     color: white;
-
-    padding: 10px 16px;
-    border-radius: 12px;
-
     font-size: 25px;
     font-family: "Inter", sans-serif;
     font-weight: 200;
 }
 
-.home-text {
-    /* Mobile specific styles */
-    @media (max-width: 767px) {
-        display: none;
-    }
+.nav-icon {
+    display: block; /* Default to showing them */
 }
 
-.home-logo {
-    width: 35px;
+/* Specific sizing classes for icons */
+.icon-size-small {
+    width: 30px;
+    height: 30px;
 }
-
-.archivers {
-    /* Mobile specific styles */
-    @media (max-width: 767px) {
-        padding: 6px;
-    }
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: white;
-    text-decoration: none;
-
-    font-size: 22px;
-    font-family: "Inter", sans-serif;
-    font-weight: 200;
-
-    padding: 8px 14px;
-    border-radius: 8px;
-
-    transition: 0.2s ease;
+.icon-size-medium {
+    width: 40px;
+    height: 40px;
+}
+.icon-size-large {
+    width: 50px;
+    height: 50px;
 }
 
 @media (max-width: 767px) {
-    .nav-text {
+    .nav-text,
+    .home-text {
         display: none;
     }
-    .nav-icon {
-        display: block;
-    }
-    .archivers {
-        padding: 6px;
-    }
-    /* Special sizing for specific icons */
-    .nav-icon[alt="SS Hub"] {
-        width: 35px;
-        height: 35px;
-    }
-    .nav-icon[alt="Archivers"],
-    .nav-icon[alt="Articles"] {
-        width: 45px;
-        height: 45px;
-    }
-}
-
-.archivers:hover {
-    background-color: rgba(255, 255, 255, 0.08);
 }
 
 body {
