@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. DESKTOP TOPBAR & NAVIGATION (Your Exact Original style_3.css Layout)
+   1. DESKTOP TOPBAR & NAVIGATION (Fixed Font Sizes, Hover, & Tracking)
    ========================================================================= */
 
 .topbar {
@@ -21,6 +21,7 @@
 /* Kills default underlines completely on all header links */
 .topbar a {
     text-decoration: none !important;
+    color: white;
 }
 
 .home-button {
@@ -45,13 +46,21 @@
     display: none !important;
 }
 
-/* Base rule: Show text links on desktop */
+/* Base rule: Show text links on desktop with explicit Hover properties */
 .nav-text {
-    display: inline;
+    display: inline-block;
     color: white;
     font-family: "Inter", sans-serif;
-    font-size: 18px;
-    font-weight: 250; /* Your preferred desktop weight */
+    font-size: 22px; /* Restored size matching archivers view */
+    font-weight: 200; /* Matching weight */
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover background trigger matching archivers styling */
+.nav-text:hover {
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 /* ==========================================================================
@@ -74,12 +83,14 @@ body {
 }
 
 /* ==========================================================================
-   3. HERO / MAIN CONTENT (Restored to Exact Original Measurements)
+   3. HERO / MAIN CONTENT (Strict Dimensions Applied)
    ========================================================================== */
 
 .logo {
     margin-top: 70px;
-    width: 256px; /* Limits the main page center logo asset from exploding */
+    width: 256px !important; /* Force asset boundary limits */
+    max-width: 100%;
+    height: auto;
 }
 
 .subtitle {
@@ -97,7 +108,7 @@ body {
 }
 
 /* ==========================================================================
-   4. CARDS & GRIDS (Restored to Exact Original Measurements)
+   4. CARDS & GRIDS (Original Structural Specifications)
    ========================================================================== */
 
 .card-grid {
@@ -109,9 +120,11 @@ body {
 }
 
 .card {
-    width: 400px; /* Restored size constraint for cards */
+    width: 400px;
+    max-width: 400px; /* Enforces the maximum size bounds */
     background-color: rgba(55, 55, 55, 0.25);
     border-radius: 50px;
+    box-sizing: border-box;
 }
 
 .card-title {
@@ -134,7 +147,7 @@ body {
 }
 
 /* ==========================================================================
-   5. BUTTONS (Restored Entirely)
+   5. BUTTONS
    ========================================================================== */
 
 .button-apply {
@@ -162,11 +175,11 @@ body {
    6. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
    ========================================================================== */
 @media (max-width: 767px) {
-    /* Working Mobile Topbar Layout */
+    /* Centered Mobile Topbar configuration */
     .topbar {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: center !important; /* Centers everything exactly how you wanted it */
+        justify-content: center !important;
         padding: 10px !important;
         gap: 20px !important;
     }
@@ -181,7 +194,7 @@ body {
         width: 35px !important;
     }
 
-    /* Mobile Swap: Hide texts, show icons */
+    /* Hide text layers, expose icons on mobile */
     .nav-text,
     .home-text {
         display: none !important;
@@ -191,7 +204,7 @@ body {
         display: block !important;
     }
 
-    /* Mobile Icon Scaling */
+    /* Mobile Icon Scales */
     .icon-size-small {
         width: 45px !important;
         height: 45px !important;
@@ -205,7 +218,7 @@ body {
         height: 75px !important;
     }
 
-    /* Responsive adjustments for your home page content layout */
+    /* Stacking layout for main page components on mobile */
     .card-grid {
         flex-direction: column !important;
         align-items: center !important;
