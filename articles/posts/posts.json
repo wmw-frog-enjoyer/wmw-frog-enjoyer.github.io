@@ -22,5 +22,21 @@
     "description": "How hidden settings like fade, AR, and AD change how you read patterns without touching your actual multiplier.",
     "author": "Melo",
     "tags": ["sound space", "rhythia", "technical"]
+  },
+  {
+    "id": "004",
+    "title": "The Evolution of Mapping: Old Gens vs. Newgens",
+    "date": "2026-07-07",
+    "description": "How incentives changed the way people map.",
+    "author": "Melo",
+    "tags": ["sound space", "rhythia"]
+  },
+  {
+    "id": "005",
+    "title": "The Comfort Zone Loop: How Different Types of Players Play Different Types of Maps",
+    "date": "2026-07-07",
+    "description": "How every player develops a comfort map set, and why stepping outside of it matters.",
+    "author": "Melo",
+    "tags": ["sound space", "rhythia"]
   }
 ]
