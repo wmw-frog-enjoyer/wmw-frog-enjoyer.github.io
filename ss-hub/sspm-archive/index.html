@@ -150,7 +150,7 @@
                     );
                     const matchesInclude =
                         included.length === 0 ||
-                        currentPatterns.some((p) => included.includes(p));
+                        included.every((p) => currentPatterns.includes(p));
 
                     return matchesSearch && notExcluded && matchesInclude;
                 });

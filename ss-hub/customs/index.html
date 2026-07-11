@@ -165,7 +165,7 @@
                     // Show card if no inclusions are active, OR if it has at least one matching included pattern
                     const matchesInclude =
                         included.length === 0 ||
-                        currentPatterns.some((p) => included.includes(p));
+                        included.every((p) => currentPatterns.includes(p));
 
                     return matchesSearch && notExcluded && matchesInclude;
                 });
