@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <title>Ansilian</title>
         <link rel="icon" type="image/png" href="/assets/ansilian.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,45 +10,148 @@
             href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
             rel="stylesheet"
         />
-
         <link rel="stylesheet" href="../style.css" />
         <link rel="stylesheet" href="style.css?v=1" />
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
 
         <style>
-            /* progress bar — fixed on the left edge of the screen */
+            /* ── progress bar — right edge, thicker ── */
             .reading-progress-track {
                 position: fixed;
-                left: 0;
+                right: 0;
                 top: 0;
-                width: 3px;
+                width: 6px;
                 height: 100vh;
-                background: rgba(255, 255, 255, 0.06);
+                background: rgba(255, 255, 255, 0.08);
                 z-index: 999;
             }
 
             .reading-progress-fill {
                 width: 100%;
                 height: 0%;
-                background: rgba(255, 255, 255, 0.35);
-                transition: height 0.1s ease;
-                border-radius: 0 0 2px 2px;
+                background: rgba(255, 255, 255, 0.55);
+                transition: height 0.08s ease;
+                border-radius: 0 0 3px 3px;
             }
 
-            /* read time shown in the preface next to the date */
-            .preface-read-time {
+            /* ── stats sidebar — floats to the right of the article ── */
+            .reading-stats {
+                position: fixed;
+                top: 50%;
+                transform: translateY(-50%);
+                right: calc(50% - 425px - 140px); /* 425 = half of 850px max-width */
+                width: 120px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            /* only show when there's enough room */
+            @media (min-width: 1200px) {
+                .reading-stats {
+                    opacity: 1;
+                }
+            }
+
+            .stat-item {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .stat-item-label {
                 font-family: "Inter", sans-serif;
-                font-size: 12px;
+                font-size: 11px;
                 font-weight: 300;
-                color: rgba(255, 255, 255, 0.2);
+                color: rgba(255, 255, 255, 0.25);
+                text-transform: uppercase;
+                letter-spacing: 0.07em;
+            }
+
+            .stat-item-value {
+                font-family: "Inter", sans-serif;
+                font-size: 18px;
+                font-weight: 200;
+                color: rgba(255, 255, 255, 0.7);
+                letter-spacing: -0.3px;
+            }
+
+            /* ── footer ── */
+            .reader-footer {
+                margin-top: 80px;
+                padding-top: 40px;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .footer-title {
+                font-family: "Inter", sans-serif;
+                font-size: 13px;
+                font-weight: 300;
+                color: rgba(255, 255, 255, 0.3);
+                text-transform: uppercase;
+                letter-spacing: 0.07em;
+                margin-bottom: 16px;
+            }
+
+            .footer-cards {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                margin-bottom: 60px;
+            }
+
+            .footer-card {
+                display: block;
+                text-decoration: none;
+                color: white;
+                padding: 14px 18px;
+                border: 1px solid rgba(255, 255, 255, 0.07);
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.02);
+                transition: background 0.15s ease, border-color 0.15s ease;
+            }
+
+            .footer-card:hover {
+                background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(255, 255, 255, 0.14);
+            }
+
+            .footer-card-title {
+                font-family: "Inter", sans-serif;
+                font-size: 17px;
+                font-weight: 400;
+                margin-bottom: 4px;
+            }
+
+            .footer-card-meta {
+                font-family: "Inter", sans-serif;
+                font-size: 13px;
+                font-weight: 300;
+                color: rgba(255, 255, 255, 0.3);
             }
         </style>
     </head>
     <body>
-        <!-- the progress bar track sits outside the page content -->
         <div class="reading-progress-track">
             <div class="reading-progress-fill" id="progress-fill"></div>
+        </div>
+
+        <!-- stats sidebar -->
+        <div class="reading-stats" id="reading-stats">
+            <div class="stat-item">
+                <span class="stat-item-label">words</span>
+                <span class="stat-item-value" id="stat-words">—</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-item-label">characters</span>
+                <span class="stat-item-value" id="stat-chars">—</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-item-label">read time</span>
+                <span class="stat-item-value" id="stat-time">—</span>
+            </div>
         </div>
 
         <div id="topbar-container"></div>
@@ -63,51 +165,82 @@
                 <div class="preface-right">
                     <span class="preface-author" id="preface-author"></span>
                     <span class="preface-date" id="preface-date"></span>
-                    <span class="preface-read-time" id="preface-read-time"></span>
                 </div>
             </div>
             <hr class="preface-divider" />
 
             <div id="preface-tags" class="preface-tags"></div>
-
             <div id="post-body" class="post-body">
                 <p class="status-text">loading...</p>
+            </div>
+
+            <!-- latest articles footer -->
+            <div class="reader-footer" id="reader-footer" style="display:none;">
+                <div class="footer-title">latest articles</div>
+                <div class="footer-cards" id="footer-cards"></div>
             </div>
         </div>
 
         <script>
-            // update the progress bar fill as the user scrolls
             function updateProgress() {
                 const body = document.getElementById("post-body");
                 if (!body) return;
-
-                // how far have we scrolled into the article specifically
                 const articleTop = body.getBoundingClientRect().top + window.scrollY;
                 const articleHeight = body.offsetHeight;
                 const scrolled = window.scrollY - articleTop;
                 const percent = Math.min(100, Math.max(0, (scrolled / articleHeight) * 100));
-
                 document.getElementById("progress-fill").style.height = percent + "%";
             }
 
             window.addEventListener("scroll", updateProgress, { passive: true });
 
-            // estimate reading time from plain text word count (avg 200 wpm)
-            function estimateReadTime(markdown) {
-                const words = markdown.trim().split(/\s+/).length;
+            function computeStats(markdown) {
+                // strip markdown syntax for a clean word/char count
+                const plain = markdown
+                    .replace(/```[\s\S]*?```/g, "")   // code blocks
+                    .replace(/`[^`]+`/g, "")           // inline code
+                    .replace(/#+\s/g, "")              // headings
+                    .replace(/[*_~>]/g, "")            // formatting chars
+                    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // links → label only
+                    .trim();
+
+                const words = plain.split(/\s+/).filter(Boolean).length;
+                const chars = plain.replace(/\s/g, "").length;
                 const minutes = Math.ceil(words / 200);
-                return minutes === 1 ? "1 min read" : `${minutes} min read`;
+                const timeLabel = minutes === 1 ? "1 min" : `${minutes} min`;
+
+                return { words, chars, timeLabel };
+            }
+
+            async function loadLatestArticles(currentId, allPosts) {
+                // sort newest first, exclude the article currently being read
+                const latest = allPosts
+                    .filter((p) => p.id !== currentId)
+                    .sort((a, b) => Number(b.id) - Number(a.id))
+                    .slice(0, 3);
+
+                if (latest.length === 0) return;
+
+                const footer = document.getElementById("reader-footer");
+                const cards = document.getElementById("footer-cards");
+
+                cards.innerHTML = latest.map((p) => `
+                    <a class="footer-card" href="reader.html?post=${p.id}">
+                        <div class="footer-card-title">${p.title}</div>
+                        <div class="footer-card-meta">${p.author} · ${p.date}</div>
+                    </a>
+                `).join("");
+
+                footer.style.display = "block";
             }
 
             async function loadPost() {
                 const postBody = document.getElementById("post-body");
-
                 const params = new URLSearchParams(window.location.search);
                 const postId = params.get("post");
 
                 if (!postId) {
-                    postBody.innerHTML =
-                        '<p class="status-text">no article specified.</p>';
+                    postBody.innerHTML = '<p class="status-text">no article specified.</p>';
                     return;
                 }
 
@@ -117,47 +250,38 @@
                     const meta = allPosts.find((p) => p.id === postId);
 
                     if (meta) {
-                        document.getElementById("preface-number").textContent =
-                            `#${meta.id}`;
-                        document.getElementById("preface-author").textContent =
-                            meta.author;
-                        document.getElementById("preface-date").textContent =
-                            meta.date;
+                        document.getElementById("preface-number").textContent = `#${meta.id}`;
+                        document.getElementById("preface-author").textContent = meta.author;
+                        document.getElementById("preface-date").textContent = meta.date;
                         document.title = `${meta.title} — Ansilian`;
 
                         if (meta.tags && meta.tags.length > 0) {
                             document.getElementById("preface-tags").innerHTML =
-                                meta.tags
-                                    .map((t) => `<span class="preface-tag">${t}</span>`)
-                                    .join("");
+                                meta.tags.map((t) => `<span class="preface-tag">${t}</span>`).join("");
                         }
                     }
 
                     const mdResponse = await fetch(`posts/${postId}.md`);
-
                     if (!mdResponse.ok) {
-                        postBody.innerHTML =
-                            '<p class="status-text">article not found.</p>';
+                        postBody.innerHTML = '<p class="status-text">article not found.</p>';
                         return;
                     }
 
                     const markdown = await mdResponse.text();
 
-                    // show read time estimate before rendering
-                    document.getElementById("preface-read-time").textContent =
-                        estimateReadTime(markdown);
+                    // compute and display stats
+                    const { words, chars, timeLabel } = computeStats(markdown);
+                    document.getElementById("stat-words").textContent = words.toLocaleString();
+                    document.getElementById("stat-chars").textContent = chars.toLocaleString();
+                    document.getElementById("stat-time").textContent = timeLabel;
 
-                    const processed = markdown.replace(
-                        /([^\n])\n([^\n])/g,
-                        "$1  \n$2",
-                    );
+                    const processed = markdown.replace(/([^\n])\n([^\n])/g, "$1  \n$2");
                     postBody.innerHTML = marked.parse(processed);
 
-                    // run once after content loads to set initial progress
                     updateProgress();
+                    loadLatestArticles(postId, allPosts);
                 } catch (error) {
-                    postBody.innerHTML =
-                        '<p class="status-text">could not load article.</p>';
+                    postBody.innerHTML = '<p class="status-text">could not load article.</p>';
                     console.error(error);
                 }
             }
