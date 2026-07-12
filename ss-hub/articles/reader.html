@@ -139,8 +139,8 @@
             /* ── right column: stats stuck to right edge ── */
             .stats-column {
                 display: flex;
-                justify-content: flex-end; /* Change from center to push it toward the inner page content, or flex-start depending on preference */
-                padding-right: 32px;       /* Mirrors the left side's padding-left: 32px */
+                justify-content: center; /* Changes from flex-end to absolute center of gap2 */
+                padding-right: 0;        /* Clear out the padding so it relies purely on grid centering */
             }
 
             .reading-stats {
