@@ -33,111 +33,103 @@
                 border-radius: 0 0 3px 3px;
             }
 
-            /* ── outer layout grid ── */
+            /* ── outer layout: left gap | content | right gap ── */
             .reader-layout {
                 display: grid;
                 grid-template-columns: 1fr minmax(0, 850px) 1fr;
                 margin: 60px 0;
-                gap: 0;
             }
 
-            /* ── left column: TOC ── */
+            /* ── left column: Obsidian-style TOC ── */
             .toc-column {
                 display: flex;
                 justify-content: flex-end;
-                padding-right: 28px;
-                padding-top: 0;
+                padding-right: 40px;
             }
 
             .toc-widget {
                 position: sticky;
                 top: 80px;
-                width: 160px;
+                width: 180px;
                 align-self: flex-start;
             }
 
+            /* "on this page" toggle — plain text, no border/background */
             .toc-toggle {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.04);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 8px;
-                padding: 8px 12px;
+                gap: 6px;
+                background: none;
+                border: none;
+                padding: 0;
                 cursor: pointer;
-                color: rgba(255, 255, 255, 0.6);
+                color: rgba(255, 255, 255, 0.5);
                 font-family: "Inter", sans-serif;
                 font-size: 13px;
-                font-weight: 300;
-                transition: background 0.15s ease, border-color 0.15s ease;
-                text-align: left;
+                font-weight: 400;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                transition: color 0.15s ease;
+                margin-bottom: 10px;
             }
             .toc-toggle:hover {
-                background: rgba(255, 255, 255, 0.07);
-                border-color: rgba(255, 255, 255, 0.18);
+                color: rgba(255, 255, 255, 0.85);
             }
 
             .toc-arrow {
                 font-size: 10px;
                 transition: transform 0.2s ease;
-                color: rgba(255, 255, 255, 0.35);
+                color: rgba(255, 255, 255, 0.3);
             }
             .toc-arrow.open {
                 transform: rotate(180deg);
             }
 
+            /* chapter links — plain text only, Obsidian style */
             .toc-list {
-                margin-top: 6px;
                 display: flex;
                 flex-direction: column;
-                gap: 2px;
-                background: rgba(255, 255, 255, 0.03);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 8px;
-                padding: 6px;
+                gap: 0;
+                padding-left: 2px;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .toc-item {
                 display: block;
                 font-family: "Inter", sans-serif;
-                font-size: 12px;
+                font-size: 14px;
                 font-weight: 300;
-                color: rgba(255, 255, 255, 0.45);
+                color: rgba(255, 255, 255, 0.4);
                 text-decoration: none;
-                padding: 5px 8px;
-                border-radius: 5px;
-                transition: background 0.12s ease, color 0.12s ease;
+                padding: 5px 0 5px 12px;
+                transition: color 0.12s ease;
                 line-height: 1.4;
             }
             .toc-item:hover {
-                background: rgba(255, 255, 255, 0.07);
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.9);
             }
 
-            /* ── center column: article ── */
+            /* ── center column ── */
             .page-content {
                 padding: 0 24px;
                 text-align: left;
                 min-width: 0;
             }
 
-            /* ── right column: stats ── */
+            /* ── right column: stats centered in the gap ── */
             .stats-column {
                 display: flex;
-                justify-content: flex-start;
-                padding-left: 28px;
+                justify-content: center;   /* centered in gap2 */
+                align-items: flex-start;
                 padding-top: 0;
             }
 
-            /* stats sit at the top of the column and scroll away normally */
             .reading-stats {
-                width: 120px;
+                width: 110px;
                 display: flex;
                 flex-direction: column;
-                gap: 22px;
-                /* align with the article body — below back-link + preface */
-                margin-top: 148px;
+                gap: 24px;
+                margin-top: 148px; /* align with article body start */
             }
 
             .stat-item {
@@ -183,24 +175,24 @@
             }
             .footer-title {
                 font-family: "Inter", sans-serif;
-                font-size: 13px;
+                font-size: 18px;
                 font-weight: 300;
-                color: rgba(255, 255, 255, 0.3);
+                color: rgba(255, 255, 255, 0.35);
                 text-transform: uppercase;
                 letter-spacing: 0.07em;
-                margin-bottom: 16px;
+                margin-bottom: 24px;
             }
             .footer-cards {
                 display: flex;
                 flex-direction: column;
-                gap: 8px;
-                margin-bottom: 24px;
+                gap: 12px;
+                margin-bottom: 40px;
             }
             .footer-card {
                 display: block;
                 text-decoration: none;
                 color: white;
-                padding: 14px 18px;
+                padding: 20px 22px;
                 border: 1px solid rgba(255, 255, 255, 0.07);
                 border-radius: 10px;
                 background: rgba(255, 255, 255, 0.02);
@@ -212,44 +204,43 @@
             }
             .footer-card-title {
                 font-family: "Inter", sans-serif;
-                font-size: 17px;
+                font-size: 24px;
                 font-weight: 400;
-                margin-bottom: 4px;
+                margin-bottom: 8px;
             }
             .footer-card-meta {
                 font-family: "Inter", sans-serif;
-                font-size: 13px;
+                font-size: 16px;
                 font-weight: 300;
-                color: rgba(255, 255, 255, 0.3);
+                color: rgba(255, 255, 255, 0.35);
             }
-
-            /* back link at end of footer */
             .footer-back {
                 display: inline-block;
                 font-family: "Inter", sans-serif;
-                font-size: 14px;
+                font-size: 20px;
                 font-weight: 300;
-                color: rgba(255, 255, 255, 0.35);
+                color: rgba(255, 255, 255, 0.4);
                 text-decoration: none;
-                margin-bottom: 60px;
+                margin-bottom: 80px;
                 transition: color 0.15s ease;
             }
             .footer-back:hover {
-                color: rgba(255, 255, 255, 0.75);
+                color: rgba(255, 255, 255, 0.85);
             }
 
-            /* ── scroll to top button ── */
+            /* ── scroll to top ── */
             .scroll-top-btn {
                 position: fixed;
                 bottom: 32px;
-                right: 24px;
-                width: 42px;
-                height: 42px;
-                background: rgba(255, 255, 255, 0.07);
-                border: 1px solid rgba(255, 255, 255, 0.12);
+                right: 32px;
+                width: 56px;
+                height: 56px;
+                background: rgba(255, 255, 255, 0.08);
+                border: 2px solid rgba(255, 255, 255, 0.18);
                 border-radius: 50%;
-                color: rgba(255, 255, 255, 0.6);
-                font-size: 18px;
+                color: white;
+                font-size: 24px;
+                font-weight: 300;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
@@ -258,13 +249,14 @@
                 pointer-events: none;
                 transition: opacity 0.2s ease, background 0.15s ease;
                 z-index: 998;
+                line-height: 1;
             }
             .scroll-top-btn.visible {
                 opacity: 1;
                 pointer-events: auto;
             }
             .scroll-top-btn:hover {
-                background: rgba(255, 255, 255, 0.12);
+                background: rgba(255, 255, 255, 0.15);
             }
         </style>
     </head>
@@ -273,19 +265,21 @@
             <div class="reading-progress-fill" id="progress-fill"></div>
         </div>
 
-        <button class="scroll-top-btn" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="back to top">↑</button>
+        <button class="scroll-top-btn" id="scroll-top-btn"
+            onclick="window.scrollTo({top:0,behavior:'smooth'})"
+            title="back to top">↑</button>
 
         <div id="topbar-container"></div>
         <script src="/nav.js"></script>
 
         <div class="reader-layout">
 
-            <!-- left: table of contents -->
+            <!-- left: obsidian-style TOC -->
             <div class="toc-column">
                 <div class="toc-widget" id="toc-widget" style="display:none;">
                     <button class="toc-toggle" onclick="toggleToc()">
-                        <span>chapters</span>
                         <span class="toc-arrow" id="toc-arrow">▾</span>
+                        <span>on this page</span>
                     </button>
                     <div class="toc-list" id="toc-list" style="display:none;"></div>
                 </div>
@@ -309,7 +303,6 @@
                     <p class="status-text">loading...</p>
                 </div>
 
-                <!-- footer -->
                 <div class="reader-footer" id="reader-footer" style="display:none;">
                     <div class="footer-title">latest articles</div>
                     <div class="footer-cards" id="footer-cards"></div>
@@ -317,9 +310,9 @@
                 </div>
             </div>
 
-            <!-- right: reading stats -->
+            <!-- right: reading stats centered in gap -->
             <div class="stats-column">
-                <div class="reading-stats" id="reading-stats">
+                <div class="reading-stats">
                     <div class="stat-item">
                         <span class="stat-item-label">words</span>
                         <span class="stat-item-value" id="stat-words">—</span>
@@ -338,24 +331,20 @@
         </div>
 
         <script>
-            // ── progress bar ──
             function updateProgress() {
                 const body = document.getElementById("post-body");
                 if (!body) return;
                 const articleTop = body.getBoundingClientRect().top + window.scrollY;
-                const articleHeight = body.offsetHeight;
-                const scrolled = window.scrollY - articleTop;
-                const percent = Math.min(100, Math.max(0, (scrolled / articleHeight) * 100));
+                const percent = Math.min(100, Math.max(0,
+                    ((window.scrollY - articleTop) / body.offsetHeight) * 100
+                ));
                 document.getElementById("progress-fill").style.height = percent + "%";
 
-                // show/hide scroll to top button
                 const btn = document.getElementById("scroll-top-btn");
-                if (window.scrollY > 300) btn.classList.add("visible");
-                else btn.classList.remove("visible");
+                btn.classList.toggle("visible", window.scrollY > 300);
             }
             window.addEventListener("scroll", updateProgress, { passive: true });
 
-            // ── table of contents ──
             let tocOpen = false;
             function toggleToc() {
                 tocOpen = !tocOpen;
@@ -368,10 +357,7 @@
                 if (headings.length === 0) return;
 
                 const list = document.getElementById("toc-list");
-                list.innerHTML = "";
-
                 headings.forEach((h, i) => {
-                    // give each heading an id so we can link to it
                     if (!h.id) h.id = `chapter-${i + 1}`;
                     const link = document.createElement("a");
                     link.className = "toc-item";
@@ -387,7 +373,6 @@
                 document.getElementById("toc-widget").style.display = "block";
             }
 
-            // ── reading stats ──
             function computeStats(markdown) {
                 const plain = markdown
                     .replace(/```[\s\S]*?```/g, "")
@@ -399,14 +384,9 @@
                 const words = plain.split(/\s+/).filter(Boolean).length;
                 const chars = plain.replace(/\s/g, "").length;
                 const minutes = Math.ceil(words / 200);
-                return {
-                    words,
-                    chars,
-                    timeLabel: minutes === 1 ? "1 min" : `${minutes} min`,
-                };
+                return { words, chars, timeLabel: minutes === 1 ? "1 min" : `${minutes} min` };
             }
 
-            // ── footer ──
             function loadLatestArticles(currentId, allPosts) {
                 const latest = allPosts
                     .filter((p) => p.id !== currentId)
@@ -424,7 +404,6 @@
                 document.getElementById("reader-footer").style.display = "block";
             }
 
-            // ── main load ──
             async function loadPost() {
                 const postBody = document.getElementById("post-body");
                 const params = new URLSearchParams(window.location.search);
@@ -459,7 +438,6 @@
                     }
 
                     const markdown = await mdResponse.text();
-
                     const { words, chars, timeLabel } = computeStats(markdown);
                     document.getElementById("stat-words").textContent = words.toLocaleString();
                     document.getElementById("stat-chars").textContent = chars.toLocaleString();
