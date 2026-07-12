@@ -50,30 +50,34 @@
             .toc-widget {
                 position: sticky;
                 top: 80px;
-                width: 200px;
+                width: 220px;                     /* Slightly widened to give breathing room */
                 align-self: flex-start;
+                background: rgba(255, 255, 255, 0.02); /* Very faint background card block */
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                border-radius: 12px;
+                padding: 20px;
+                /* Soft matching glow around the container */
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.02);
             }
 
             .toc-toggle {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                gap: 10px;
                 background: none;
                 border: none;
-                padding: 0 0 12px 0;
+                padding: 0 0 16px 0;
                 cursor: pointer;
-                color: rgba(255, 255, 255, 0.7);
+                color: rgba(255, 255, 255, 0.95);  /* Clean off-white header */
                 font-family: "Inter", sans-serif;
                 font-size: 16px;
-                font-weight: 300;
-                letter-spacing: 0.05em;
+                font-weight: 500;                  /* Punchier font weight */
+                letter-spacing: 0.08em;
                 text-transform: uppercase;
-                transition: color 0.15s ease;
                 width: 100%;
                 text-align: left;
-            }
-            .toc-toggle:hover {
-                color: white;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Divider below the widget header */
+                margin-bottom: 16px;
             }
 
             .toc-arrow {
@@ -89,31 +93,41 @@
             .toc-list {
                 display: flex;
                 flex-direction: column;
-                gap: 0;
-                border-left: 2px solid rgba(255, 255, 255, 0.1);
+                gap: 4px;                          /* Added tiny spacing between items */
+                border-left: 2px solid rgba(255, 255, 255, 0.08);
             }
 
-            .toc-item {
+            ..toc-item {
                 display: block;
                 font-family: "Inter", sans-serif;
                 font-weight: 300;
-                color: rgba(255, 255, 255, 0.45);
+                color: rgba(255, 255, 255, 0.6);   /* Vibrant base links */
                 text-decoration: none;
-                padding: 6px 0 6px 14px;
-                transition: color 0.12s ease, border-color 0.12s ease;
+                padding: 8px 0 8px 16px;
+                transition: all 0.2s ease;         /* Smooth change for colors and glows */
                 line-height: 1.4;
                 border-left: 2px solid transparent;
                 margin-left: -2px;
+                border-radius: 0 4px 4px 0;
             }
+
             .toc-item:hover {
-                color: white;
+                color: #ffffff;
+                background: rgba(255, 255, 255, 0.04);
                 border-left-color: rgba(255, 255, 255, 0.85);
+                /* Subtle neon white text reflection */
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+                padding-left: 20px;                /* Dynamic slight shift on hover */
             }
 
             /* indent levels */
-            .toc-h2 { font-size: 17px; }
-            .toc-h3 { font-size: 16px; padding-left: 26px; color: rgba(255, 255, 255, 0.55); }
-            .toc-h4 { font-size: 15px; padding-left: 42px; color: rgba(255, 255, 255, 0.45); }
+            .toc-h2 { font-size: 16px; }
+            .toc-h3 { font-size: 15px; padding-left: 26px; color: rgba(255, 255, 255, 0.45); }
+            .toc-h4 { font-size: 14px; padding-left: 42px; color: rgba(255, 255, 255, 0.35); }
+
+            /* Make sure the nested ones match the movement behavior */
+            .toc-h3:hover { padding-left: 30px; }
+            .toc-h4:hover { padding-left: 46px; }
 
             /* ── center column ── */
             .page-content {
@@ -226,24 +240,20 @@
                 position: fixed;
                 bottom: 32px;
                 right: 32px;
-                width: 56px;
-                height: 56px;
-                background: rgba(255, 255, 255, 0.12); /* Slightly brighter base */
-                border: 2px solid rgba(255, 255, 255, 0.35); /* Thicker looking border */
+                width: 52px;                  /* Snapped down slightly for a tighter profile */
+                height: 52px;
+                background: rgba(255, 255, 255, 0.05); /* Very quiet, clean transparency */
+                border: 1px solid rgba(255, 255, 255, 0.2); /* Thin, sharp baseline boundary */
                 border-radius: 50%;
-                color: rgba(255, 255, 255, 0.9);
+                color: rgba(255, 255, 255, 0.6);            /* Subdued default arrow color */
                 cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 opacity: 0;
                 pointer-events: none;
-                transition: opacity 0.25s ease, background 0.15s ease, box-shadow 0.25s ease, transform 0.25s ease;
+                transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Snappier, natural curve */
                 z-index: 998;
-
-                /* Bright, subtle glow effect */
-                box-shadow: 0 0 15px rgba(255, 255, 255, 0.15),
-                            inset 0 0 8px rgba(255, 255, 255, 0.05);
             }
 
             .scroll-top-btn.visible {
@@ -251,24 +261,33 @@
                 pointer-events: auto;
             }
 
-            /* Flashier hover state with an intensified glow */
+            /* Elegant, grounded interactive hover state */
             .scroll-top-btn:hover {
-                background: rgba(255, 255, 255, 0.2);
-                border-color: rgba(255, 255, 255, 0.6);
-                box-shadow: 0 0 22px rgba(255, 255, 255, 0.35),
-                            inset 0 0 10px rgba(255, 255, 255, 0.1);
-                transform: translateY(-2px); /* Subtle lift effect */
+                color: rgba(255, 255, 255, 0.95);           /* Arrow sharpens to clear white */
+                background: rgba(255, 255, 255, 0.1);        /* Solidifies base structure */
+                border-color: rgba(255, 255, 255, 0.45);      /* Clear perimeter highlight */
+                transform: translateY(-4px);                  /* Snappy vertical lift hint */
+
+                /* Low-profile, warm ambient shadow just to lift it off the page background */
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+                            0 0 8px rgba(255, 255, 255, 0.08);
             }
 
-            /* Style for the new inline SVG arrow */
+            /* Style for the inline SVG arrow */
             .scroll-top-btn svg {
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
                 stroke: currentColor;
-                stroke-width: 3.5; /* Adjust this number to make the arrow thicker or thinner */
+                stroke-width: 3; /* Firm, highly legible line thickness */
                 stroke-linecap: round;
                 stroke-linejoin: round;
                 fill: none;
+                transition: transform 0.2s ease;
+            }
+
+            /* Subtle internal animation to hint action */
+            .scroll-top-btn:hover svg {
+                transform: translateY(-1px);
             }
         </style>
     </head>
