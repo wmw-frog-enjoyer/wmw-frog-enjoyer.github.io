@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Articles</title>
+        <link rel="icon" type="image/png" href="/assets/ansilian.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="style.css?v=1" />
+    </head>
+    <body>
+        <div id="topbar-container"></div>
+        <script src="/nav.js"></script>
+        <div class="page-content">
+            <h1 class="page-title">articles</h1>
+            <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="search by title, author or tag..."
+                autocomplete="off"
+            />
+            <div id="posts-container">
+                <p class="status-text">loading...</p>
+            </div>
+        </div>
+
+        <script>
+            let allPosts = [];
+
+            function renderTags(tags) {
+                if (!tags || tags.length === 0) return "";
+                return `<div class="card-tags">
+                    ${tags.map((t) => `<span class="card-tag">${t}</span>`).join("")}
+                </div>`;
+            }
+
+            function renderCards(filter) {
+                const container = document.getElementById("posts-container");
+                const query = filter.toLowerCase().trim();
+
+                const results = query
+                    ? allPosts.filter((p) => {
+                          // search matches title, author, or any tag
+                          const inTitle = p.title.toLowerCase().includes(query);
+                          const inAuthor = p.author
+                              .toLowerCase()
+                              .includes(query);
+                          const inTags =
+                              p.tags &&
+                              p.tags.some((t) =>
+                                  t.toLowerCase().includes(query),
+                              );
+                          return inTitle || inAuthor || inTags;
+                      })
+                    : allPosts;
+
+                container.innerHTML = "";
+
+                if (results.length === 0) {
+                    container.innerHTML =
+                        '<p class="status-text">no articles found.</p>';
+                    return;
+                }
+
+                results.forEach((post) => {
+                    const card = document.createElement("a");
+                    card.className = "post-card";
+                    card.href = `reader.html?post=${post.id}`;
+
+                    card.innerHTML = `
+                        <div class="card-top-row">
+                            <span class="card-number">#${post.id}</span>
+                            <span class="card-dot">·</span>
+                            <span class="card-date">${post.date}</span>
+                        </div>
+                        <div class="card-title">${post.title}</div>
+                        ${post.description ? `<div class="card-desc">${post.description}</div>` : ""}
+                        <div class="card-bottom-row">
+                            <span class="card-author">${post.author}</span>
+                            ${renderTags(post.tags)}
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                });
+            }
+
+            async function loadPosts() {
+                const container = document.getElementById("posts-container");
+
+                try {
+                    const response = await fetch("posts/posts.json");
+                    allPosts = await response.json();
+
+                    if (allPosts.length === 0) {
+                        container.innerHTML =
+                            '<p class="status-text">nothing here yet.</p>';
+                        return;
+                    }
+
+                    allPosts.sort((a, b) => Number(b.id) - Number(a.id));
+
+                    renderCards("");
+
+                    document
+                        .getElementById("search-input")
+                        .addEventListener("input", (e) => {
+                            renderCards(e.target.value);
+                        });
+                } catch (error) {
+                    container.innerHTML =
+                        '<p class="status-text">could not load articles.</p>';
+                    console.error(error);
+                }
+            }
+
+            loadPosts();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,514 @@
+/* ==========================================================================
+   1. DESKTOP TOPBAR & NAVIGATION (Restored Sizes & Added Hover Animations)
+   ========================================================================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between; /* Required for nav.js centering math */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(55, 55, 55, 0.15);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.center-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Kills default underlines completely on all header links */
+.topbar a {
+    text-decoration: none !important;
+    color: white;
+}
+
+.home-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 25px;
+    font-family: "Inter", sans-serif;
+    font-weight: 200;
+}
+
+/* Tame the Ansilian logo size */
+.home-logo {
+    width: 35px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Base rule: Hide icons on desktop views */
+.nav-icon {
+    display: none !important;
+}
+
+/* Base rule: Restored font size, weights, and clean background hover animations */
+.nav-text {
+    display: inline-block;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 22px; /* Restored font scale */
+    font-weight: 200; /* Restored light weight */
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-text:hover {
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.08
+    ); /* Re-added original hover block */
+}
+
+/* ==========================================================================
+   2. GLOBAL BODY STYLES (Background & Typography)
+   ========================================================================== */
+
+body {
+    margin: 0px;
+    margin-top: 0px;
+    background: linear-gradient(
+        to right,
+        #141414 0%,
+        #111111 25%,
+        #000000 50%,
+        #111111 75%,
+        #141414 100%
+    );
+    color: white;
+    text-align: center;
+}
+
+/* ==========================================================================
+   3. ARTICLES LOGIC — SHARED CORE LAYOUTS (index.html & reader.html)
+   ========================================================================= */
+
+.page-content {
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 0 24px;
+    text-align: left;
+}
+
+.status-text {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   4. INDEX VIEW LAYOUTS — ARTICLE BROWSING LIST
+   ========================================================================= */
+
+.page-title {
+    font-family: "Inter", sans-serif;
+    font-weight: 200;
+    font-size: 60px;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.5px;
+    color: white;
+}
+
+.search-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: white;
+    outline: none;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.22);
+}
+
+.search-input:focus {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.post-card {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 18px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.post-card:hover {
+    background: rgba(255, 255, 255, 0.055);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+.card-top-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.card-number {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.card-dot {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.15);
+}
+
+.card-date {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.28);
+}
+
+.card-title {
+    font-family: "Inter", sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.card-desc {
+    font-family: "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.48);
+    margin-bottom: 8px;
+}
+
+.card-author {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   5. READER VIEW LAYOUTS — MARKDOWN CONTENT ENGINE
+   ========================================================================= */
+
+.back-link {
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    margin-bottom: 32px;
+    transition: color 0.15s ease;
+}
+
+.back-link:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.post-preface {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.preface-number {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.22);
+    letter-spacing: 0.04em;
+}
+
+.preface-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.preface-author {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.preface-date {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.preface-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    margin: 0 0 28px 0;
+}
+
+.post-body h1 {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    margin: 0 0 18px 0;
+    letter-spacing: -0.5px;
+    color: white;
+}
+
+.post-body h2 {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 35px;
+    margin: 34px 0 10px 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.post-body h3 {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    margin: 26px 0 8px 0;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.post-body p {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.76);
+    margin: 0 0 15px 0;
+}
+
+.post-body ul,
+.post-body ol {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.76);
+    padding-left: 22px;
+    margin: 0 0 15px 0;
+}
+
+.post-body li {
+    margin-bottom: 4px;
+}
+
+.post-body blockquote {
+    border-left: 2px solid rgba(255, 255, 255, 0.18);
+    margin: 20px 0;
+    padding: 2px 0 2px 18px;
+    color: rgba(255, 255, 255, 0.42);
+    font-style: italic;
+}
+
+.post-body code {
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.07);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.post-body pre {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    margin: 0 0 16px 0;
+}
+
+.post-body pre code {
+    background: none;
+    padding: 0;
+}
+
+.post-body hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    margin: 28px 0;
+}
+
+.post-body strong {
+    font-weight: 500;
+}
+
+.post-body em {
+    font-style: italic;
+}
+
+.post-body a {
+    color: rgba(150, 200, 255, 0.85);
+}
+
+.post-body img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* ==========================================================================
+   6. ARTICLE META TAG STYLING PROPERTIES
+   ========================================================================= */
+
+.card-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-end;
+}
+
+.card-tag {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 2px 10px;
+}
+
+.preface-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+}
+
+.preface-tag {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 3px 12px;
+}
+
+/* ==========================================================================
+   7. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
+   ========================================================================== */
+@media (max-width: 767px) {
+    /* Working Centered Mobile Navigation Topbar Layout */
+    .topbar {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        padding: 10px !important;
+        gap: 20px !important;
+    }
+
+    .center-nav {
+        gap: 15px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .home-logo {
+        width: 35px !important;
+    }
+
+    /* Mobile Swap Hide Rules */
+    .nav-text,
+    .home-text {
+        display: none !important;
+    }
+
+    .nav-icon {
+        display: block !important;
+    }
+
+    /* Dynamic Icon Adaptations */
+    .icon-size-small {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    .icon-size-medium {
+        width: 65px !important;
+        height: 65px !important;
+    }
+    .icon-size-large {
+        width: 75px !important;
+        height: 75px !important;
+    }
+
+    /* Responsive scaling for Article Content containers */
+    .page-content {
+        margin: 30px auto !important;
+        padding: 0 16px !important;
+    }
+
+    .page-title {
+        font-size: 42px !important;
+    }
+
+    .post-card {
+        padding: 14px 16px !important;
+    }
+
+    .card-title {
+        font-size: 22px !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Forces text wrap and column handling for tags on tiny views */
+    .card-bottom-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+    }
+
+    .card-tags {
+        justify-content: flex-start !important;
+    }
+
+    .post-body h1 {
+        font-size: 32px !important;
+    }
+
+    .post-body h2 {
+        font-size: 26px !important;
+    }
+
+    .post-body p {
+        font-size: 17px !important;
+        line-height: 1.7 !important;
+    }
+}
