@@ -15,7 +15,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
 
         <style>
-            /* ── progress bar — right edge ── */
+            /* ── progress bar ── */
             .reading-progress-track {
                 position: fixed;
                 right: 0;
@@ -33,81 +33,87 @@
                 border-radius: 0 0 3px 3px;
             }
 
-            /* ── outer layout: left gap | content | right gap ── */
+            /* ── layout ── */
             .reader-layout {
                 display: grid;
                 grid-template-columns: 1fr minmax(0, 850px) 1fr;
                 margin: 60px 0;
             }
 
-            /* ── left column: Obsidian-style TOC ── */
+            /* ── left column: TOC stuck to left edge of gap1 ── */
             .toc-column {
                 display: flex;
-                justify-content: flex-end;
-                padding-right: 40px;
+                justify-content: flex-start;
+                padding-left: 32px;
             }
 
             .toc-widget {
                 position: sticky;
                 top: 80px;
-                width: 180px;
+                width: 200px;
                 align-self: flex-start;
             }
 
-            /* "on this page" toggle — plain text, no border/background */
             .toc-toggle {
                 display: flex;
                 align-items: center;
-                gap: 6px;
+                gap: 8px;
                 background: none;
                 border: none;
-                padding: 0;
+                padding: 0 0 12px 0;
                 cursor: pointer;
-                color: rgba(255, 255, 255, 0.5);
+                color: rgba(255, 255, 255, 0.7);
                 font-family: "Inter", sans-serif;
-                font-size: 13px;
-                font-weight: 400;
-                letter-spacing: 0.04em;
+                font-size: 16px;
+                font-weight: 300;
+                letter-spacing: 0.05em;
                 text-transform: uppercase;
                 transition: color 0.15s ease;
-                margin-bottom: 10px;
+                width: 100%;
+                text-align: left;
             }
             .toc-toggle:hover {
-                color: rgba(255, 255, 255, 0.85);
+                color: white;
             }
 
             .toc-arrow {
-                font-size: 10px;
+                font-size: 13px;
                 transition: transform 0.2s ease;
-                color: rgba(255, 255, 255, 0.3);
+                color: rgba(255, 255, 255, 0.4);
             }
-            .toc-arrow.open {
-                transform: rotate(180deg);
+            .toc-arrow.closed {
+                transform: rotate(-90deg);
             }
 
-            /* chapter links — plain text only, Obsidian style */
+            /* left border track */
             .toc-list {
                 display: flex;
                 flex-direction: column;
                 gap: 0;
-                padding-left: 2px;
-                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                border-left: 2px solid rgba(255, 255, 255, 0.1);
             }
 
             .toc-item {
                 display: block;
                 font-family: "Inter", sans-serif;
-                font-size: 14px;
                 font-weight: 300;
-                color: rgba(255, 255, 255, 0.4);
+                color: rgba(255, 255, 255, 0.45);
                 text-decoration: none;
-                padding: 5px 0 5px 12px;
-                transition: color 0.12s ease;
+                padding: 6px 0 6px 14px;
+                transition: color 0.12s ease, border-color 0.12s ease;
                 line-height: 1.4;
+                border-left: 2px solid transparent;
+                margin-left: -2px;
             }
             .toc-item:hover {
-                color: rgba(255, 255, 255, 0.9);
+                color: white;
+                border-left-color: rgba(255, 255, 255, 0.6);
             }
+
+            /* indent levels */
+            .toc-h2 { font-size: 15px; }
+            .toc-h3 { font-size: 14px; padding-left: 26px; color: rgba(255, 255, 255, 0.35); }
+            .toc-h4 { font-size: 13px; padding-left: 42px; color: rgba(255, 255, 255, 0.28); }
 
             /* ── center column ── */
             .page-content {
@@ -116,12 +122,11 @@
                 min-width: 0;
             }
 
-            /* ── right column: stats centered in the gap ── */
+            /* ── right column: stats centered in gap2 ── */
             .stats-column {
                 display: flex;
-                justify-content: center;   /* centered in gap2 */
+                justify-content: center;
                 align-items: flex-start;
-                padding-top: 0;
             }
 
             .reading-stats {
@@ -129,14 +134,10 @@
                 display: flex;
                 flex-direction: column;
                 gap: 24px;
-                margin-top: 148px; /* align with article body start */
+                margin-top: 148px;
             }
 
-            .stat-item {
-                display: flex;
-                flex-direction: column;
-                gap: 4px;
-            }
+            .stat-item { display: flex; flex-direction: column; gap: 4px; }
             .stat-item-label {
                 font-family: "Inter", sans-serif;
                 font-size: 11px;
@@ -153,18 +154,10 @@
                 letter-spacing: -0.3px;
             }
 
-            /* hide side columns on narrow screens */
             @media (max-width: 1100px) {
-                .reader-layout {
-                    grid-template-columns: 0 minmax(0, 850px) 0;
-                }
-                .toc-column,
-                .stats-column {
-                    display: none;
-                }
-                .page-content {
-                    padding: 0 16px;
-                }
+                .reader-layout { grid-template-columns: 0 minmax(0, 850px) 0; }
+                .toc-column, .stats-column { display: none; }
+                .page-content { padding: 0 16px; }
             }
 
             /* ── footer ── */
@@ -175,24 +168,23 @@
             }
             .footer-title {
                 font-family: "Inter", sans-serif;
-                font-size: 18px;
-                font-weight: 300;
-                color: rgba(255, 255, 255, 0.35);
-                text-transform: uppercase;
-                letter-spacing: 0.07em;
-                margin-bottom: 24px;
+                font-size: 42px;
+                font-weight: 200;
+                color: white;
+                letter-spacing: -0.5px;
+                margin-bottom: 28px;
             }
             .footer-cards {
                 display: flex;
                 flex-direction: column;
                 gap: 12px;
-                margin-bottom: 40px;
+                margin-bottom: 48px;
             }
             .footer-card {
                 display: block;
                 text-decoration: none;
                 color: white;
-                padding: 20px 22px;
+                padding: 22px 24px;
                 border: 1px solid rgba(255, 255, 255, 0.07);
                 border-radius: 10px;
                 background: rgba(255, 255, 255, 0.02);
@@ -204,29 +196,27 @@
             }
             .footer-card-title {
                 font-family: "Inter", sans-serif;
-                font-size: 24px;
+                font-size: 26px;
                 font-weight: 400;
                 margin-bottom: 8px;
             }
             .footer-card-meta {
                 font-family: "Inter", sans-serif;
-                font-size: 16px;
+                font-size: 17px;
                 font-weight: 300;
                 color: rgba(255, 255, 255, 0.35);
             }
             .footer-back {
                 display: inline-block;
                 font-family: "Inter", sans-serif;
-                font-size: 20px;
+                font-size: 22px;
                 font-weight: 300;
                 color: rgba(255, 255, 255, 0.4);
                 text-decoration: none;
                 margin-bottom: 80px;
                 transition: color 0.15s ease;
             }
-            .footer-back:hover {
-                color: rgba(255, 255, 255, 0.85);
-            }
+            .footer-back:hover { color: rgba(255, 255, 255, 0.85); }
 
             /* ── scroll to top ── */
             .scroll-top-btn {
@@ -249,15 +239,9 @@
                 pointer-events: none;
                 transition: opacity 0.2s ease, background 0.15s ease;
                 z-index: 998;
-                line-height: 1;
             }
-            .scroll-top-btn.visible {
-                opacity: 1;
-                pointer-events: auto;
-            }
-            .scroll-top-btn:hover {
-                background: rgba(255, 255, 255, 0.15);
-            }
+            .scroll-top-btn.visible { opacity: 1; pointer-events: auto; }
+            .scroll-top-btn:hover { background: rgba(255, 255, 255, 0.15); }
         </style>
     </head>
     <body>
@@ -274,14 +258,14 @@
 
         <div class="reader-layout">
 
-            <!-- left: obsidian-style TOC -->
+            <!-- left: TOC -->
             <div class="toc-column">
                 <div class="toc-widget" id="toc-widget" style="display:none;">
                     <button class="toc-toggle" onclick="toggleToc()">
                         <span class="toc-arrow" id="toc-arrow">▾</span>
                         <span>on this page</span>
                     </button>
-                    <div class="toc-list" id="toc-list" style="display:none;"></div>
+                    <div class="toc-list" id="toc-list"></div>
                 </div>
             </div>
 
@@ -310,7 +294,7 @@
                 </div>
             </div>
 
-            <!-- right: reading stats centered in gap -->
+            <!-- right: stats -->
             <div class="stats-column">
                 <div class="reading-stats">
                     <div class="stat-item">
@@ -339,28 +323,34 @@
                     ((window.scrollY - articleTop) / body.offsetHeight) * 100
                 ));
                 document.getElementById("progress-fill").style.height = percent + "%";
-
-                const btn = document.getElementById("scroll-top-btn");
-                btn.classList.toggle("visible", window.scrollY > 300);
+                document.getElementById("scroll-top-btn")
+                    .classList.toggle("visible", window.scrollY > 300);
             }
             window.addEventListener("scroll", updateProgress, { passive: true });
 
-            let tocOpen = false;
+            // open by default
+            let tocOpen = true;
+
             function toggleToc() {
                 tocOpen = !tocOpen;
                 document.getElementById("toc-list").style.display = tocOpen ? "flex" : "none";
-                document.getElementById("toc-arrow").classList.toggle("open", tocOpen);
+                document.getElementById("toc-arrow").classList.toggle("closed", !tocOpen);
             }
 
             function buildToc() {
-                const headings = document.getElementById("post-body").querySelectorAll("h2");
+                // pick up h2, h3, h4
+                const headings = document.getElementById("post-body")
+                    .querySelectorAll("h2, h3, h4");
                 if (headings.length === 0) return;
 
                 const list = document.getElementById("toc-list");
+
                 headings.forEach((h, i) => {
-                    if (!h.id) h.id = `chapter-${i + 1}`;
+                    if (!h.id) h.id = `heading-${i}`;
+                    const level = parseInt(h.tagName[1]); // 2, 3, or 4
+
                     const link = document.createElement("a");
-                    link.className = "toc-item";
+                    link.className = `toc-item toc-h${level}`;
                     link.href = `#${h.id}`;
                     link.textContent = h.textContent;
                     link.addEventListener("click", (e) => {
@@ -370,6 +360,8 @@
                     list.appendChild(link);
                 });
 
+                // open by default
+                list.style.display = "flex";
                 document.getElementById("toc-widget").style.display = "block";
             }
 
