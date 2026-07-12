@@ -107,13 +107,13 @@
             }
             .toc-item:hover {
                 color: white;
-                border-left-color: rgba(255, 255, 255, 0.6);
+                border-left-color: rgba(255, 255, 255, 0.85);
             }
 
             /* indent levels */
-            .toc-h2 { font-size: 15px; }
-            .toc-h3 { font-size: 14px; padding-left: 26px; color: rgba(255, 255, 255, 0.35); }
-            .toc-h4 { font-size: 13px; padding-left: 42px; color: rgba(255, 255, 255, 0.28); }
+            .toc-h2 { font-size: 17px; }
+            .toc-h3 { font-size: 16px; padding-left: 26px; color: rgba(255, 255, 255, 0.55); }
+            .toc-h4 { font-size: 15px; padding-left: 42px; color: rgba(255, 255, 255, 0.45); }
 
             /* ── center column ── */
             .page-content {
@@ -143,17 +143,17 @@
             .stat-item { display: flex; flex-direction: column; gap: 4px; }
             .stat-item-label {
                 font-family: "Inter", sans-serif;
-                font-size: 11px;
-                font-weight: 300;
-                color: rgba(255, 255, 255, 0.22);
+                font-size: 14px;                  /* Increased from 11px to match TOC titles */
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.5);   /* Brighter label track */
                 text-transform: uppercase;
                 letter-spacing: 0.07em;
             }
             .stat-item-value {
                 font-family: "Inter", sans-serif;
-                font-size: 20px;
-                font-weight: 200;
-                color: rgba(255, 255, 255, 0.65);
+                font-size: 24px;                  /* Increased from 20px for that flashy pop */
+                font-weight: 300;
+                color: rgba(255, 255, 255, 0.9);  /* Brighter value display */
                 letter-spacing: -0.3px;
             }
 
@@ -228,23 +228,48 @@
                 right: 32px;
                 width: 56px;
                 height: 56px;
-                background: rgba(255, 255, 255, 0.08);
-                border: 2px solid rgba(255, 255, 255, 0.18);
+                background: rgba(255, 255, 255, 0.12); /* Slightly brighter base */
+                border: 2px solid rgba(255, 255, 255, 0.35); /* Thicker looking border */
                 border-radius: 50%;
-                color: white;
-                font-size: 24px;
-                font-weight: 300;
+                color: rgba(255, 255, 255, 0.9);
                 cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 opacity: 0;
                 pointer-events: none;
-                transition: opacity 0.2s ease, background 0.15s ease;
+                transition: opacity 0.25s ease, background 0.15s ease, box-shadow 0.25s ease, transform 0.25s ease;
                 z-index: 998;
+
+                /* Bright, subtle glow effect */
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.15),
+                            inset 0 0 8px rgba(255, 255, 255, 0.05);
             }
-            .scroll-top-btn.visible { opacity: 1; pointer-events: auto; }
-            .scroll-top-btn:hover { background: rgba(255, 255, 255, 0.15); }
+
+            .scroll-top-btn.visible {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            /* Flashier hover state with an intensified glow */
+            .scroll-top-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.6);
+                box-shadow: 0 0 22px rgba(255, 255, 255, 0.35),
+                            inset 0 0 10px rgba(255, 255, 255, 0.1);
+                transform: translateY(-2px); /* Subtle lift effect */
+            }
+
+            /* Style for the new inline SVG arrow */
+            .scroll-top-btn svg {
+                width: 20px;
+                height: 20px;
+                stroke: currentColor;
+                stroke-width: 3.5; /* Adjust this number to make the arrow thicker or thinner */
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                fill: none;
+            }
         </style>
     </head>
     <body>
@@ -254,7 +279,13 @@
 
         <button class="scroll-top-btn" id="scroll-top-btn"
             onclick="window.scrollTo({top:0,behavior:'smooth'})"
-            title="back to top">↑</button>
+            title="back to top">
+            <!-- Thicker vector arrow -->
+            <svg viewBox="0 0 24 24">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+        </button>
 
         <div id="topbar-container"></div>
         <script src="/nav.js"></script>
