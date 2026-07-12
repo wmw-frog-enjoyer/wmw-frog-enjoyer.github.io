@@ -122,19 +122,22 @@
                 min-width: 0;
             }
 
-            /* ── right column: stats centered in gap2 ── */
+            /* ── right column: stats stuck to right edge ── */
             .stats-column {
                 display: flex;
-                justify-content: center;
-                align-items: flex-start;
+                justify-content: flex-end; /* Change from center to push it toward the inner page content, or flex-start depending on preference */
+                padding-right: 32px;       /* Mirrors the left side's padding-left: 32px */
             }
 
             .reading-stats {
+                position: sticky;          /* Makes it follow you as you scroll */
+                top: 80px;                 /* Aligns its top position perfectly with the TOC widget */
                 width: 110px;
                 display: flex;
                 flex-direction: column;
                 gap: 24px;
-                margin-top: 148px;
+                align-self: flex-start;    /* Required for sticky to work correctly inside a flex/grid container */
+                /* margin-top: 148px; */   /* REMOVE OR COMMENT THIS OUT so it aligns to the top */
             }
 
             .stat-item { display: flex; flex-direction: column; gap: 4px; }
