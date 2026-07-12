@@ -98,34 +98,36 @@
 
             .toc-item {
                 display: block;
+                width: 100%;                  /* Ensures the hover background stretches fully */
+                box-sizing: border-box;       /* Prevents padding from breaking layout width */
                 font-family: "Inter", sans-serif;
                 font-size: 14px;
                 font-weight: 400;
-                color: rgba(255, 255, 255, 0.5);   /* Muted resting link color */
+                color: rgba(255, 255, 255, 0.5);
                 text-decoration: none;
-                padding: 5px 0 5px 14px;
+                padding: 5px 14px 5px 14px;   /* Added 14px padding to both Left AND Right sides */
                 transition: color 0.12s ease, background-color 0.12s ease;
                 line-height: 1.4;
-                border-left: 1px solid transparent; /* Replaced thick lines with crisp tracking */
+                border-left: 1px solid transparent;
                 margin-left: -1px;
-                border-radius: 4px;           /* Subtle corner highlighting when active */
+                border-radius: 4px;
             }
 
             .toc-item:hover {
                 color: rgba(255, 255, 255, 0.9);
-                background: rgba(255, 255, 255, 0.05); /* Clean, low-contrast text block row accent */
+                background: rgba(255, 255, 255, 0.06);
                 border-left-color: transparent;
-                text-shadow: none;             /* Scrubbed out all AI glow strings */
-                padding-left: 14px;            /* Static positioning - no distracting bounce jumps */
+                text-shadow: none;
+                padding: 5px 14px 5px 14px;   /* Keeps right and left side perfectly balanced */
             }
 
             /* indent levels */
             .toc-h2 { font-size: 14px; }
-            .toc-h3 { font-size: 13.5px; padding-left: 24px; color: rgba(255, 255, 255, 0.4); }
-            .toc-h4 { font-size: 13px; padding-left: 36px; color: rgba(255, 255, 255, 0.3); }
+            .toc-h3 { font-size: 13.5px; padding: 5px 14px 5px 24px; color: rgba(255, 255, 255, 0.4); }
+            .toc-h4 { font-size: 13px; padding: 5px 14px 5px 36px; color: rgba(255, 255, 255, 0.3); }
 
-            .toc-h3:hover { padding-left: 24px; }
-            .toc-h4:hover { padding-left: 36px; }
+            .toc-h3:hover { padding: 5px 14px 5px 24px; }
+            .toc-h4:hover { padding: 5px 14px 5px 36px; }
 
             /* ── center column ── */
             .page-content {
@@ -155,17 +157,18 @@
             .stat-item { display: flex; flex-direction: column; gap: 4px; }
             .stat-item-label {
                 font-family: "Inter", sans-serif;
-                font-size: 14px;                  /* Increased from 11px to match TOC titles */
+                font-size: 14px;
                 font-weight: 400;
-                color: rgba(255, 255, 255, 0.5);   /* Brighter label track */
+                color: rgba(255, 255, 255, 0.85); /* Promoted to crisp, readable off-white */
                 text-transform: uppercase;
                 letter-spacing: 0.07em;
             }
+
             .stat-item-value {
                 font-family: "Inter", sans-serif;
-                font-size: 24px;                  /* Increased from 20px for that flashy pop */
+                font-size: 24px;
                 font-weight: 300;
-                color: rgba(255, 255, 255, 0.9);  /* Brighter value display */
+                color: rgba(255, 255, 255, 0.35); /* Stepped down to a quiet, balanced gray track */
                 letter-spacing: -0.3px;
             }
 
