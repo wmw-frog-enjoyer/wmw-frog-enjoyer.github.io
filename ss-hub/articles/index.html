@@ -75,31 +75,74 @@
                 </div>`;
             }
 
-            function renderCards(filter) {
+            // Dynamically inject all available authors and tags into the clean dropdown containers
+            function populateDropdownOptions() {
+                const authorSelect = document.getElementById("author-select");
+                const tagSelect = document.getElementById("tag-select");
+
+                const authors = new Set();
+                const tags = new Set();
+
+                allPosts.forEach(post => {
+                    if (post.author) authors.add(post.author.trim());
+                    if (post.tags) post.tags.forEach(t => tags.add(t.trim()));
+                });
+
+                // Populate Authors
+                Array.from(authors).sort().forEach(author => {
+                    const opt = document.createElement("option");
+                    opt.value = author;
+                    opt.textContent = author;
+                    authorSelect.appendChild(opt);
+                });
+
+                // Populate Tags
+                Array.from(tags).sort().forEach(tag => {
+                    const opt = document.createElement("option");
+                    opt.value = tag;
+                    opt.textContent = tag;
+                    tagSelect.appendChild(opt);
+                });
+            }
+
+            function renderCards() {
                 const container = document.getElementById("posts-container");
-                const query = filter.toLowerCase().trim();
 
-                const results = query
-                    ? allPosts.filter((p) => {
-                          // search matches title, author, or any tag
-                          const inTitle = p.title.toLowerCase().includes(query);
-                          const inAuthor = p.author
-                              .toLowerCase()
-                              .includes(query);
-                          const inTags =
-                              p.tags &&
-                              p.tags.some((t) =>
-                                  t.toLowerCase().includes(query),
-                              );
-                          return inTitle || inAuthor || inTags;
-                      })
-                    : allPosts;
+                // Get filter input parameters
+                const query = document.getElementById("search-input").value.toLowerCase().trim();
+                const selectedSort = document.getElementById("sort-select").value;
+                const selectedAuthor = document.getElementById("author-select").value;
+                const selectedTag = document.getElementById("tag-select").value;
 
+                // 1. Filter out results matching search string + dropdown values
+                let results = allPosts.filter((p) => {
+                    const inTitle = p.title.toLowerCase().includes(query);
+                    const inAuthor = p.author.toLowerCase().includes(query);
+                    const inTags = p.tags && p.tags.some((t) => t.toLowerCase().includes(query));
+                    const matchesSearch = !query || (inTitle || inAuthor || inTags);
+
+                    const matchesAuthor = selectedAuthor === "all" || p.author === selectedAuthor;
+                    const matchesTag = selectedTag === "all" || (p.tags && p.tags.includes(selectedTag));
+
+                    return matchesSearch && matchesAuthor && matchesTag;
+                });
+
+                // 2. Apply chosen sort configurations
+                if (selectedSort === "latest") {
+                    results.sort((a, b) => Number(b.id) - Number(a.id));
+                } else if (selectedSort === "oldest") {
+                    results.sort((a, b) => Number(a.id) - Number(b.id));
+                } else if (selectedSort === "id-asc") {
+                    results.sort((a, b) => Number(a.id) - Number(b.id));
+                } else if (selectedSort === "id-desc") {
+                    results.sort((a, b) => Number(b.id) - Number(a.id));
+                }
+
+                // 3. Render cards onto screen view
                 container.innerHTML = "";
 
                 if (results.length === 0) {
-                    container.innerHTML =
-                        '<p class="status-text">no articles found.</p>';
+                    container.innerHTML = '<p class="status-text">no articles found.</p>';
                     return;
                 }
 
@@ -121,7 +164,6 @@
                             ${renderTags(post.tags)}
                         </div>
                     `;
-
                     container.appendChild(card);
                 });
             }
@@ -134,23 +176,22 @@
                     allPosts = await response.json();
 
                     if (allPosts.length === 0) {
-                        container.innerHTML =
-                            '<p class="status-text">nothing here yet.</p>';
+                        container.innerHTML = '<p class="status-text">nothing here yet.</p>';
                         return;
                     }
 
-                    allPosts.sort((a, b) => Number(b.id) - Number(a.id));
+                    // Initialize drop down selectors and compile layout cards initial rendering
+                    populateDropdownOptions();
+                    renderCards();
 
-                    renderCards("");
+                    // Attach state mutation listeners across filtering node controls
+                    document.getElementById("search-input").addEventListener("input", renderCards);
+                    document.getElementById("sort-select").addEventListener("change", renderCards);
+                    document.getElementById("author-select").addEventListener("change", renderCards);
+                    document.getElementById("tag-select").addEventListener("change", renderCards);
 
-                    document
-                        .getElementById("search-input")
-                        .addEventListener("input", (e) => {
-                            renderCards(e.target.value);
-                        });
                 } catch (error) {
-                    container.innerHTML =
-                        '<p class="status-text">could not load articles.</p>';
+                    container.innerHTML = '<p class="status-text">could not load articles.</p>';
                     console.error(error);
                 }
             }
