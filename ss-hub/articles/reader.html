@@ -50,41 +50,40 @@
             .toc-widget {
                 position: sticky;
                 top: 80px;
-                width: 220px;                     /* Slightly widened to give breathing room */
+                width: 220px;
                 align-self: flex-start;
-                background: rgba(255, 255, 255, 0.02); /* Very faint background card block */
-                border: 1px solid rgba(255, 255, 255, 0.06);
-                border-radius: 12px;
-                padding: 20px;
-                /* Soft matching glow around the container */
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.02);
+                background: none;             /* Stripped the card background completely */
+                border: none;                 /* Removed the box boundary lines */
+                padding: 0;                   /* Reset padding to align perfectly to the left grid track */
+                box-shadow: none;             /* Eliminated the outer glow container */
             }
 
             .toc-toggle {
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 6px;                     /* Tightened up spacing like Obsidian's folder toggles */
                 background: none;
                 border: none;
-                padding: 0 0 16px 0;
+                padding: 0 0 10px 0;
                 cursor: pointer;
-                color: rgba(255, 255, 255, 0.95);  /* Clean off-white header */
+                color: rgba(255, 255, 255, 0.85);
                 font-family: "Inter", sans-serif;
-                font-size: 16px;
-                font-weight: 500;                  /* Punchier font weight */
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
+                font-size: 15px;              /* Snapped down to a crisp, precise utility scale */
+                font-weight: 500;
+                letter-spacing: 0.03em;
+                text-transform: none;         /* Obsidian uses standard title casing rather than loud uppercase */
                 width: 100%;
                 text-align: left;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Divider below the widget header */
-                margin-bottom: 16px;
+                border-bottom: none;          /* Removed the divider rule */
+                margin-bottom: 8px;
             }
 
             .toc-arrow {
-                font-size: 13px;
-                transition: transform 0.2s ease;
+                font-size: 11px;
+                transition: transform 0.15s ease;
                 color: rgba(255, 255, 255, 0.4);
             }
+
             .toc-arrow.closed {
                 transform: rotate(-90deg);
             }
@@ -93,41 +92,40 @@
             .toc-list {
                 display: flex;
                 flex-direction: column;
-                gap: 4px;                          /* Added tiny spacing between items */
-                border-left: 2px solid rgba(255, 255, 255, 0.08);
+                gap: 2px;                     /* Dense, clean list item spacing */
+                border-left: 1px solid rgba(255, 255, 255, 0.08); /* Minimal vertical guide line */
             }
 
-            ..toc-item {
+            .toc-item {
                 display: block;
                 font-family: "Inter", sans-serif;
-                font-weight: 300;
-                color: rgba(255, 255, 255, 0.6);   /* Vibrant base links */
+                font-size: 14px;
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.5);   /* Muted resting link color */
                 text-decoration: none;
-                padding: 8px 0 8px 16px;
-                transition: all 0.2s ease;         /* Smooth change for colors and glows */
+                padding: 5px 0 5px 14px;
+                transition: color 0.12s ease, background-color 0.12s ease;
                 line-height: 1.4;
-                border-left: 2px solid transparent;
-                margin-left: -2px;
-                border-radius: 0 4px 4px 0;
+                border-left: 1px solid transparent; /* Replaced thick lines with crisp tracking */
+                margin-left: -1px;
+                border-radius: 4px;           /* Subtle corner highlighting when active */
             }
 
             .toc-item:hover {
-                color: #ffffff;
-                background: rgba(255, 255, 255, 0.04);
-                border-left-color: rgba(255, 255, 255, 0.85);
-                /* Subtle neon white text reflection */
-                text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-                padding-left: 20px;                /* Dynamic slight shift on hover */
+                color: rgba(255, 255, 255, 0.9);
+                background: rgba(255, 255, 255, 0.05); /* Clean, low-contrast text block row accent */
+                border-left-color: transparent;
+                text-shadow: none;             /* Scrubbed out all AI glow strings */
+                padding-left: 14px;            /* Static positioning - no distracting bounce jumps */
             }
 
             /* indent levels */
-            .toc-h2 { font-size: 16px; }
-            .toc-h3 { font-size: 15px; padding-left: 26px; color: rgba(255, 255, 255, 0.45); }
-            .toc-h4 { font-size: 14px; padding-left: 42px; color: rgba(255, 255, 255, 0.35); }
+            .toc-h2 { font-size: 14px; }
+            .toc-h3 { font-size: 13.5px; padding-left: 24px; color: rgba(255, 255, 255, 0.4); }
+            .toc-h4 { font-size: 13px; padding-left: 36px; color: rgba(255, 255, 255, 0.3); }
 
-            /* Make sure the nested ones match the movement behavior */
-            .toc-h3:hover { padding-left: 30px; }
-            .toc-h4:hover { padding-left: 46px; }
+            .toc-h3:hover { padding-left: 24px; }
+            .toc-h4:hover { padding-left: 36px; }
 
             /* ── center column ── */
             .page-content {
