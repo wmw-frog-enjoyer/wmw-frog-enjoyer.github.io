@@ -18,18 +18,51 @@
     <body>
         <div id="topbar-container"></div>
         <script src="/nav.js"></script>
-        <div class="page-content">
-            <h1 class="page-title">articles</h1>
-            <input
-                type="text"
-                id="search-input"
-                class="search-input"
-                placeholder="search by title, author or tag..."
-                autocomplete="off"
-            />
-            <div id="posts-container">
-                <p class="status-text">loading...</p>
-            </div>
+        <div class="main-layout-wrapper">
+            <!-- GAP 1: Filtering System -->
+            <aside class="sidebar-filters">
+                <div class="filter-group">
+                    <div class="filter-label">Sort By</div>
+                    <select id="sort-select" class="obsidian-dropdown">
+                        <option value="latest">Latest posts</option>
+                        <option value="oldest">Oldest posts</option>
+                        <option value="id-asc">ID (Low to High)</option>
+                        <option value="id-desc">ID (High to Low)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-label">Author</div>
+                    <select id="author-select" class="obsidian-dropdown">
+                        <option value="all">All Authors</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-label">Tag</div>
+                    <select id="tag-select" class="obsidian-dropdown">
+                        <option value="all">All Tags</option>
+                    </select>
+                </div>
+            </aside>
+
+            <!-- CENTER SPACE: Articles Container -->
+            <main class="page-content">
+                <h1 class="page-title">articles</h1>
+                <input
+                    type="text"
+                    id="search-input"
+                    class="search-input"
+                    placeholder="search by title, author or tag..."
+                    autocomplete="off"
+                />
+                <div id="posts-container">
+                    <p class="status-text">loading...</p>
+                </div>
+            </main>
+
+            <!-- GAP 2: Empty Space (Balances the grid layout) -->
+            <div class="right-gap"></div>
         </div>
 
         <script>
