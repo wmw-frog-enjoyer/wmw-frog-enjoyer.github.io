@@ -25,7 +25,6 @@
                 <div class="pattern-pills" id="pattern-pills"></div>
             </div>
 
-            <!-- Balanced layout wrapper matching the search padding -->
             <div style="display: flex; gap: 12px; margin-bottom: 8px;">
                 <input
                     type="text"
@@ -38,7 +37,6 @@
                 <button id="random-btn" class="action-btn" style="width: auto; padding: 14px 24px; white-space: nowrap; height: 100%; box-sizing: border-box;">Random Map</button>
             </div>
 
-            <!-- Total map count placed perfectly underneath the search zone -->
             <div style="margin-bottom: 20px; padding-left: 4px;">
                 <span id="map-counter" class="status-text" style="font-size: 14px; font-weight: 400; color: rgba(255, 255, 255, 0.4);"></span>
             </div>
@@ -52,15 +50,15 @@
             let allCustoms = [];
             let patternStates = new Map();
 
-            // Muted, low-saturation palette for clean system scanning
+            // Muted, matte palette calibrated for deep visual separation
             const ratingColors = {
-                's---': { text: '#4a6fa5', bg: 'rgba(74, 111, 165, 0.1)',  border: 'rgba(74, 111, 165, 0.2)' },
-                's--':  { text: '#63b3ed', bg: 'rgba(99, 179, 237, 0.1)',  border: 'rgba(99, 179, 237, 0.2)' },
-                's-':   { text: '#90cdf4', bg: 'rgba(144, 205, 244, 0.1)', border: 'rgba(144, 205, 244, 0.2)' },
-                'nm':   { text: '#ffffff', bg: 'rgba(255, 255, 255, 0.06)', border: 'rgba(255, 255, 255, 0.15)' },
-                's+':   { text: '#81e6d9', bg: 'rgba(129, 230, 217, 0.1)', border: 'rgba(129, 230, 217, 0.2)' },
-                's++':  { text: '#faf089', bg: 'rgba(250, 240, 137, 0.08)', border: 'rgba(250, 240, 137, 0.18)' },
-                's+++': { text: '#feb2b2', bg: 'rgba(254, 178, 178, 0.08)', border: 'rgba(254, 178, 178, 0.18)' },
+                's---': { text: '#3b5278', bg: 'rgba(59, 82, 120, 0.12)',  border: 'rgba(59, 82, 120, 0.25)' }, // Deep slate blue
+                's--':  { text: '#4dabf7', bg: 'rgba(77, 171, 247, 0.08)',  border: 'rgba(77, 171, 247, 0.2)' },  // Mid denim blue
+                's-':   { text: '#a5d8ff', bg: 'rgba(165, 216, 255, 0.06)', border: 'rgba(165, 216, 255, 0.15)' }, // Light ice blue
+                'nm':   { text: '#ffffff', bg: 'rgba(255, 255, 255, 0.06)', border: 'rgba(255, 255, 255, 0.15)' }, // Neutral white
+                's+':   { text: '#2f9e44', bg: 'rgba(47, 158, 68, 0.1)',    border: 'rgba(47, 158, 68, 0.22)' },  // True flat green
+                's++':  { text: '#fcc419', bg: 'rgba(252, 196, 25, 0.06)',  border: 'rgba(252, 196, 25, 0.18)' },  // Muted gold yellow
+                's+++': { text: '#fa5252', bg: 'rgba(250, 82, 82, 0.08)',   border: 'rgba(250, 82, 82, 0.18)' },   // Flat matte red
                 'default': { text: 'rgba(255, 255, 255, 0.8)', bg: 'rgba(255, 255, 255, 0.04)', border: 'rgba(255, 255, 255, 0.1)' }
             };
 
@@ -143,7 +141,7 @@
                         <div class="card-name">${custom.name}</div>
                         <div class="card-mapper">mapped by ${custom.mapper}</div>
                         <div class="card-meta-row">
-                            <span class="card-rating rating-badge" style="color: ${colors.text}; background: ${colors.bg}; border: 1px solid ${colors.border}; padding: 3px 8px; border-radius: 5px; font-weight: 400; font-size: 13px;">⬦ ${custom.rating}</span>
+                            <span class="card-rating rating-badge" style="color: ${colors.text}; background: ${colors.bg}; border: 1px solid ${colors.border}; padding: 3px 8px; border-radius: 5px; font-weight: 500; font-size: 13px;">⬦ ${custom.rating}</span>
                             <span class="card-archiver">archived by ${custom.archiver}</span>
                         </div>
                         <button class="action-btn" onclick="copyLink('${custom.link}', this)">copy link</button>
