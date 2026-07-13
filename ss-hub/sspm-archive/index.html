@@ -17,20 +17,30 @@
         <script src="/nav.js"></script>
 
         <div class="page-content">
-            <h1 class="page-title">sspm archive</h1>
+            <h1 class="page-title" style="margin-bottom: 24px;">sspm archive</h1>
 
             <div class="pattern-filter" id="pattern-filter">
                 <span class="pattern-filter-label">patterns</span>
                 <div class="pattern-pills" id="pattern-pills"></div>
             </div>
 
-            <input
-                type="text"
-                id="search-input"
-                class="search-input"
-                placeholder="search by name, mapper or archiver..."
-                autocomplete="off"
-            />
+            <!-- Balanced layout wrapper matching the search padding and alignment -->
+            <div style="display: flex; gap: 12px; margin-bottom: 8px;">
+                <input
+                    type="text"
+                    id="search-input"
+                    class="search-input"
+                    placeholder="search by name, mapper, archiver, id, or pattern..."
+                    autocomplete="off"
+                    style="margin-bottom: 0; flex: 1;"
+                />
+                <button id="random-btn" class="action-btn" style="width: auto; padding: 14px 24px; white-space: nowrap; height: 100%; box-sizing: border-box;">Random Map</button>
+            </div>
+
+            <!-- Total map count placed directly underneath the search bar -->
+            <div style="margin-bottom: 20px; padding-left: 4px;">
+                <span id="map-counter" class="status-text" style="font-size: 14px; font-weight: 400; color: rgba(255, 255, 255, 0.4);"></span>
+            </div>
 
             <div id="sspm-container">
                 <p class="status-text">loading...</p>
@@ -40,6 +50,24 @@
         <script>
             let allMaps = [];
             let patternStates = new Map(); // pattern → 0 (neutral), 1 (include), 2 (exclude)
+
+            // Recalibrated low-saturation matte color palette for clean UI contrast
+            const ratingColors = {
+                's---': { text: '#3b5278', bg: 'rgba(59, 82, 120, 0.12)',  border: 'rgba(59, 82, 120, 0.25)' }, // Deep slate blue
+                's--':  { text: '#4dabf7', bg: 'rgba(77, 171, 247, 0.08)',  border: 'rgba(77, 171, 247, 0.2)' },  // Mid denim blue
+                's-':   { text: '#a5d8ff', bg: 'rgba(165, 216, 255, 0.06)', border: 'rgba(165, 216, 255, 0.15)' }, // Light ice blue
+                'nm':   { text: '#ffffff', bg: 'rgba(255, 255, 255, 0.06)', border: 'rgba(255, 255, 255, 0.15)' }, // Neutral white
+                's+':   { text: '#2f9e44', bg: 'rgba(47, 158, 68, 0.1)',    border: 'rgba(47, 158, 68, 0.22)' },  // True flat green
+                's++':  { text: '#fcc419', bg: 'rgba(252, 196, 25, 0.06)',  border: 'rgba(252, 196, 25, 0.18)' },  // Muted gold yellow
+                's+++': { text: '#fa5252', bg: 'rgba(250, 82, 82, 0.08)',   border: 'rgba(250, 82, 82, 0.18)' },   // Flat matte red
+                'default': { text: 'rgba(255, 255, 255, 0.8)', bg: 'rgba(255, 255, 255, 0.04)', border: 'rgba(255, 255, 255, 0.1)' }
+            };
+
+            function getRatingStyle(rating) {
+                if (!rating) return ratingColors.default;
+                const normalized = rating.toLowerCase().trim();
+                return ratingColors[normalized] || ratingColors.default;
+            }
 
             function openLink(link) {
                 window.open(link, "_blank");
@@ -93,6 +121,8 @@
                     .map((p) => `<span class="pattern-badge">${p}</span>`)
                     .join("");
 
+                const colors = getRatingStyle(map.rating);
+
                 return `
                     <div class="custom-card">
                         <div class="card-top-row">
@@ -104,7 +134,7 @@
                         <div class="card-name">${map.name}</div>
                         <div class="card-mapper">mapped by ${map.mapper}</div>
                         <div class="card-meta-row">
-                            <span class="card-rating">⬦ ${map.rating}</span>
+                            <span class="card-rating rating-badge" style="color: ${colors.text}; background: ${colors.bg}; border: 1px solid ${colors.border}; padding: 3px 8px; border-radius: 5px; font-weight: 500; font-size: 13px;">⬦ ${map.rating}</span>
                             <span class="card-archiver">archived by ${map.archiver}</span>
                         </div>
                         <button class="action-btn" onclick="openLink('${map.link}')">download</button>
@@ -114,6 +144,7 @@
 
             function renderCards(filter) {
                 const container = document.getElementById("sspm-container");
+                const counterDisplay = document.getElementById("map-counter");
                 const query = filter.toLowerCase().trim();
 
                 const included = [...patternStates.entries()]
@@ -124,27 +155,37 @@
                     .map(([k]) => k);
 
                 const results = allMaps.filter((m) => {
-                    const matchesSearch =
-                        !query ||
-                        m.name.toLowerCase().includes(query) ||
-                        m.mapper.toLowerCase().includes(query) ||
-                        m.archiver.toLowerCase().includes(query);
-
                     const currentPatterns = Array.isArray(m.pattern)
                         ? m.pattern
                         : m.pattern
                           ? [m.pattern]
                           : [];
 
+                    // Broadened search query inclusion parameters to match id and patterns
+                    const matchesSearch =
+                        !query ||
+                        m.name.toLowerCase().includes(query) ||
+                        m.mapper.toLowerCase().includes(query) ||
+                        m.archiver.toLowerCase().includes(query) ||
+                        (m.id && m.id.toString().toLowerCase().includes(query)) ||
+                        currentPatterns.some((p) => p.toLowerCase().includes(query));
+
                     const notExcluded = !currentPatterns.some((p) =>
                         excluded.includes(p),
                     );
                     const matchesInclude =
                         included.length === 0 ||
-                        currentPatterns.some((p) => included.includes(p));
+                        included.every((p) => currentPatterns.includes(p));
 
                     return matchesSearch && notExcluded && matchesInclude;
                 });
+
+                // Update the visual tracker underneath the search bar items dynamically
+                if (allMaps.length === results.length) {
+                    counterDisplay.textContent = `${allMaps.length} total maps`;
+                } else {
+                    counterDisplay.textContent = `showing ${results.length} of ${allMaps.length} maps`;
+                }
 
                 if (results.length === 0) {
                     container.innerHTML =
@@ -153,6 +194,24 @@
                 }
 
                 container.innerHTML = results.map(buildCard).join("");
+            }
+
+            function pickRandomMap() {
+                if (allMaps.length === 0) return;
+
+                const randomIndex = Math.floor(Math.random() * allMaps.length);
+                const selectedMap = allMaps[randomIndex];
+
+                const searchInput = document.getElementById("search-input");
+
+                patternStates.clear();
+                document.querySelectorAll('.pattern-pill').forEach(btn => {
+                    btn.classList.remove('include', 'exclude');
+                });
+
+                searchInput.value = selectedMap.id;
+                searchInput.dispatchEvent(new Event('input'));
+                searchInput.focus();
             }
 
             async function loadMaps() {
@@ -164,6 +223,7 @@
                     if (allMaps.length === 0) {
                         container.innerHTML =
                             '<p class="status-text">nothing here yet.</p>';
+                        document.getElementById("map-counter").textContent = "0 total maps";
                         return;
                     }
 
@@ -177,6 +237,8 @@
                         .addEventListener("input", (e) => {
                             renderCards(e.target.value);
                         });
+
+                    document.getElementById("random-btn").addEventListener("click", pickRandomMap);
                 } catch (error) {
                     container.innerHTML =
                         '<p class="status-text">could not load maps.</p>';
