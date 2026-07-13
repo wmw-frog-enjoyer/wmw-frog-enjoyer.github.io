@@ -771,3 +771,155 @@ body {
         flex: 1 1 200px;
     }
 }
+
+/* ==========================================================================
+   10. OBSIDIAN-STYLE RIGHT SIDEBAR MEDIA FEED
+   ========================================================================= */
+
+.sidebar-media {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 90px;
+    position: sticky;
+    top: 60px;
+    align-self: flex-start;
+}
+
+.media-feed-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.media-icon {
+    font-size: 11px;
+    color: #96c8ff;
+    opacity: 0.8;
+}
+
+.video-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Card Wrapper Styling */
+.video-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(150, 200, 255, 0.2);
+}
+
+/* Image Aspect-Ratio Container */
+.video-thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.75;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.video-card:hover .video-thumbnail {
+    opacity: 0.95;
+    transform: scale(1.03);
+}
+
+/* Minimal overlay button play indicators */
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.2s ease;
+}
+
+.video-card:hover .play-overlay {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.play-triangle {
+    background: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 12px;
+    padding-left: 2px; /* Visual balance adjustment for right triangle alignment */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s ease;
+}
+
+.video-card:hover .play-triangle {
+    transform: scale(1.1);
+    background: #96c8ff;
+    color: #1e1e1e;
+    border-color: #96c8ff;
+}
+
+/* Context Meta Text Details */
+.video-meta {
+    padding: 10px 12px;
+}
+
+.video-card-title {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 4px 0;
+    line-height: 1.4;
+
+    /* Truncation system */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2; /* Standard property for modern browser compatibility */
+    overflow: hidden;
+}
+
+.video-card-author {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    display: block;
+}
+
+.no-media-text {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.3);
+    font-style: italic;
+    margin: 0;
+}
