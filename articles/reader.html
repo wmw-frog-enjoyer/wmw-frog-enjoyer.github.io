@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <title>Ansilian</title>
         <link rel="icon" type="image/png" href="/assets/ansilian.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,103 +10,453 @@
             href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
             rel="stylesheet"
         />
-
         <link rel="stylesheet" href="../style.css" />
         <link rel="stylesheet" href="style.css?v=1" />
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
 
         <style>
-            /* progress bar — fixed on the left edge of the screen */
+            /* ── progress bar ── */
             .reading-progress-track {
                 position: fixed;
-                left: 0;
+                right: 0;
                 top: 0;
-                width: 3px;
+                width: 6px;
                 height: 100vh;
-                background: rgba(255, 255, 255, 0.06);
+                background: rgba(255, 255, 255, 0.08);
                 z-index: 999;
             }
-
             .reading-progress-fill {
                 width: 100%;
                 height: 0%;
-                background: rgba(255, 255, 255, 0.35);
-                transition: height 0.1s ease;
-                border-radius: 0 0 2px 2px;
+                background: rgba(255, 255, 255, 0.55);
+                transition: height 0.08s ease;
+                border-radius: 0 0 3px 3px;
             }
 
-            /* read time shown in the preface next to the date */
-            .preface-read-time {
+            /* ── layout ── */
+            .reader-layout {
+                display: grid;
+                grid-template-columns: 1fr minmax(0, 850px) 1fr;
+                margin: 60px 0;
+            }
+
+            /* ── left column: TOC stuck to left edge of gap1 ── */
+            .toc-column {
+                display: flex;
+                justify-content: flex-start;
+                padding-left: 32px;
+            }
+
+            .toc-widget {
+                position: sticky;
+                top: 80px;
+                width: 220px;
+                align-self: flex-start;
+                background: none;             /* Stripped the card background completely */
+                border: none;                 /* Removed the box boundary lines */
+                padding: 0;                   /* Reset padding to align perfectly to the left grid track */
+                box-shadow: none;             /* Eliminated the outer glow container */
+            }
+
+            .toc-toggle {
+                display: flex;
+                align-items: center;
+                gap: 6px;                     /* Tightened up spacing like Obsidian's folder toggles */
+                background: none;
+                border: none;
+                padding: 0 0 10px 0;
+                cursor: pointer;
+                color: rgba(255, 255, 255, 0.85);
                 font-family: "Inter", sans-serif;
-                font-size: 12px;
+                font-size: 15px;              /* Snapped down to a crisp, precise utility scale */
+                font-weight: 500;
+                letter-spacing: 0.03em;
+                text-transform: none;         /* Obsidian uses standard title casing rather than loud uppercase */
+                width: 100%;
+                text-align: left;
+                border-bottom: none;          /* Removed the divider rule */
+                margin-bottom: 8px;
+            }
+
+            .toc-arrow {
+                font-size: 11px;
+                transition: transform 0.15s ease;
+                color: rgba(255, 255, 255, 0.4);
+            }
+
+            .toc-arrow.closed {
+                transform: rotate(-90deg);
+            }
+
+            /* left border track */
+            .toc-list {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;                     /* Dense, clean list item spacing */
+                border-left: 1px solid rgba(255, 255, 255, 0.08); /* Minimal vertical guide line */
+            }
+
+            .toc-item {
+                display: block;
+                width: 100%;                  /* Ensures the hover background stretches fully */
+                box-sizing: border-box;       /* Prevents padding from breaking layout width */
+                font-family: "Inter", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.5);
+                text-decoration: none;
+                padding: 5px 14px 5px 14px;   /* Added 14px padding to both Left AND Right sides */
+                transition: color 0.12s ease, background-color 0.12s ease;
+                line-height: 1.4;
+                border-left: 1px solid transparent;
+                margin-left: -1px;
+                border-radius: 4px;
+            }
+
+            .toc-item:hover {
+                color: rgba(255, 255, 255, 0.9);
+                background: rgba(255, 255, 255, 0.06);
+                border-left-color: transparent;
+                text-shadow: none;
+                padding: 5px 14px 5px 14px;   /* Keeps right and left side perfectly balanced */
+            }
+
+            /* indent levels */
+            .toc-h2 { font-size: 14px; }
+            .toc-h3 { font-size: 13.5px; padding: 5px 14px 5px 24px; color: rgba(255, 255, 255, 0.4); }
+            .toc-h4 { font-size: 13px; padding: 5px 14px 5px 36px; color: rgba(255, 255, 255, 0.3); }
+
+            .toc-h3:hover { padding: 5px 14px 5px 24px; }
+            .toc-h4:hover { padding: 5px 14px 5px 36px; }
+
+            /* ── center column ── */
+            .page-content {
+                padding: 0 24px;
+                text-align: left;
+                min-width: 0;
+            }
+
+            /* ── right column: stats stuck to right edge ── */
+            .stats-column {
+                display: flex;
+                justify-content: center; /* Changes from flex-end to absolute center of gap2 */
+                padding-right: 0;        /* Clear out the padding so it relies purely on grid centering */
+            }
+
+            .reading-stats {
+                position: sticky;          /* Makes it follow you as you scroll */
+                top: 80px;                 /* Aligns its top position perfectly with the TOC widget */
+                width: 110px;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                align-self: flex-start;    /* Required for sticky to work correctly inside a flex/grid container */
+                /* margin-top: 148px; */   /* REMOVE OR COMMENT THIS OUT so it aligns to the top */
+            }
+
+            .stat-item { display: flex; flex-direction: column; gap: 4px; }
+            .stat-item-label {
+                font-family: "Inter", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.85); /* Promoted to crisp, readable off-white */
+                text-transform: uppercase;
+                letter-spacing: 0.07em;
+            }
+
+            .stat-item-value {
+                font-family: "Inter", sans-serif;
+                font-size: 24px;
                 font-weight: 300;
-                color: rgba(255, 255, 255, 0.2);
+                color: rgba(255, 255, 255, 0.35); /* Stepped down to a quiet, balanced gray track */
+                letter-spacing: -0.3px;
+            }
+
+            @media (max-width: 1100px) {
+                .reader-layout { grid-template-columns: 0 minmax(0, 850px) 0; }
+                .toc-column, .stats-column { display: none; }
+                .page-content { padding: 0 16px; }
+            }
+
+            /* ── footer ── */
+            .reader-footer {
+                margin-top: 80px;
+                padding-top: 40px;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .footer-title {
+                font-family: "Inter", sans-serif;
+                font-size: 42px;
+                font-weight: 200;
+                color: white;
+                letter-spacing: -0.5px;
+                margin-bottom: 28px;
+            }
+            .footer-cards {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 48px;
+            }
+            .footer-card {
+                display: block;
+                text-decoration: none;
+                color: white;
+                padding: 22px 24px;
+                border: 1px solid rgba(255, 255, 255, 0.07);
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.02);
+                transition: background 0.15s ease, border-color 0.15s ease;
+            }
+            .footer-card:hover {
+                background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(255, 255, 255, 0.14);
+            }
+            .footer-card-title {
+                font-family: "Inter", sans-serif;
+                font-size: 26px;
+                font-weight: 400;
+                margin-bottom: 8px;
+            }
+            .footer-card-meta {
+                font-family: "Inter", sans-serif;
+                font-size: 17px;
+                font-weight: 300;
+                color: rgba(255, 255, 255, 0.35);
+            }
+            .footer-back {
+                display: inline-block;
+                font-family: "Inter", sans-serif;
+                font-size: 22px;
+                font-weight: 300;
+                color: rgba(255, 255, 255, 0.4);
+                text-decoration: none;
+                margin-bottom: 80px;
+                transition: color 0.15s ease;
+            }
+            .footer-back:hover { color: rgba(255, 255, 255, 0.85); }
+
+            /* ── scroll to top ── */
+            .scroll-top-btn {
+                position: fixed;
+                bottom: 32px;
+                right: 32px;
+                width: 52px;                  /* Snapped down slightly for a tighter profile */
+                height: 52px;
+                background: rgba(255, 255, 255, 0.05); /* Very quiet, clean transparency */
+                border: 1px solid rgba(255, 255, 255, 0.2); /* Thin, sharp baseline boundary */
+                border-radius: 50%;
+                color: rgba(255, 255, 255, 0.6);            /* Subdued default arrow color */
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Snappier, natural curve */
+                z-index: 998;
+            }
+
+            .scroll-top-btn.visible {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            /* Elegant, grounded interactive hover state */
+            .scroll-top-btn:hover {
+                color: rgba(255, 255, 255, 0.95);           /* Arrow sharpens to clear white */
+                background: rgba(255, 255, 255, 0.1);        /* Solidifies base structure */
+                border-color: rgba(255, 255, 255, 0.45);      /* Clear perimeter highlight */
+                transform: translateY(-4px);                  /* Snappy vertical lift hint */
+
+                /* Low-profile, warm ambient shadow just to lift it off the page background */
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+                            0 0 8px rgba(255, 255, 255, 0.08);
+            }
+
+            /* Style for the inline SVG arrow */
+            .scroll-top-btn svg {
+                width: 18px;
+                height: 18px;
+                stroke: currentColor;
+                stroke-width: 3; /* Firm, highly legible line thickness */
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                fill: none;
+                transition: transform 0.2s ease;
+            }
+
+            /* Subtle internal animation to hint action */
+            .scroll-top-btn:hover svg {
+                transform: translateY(-1px);
             }
         </style>
     </head>
     <body>
-        <!-- the progress bar track sits outside the page content -->
         <div class="reading-progress-track">
             <div class="reading-progress-fill" id="progress-fill"></div>
         </div>
 
+        <button class="scroll-top-btn" id="scroll-top-btn"
+            onclick="window.scrollTo({top:0,behavior:'smooth'})"
+            title="back to top">
+            <!-- Thicker vector arrow -->
+            <svg viewBox="0 0 24 24">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+        </button>
+
         <div id="topbar-container"></div>
         <script src="/nav.js"></script>
 
-        <div class="page-content">
-            <a class="back-link" href="index.html">← back to articles</a>
+        <div class="reader-layout">
 
-            <div class="post-preface">
-                <span class="preface-number" id="preface-number"></span>
-                <div class="preface-right">
-                    <span class="preface-author" id="preface-author"></span>
-                    <span class="preface-date" id="preface-date"></span>
-                    <span class="preface-read-time" id="preface-read-time"></span>
+            <!-- left: TOC -->
+            <div class="toc-column">
+                <div class="toc-widget" id="toc-widget" style="display:none;">
+                    <button class="toc-toggle" onclick="toggleToc()">
+                        <span class="toc-arrow" id="toc-arrow">▾</span>
+                        <span>on this page</span>
+                    </button>
+                    <div class="toc-list" id="toc-list"></div>
                 </div>
             </div>
-            <hr class="preface-divider" />
 
-            <div id="preface-tags" class="preface-tags"></div>
+            <!-- center: article -->
+            <div class="page-content">
+                <a class="back-link" href="index.html">← back to articles</a>
 
-            <div id="post-body" class="post-body">
-                <p class="status-text">loading...</p>
+                <div class="post-preface">
+                    <span class="preface-number" id="preface-number"></span>
+                    <div class="preface-right">
+                        <span class="preface-author" id="preface-author"></span>
+                        <span class="preface-date" id="preface-date"></span>
+                    </div>
+                </div>
+                <hr class="preface-divider" />
+
+                <div id="preface-tags" class="preface-tags"></div>
+                <div id="post-body" class="post-body">
+                    <p class="status-text">loading...</p>
+                </div>
+
+                <div class="reader-footer" id="reader-footer" style="display:none;">
+                    <div class="footer-title">latest articles</div>
+                    <div class="footer-cards" id="footer-cards"></div>
+                    <a class="footer-back" href="index.html">← back to articles</a>
+                </div>
             </div>
+
+            <!-- right: stats -->
+            <div class="stats-column">
+                <div class="reading-stats">
+                    <div class="stat-item">
+                        <span class="stat-item-label">words</span>
+                        <span class="stat-item-value" id="stat-words">—</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-item-label">characters</span>
+                        <span class="stat-item-value" id="stat-chars">—</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-item-label">read time</span>
+                        <span class="stat-item-value" id="stat-time">—</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <script>
-            // update the progress bar fill as the user scrolls
             function updateProgress() {
                 const body = document.getElementById("post-body");
                 if (!body) return;
-
-                // how far have we scrolled into the article specifically
                 const articleTop = body.getBoundingClientRect().top + window.scrollY;
-                const articleHeight = body.offsetHeight;
-                const scrolled = window.scrollY - articleTop;
-                const percent = Math.min(100, Math.max(0, (scrolled / articleHeight) * 100));
-
+                const percent = Math.min(100, Math.max(0,
+                    ((window.scrollY - articleTop) / body.offsetHeight) * 100
+                ));
                 document.getElementById("progress-fill").style.height = percent + "%";
+                document.getElementById("scroll-top-btn")
+                    .classList.toggle("visible", window.scrollY > 300);
             }
-
             window.addEventListener("scroll", updateProgress, { passive: true });
 
-            // estimate reading time from plain text word count (avg 200 wpm)
-            function estimateReadTime(markdown) {
-                const words = markdown.trim().split(/\s+/).length;
+            // open by default
+            let tocOpen = true;
+
+            function toggleToc() {
+                tocOpen = !tocOpen;
+                document.getElementById("toc-list").style.display = tocOpen ? "flex" : "none";
+                document.getElementById("toc-arrow").classList.toggle("closed", !tocOpen);
+            }
+
+            function buildToc() {
+                // pick up h2, h3, h4
+                const headings = document.getElementById("post-body")
+                    .querySelectorAll("h2, h3, h4");
+                if (headings.length === 0) return;
+
+                const list = document.getElementById("toc-list");
+
+                headings.forEach((h, i) => {
+                    if (!h.id) h.id = `heading-${i}`;
+                    const level = parseInt(h.tagName[1]); // 2, 3, or 4
+
+                    const link = document.createElement("a");
+                    link.className = `toc-item toc-h${level}`;
+                    link.href = `#${h.id}`;
+                    link.textContent = h.textContent;
+                    link.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        h.scrollIntoView({ behavior: "smooth", block: "start" });
+                    });
+                    list.appendChild(link);
+                });
+
+                // open by default
+                list.style.display = "flex";
+                document.getElementById("toc-widget").style.display = "block";
+            }
+
+            function computeStats(markdown) {
+                const plain = markdown
+                    .replace(/```[\s\S]*?```/g, "")
+                    .replace(/`[^`]+`/g, "")
+                    .replace(/#+\s/g, "")
+                    .replace(/[*_~>]/g, "")
+                    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+                    .trim();
+                const words = plain.split(/\s+/).filter(Boolean).length;
+                const chars = plain.replace(/\s/g, "").length;
                 const minutes = Math.ceil(words / 200);
-                return minutes === 1 ? "1 min read" : `${minutes} min read`;
+                return { words, chars, timeLabel: minutes === 1 ? "1 min" : `${minutes} min` };
+            }
+
+            function loadLatestArticles(currentId, allPosts) {
+                const latest = allPosts
+                    .filter((p) => p.id !== currentId)
+                    .sort((a, b) => Number(b.id) - Number(a.id))
+                    .slice(0, 3);
+                if (latest.length === 0) return;
+
+                document.getElementById("footer-cards").innerHTML = latest.map((p) => `
+                    <a class="footer-card" href="reader.html?post=${p.id}">
+                        <div class="footer-card-title">${p.title}</div>
+                        <div class="footer-card-meta">${p.author} · ${p.date}</div>
+                    </a>
+                `).join("");
+
+                document.getElementById("reader-footer").style.display = "block";
             }
 
             async function loadPost() {
                 const postBody = document.getElementById("post-body");
-
                 const params = new URLSearchParams(window.location.search);
                 const postId = params.get("post");
 
                 if (!postId) {
-                    postBody.innerHTML =
-                        '<p class="status-text">no article specified.</p>';
+                    postBody.innerHTML = '<p class="status-text">no article specified.</p>';
                     return;
                 }
 
@@ -117,47 +466,37 @@
                     const meta = allPosts.find((p) => p.id === postId);
 
                     if (meta) {
-                        document.getElementById("preface-number").textContent =
-                            `#${meta.id}`;
-                        document.getElementById("preface-author").textContent =
-                            meta.author;
-                        document.getElementById("preface-date").textContent =
-                            meta.date;
+                        document.getElementById("preface-number").textContent = `#${meta.id}`;
+                        document.getElementById("preface-author").textContent = meta.author;
+                        document.getElementById("preface-date").textContent = meta.date;
                         document.title = `${meta.title} — Ansilian`;
 
                         if (meta.tags && meta.tags.length > 0) {
                             document.getElementById("preface-tags").innerHTML =
-                                meta.tags
-                                    .map((t) => `<span class="preface-tag">${t}</span>`)
-                                    .join("");
+                                meta.tags.map((t) => `<span class="preface-tag">${t}</span>`).join("");
                         }
                     }
 
                     const mdResponse = await fetch(`posts/${postId}.md`);
-
                     if (!mdResponse.ok) {
-                        postBody.innerHTML =
-                            '<p class="status-text">article not found.</p>';
+                        postBody.innerHTML = '<p class="status-text">article not found.</p>';
                         return;
                     }
 
                     const markdown = await mdResponse.text();
+                    const { words, chars, timeLabel } = computeStats(markdown);
+                    document.getElementById("stat-words").textContent = words.toLocaleString();
+                    document.getElementById("stat-chars").textContent = chars.toLocaleString();
+                    document.getElementById("stat-time").textContent = timeLabel;
 
-                    // show read time estimate before rendering
-                    document.getElementById("preface-read-time").textContent =
-                        estimateReadTime(markdown);
-
-                    const processed = markdown.replace(
-                        /([^\n])\n([^\n])/g,
-                        "$1  \n$2",
-                    );
+                    const processed = markdown.replace(/([^\n])\n([^\n])/g, "$1  \n$2");
                     postBody.innerHTML = marked.parse(processed);
 
-                    // run once after content loads to set initial progress
+                    buildToc();
                     updateProgress();
+                    loadLatestArticles(postId, allPosts);
                 } catch (error) {
-                    postBody.innerHTML =
-                        '<p class="status-text">could not load article.</p>';
+                    postBody.innerHTML = '<p class="status-text">could not load article.</p>';
                     console.error(error);
                 }
             }
