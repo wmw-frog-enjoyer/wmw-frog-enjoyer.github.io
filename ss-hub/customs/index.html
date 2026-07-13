@@ -18,17 +18,15 @@
         <script src="/nav.js"></script>
 
         <div class="page-content">
-            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 16px;">
-                <h1 class="page-title" style="margin-bottom: 0;">customs</h1>
-                <span id="map-counter" class="status-text" style="font-weight: 400; color: rgba(255, 255, 255, 0.6);"></span>
-            </div>
+            <h1 class="page-title" style="margin-bottom: 24px;">customs</h1>
 
-            <div class="pattern-filter" id="pattern-filter" style="margin-top: 24px;">
+            <div class="pattern-filter" id="pattern-filter">
                 <span class="pattern-filter-label">patterns</span>
                 <div class="pattern-pills" id="pattern-pills"></div>
             </div>
 
-            <div style="display: flex; gap: 12px; margin-bottom: 28px;">
+            <!-- Balanced layout wrapper matching the search padding -->
+            <div style="display: flex; gap: 12px; margin-bottom: 8px;">
                 <input
                     type="text"
                     id="search-input"
@@ -37,7 +35,12 @@
                     autocomplete="off"
                     style="margin-bottom: 0; flex: 1;"
                 />
-                <button id="random-btn" class="action-btn" style="width: auto; padding: 0 24px; white-space: nowrap;">Random Map</button>
+                <button id="random-btn" class="action-btn" style="width: auto; padding: 14px 24px; white-space: nowrap; height: 100%; box-sizing: border-box;">Random Map</button>
+            </div>
+
+            <!-- Total map count placed perfectly underneath the search zone -->
+            <div style="margin-bottom: 20px; padding-left: 4px;">
+                <span id="map-counter" class="status-text" style="font-size: 14px; font-weight: 400; color: rgba(255, 255, 255, 0.4);"></span>
             </div>
 
             <div id="customs-container">
@@ -49,12 +52,16 @@
             let allCustoms = [];
             let patternStates = new Map();
 
+            // Muted, low-saturation palette for clean system scanning
             const ratingColors = {
-                's+':  { text: '#ff5555', bg: 'rgba(255, 85, 85, 0.15)', border: 'rgba(255, 85, 85, 0.3)' },
-                's-':  { text: '#ffaa00', bg: 'rgba(255, 170, 0, 0.15)', border: 'rgba(255, 170, 0, 0.3)' },
-                'nm':  { text: '#55ff55', bg: 'rgba(85, 255, 85, 0.15)', border: 'rgba(85, 255, 85, 0.3)' },
-                'hd':  { text: '#55ffff', bg: 'rgba(85, 255, 255, 0.15)', border: 'rgba(85, 255, 255, 0.3)' },
-                'default': { text: 'rgba(255, 255, 255, 0.8)', bg: 'rgba(255, 255, 255, 0.05)', border: 'rgba(255, 255, 255, 0.15)' }
+                's---': { text: '#4a6fa5', bg: 'rgba(74, 111, 165, 0.1)',  border: 'rgba(74, 111, 165, 0.2)' },
+                's--':  { text: '#63b3ed', bg: 'rgba(99, 179, 237, 0.1)',  border: 'rgba(99, 179, 237, 0.2)' },
+                's-':   { text: '#90cdf4', bg: 'rgba(144, 205, 244, 0.1)', border: 'rgba(144, 205, 244, 0.2)' },
+                'nm':   { text: '#ffffff', bg: 'rgba(255, 255, 255, 0.06)', border: 'rgba(255, 255, 255, 0.15)' },
+                's+':   { text: '#81e6d9', bg: 'rgba(129, 230, 217, 0.1)', border: 'rgba(129, 230, 217, 0.2)' },
+                's++':  { text: '#faf089', bg: 'rgba(250, 240, 137, 0.08)', border: 'rgba(250, 240, 137, 0.18)' },
+                's+++': { text: '#feb2b2', bg: 'rgba(254, 178, 178, 0.08)', border: 'rgba(254, 178, 178, 0.18)' },
+                'default': { text: 'rgba(255, 255, 255, 0.8)', bg: 'rgba(255, 255, 255, 0.04)', border: 'rgba(255, 255, 255, 0.1)' }
             };
 
             function getRatingStyle(rating) {
@@ -136,7 +143,7 @@
                         <div class="card-name">${custom.name}</div>
                         <div class="card-mapper">mapped by ${custom.mapper}</div>
                         <div class="card-meta-row">
-                            <span class="card-rating rating-badge" style="color: ${colors.text}; background: ${colors.bg}; border: 1px solid ${colors.border}; padding: 2px 8px; border-radius: 6px; font-weight: 400;">⬦ ${custom.rating}</span>
+                            <span class="card-rating rating-badge" style="color: ${colors.text}; background: ${colors.bg}; border: 1px solid ${colors.border}; padding: 3px 8px; border-radius: 5px; font-weight: 400; font-size: 13px;">⬦ ${custom.rating}</span>
                             <span class="card-archiver">archived by ${custom.archiver}</span>
                         </div>
                         <button class="action-btn" onclick="copyLink('${custom.link}', this)">copy link</button>
@@ -226,7 +233,7 @@
                     if (allCustoms.length === 0) {
                         container.innerHTML =
                             '<p class="status-text">nothing here yet.</p>';
-                        document.getElementById("map-counter").textContent = "0 maps";
+                        document.getElementById("map-counter").textContent = "0 total maps";
                         return;
                     }
 
