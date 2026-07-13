@@ -1,21 +1,12 @@
 <!doctype html>
 <html>
     <head>
-        <!-- FIX 1: This tag tells mobile browsers to scale properly -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <title>Ansilian</title>
-
         <link rel="icon" type="image/png" href="/assets/ansilian.png" />
-
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
-            rel="stylesheet"
-        />
-
-        <!-- FIX 2: Appended ?v=1 to force your phone to drop its old cached styles -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="style.css?v=1" />
     </head>
 
@@ -23,55 +14,47 @@
         <div id="topbar-container"></div>
         <script src="/nav.js"></script>
 
-        <!-- this is the end of copy paste -->
-
         <h1 class="title">Archivers</h1>
         <p class="subtitle">
-            we dont have enough archivers to need a search feature, use ctrl+f
-            instead
+            we dont have enough archivers to need a search feature, use ctrl+f instead
         </p>
 
-        <div class="grid">
-            <!-- lunara -->
-            <div class="card">
-                <img class="pfp" src="/assets/lunara.png" alt="pfp" />
-                <div class="card-content">
-                    <h1 class="card-title">Lunara</h1>
-                    <p class="card-text">Role: Senior Archiver</p>
-                    <p class="card-text">Archiver since: 2026-05-16</p>
-                    <a
-                        class="discord"
-                        href="https://discordapp.com/users/1175283230136598559"
-                        target="_blank"
-                        >Discord</a
-                    >
-                </div>
-            </div>
-            <!-- lunara -->
-            <!-- melo2th -->
-            <div class="card">
-                <img class="pfp" src="/assets/melo2th.png" alt="pfp" />
-                <div class="card-content">
-                    <h1 class="card-title">Melo2th</h1>
-                    <p class="card-text">Role: Senior Archiver</p>
-                    <p class="card-text">Archiver since: 2026-06-14</p>
-                    <a
-                        class="discord"
-                        href="https://discordapp.com/users/1198835061701738528"
-                        target="_blank"
-                        >Discord</a
-                    >
-                </div>
-            </div>
-            <!-- melo2th -->
-        </div>
+        <!-- Empty grid container that JS will populate -->
+        <div class="grid" id="archivers-grid"></div>
 
-        <a
-            class="button-apply"
-            href="https://tally.so/r/kdJ616"
-            target="_blank"
-        >
+        <a class="button-apply" href="https://tally.so/r/kdJ616" target="_blank">
             <p class="button-text">Apply to Ansilian!</p>
         </a>
+
+        <!-- Script to load your JSON data dynamically -->
+        <script>
+            async function loadArchivers() {
+                const grid = document.getElementById('archivers-grid');
+                try {
+                    // Fetch the data file
+                    const response = await fetch('archivers.json');
+                    const archivers = await response.json();
+
+                    // Map through data and generate the exact HTML blocks your CSS expects
+                    grid.innerHTML = archivers.map(user => `
+                        <div class="card">
+                            <img class="pfp" src="${user.pfp}" alt="${user.name}'s pfp" />
+                            <div class="card-content">
+                                <h1 class="card-title">${user.name}</h1>
+                                <p class="card-text">Role: ${user.role}</p>
+                                <p class="card-text">Archiver since: ${user.since}</p>
+                                <a class="discord" href="https://discordapp.com/users/${user.discordId}" target="_blank">Discord</a>
+                            </div>
+                        </div>
+                    `).join('');
+                } catch (error) {
+                    console.error('Failed to load archivers data:', error);
+                    grid.innerHTML = `<p style="color: #ff5555; grid-column: 1/-1;">Error loading archivers archive.</p>`;
+                }
+            }
+
+            // Run it when the page elements are ready
+            document.addEventListener('DOMContentLoaded', loadArchivers);
+        </script>
     </body>
 </html>
