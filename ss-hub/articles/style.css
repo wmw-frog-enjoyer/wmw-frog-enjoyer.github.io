@@ -610,3 +610,164 @@ body {
         flex: 1 1 150px;
     }
 }
+
+/* ==========================================================================
+   8. OBSIDIAN-STYLE COLLAPSIBLE SIDEBAR FILTERS (Flat & Borderless)
+   ========================================================================= */
+
+.main-layout-wrapper {
+    display: grid;
+    grid-template-columns: 240px 850px 240px;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1450px;
+    margin: 60px auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+/* Clear page-content overrides inside grid wrapper layout context */
+.main-layout-wrapper .page-content {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+/* Sidebar Column Logic */
+.sidebar-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: left;
+    padding-top: 90px; /* Aligns baseline horizontally next to main header title */
+    position: sticky;
+    top: 60px;
+    align-self: flex-start;
+}
+
+.filter-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Section Button Toggles */
+.filter-section-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    padding: 0 0 10px 0;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    width: 100%;
+    text-align: left;
+    outline: none;
+}
+
+/* Obsidian Folder Arrow Management */
+.filter-arrow {
+    font-size: 11px;
+    transition: transform 0.15s ease;
+    color: rgba(255, 255, 255, 0.4);
+    display: inline-block;
+}
+
+.filter-arrow.closed {
+    transform: rotate(-90deg);
+}
+
+/* Left Border Vertical Guide Track */
+.filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    margin-left: 4px;
+}
+
+/* Indented Filter Button Targets */
+.filter-item {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: none;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 5px 14px;
+    transition: color 0.12s ease, background-color 0.12s ease;
+    line-height: 1.4;
+    border-radius: 4px;
+}
+
+.filter-item:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Filter Engine States ── */
+
+/* Active Sort Selector States */
+.filter-item.active {
+    color: #96c8ff;
+    background: rgba(150, 200, 255, 0.08);
+    font-weight: 500;
+}
+
+/* Include Filter State (+ matching highlights) */
+.toggle-item.state-include {
+    color: #a3e635; /* Sharp minimal green indicator matching standard canvas nodes */
+    background: rgba(163, 230, 53, 0.06);
+    font-weight: 500;
+}
+
+.toggle-item.state-include::before {
+    content: "+ ";
+    opacity: 0.6;
+}
+
+/* Exclude Filter State (- strikethrough updates) */
+.toggle-item.state-exclude {
+    color: #f87171; /* Subtle warning red tone indicators */
+    background: rgba(248, 113, 113, 0.04);
+}
+
+.toggle-item.state-exclude::before {
+    content: "- ";
+    opacity: 0.6;
+}
+
+
+/* ==========================================================================
+   9. RESPONSIVE MEDIA QUERIES FOR SIDEBAR LAYOUTS
+   ========================================================================= */
+@media (max-width: 1200px) {
+    .main-layout-wrapper {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin: 30px auto;
+    }
+
+    .sidebar-filters {
+        padding-top: 0;
+        position: relative;
+        top: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .filter-section {
+        flex: 1 1 200px;
+    }
+}
