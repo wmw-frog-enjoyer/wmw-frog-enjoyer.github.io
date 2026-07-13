@@ -315,3 +315,13 @@ body {
         font-size: 15px !important;
     }
 }
+
+/* Custom Card Tier Tags responsive styling */
+.card-rating.rating-badge {
+    font-family: "Inter", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    font-size: 13px !important;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}

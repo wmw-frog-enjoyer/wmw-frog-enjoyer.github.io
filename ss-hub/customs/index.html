@@ -1,9 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <!-- FIX 1: Added mobile viewport meta tag for responsive scaling -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <title>customs</title>
         <link rel="icon" type="image/png" href="/assets/ansilian.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,7 +11,6 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="../../style.css" />
-        <!-- FIX 2: Applied cache-busting string to force immediate stylesheet reloads -->
         <link rel="stylesheet" href="style.css?v=1" />
     </head>
     <body>
@@ -21,20 +18,27 @@
         <script src="/nav.js"></script>
 
         <div class="page-content">
-            <h1 class="page-title">customs</h1>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 16px;">
+                <h1 class="page-title" style="margin-bottom: 0;">customs</h1>
+                <span id="map-counter" class="status-text" style="font-weight: 400; color: rgba(255, 255, 255, 0.6);"></span>
+            </div>
 
-            <div class="pattern-filter" id="pattern-filter">
+            <div class="pattern-filter" id="pattern-filter" style="margin-top: 24px;">
                 <span class="pattern-filter-label">patterns</span>
                 <div class="pattern-pills" id="pattern-pills"></div>
             </div>
 
-            <input
-                type="text"
-                id="search-input"
-                class="search-input"
-                placeholder="search by name, mapper, archiver, id, or pattern..."
-                autocomplete="off"
-            />
+            <div style="display: flex; gap: 12px; margin-bottom: 28px;">
+                <input
+                    type="text"
+                    id="search-input"
+                    class="search-input"
+                    placeholder="search by name, mapper, archiver, id, or pattern..."
+                    autocomplete="off"
+                    style="margin-bottom: 0; flex: 1;"
+                />
+                <button id="random-btn" class="action-btn" style="width: auto; padding: 0 24px; white-space: nowrap;">Random Map</button>
+            </div>
 
             <div id="customs-container">
                 <p class="status-text">loading...</p>
@@ -43,7 +47,21 @@
 
         <script>
             let allCustoms = [];
-            let patternStates = new Map(); // pattern → 0 (neutral), 1 (include), 2 (exclude)
+            let patternStates = new Map();
+
+            const ratingColors = {
+                's+':  { text: '#ff5555', bg: 'rgba(255, 85, 85, 0.15)', border: 'rgba(255, 85, 85, 0.3)' },
+                's-':  { text: '#ffaa00', bg: 'rgba(255, 170, 0, 0.15)', border: 'rgba(255, 170, 0, 0.3)' },
+                'nm':  { text: '#55ff55', bg: 'rgba(85, 255, 85, 0.15)', border: 'rgba(85, 255, 85, 0.3)' },
+                'hd':  { text: '#55ffff', bg: 'rgba(85, 255, 255, 0.15)', border: 'rgba(85, 255, 255, 0.3)' },
+                'default': { text: 'rgba(255, 255, 255, 0.8)', bg: 'rgba(255, 255, 255, 0.05)', border: 'rgba(255, 255, 255, 0.15)' }
+            };
+
+            function getRatingStyle(rating) {
+                if (!rating) return ratingColors.default;
+                const normalized = rating.toLowerCase().trim();
+                return ratingColors[normalized] || ratingColors.default;
+            }
 
             async function copyLink(link, btn) {
                 try {
@@ -51,11 +69,11 @@
                     const original = btn.textContent;
 
                     btn.textContent = "copied!";
-                    btn.classList.add("copied"); // Adds the new grey styling
+                    btn.classList.add("copied");
 
                     setTimeout(() => {
                         btn.textContent = original;
-                        btn.classList.remove("copied"); // Reverts back to green
+                        btn.classList.remove("copied");
                     }, 2000);
                 } catch {
                     btn.textContent = "copy failed";
@@ -64,7 +82,6 @@
             }
 
             function buildPatternPills(customs) {
-                // Collect unique, individual patterns from all customs arrays/strings
                 const patterns = [
                     ...new Set(
                         customs.flatMap((c) => c.pattern).filter(Boolean),
@@ -96,17 +113,17 @@
             }
 
             function buildCard(custom) {
-                // Safely convert custom.pattern into an array regardless of data structure
                 const patternsArray = Array.isArray(custom.pattern)
                     ? custom.pattern
                     : custom.pattern
                       ? [custom.pattern]
                       : [];
 
-                // Generate HTML for all pattern badges on this card
                 const badgesHtml = patternsArray
                     .map((p) => `<span class="pattern-badge">${p}</span>`)
                     .join("");
+
+                const colors = getRatingStyle(custom.rating);
 
                 return `
                     <div class="custom-card">
@@ -119,7 +136,7 @@
                         <div class="card-name">${custom.name}</div>
                         <div class="card-mapper">mapped by ${custom.mapper}</div>
                         <div class="card-meta-row">
-                            <span class="card-rating">⬦ ${custom.rating}</span>
+                            <span class="card-rating rating-badge" style="color: ${colors.text}; background: ${colors.bg}; border: 1px solid ${colors.border}; padding: 2px 8px; border-radius: 6px; font-weight: 400;">⬦ ${custom.rating}</span>
                             <span class="card-archiver">archived by ${custom.archiver}</span>
                         </div>
                         <button class="action-btn" onclick="copyLink('${custom.link}', this)">copy link</button>
@@ -129,6 +146,7 @@
 
             function renderCards(filter) {
                 const container = document.getElementById("customs-container");
+                const counterDisplay = document.getElementById("map-counter");
                 const query = filter.toLowerCase().trim();
 
                 const included = [...patternStates.entries()]
@@ -139,36 +157,38 @@
                     .map(([k]) => k);
 
                 const results = allCustoms.filter((c) => {
-                    // Safely normalize patterns for matching filters
                     const currentPatterns = Array.isArray(c.pattern)
                         ? c.pattern
                         : c.pattern
                           ? [c.pattern]
                           : [];
 
-                    // Combined search logic for name, mapper, archiver, id, and pattern
                     const matchesSearch =
                         !query ||
                         c.name.toLowerCase().includes(query) ||
                         c.mapper.toLowerCase().includes(query) ||
                         c.archiver.toLowerCase().includes(query) ||
-                        c.id.includes(query) || // Added ID search
+                        c.id.includes(query) ||
                         currentPatterns.some((p) =>
                             p.toLowerCase().includes(query),
-                        ); // Added pattern search
+                        );
 
-                    // Hide card if it contains ANY excluded patterns
                     const notExcluded = !currentPatterns.some((p) =>
                         excluded.includes(p),
                     );
 
-                    // Show card if no inclusions are active, OR if it has at least one matching included pattern
                     const matchesInclude =
                         included.length === 0 ||
                         included.every((p) => currentPatterns.includes(p));
 
                     return matchesSearch && notExcluded && matchesInclude;
                 });
+
+                if (allCustoms.length === results.length) {
+                    counterDisplay.textContent = `${allCustoms.length} total maps`;
+                } else {
+                    counterDisplay.textContent = `showing ${results.length} of ${allCustoms.length} maps`;
+                }
 
                 if (results.length === 0) {
                     container.innerHTML =
@@ -177,6 +197,24 @@
                 }
 
                 container.innerHTML = results.map(buildCard).join("");
+            }
+
+            function pickRandomMap() {
+                if (allCustoms.length === 0) return;
+
+                const randomIndex = Math.floor(Math.random() * allCustoms.length);
+                const selectedMap = allCustoms[randomIndex];
+
+                const searchInput = document.getElementById("search-input");
+
+                patternStates.clear();
+                document.querySelectorAll('.pattern-pill').forEach(btn => {
+                    btn.classList.remove('include', 'exclude');
+                });
+
+                searchInput.value = selectedMap.id;
+                searchInput.dispatchEvent(new Event('input'));
+                searchInput.focus();
             }
 
             async function loadCustoms() {
@@ -188,6 +226,7 @@
                     if (allCustoms.length === 0) {
                         container.innerHTML =
                             '<p class="status-text">nothing here yet.</p>';
+                        document.getElementById("map-counter").textContent = "0 maps";
                         return;
                     }
 
@@ -201,6 +240,8 @@
                         .addEventListener("input", (e) => {
                             renderCards(e.target.value);
                         });
+
+                    document.getElementById("random-btn").addEventListener("click", pickRandomMap);
                 } catch (error) {
                     container.innerHTML =
                         '<p class="status-text">could not load customs.</p>';
