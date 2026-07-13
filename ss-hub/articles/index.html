@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <title>Articles</title>
         <link rel="icon" type="image/png" href="/assets/ansilian.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,42 +10,51 @@
             href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
             rel="stylesheet"
         />
-
         <link rel="stylesheet" href="../style.css" />
         <link rel="stylesheet" href="style.css?v=1" />
     </head>
     <body>
         <div id="topbar-container"></div>
         <script src="/nav.js"></script>
+
         <div class="main-layout-wrapper">
-            <!-- GAP 1: Filtering System -->
+
+            <!-- GAP 1: sidebar filters -->
             <aside class="sidebar-filters">
-                <div class="filter-group">
-                    <div class="filter-label">Sort By</div>
-                    <select id="sort-select" class="obsidian-dropdown">
-                        <option value="latest">Latest posts</option>
-                        <option value="oldest">Oldest posts</option>
-                        <option value="id-asc">ID (Low to High)</option>
-                        <option value="id-desc">ID (High to Low)</option>
-                    </select>
+
+                <!-- sort -->
+                <div class="filter-section">
+                    <button class="filter-section-toggle" onclick="toggleSection('sort')">
+                        <span class="filter-arrow" id="arrow-sort">▾</span>
+                        <span>sort</span>
+                    </button>
+                    <div class="filter-list" id="list-sort">
+                        <button class="filter-item sort-btn active" id="sort-newest" onclick="setSort('newest')">newest first</button>
+                        <button class="filter-item sort-btn" id="sort-oldest" onclick="setSort('oldest')">oldest first</button>
+                    </div>
                 </div>
 
-                <div class="filter-group">
-                    <div class="filter-label">Author</div>
-                    <select id="author-select" class="obsidian-dropdown">
-                        <option value="all">All Authors</option>
-                    </select>
+                <!-- authors -->
+                <div class="filter-section">
+                    <button class="filter-section-toggle" onclick="toggleSection('authors')">
+                        <span class="filter-arrow" id="arrow-authors">▾</span>
+                        <span>authors</span>
+                    </button>
+                    <div class="filter-list" id="list-authors"></div>
                 </div>
 
-                <div class="filter-group">
-                    <div class="filter-label">Tag</div>
-                    <select id="tag-select" class="obsidian-dropdown">
-                        <option value="all">All Tags</option>
-                    </select>
+                <!-- tags -->
+                <div class="filter-section">
+                    <button class="filter-section-toggle" onclick="toggleSection('tags')">
+                        <span class="filter-arrow" id="arrow-tags">▾</span>
+                        <span>tags</span>
+                    </button>
+                    <div class="filter-list" id="list-tags"></div>
                 </div>
+
             </aside>
 
-            <!-- CENTER SPACE: Articles Container -->
+            <!-- CENTER: articles -->
             <main class="page-content">
                 <h1 class="page-title">articles</h1>
                 <input
@@ -61,84 +69,110 @@
                 </div>
             </main>
 
-            <!-- GAP 2: Empty Space (Balances the grid layout) -->
+            <!-- GAP 2: empty balance -->
             <div class="right-gap"></div>
         </div>
 
         <script>
             let allPosts = [];
+            let currentSort = "newest";
+            let authorStates = new Map(); // "neutral" | "include" | "exclude"
+            let tagStates    = new Map();
 
-            function renderTags(tags) {
-                if (!tags || tags.length === 0) return "";
-                return `<div class="card-tags">
-                    ${tags.map((t) => `<span class="card-tag">${t}</span>`).join("")}
-                </div>`;
+            // ── section collapse ──
+            const sectionOpen = { sort: true, authors: true, tags: true };
+
+            function toggleSection(key) {
+                sectionOpen[key] = !sectionOpen[key];
+                const list  = document.getElementById(`list-${key}`);
+                const arrow = document.getElementById(`arrow-${key}`);
+                list.style.display  = sectionOpen[key] ? "flex" : "none";
+                arrow.classList.toggle("closed", !sectionOpen[key]);
             }
 
-            // Dynamically inject all available authors and tags into the clean dropdown containers
-            function populateDropdownOptions() {
-                const authorSelect = document.getElementById("author-select");
-                const tagSelect = document.getElementById("tag-select");
+            // ── sort ──
+            function setSort(dir) {
+                currentSort = dir;
+                document.getElementById("sort-newest").classList.toggle("active", dir === "newest");
+                document.getElementById("sort-oldest").classList.toggle("active", dir === "oldest");
+                renderCards();
+            }
 
-                const authors = new Set();
-                const tags = new Set();
+            // ── 3-state toggle factory ──
+            function cycleState(map, key, el) {
+                const states = ["neutral", "include", "exclude"];
+                const current = map.get(key) || "neutral";
+                const next = states[(states.indexOf(current) + 1) % 3];
+                map.set(key, next);
+                el.className = `filter-item toggle-item state-${next}`;
+                if (next === "exclude") el.style.textDecoration = "line-through";
+                else el.style.textDecoration = "";
+                renderCards();
+            }
 
-                allPosts.forEach(post => {
-                    if (post.author) authors.add(post.author.trim());
-                    if (post.tags) post.tags.forEach(t => tags.add(t.trim()));
+            // ── populate sidebar ──
+            function buildSidebar() {
+                const authors = [...new Set(allPosts.map(p => p.author).filter(Boolean))].sort();
+                const tags    = [...new Set(allPosts.flatMap(p => p.tags || []))].sort();
+
+                const authorList = document.getElementById("list-authors");
+                authors.forEach(a => {
+                    const btn = document.createElement("button");
+                    btn.className = "filter-item toggle-item state-neutral";
+                    btn.textContent = a;
+                    btn.addEventListener("click", () => cycleState(authorStates, a, btn));
+                    authorList.appendChild(btn);
                 });
 
-                // Populate Authors
-                Array.from(authors).sort().forEach(author => {
-                    const opt = document.createElement("option");
-                    opt.value = author;
-                    opt.textContent = author;
-                    authorSelect.appendChild(opt);
+                const tagList = document.getElementById("list-tags");
+                tags.forEach(t => {
+                    const btn = document.createElement("button");
+                    btn.className = "filter-item toggle-item state-neutral";
+                    btn.textContent = t;
+                    btn.addEventListener("click", () => cycleState(tagStates, t, btn));
+                    tagList.appendChild(btn);
                 });
+            }
 
-                // Populate Tags
-                Array.from(tags).sort().forEach(tag => {
-                    const opt = document.createElement("option");
-                    opt.value = tag;
-                    opt.textContent = tag;
-                    tagSelect.appendChild(opt);
-                });
+            // ── render ──
+            function renderTags(tags) {
+                if (!tags || tags.length === 0) return "";
+                return `<div class="card-tags">${tags.map(t => `<span class="card-tag">${t}</span>`).join("")}</div>`;
             }
 
             function renderCards() {
                 const container = document.getElementById("posts-container");
-
-                // Get filter input parameters
                 const query = document.getElementById("search-input").value.toLowerCase().trim();
-                const selectedSort = document.getElementById("sort-select").value;
-                const selectedAuthor = document.getElementById("author-select").value;
-                const selectedTag = document.getElementById("tag-select").value;
 
-                // 1. Filter out results matching search string + dropdown values
-                let results = allPosts.filter((p) => {
-                    const inTitle = p.title.toLowerCase().includes(query);
-                    const inAuthor = p.author.toLowerCase().includes(query);
-                    const inTags = p.tags && p.tags.some((t) => t.toLowerCase().includes(query));
-                    const matchesSearch = !query || (inTitle || inAuthor || inTags);
+                const includedAuthors = [...authorStates.entries()].filter(([,v]) => v === "include").map(([k]) => k);
+                const excludedAuthors = [...authorStates.entries()].filter(([,v]) => v === "exclude").map(([k]) => k);
+                const includedTags    = [...tagStates.entries()].filter(([,v]) => v === "include").map(([k]) => k);
+                const excludedTags    = [...tagStates.entries()].filter(([,v]) => v === "exclude").map(([k]) => k);
 
-                    const matchesAuthor = selectedAuthor === "all" || p.author === selectedAuthor;
-                    const matchesTag = selectedTag === "all" || (p.tags && p.tags.includes(selectedTag));
+                let results = allPosts.filter(p => {
+                    const postTags = p.tags || [];
 
-                    return matchesSearch && matchesAuthor && matchesTag;
+                    const matchesSearch = !query ||
+                        p.title.toLowerCase().includes(query) ||
+                        p.author.toLowerCase().includes(query) ||
+                        postTags.some(t => t.toLowerCase().includes(query));
+
+                    const authorOk =
+                        !excludedAuthors.includes(p.author) &&
+                        (includedAuthors.length === 0 || includedAuthors.includes(p.author));
+
+                    const tagsOk =
+                        !postTags.some(t => excludedTags.includes(t)) &&
+                        (includedTags.length === 0 || includedTags.every(t => postTags.includes(t)));
+
+                    return matchesSearch && authorOk && tagsOk;
                 });
 
-                // 2. Apply chosen sort configurations
-                if (selectedSort === "latest") {
-                    results.sort((a, b) => Number(b.id) - Number(a.id));
-                } else if (selectedSort === "oldest") {
-                    results.sort((a, b) => Number(a.id) - Number(b.id));
-                } else if (selectedSort === "id-asc") {
-                    results.sort((a, b) => Number(a.id) - Number(b.id));
-                } else if (selectedSort === "id-desc") {
-                    results.sort((a, b) => Number(b.id) - Number(a.id));
-                }
+                results.sort((a, b) => currentSort === "newest"
+                    ? Number(b.id) - Number(a.id)
+                    : Number(a.id) - Number(b.id)
+                );
 
-                // 3. Render cards onto screen view
                 container.innerHTML = "";
 
                 if (results.length === 0) {
@@ -146,11 +180,10 @@
                     return;
                 }
 
-                results.forEach((post) => {
+                results.forEach(post => {
                     const card = document.createElement("a");
                     card.className = "post-card";
                     card.href = `reader.html?post=${post.id}`;
-
                     card.innerHTML = `
                         <div class="card-top-row">
                             <span class="card-number">#${post.id}</span>
@@ -170,7 +203,6 @@
 
             async function loadPosts() {
                 const container = document.getElementById("posts-container");
-
                 try {
                     const response = await fetch("posts/posts.json");
                     allPosts = await response.json();
@@ -180,16 +212,10 @@
                         return;
                     }
 
-                    // Initialize drop down selectors and compile layout cards initial rendering
-                    populateDropdownOptions();
+                    buildSidebar();
                     renderCards();
 
-                    // Attach state mutation listeners across filtering node controls
                     document.getElementById("search-input").addEventListener("input", renderCards);
-                    document.getElementById("sort-select").addEventListener("change", renderCards);
-                    document.getElementById("author-select").addEventListener("change", renderCards);
-                    document.getElementById("tag-select").addEventListener("change", renderCards);
-
                 } catch (error) {
                     container.innerHTML = '<p class="status-text">could not load articles.</p>';
                     console.error(error);
