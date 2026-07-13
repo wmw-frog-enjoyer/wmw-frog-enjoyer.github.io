@@ -69,8 +69,15 @@
                 </div>
             </main>
 
-            <!-- GAP 2: empty balance -->
-            <div class="right-gap"></div>
+            <!-- Right Sidebar Columns: Media & Videos Feed -->
+            <aside class="sidebar-media">
+                <h3 class="media-feed-title">
+                    <span class="media-icon">▶</span> Attached Media
+                </h3>
+                <div id="video-feed-container" class="video-feed">
+                    <!-- JavaScript will populate media cards dynamically here -->
+                </div>
+            </aside>
         </div>
 
         <script>
@@ -116,6 +123,7 @@
                 const tags    = [...new Set(allPosts.flatMap(p => p.tags || []))].sort();
 
                 const authorList = document.getElementById("list-authors");
+                authorList.innerHTML = ""; // Clear existing elements before building
                 authors.forEach(a => {
                     const btn = document.createElement("button");
                     btn.className = "filter-item toggle-item state-neutral";
@@ -125,6 +133,7 @@
                 });
 
                 const tagList = document.getElementById("list-tags");
+                tagList.innerHTML = ""; // Clear existing elements before building
                 tags.forEach(t => {
                     const btn = document.createElement("button");
                     btn.className = "filter-item toggle-item state-neutral";
@@ -134,12 +143,77 @@
                 });
             }
 
-            // ── render ──
+            // ── Helper to extract YouTube IDs ──
+            function getYouTubeData(url) {
+                if (!url) return null;
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                const match = url.match(regExp);
+
+                if (match && match[2].length === 11) {
+                    const videoId = match[2];
+                    return {
+                        id: videoId,
+                        thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+                        embedUrl: `https://www.youtube.com/embed/${videoId}`
+                    };
+                }
+                return null;
+            }
+
+            // ── Side Column Video Feed Renderer ──
+            function renderVideoFeed(articles) {
+                const feedContainer = document.getElementById('video-feed-container');
+                if (!feedContainer) return;
+
+                const mediaArticles = articles.filter(item => item.video && item.video.trim() !== "");
+
+                if (mediaArticles.length === 0) {
+                    feedContainer.innerHTML = '<p class="no-media-text">No media attached</p>';
+                    return;
+                }
+
+                feedContainer.innerHTML = mediaArticles.map(item => {
+                    const ytData = getYouTubeData(item.video);
+                    if (!ytData) return '';
+
+                    return `
+                        <div class="video-card" data-article-id="${item.id}">
+                            <div class="video-thumbnail-wrapper">
+                                <img src="${ytData.thumbnail}" alt="${item.title} Video Thumbnail" class="video-thumbnail" loading="lazy">
+                                <div class="play-overlay">
+                                    <span class="play-triangle">▶</span>
+                                </div>
+                            </div>
+                            <div class="video-meta">
+                                <h4 class="video-card-title">${item.title}</h4>
+                                <span class="video-card-author">by ${item.author}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Link cards to viewport target positions smoothly
+                feedContainer.querySelectorAll('.video-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const articleId = card.getAttribute('data-article-id');
+                        const targetArticle = document.getElementById(`article-${articleId}`);
+                        if (targetArticle) {
+                            targetArticle.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            // Visual feedback accent flash highlight
+                            targetArticle.style.borderColor = "rgba(150, 200, 255, 0.4)";
+                            setTimeout(() => { targetArticle.style.borderColor = ""; }, 1000);
+                        }
+                    });
+                });
+            }
+
+            // ── render tag badges ──
             function renderTags(tags) {
                 if (!tags || tags.length === 0) return "";
                 return `<div class="card-tags">${tags.map(t => `<span class="card-tag">${t}</span>`).join("")}</div>`;
             }
 
+            // ── render primary articles feed ──
             function renderCards() {
                 const container = document.getElementById("posts-container");
                 const query = document.getElementById("search-input").value.toLowerCase().trim();
@@ -183,6 +257,7 @@
                 results.forEach(post => {
                     const card = document.createElement("a");
                     card.className = "post-card";
+                    card.id = `article-${post.id}`; // CRITICAL: Added ID targeting attribute hook here
                     card.href = `reader.html?post=${post.id}`;
                     card.innerHTML = `
                         <div class="card-top-row">
@@ -201,6 +276,7 @@
                 });
             }
 
+            // ── initialize database load ──
             async function loadPosts() {
                 const container = document.getElementById("posts-container");
                 try {
@@ -214,6 +290,7 @@
 
                     buildSidebar();
                     renderCards();
+                    renderVideoFeed(allPosts); // Renders complete video listings on dynamic boot up
 
                     document.getElementById("search-input").addEventListener("input", renderCards);
                 } catch (error) {
