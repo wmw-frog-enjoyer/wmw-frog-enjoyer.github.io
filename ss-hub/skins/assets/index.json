@@ -173,5 +173,14 @@
     "date": "2026-07-05",
     "video": "https://youtu.be/P8A8v91cttg",
     "tags": ["major changes", "ss skin"]
+  },
+  {
+    "id": "020",
+    "title": "lime garden",
+    "author": "Lunara",
+    "type": "ssp-mesh",
+    "date": "2026-07-14",
+    "file": "020.txt",
+    "tags": ["ssp mesh", "hexa color", "green"]
   }
 ]
