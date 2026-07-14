@@ -173,9 +173,16 @@
             }
 
             @media (max-width: 1100px) {
-                .reader-layout { grid-template-columns: 0 minmax(0, 850px) 0; }
-                .toc-column, .stats-column { display: none; }
-                .page-content { padding: 0 16px; }
+                .reader-layout {
+                    /* Changes to a single column so .page-content takes the full space */
+                    grid-template-columns: 1fr;
+                }
+                .toc-column, .stats-column {
+                    display: none;
+                }
+                .page-content {
+                    padding: 0 16px;
+                }
             }
 
             /* ── footer ── */
