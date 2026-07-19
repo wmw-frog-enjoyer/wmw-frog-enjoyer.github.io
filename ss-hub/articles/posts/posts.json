@@ -5,8 +5,7 @@
     "date": "2026-06-19",
     "description": "A small rant and analysis on why customs are becoming flooded with stream slops.",
     "author": "Melo",
-    "tags": ["sound space", "rhythia"],
-    "video": "https://youtu.be/HNiyy4QW5Lw"
+    "tags": ["sound space", "rhythia"]
   },
   {
     "id": "002",
@@ -38,7 +37,14 @@
     "date": "2026-07-07",
     "description": "How every player develops a comfort map set, and why stepping outside of it matters.",
     "author": "Melo",
-    "tags": ["sound space", "rhythia"],
-    "video": "https://youtu.be/02027NIBf_w"
+    "tags": ["sound space", "rhythia"]
+  },
+  {
+    "id": "006",
+    "title": "The Difference Between Good Maps and Bad Maps",
+    "date": "2026-07-19",
+    "description": "Learn how representation, pattern variety, density, and song choice come together to create maps that feel genuinely enjoyable.",
+    "author": "Melo",
+    "tags": ["sound space", "rhythia", "technical"]
   }
 ]
