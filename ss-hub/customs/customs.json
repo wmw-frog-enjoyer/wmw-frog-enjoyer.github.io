@@ -128,5 +128,45 @@
     "link": "https://raw.githubusercontent.com/SheaNya/FinalizedSSMaps/main/WUANT%20X%20BLUNDER%20-%20Dead%20Inside",
     "date": "2026-06-27",
     "archiver": "Lunara"
+  },
+  {
+    "id": "014",
+    "name": "As I thought, there’s no problem with my youth",
+    "mapper": "mello (ft. nix)",
+    "rating": "s-",
+    "pattern": ["slide", "stream", "quantum"],
+    "link": "https://raw.githubusercontent.com/mxllodea/As-I-thought-there-s-no-problem-with-my-youth-romantic-comedy./refs/heads/main/%E3%82%84%E3%81%A3%E3%81%B1%E3%82%8A%E4%BF%BA%E3%81%AE%E9%9D%92%E6%98%A5%E3%83%A9%E3%83%96%E3%82%B3%E3%83%A1%E3%81%AB%E4%BD%95%E3%81%AE%E5%95%8F%E9%A1%8C%E3%82%82%E3%81%AD.txt",
+    "date": "2026-07-16",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "015",
+    "name": "internet boy",
+    "mapper": "reticentmemory & immortal",
+    "rating": "s-",
+    "pattern": ["streamslop", "stream", "quantum"],
+    "link": "https://raw.githubusercontent.com/goobertown67/soundspizzle-maps/refs/heads/main/Dion%20Timmer%20feat.%20Micah%20Martin%20-%20Internet%20Boy",
+    "date": "2026-07-16",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "016",
+    "name": "AVALEA",
+    "mapper": "mello",
+    "rating": "s--",
+    "pattern": ["light jump","light vibro", "slide", "light quantum"],
+    "link": "https://raw.githubusercontent.com/mxllodea/AVALEA/refs/heads/main/AVALEA.txt",
+    "date": "2026-07-16",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "017",
+    "name": "A life to remember",
+    "mapper": "reticentmemory & immortal",
+    "rating": "s-",
+    "pattern": ["quantum", "slide","stream"],
+    "link": "https://raw.githubusercontent.com/goobertown67/soundspizzle-maps/refs/heads/main/kiri%20-%20A%20life%20to%20remember!",
+    "date": "2026-07-16",
+    "archiver": "Lunara"
   }
 ]
