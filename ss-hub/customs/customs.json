@@ -168,5 +168,85 @@
     "link": "https://raw.githubusercontent.com/goobertown67/soundspizzle-maps/refs/heads/main/kiri%20-%20A%20life%20to%20remember!",
     "date": "2026-07-16",
     "archiver": "Lunara"
+  },
+  {
+    "id": "018",
+    "name": "TTO LETS GO",
+    "mapper": "mello",
+    "rating": "s-",
+    "pattern": ["jump", "slide", "stream"],
+    "link": "https://raw.githubusercontent.com/mxllodea/TTO-LETS-GO/refs/heads/main/TTO%20LETS%20GO.txt",
+    "date": "2026-07-20",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "019",
+    "name": "broken",
+    "mapper": "mello",
+    "rating": "s-",
+    "pattern": ["jump", "slide", "vibro"],
+    "link": "https://raw.githubusercontent.com/mxllodea/broken/refs/heads/main/idk.txt",
+    "date": "2026-07-20",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "020",
+    "name": "ETHEREAL VELOCITY",
+    "mapper": "Matt430",
+    "rating": "s+",
+    "pattern": ["jump", "slide"],
+    "link": "https://raw.githubusercontent.com/Faworee/faworee_Converts_soundspacecustoms/refs/heads/main/Underscore%20-%20ETHEREAL%20VELOCITY%20Matt430",
+    "date": "2026-07-20",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "021",
+    "name": "EXTRA!",
+    "mapper": "reticentmemory & immortal",
+    "rating": "s-",
+    "pattern": ["streamslop", "jump", "slide", "stamina"],
+    "link": "https://raw.githubusercontent.com/goobertown67/soundspizzle-maps/refs/heads/main/Underscore%20-%20EXTRA!",
+    "date": "2026-07-20",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "022",
+    "name": "YOU & ME",
+    "mapper": "reticentmemory",
+    "rating": "s--",
+    "pattern": ["quantum","slide"],
+    "link": "https://raw.githubusercontent.com/goobertown67/soundspizzle-maps/refs/heads/main/sys%20-%20YOU%20%26%20ME",
+    "date": "2026-07-20",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "023",
+    "name": "背叛的爱丽丝",
+    "mapper": "reticentmemory",
+    "rating": "s--",
+    "pattern": ["streamslop","jump","slide"],
+    "link": "https://raw.githubusercontent.com/goobertown67/soundspizzle-maps/refs/heads/main/komeijih%20-%20背叛的爱丽丝",
+    "date": "2026-07-20",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "024",
+    "name": "cytus",
+    "mapper": "reticentmemory",
+    "rating": "s-",
+    "pattern": ["light stream","quantum","light jump","slide"],
+    "link": "https://raw.githubusercontent.com/goobertown67/soundspizzle-maps/refs/heads/main/cytus",
+    "date": "2026-07-20",
+    "archiver": "Lunara"
+  },
+  {
+    "id": "025",
+    "name": "treacherous rhapsody",
+    "mapper": "reticentmemory",
+    "rating": "s--",
+    "pattern": ["burst","slide","jump"],
+    "link": "https://raw.githubusercontent.com/goobertown67/soundspizzle-maps/refs/heads/main/MetaHumanBoi%20-%20treacherous%20rhapsody",
+    "date": "2026-07-20",
+    "archiver": "Lunara"
   }
 ]
