@@ -1,0 +1,134 @@
+/* Page-specific styles */
+
+/* ==========================================================================
+   3. HERO / MAIN CONTENT (Archivers Page Text Content Sizes)
+   ========================================================================== */
+
+.title {
+    font-family: "Inter", sans-serif;
+    margin-top: 70px;
+    font-weight: 200;
+    font-size: 110px;
+}
+
+.subtitle {
+    font-family: "Inter", sans-serif;
+    margin-top: -50px;
+    font-weight: 300;
+    font-size: 25px;
+}
+
+/* ==========================================================================
+   4. CARDS & GRIDS (Fixed to Prevent Big Exploding Images)
+   ========================================================================== */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+    gap: 50px;
+    margin-top: 80px;
+    margin-bottom: 120px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(55, 55, 55, 0.25);
+    border-radius: 50px;
+}
+
+/* Kept strict size controls on profile pictures so they can never break the layout */
+.pfp {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 30px;
+    border-radius: 100%;
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+}
+
+.card-content {
+    margin-right: 50px;
+}
+
+.card-title {
+    margin-top: 0px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 35px;
+    text-align: left;
+}
+
+.card-text {
+    margin-top: 0px;
+    text-align: left;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.discord {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    display: block;
+    text-align: left;
+}
+
+
+/* ==========================================================================
+   6. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
+   ========================================================================== */
+@media (max-width: 767px) {
+    /* Clean Mobile Stacking Properties for Archivers Page Grid */
+    .title {
+        font-size: 50px !important;
+        margin-top: 40px !important;
+    }
+
+    .subtitle {
+        margin-top: 10px !important;
+        font-size: 18px !important;
+        padding: 0 15px !important;
+    }
+
+    .grid {
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+        padding: 0 20px !important;
+        gap: 30px !important;
+        margin-top: 40px !important;
+    }
+
+    .card {
+        flex-direction: column !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        padding-bottom: 30px !important;
+        border-radius: 30px !important;
+    }
+
+    .pfp {
+        margin-left: 0 !important;
+        margin-bottom: 10px !important;
+        width: 130px !important;
+        height: 130px !important;
+    }
+
+    .card-content {
+        margin-right: 0 !important;
+        padding: 0 20px !important;
+    }
+
+    .card-title,
+    .card-text,
+    .discord {
+        text-align: center !important;
+        font-size: 18px !important;
+    }
+}

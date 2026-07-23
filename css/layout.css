@@ -1,0 +1,111 @@
+/* Shared layout and navigation */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(55, 55, 55, 0.15);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.center-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.topbar a {
+    text-decoration: none !important;
+}
+
+.home-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-size: 25px;
+    font-family: var(--font-main);
+    font-weight: 200;
+}
+
+.home-logo {
+    width: 35px;
+    height: auto;
+    object-fit: contain;
+}
+
+.nav-icon {
+    display: none !important;
+}
+
+.nav-text {
+    display: inline-block;
+    color: var(--text);
+    font-family: var(--font-main);
+    font-size: 22px;
+    font-weight: 200;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-text:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.page-content {
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 0 24px;
+    text-align: left;
+}
+
+@media (max-width: 767px) {
+    .topbar {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        padding: 10px !important;
+        gap: 20px !important;
+    }
+
+    .center-nav {
+        gap: 15px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .home-logo {
+        width: 35px !important;
+    }
+
+    .nav-text,
+    .home-text {
+        display: none !important;
+    }
+
+    .nav-icon {
+        display: block !important;
+    }
+
+    .icon-size-small {
+        width: 45px !important;
+        height: 45px !important;
+    }
+
+    .icon-size-medium {
+        width: 65px !important;
+        height: 65px !important;
+    }
+
+    .icon-size-large {
+        width: 75px !important;
+        height: 75px !important;
+    }
+
+    .page-content {
+        margin: 30px auto;
+        padding: 0 16px;
+    }
+}

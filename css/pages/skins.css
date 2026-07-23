@@ -1,0 +1,259 @@
+body {
+    text-align: left;
+}
+
+.page-content {
+    max-width: 1200px;
+}
+
+/* =====================================================
+   type toggle pills
+   ===================================================== */
+
+
+/* state 1 — include: green */
+
+/* state 2 — exclude: red */
+
+/* =====================================================
+   skins — index.html
+   ===================================================== */
+
+
+/* =====================================================
+   3-column grid
+   ===================================================== */
+
+#skins-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 700px) {
+    #skins-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================================================
+   skin card — vertical layout
+   ===================================================== */
+
+.skin-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+
+.card-title {
+    font-family: "Inter", sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 6px 0 4px 0;
+    color: white;
+}
+
+.card-author-row {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 14px;
+}
+
+.asset-preview-wrap {
+    margin-bottom: 14px;
+    flex: 1;
+}
+
+/* =====================================================
+   type badges
+   ===================================================== */
+
+.type-badge {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 5px;
+}
+
+.type-ss-skin {
+    color: rgba(150, 200, 255, 0.9);
+    background: rgba(150, 200, 255, 0.1);
+    border: 1px solid rgba(150, 200, 255, 0.2);
+}
+
+.type-ss-cursor {
+    color: rgba(120, 220, 255, 0.9);
+    background: rgba(120, 220, 255, 0.1);
+    border: 1px solid rgba(120, 220, 255, 0.2);
+}
+
+.type-ssp-cursor {
+    color: rgba(180, 150, 255, 0.9);
+    background: rgba(180, 150, 255, 0.1);
+    border: 1px solid rgba(180, 150, 255, 0.2);
+}
+
+.type-ssp-hit {
+    color: rgba(120, 220, 140, 0.9);
+    background: rgba(120, 220, 140, 0.1);
+    border: 1px solid rgba(120, 220, 140, 0.2);
+}
+
+.type-ssp-miss {
+    color: rgba(255, 120, 120, 0.9);
+    background: rgba(255, 120, 120, 0.1);
+    border: 1px solid rgba(255, 120, 120, 0.2);
+}
+
+.type-ssp-mesh {
+    color: rgba(255, 190, 100, 0.9);
+    background: rgba(255, 190, 100, 0.1);
+    border: 1px solid rgba(255, 190, 100, 0.2);
+}
+
+/* =====================================================
+   asset previews
+   ===================================================== */
+
+
+.asset-preview {
+    max-width: 100%;
+    max-height: 160px;
+    border-radius: 6px;
+    display: block;
+    image-rendering: pixelated;
+}
+
+.audio-player {
+    width: 100%;
+    accent-color: rgb(37, 105, 63);
+}
+
+.cursor-code {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    word-break: break-all;
+}
+
+.mesh-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+}
+
+.color-swatch {
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: transform 0.15s ease;
+    cursor: default;
+}
+
+.color-swatch:hover {
+    transform: scale(1.2);
+}
+
+.mesh-loading {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* =====================================================
+   action row: button + tags
+   ===================================================== */
+
+.card-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.action-btn {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    background-color: rgb(37, 105, 63);
+    border: none;
+    border-radius: 10px;
+    padding: 6px 16px;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+    background-color: rgb(45, 133, 79);
+}
+
+
+/* =====================================================
+   Isolated Mobile Structural Overrides (< 768px Viewports)
+   ===================================================== */
+@media (max-width: 767px) {
+    
+
+    
+
+    /* Converts the 3-column configuration grid smoothly into 1 robust column */
+    #skins-container {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .skin-card {
+        padding: 16px !important;
+    }
+
+    .card-title {
+        font-size: 20px !important;
+    }
+
+    /* Allows filter pills to flow and wrap cleanly across small device widths */
+    
+
+    
+
+    .card-action-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+    }
+
+    .action-btn {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    
+}

@@ -1,0 +1,41 @@
+/* Shared design tokens and document defaults */
+:root {
+    --bg: #111;
+    --surface: #1b1b1b;
+    --text: #fff;
+    --accent: #58d68d;
+    --radius: 12px;
+    --spacing: 16px;
+    --font-main: "Inter", sans-serif;
+    --muted-text: rgba(255, 255, 255, 0.55);
+    --subtle-text: rgba(255, 255, 255, 0.3);
+    --hairline: rgba(255, 255, 255, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.02);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --button-bg: rgb(37, 105, 63);
+    --button-bg-hover: rgb(45, 133, 79);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(
+        to right,
+        #141414 0%,
+        var(--bg) 25%,
+        #000 50%,
+        var(--bg) 75%,
+        #141414 100%
+    );
+    color: var(--text);
+    text-align: center;
+}
+
+img,
+iframe,
+video {
+    max-width: 100%;
+}

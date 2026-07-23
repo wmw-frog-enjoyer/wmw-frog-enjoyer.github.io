@@ -1,0 +1,86 @@
+/* ==========================================================================
+   1. MAIN CONTENT ENGINE (Logo, Headings & Baseline Container Elements)
+   ========================================================================== */
+
+.logo {
+    margin-top: 40px;
+    margin-bottom: 10px; /* Changed from negative to positive to push things DOWN */
+    width: 400px;
+    max-width: 90%;
+    height: auto;
+    display: block; /* Ensures it behaves as a block element */
+    margin-left: auto; /* Centers the image block horizontally */
+    margin-right: auto; /* Centers the image block horizontally */
+}
+
+.inter-main {
+    font-family: "Inter", sans-serif;
+    font-size: 55px;
+    font-weight: 200;
+    margin-top: 15px; /* Tightened the gap below the logo */
+    margin-bottom: 10px; /* Pushes the subtitle downward */
+}
+
+.subtitle {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0px; /* Removes any unexpected top spacing pushing it up */
+    margin-bottom: 50px; /* Keeps the clean gap before the link list */
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   2. HUB NAVIGATION LINK ARCHITECTURE
+   ========================================================================== */
+
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center; /* Centers items cleanly on desktop viewport */
+}
+
+.ss-hub {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 26px;
+    opacity: 0.6;
+    text-decoration: none;
+    color: white;
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    display: inline-block;
+}
+
+/* Hover behaviors matching your animations criteria */
+.ss-hub:hover {
+    opacity: 1;
+    transform: translateX(4px); /* Sleek micro-movement to hint clickability */
+}
+
+body {
+    padding-bottom: 120px;
+}
+
+/* ==========================================================================
+   3. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
+   ========================================================================== */
+@media (max-width: 767px) {
+    /* Responsive scaling for Sound Space Hub elements */
+    .inter-main {
+        font-size: 38px !important;
+        margin-top: 20px !important;
+    }
+
+    .subtitle {
+        font-size: 17px !important;
+        margin-bottom: 40px !important;
+    }
+
+    .ss-hub {
+        font-size: 22px !important;
+    }
+}

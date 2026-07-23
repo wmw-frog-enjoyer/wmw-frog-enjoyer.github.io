@@ -1,0 +1,90 @@
+/* Page-specific styles */
+
+/* ==========================================================================
+   3. HERO / MAIN CONTENT (Fixed Giant Image Size Boundaries)
+   ========================================================================== */
+
+.logo {
+    margin-top: 70px;
+    width: 256px !important; /* Forces your main display graphic back to 256px */
+    height: auto;
+}
+
+.subtitle {
+    font-family: "Inter", sans-serif;
+    margin-top: -60px;
+    font-weight: 300;
+    font-size: 25px;
+}
+
+.inter-main {
+    font-family: "Inter", sans-serif;
+    margin-top: 0px;
+    font-weight: 200;
+    font-size: 110px;
+}
+
+/* ==========================================================================
+   4. CARDS & GRIDS (Restored Layout Structures)
+   ========================================================================== */
+
+.card-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 80px 0px;
+    flex-wrap: nowrap;
+}
+
+.card {
+    width: 400px !important; /* Restored structural width threshold */
+    background-color: rgba(55, 55, 55, 0.25);
+    border-radius: 50px;
+}
+
+.card-title {
+    margin-top: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-size: 38px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+
+.card-text {
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+    line-height: 1.7;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    font-weight: 350;
+}
+
+
+/* ==========================================================================
+   6. ISOLATED MOBILE OVERRIDES (Triggers Only on Mobile Screens < 768px)
+   ========================================================================== */
+@media (max-width: 767px) {
+    /* Clean Mobile Stacking Properties for Home Cards */
+    .card-grid {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        padding: 40px 0px !important;
+    }
+
+    .card {
+        width: 80% !important;
+        max-width: 400px !important;
+    }
+
+    .card-title {
+        font-size: 30px !important;
+        margin-top: 30px !important;
+    }
+
+    .card-text {
+        font-size: 18px !important;
+    }
+}
