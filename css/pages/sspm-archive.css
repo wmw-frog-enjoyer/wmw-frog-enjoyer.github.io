@@ -1,33 +1,125 @@
+/* =====================================================
+   customs — index.html
+   ===================================================== */
+
 body {
     text-align: left;
 }
 
 .page-content {
     max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 24px;
+    text-align: left;
+}
+
+.status-text {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .page-title {
-    margin-bottom: 24px;
+    font-family: "Inter", sans-serif;
+    font-weight: 200;
+    font-size: 60px;
+    margin: 0 0 24px 0;
+    letter-spacing: -0.5px;
+    color: white;
 }
-
-/* =====================================================
-   customs — index.html
-   ===================================================== */
-
 
 /* =====================================================
    pattern toggle
    ===================================================== */
 
+.pattern-filter {
+    margin-bottom: 16px;
+}
+
+.pattern-filter-label {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.3);
+    display: block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.pattern-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pattern-pill {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.pattern-pill:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.75);
+}
 
 /* state 1 — include: green */
+.pattern-pill.include {
+    background: rgba(37, 105, 63, 0.35);
+    border-color: rgba(45, 133, 79, 0.6);
+    color: rgba(150, 255, 180, 0.95);
+}
 
 /* state 2 — exclude: red */
+.pattern-pill.exclude {
+    background: rgba(120, 30, 30, 0.35);
+    border-color: rgba(180, 50, 50, 0.6);
+    color: rgba(255, 150, 150, 0.95);
+    text-decoration: line-through;
+}
 
 /* =====================================================
    search
    ===================================================== */
 
+.search-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: white;
+    outline: none;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.22);
+}
+
+.search-input:focus {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.06);
+}
 
 /* =====================================================
    2-column grid
@@ -58,6 +150,32 @@ body {
     background: rgba(255, 255, 255, 0.02);
 }
 
+.card-top-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.card-number {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.card-dot {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.15);
+}
+
+.card-date {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.28);
+}
 
 .pattern-badge {
     font-family: "Inter", sans-serif;
