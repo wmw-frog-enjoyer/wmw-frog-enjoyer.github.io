@@ -13,10 +13,10 @@
         <link rel="stylesheet" href="style.css?v=1" />
     </head>
     <body>
-        <div id="topbar-container"></div>
+        <div data-component="navbar"></div>
         <script src="/nav.js"></script>
 
-        <div class="main-layout-wrapper">
+        <main class="main-layout-wrapper">
 
             <!-- GAP 1: sidebar filters -->
             <aside class="sidebar-filters">
@@ -54,8 +54,8 @@
             </aside>
 
             <!-- CENTER: articles -->
-            <main class="page-content">
-                <h1 class="page-title">articles</h1>
+            <section class="page-content" aria-labelledby="articles-title">
+                <h1 class="page-title" id="articles-title">articles</h1>
                 <input
                     type="text"
                     id="search-input"
@@ -66,7 +66,7 @@
                 <div id="posts-container">
                     <p class="status-text">loading...</p>
                 </div>
-            </main>
+            </section>
 
             <!-- Right Sidebar Columns: Media & Videos Feed -->
             <aside class="sidebar-media">
@@ -77,7 +77,7 @@
                     <!-- JavaScript will populate media cards dynamically here -->
                 </div>
             </aside>
-        </div>
+        </main>
 
         <script>
             let allPosts = [];
@@ -219,7 +219,7 @@
             }
 
             // ── Render Primary Articles Main Roll ──
-            function renderCards() {
+            async function renderCards() {
                 const container = document.getElementById("posts-container");
                 if (!container) return;
 
@@ -262,26 +262,21 @@
                     return;
                 }
 
-                results.forEach(post => {
-                    const card = document.createElement("a");
-                    card.className = "post-card";
-                    card.id = `article-${post.id}`;
-                    card.href = `reader.html?post=${post.id}`;
-                    card.innerHTML = `
-                        <div class="card-top-row">
-                            <span class="card-number">#${post.id}</span>
-                            <span class="card-dot">·</span>
-                            <span class="card-date">${post.date}</span>
-                        </div>
-                        <div class="card-title">${post.title}</div>
-                        ${post.description ? `<div class="card-desc">${post.description}</div>` : ""}
-                        <div class="card-bottom-row">
-                            <span class="card-author">${post.author}</span>
-                            ${renderTags(post.tags)}
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
+                const cards = await Promise.all(results.map((post) =>
+                    window.renderComponent("article-card", {
+                        idAttr: `article-${post.id}`,
+                        href: `reader.html?post=${post.id}`,
+                        number: post.id,
+                        date: post.date,
+                        title: post.title,
+                        metaHtml: "",
+                        descriptionHtml: post.description ? `<div class="card-desc">${post.description}</div>` : "",
+                        authorHtml: "",
+                        bottomHtml: `<span class="card-author">${post.author}</span>${renderTags(post.tags)}`,
+                    })
+                ));
+
+                container.innerHTML = cards.join("");
             }
 
             // ── Primary Entry Point Init ──
@@ -313,5 +308,6 @@
             // Run application logic on DOM state processing
             loadPosts();
         </script>
+        <div data-component="footer"></div>
     </body>
 </html>

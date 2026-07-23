@@ -11,20 +11,22 @@
     </head>
 
     <body>
-        <div id="topbar-container"></div>
+        <div data-component="navbar"></div>
         <script src="/nav.js"></script>
 
-        <h1 class="title">Archivers</h1>
+        <main>
+            <h1 class="title">Archivers</h1>
         <p class="subtitle">
             we dont have enough archivers to need a search feature, use ctrl+f instead
         </p>
 
         <!-- Empty grid container that JS will populate -->
-        <div class="grid" id="archivers-grid"></div>
+            <section class="grid" id="archivers-grid" aria-label="Archivers list"></section>
 
-        <a class="button-apply" href="https://tally.so/r/kdJ616" target="_blank">
+            <a class="button-apply" href="https://tally.so/r/kdJ616" target="_blank">
             <p class="button-text">Apply to Ansilian!</p>
-        </a>
+            </a>
+        </main>
 
         <!-- Script to load your JSON data dynamically -->
         <script>
@@ -37,7 +39,7 @@
 
                     // Map through data and generate the exact HTML blocks your CSS expects
                     grid.innerHTML = archivers.map(user => `
-                        <div class="card">
+                        <article class="card">
                             <img class="pfp" src="${user.pfp}" alt="${user.name}'s pfp" />
                             <div class="card-content">
                                 <h1 class="card-title">${user.name}</h1>
@@ -45,7 +47,7 @@
                                 <p class="card-text">Archiver since: ${user.since}</p>
                                 <a class="discord" href="https://discordapp.com/users/${user.discordId}" target="_blank">Discord</a>
                             </div>
-                        </div>
+                        </article>
                     `).join('');
                 } catch (error) {
                     console.error('Failed to load archivers data:', error);
@@ -56,5 +58,6 @@
             // Run it when the page elements are ready
             document.addEventListener('DOMContentLoaded', loadArchivers);
         </script>
+        <div data-component="footer"></div>
     </body>
 </html>

@@ -15,10 +15,10 @@
         <link rel="stylesheet" href="style.css?v=1" />
     </head>
     <body>
-        <div id="topbar-container"></div>
+        <div data-component="navbar"></div>
         <script src="/nav.js"></script>
 
-        <div class="page-content">
+        <main class="page-content">
             <h1 class="page-title">Skins</h1>
 
             <!-- type toggle pills -->
@@ -37,7 +37,7 @@
             <div id="skins-container">
                 <p class="status-text">loading...</p>
             </div>
-        </div>
+        </main>
 
         <script>
             let allSkins = [];
@@ -169,7 +169,7 @@
                 }
 
                 return `
-                    <div class="skin-card">
+                    <article class="skin-card">
                         <div class="card-top-row">
                             <span class="card-number">#${skin.id}</span>
                             <span class="card-dot">·</span>
@@ -183,7 +183,7 @@
                             ${action}
                             ${tags ? `<div class="card-tags">${tags}</div>` : ""}
                         </div>
-                    </div>
+                    </article>
                 `;
             }
 
@@ -289,5 +289,6 @@
 
             loadSkins();
         </script>
+        <div data-component="footer"></div>
     </body>
 </html>

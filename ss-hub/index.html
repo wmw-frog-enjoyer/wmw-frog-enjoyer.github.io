@@ -18,22 +18,25 @@
     </head>
 
     <body>
-        <div id="topbar-container"></div>
+        <div data-component="navbar"></div>
         <script src="/nav.js"></script>
 
-        <img class="logo" src="/assets/sound-space.png" alt="ansilian logo" />
+        <main>
+            <img class="logo" src="/assets/sound-space.png" alt="Sound Space logo" />
 
-        <h1 class="inter-main">Sound Space Hub</h1>
-        <p class="subtitle">
-            This archive contains information of Sound Space and alike games
-        </p>
+            <h1 class="inter-main">Sound Space Hub</h1>
+            <p class="subtitle">
+                This archive contains information of Sound Space and alike games
+            </p>
 
-        <div class="links-container">
-            <a class="ss-hub" href="/ss-hub/articles"> > articles </a>
-            <a class="ss-hub" href="/ss-hub/settings"> > settings </a>
-            <a class="ss-hub" href="/ss-hub/skins"> > skins </a>
-            <a class="ss-hub" href="/ss-hub/customs"> > customs </a>
-            <a class="ss-hub" href="/ss-hub/sspm-archive/"> > sspm archive </a>
-        </div>
+            <nav class="links-container" aria-label="Sound Space Hub sections">
+                <a class="ss-hub" href="/ss-hub/articles"> > articles </a>
+                <a class="ss-hub" href="/ss-hub/settings"> > settings </a>
+                <a class="ss-hub" href="/ss-hub/skins"> > skins </a>
+                <a class="ss-hub" href="/ss-hub/customs"> > customs </a>
+                <a class="ss-hub" href="/ss-hub/sspm-archive/"> > sspm archive </a>
+            </nav>
+        </main>
+        <div data-component="footer"></div>
     </body>
 </html>

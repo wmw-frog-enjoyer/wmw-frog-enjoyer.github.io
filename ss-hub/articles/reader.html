@@ -368,13 +368,13 @@
             </svg>
         </button>
 
-        <div id="topbar-container"></div>
+        <div data-component="navbar"></div>
         <script src="/nav.js"></script>
 
-        <div class="reader-layout">
+        <main class="reader-layout">
 
             <!-- left: TOC -->
-            <div class="toc-column">
+            <aside class="toc-column">
                 <div class="toc-widget" id="toc-widget" style="display:none;">
                     <button class="toc-toggle" onclick="toggleToc()">
                         <span class="toc-arrow" id="toc-arrow">▾</span>
@@ -382,10 +382,10 @@
                     </button>
                     <div class="toc-list" id="toc-list"></div>
                 </div>
-            </div>
+            </aside>
 
             <!-- center: article -->
-            <div class="page-content">
+            <article class="page-content">
                 <a class="back-link" href="index.html">← back to articles</a>
 
                 <div class="post-preface">
@@ -407,10 +407,10 @@
                     <div class="footer-cards" id="footer-cards"></div>
                     <a class="footer-back" href="index.html">← back to articles</a>
                 </div>
-            </div>
+            </article>
 
             <!-- right: stats -->
-            <div class="stats-column">
+            <aside class="stats-column">
                 <div class="reading-stats">
                     <div class="stat-item">
                         <span class="stat-item-label">words</span>
@@ -425,9 +425,9 @@
                         <span class="stat-item-value" id="stat-time">—</span>
                     </div>
                 </div>
-            </div>
+            </aside>
 
-        </div>
+        </main>
 
         <script>
             function updateProgress() {
@@ -621,5 +621,6 @@
 
             loadPost();
         </script>
+        <div data-component="footer"></div>
     </body>
 </html>

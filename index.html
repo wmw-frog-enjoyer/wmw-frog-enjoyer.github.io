@@ -17,68 +17,69 @@
     </head>
 
     <body>
-        <!-- topbar -->
-        <div id="topbar-container"></div>
+        <div data-component="navbar"></div>
         <script src="/nav.js"></script>
-        <!-- this is the end of copy paste -->
 
-        <img class="logo" src="/assets/ansilian.png" alt="ansilian logo" />
+        <main>
+            <img class="logo" src="/assets/ansilian.png" alt="Ansilian logo" />
 
-        <h1 class="inter-main">Ansilian</h1>
-        <p class="subtitle">
-            A simple archive for ansiliam archivers to enjoy.
-        </p>
+            <h1 class="inter-main">Ansilian</h1>
+            <p class="subtitle">
+                A simple archive for ansiliam archivers to enjoy.
+            </p>
 
-        <div class="card-grid">
-            <div class="card">
-                <h1 class="card-title">About Ansiliam</h1>
-                <p class="card-text">
-                    Ansiliam is a small archive created to centralize
-                    information into a single interface accessible to anyone.
-                    Most of its content is connected to the people behind the
-                    archive, making it both a personal and collaborative
-                    project. It began as a way for me to learn web development,
-                    but it may also become part of my portfolio in the future.
-                    Above all, Ansiliam is an archive: a place where useful
-                    information can be organized, maintained, and shared instead
-                    of remaining scattered across multiple platforms.
-                </p>
-            </div>
-            <div class="card">
-                <h1 class="card-title">Philosophy</h1>
-                <p class="card-text">
-                    Ansiliam exists because people often ask me for the same
-                    things repeatedly. Instead of searching through old messages
-                    and sending files over and over again, I wanted a single
-                    place where anyone could easily find what they need. While
-                    preserving information is an interesting side effect, the
-                    main purpose is accessibility. The archive prioritizes
-                    information that people genuinely look for and creates a
-                    simpler way to share it with others.
-                </p>
-            </div>
-            <div class="card">
-                <h1 class="card-title">Growth</h1>
-                <p class="card-text">
-                    Ansiliam may eventually grow beyond a personal archive and
-                    become a collaborative project with multiple archivers
-                    contributing their own information. One of its long-term
-                    goals is to create a small community where archivers can
-                    interact, share ideas, and connect over common interests.
-                    The future of the archive depends on three main pillars: my
-                    willingness to continue developing it, how much people use
-                    it, and how many new archivers decide to join. As these
-                    pillars grow, Ansiliam can evolve into something much larger
-                    than it is today.
-                </p>
-            </div>
-        </div>
-        <a
-            class="button-apply"
-            href="https://tally.so/r/kdJ616"
-            target="_blank"
-        >
-            <p class="button-text">Apply to Ansilian!</p>
-        </a>
+            <section class="card-grid" aria-label="About Ansilian">
+                <article class="card">
+                    <h1 class="card-title">About Ansiliam</h1>
+                    <p class="card-text">
+                        Ansiliam is a small archive created to centralize
+                        information into a single interface accessible to anyone.
+                        Most of its content is connected to the people behind the
+                        archive, making it both a personal and collaborative
+                        project. It began as a way for me to learn web development,
+                        but it may also become part of my portfolio in the future.
+                        Above all, Ansiliam is an archive: a place where useful
+                        information can be organized, maintained, and shared instead
+                        of remaining scattered across multiple platforms.
+                    </p>
+                </article>
+                <article class="card">
+                    <h1 class="card-title">Philosophy</h1>
+                    <p class="card-text">
+                        Ansiliam exists because people often ask me for the same
+                        things repeatedly. Instead of searching through old messages
+                        and sending files over and over again, I wanted a single
+                        place where anyone could easily find what they need. While
+                        preserving information is an interesting side effect, the
+                        main purpose is accessibility. The archive prioritizes
+                        information that people genuinely look for and creates a
+                        simpler way to share it with others.
+                    </p>
+                </article>
+                <article class="card">
+                    <h1 class="card-title">Growth</h1>
+                    <p class="card-text">
+                        Ansiliam may eventually grow beyond a personal archive and
+                        become a collaborative project with multiple archivers
+                        contributing their own information. One of its long-term
+                        goals is to create a small community where archivers can
+                        interact, share ideas, and connect over common interests.
+                        The future of the archive depends on three main pillars: my
+                        willingness to continue developing it, how much people use
+                        it, and how many new archivers decide to join. As these
+                        pillars grow, Ansiliam can evolve into something much larger
+                        than it is today.
+                    </p>
+                </article>
+            </section>
+            <a
+                class="button-apply"
+                href="https://tally.so/r/kdJ616"
+                target="_blank"
+            >
+                <p class="button-text">Apply to Ansilian!</p>
+            </a>
+        </main>
+        <div data-component="footer"></div>
     </body>
 </html>

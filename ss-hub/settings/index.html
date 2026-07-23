@@ -15,12 +15,10 @@
         <link rel="stylesheet" href="style.css?v=1" />
     </head>
     <body>
-        <!-- ===================== COPY-PASTE HEADER ===================== -->
-        <div id="topbar-container"></div>
+        <div data-component="navbar"></div>
         <script src="/nav.js"></script>
-        <!-- ==================== END COPY-PASTE HEADER ================== -->
 
-        <div class="page-content">
+        <main class="page-content">
             <h1 class="page-title">settings</h1>
             <input
                 type="text"
@@ -32,7 +30,7 @@
             <div id="configs-container">
                 <p class="status-text">loading...</p>
             </div>
-        </div>
+        </main>
 
         <script>
             let allConfigs = [];
@@ -44,7 +42,7 @@
                     .join("");
             }
 
-            function renderCards(filter) {
+            async function renderCards(filter) {
                 const container = document.getElementById("configs-container");
                 const query = filter.toLowerCase().trim();
 
@@ -75,27 +73,21 @@
                     return;
                 }
 
-                results.forEach((config) => {
-                    const card = document.createElement("a");
-                    card.className = "post-card";
-                    card.href = `reader.html?config=${config.id}`;
+                const cards = await Promise.all(results.map((config) =>
+                    window.renderComponent("article-card", {
+                        idAttr: `config-${config.id}`,
+                        href: `reader.html?config=${config.id}`,
+                        number: config.id,
+                        date: config.date,
+                        title: config.title || config.author,
+                        metaHtml: `<span class="format-badge format-${config.format}">${config.format}</span>`,
+                        descriptionHtml: "",
+                        authorHtml: `<div class="card-author-row">${config.author}</div>`,
+                        bottomHtml: `<div class="card-tags">${renderTags(config.tags)}</div>`,
+                    })
+                ));
 
-                    card.innerHTML = `
-                        <div class="card-top-row">
-                            <span class="card-number">#${config.id}</span>
-                            <span class="card-dot">·</span>
-                            <span class="card-date">${config.date}</span>
-                            <span class="format-badge format-${config.format}">${config.format}</span>
-                        </div>
-                        <div class="card-title">${config.title || config.author}</div>
-                        <div class="card-author-row">${config.author}</div>
-                        <div class="card-bottom-row">
-                            <div class="card-tags">${renderTags(config.tags)}</div>
-                        </div>
-                    `;
-
-                    container.appendChild(card);
-                });
+                container.innerHTML = cards.join("");
             }
 
             async function loadConfigs() {
@@ -128,5 +120,6 @@
 
             loadConfigs();
         </script>
+        <div data-component="footer"></div>
     </body>
 </html>

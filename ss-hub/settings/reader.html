@@ -15,12 +15,10 @@
         <link rel="stylesheet" href="style.css?v=1" />
     </head>
     <body>
-        <!-- ===================== COPY-PASTE HEADER ===================== -->
-        <div id="topbar-container"></div>
+        <div data-component="navbar"></div>
         <script src="/nav.js"></script>
-        <!-- ==================== END COPY-PASTE HEADER ================== -->
 
-        <div class="page-content">
+        <main class="page-content">
             <a class="back-link" href="index.html">← back to settings</a>
 
             <div class="post-preface">
@@ -64,7 +62,7 @@
             <div id="action-container"></div>
 
             <p class="status-text" id="status"></p>
-        </div>
+        </main>
 
         <script>
             const SS_FIELDS = [
@@ -231,5 +229,6 @@
 
             loadConfig();
         </script>
+        <div data-component="footer"></div>
     </body>
 </html>

@@ -13,10 +13,10 @@
         <link rel="stylesheet" href="style.css?v=1" />
     </head>
     <body>
-        <div id="topbar-container"></div>
+        <div data-component="navbar"></div>
         <script src="/nav.js"></script>
 
-        <div class="page-content">
+        <main class="page-content">
             <h1 class="page-title" style="margin-bottom: 24px;">customs</h1>
 
             <div class="pattern-filter" id="pattern-filter">
@@ -43,7 +43,7 @@
             <div id="customs-container">
                 <p class="status-text">loading...</p>
             </div>
-        </div>
+        </main>
 
         <script>
             let allCustoms = [];
@@ -130,7 +130,7 @@
                 const colors = getRatingStyle(custom.rating);
 
                 return `
-                    <div class="custom-card">
+                    <article class="custom-card">
                         <div class="card-top-row">
                             <span class="card-number">#${custom.id}</span>
                             <span class="card-dot">·</span>
@@ -144,7 +144,7 @@
                             <span class="card-archiver">archived by ${custom.archiver}</span>
                         </div>
                         <button class="action-btn" onclick="copyLink('${custom.link}', this)">copy link</button>
-                    </div>
+                    </article>
                 `;
             }
 
@@ -255,5 +255,6 @@
 
             loadCustoms();
         </script>
+        <div data-component="footer"></div>
     </body>
 </html>
