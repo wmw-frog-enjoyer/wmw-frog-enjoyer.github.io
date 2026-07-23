@@ -50,7 +50,7 @@
             .toc-widget {
                 position: sticky;
                 top: 80px;
-                width: 230px;
+                width: 220px;
                 align-self: flex-start;
                 background: none;
                 border: none;
@@ -61,10 +61,10 @@
             .toc-toggle {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                gap: 6px;
                 background: none;
                 border: none;
-                padding: 0 0 12px 0;
+                padding: 0 0 10px 0;
                 cursor: pointer;
                 color: rgba(255, 255, 255, 0.85);
                 font-family: "Inter", sans-serif;
@@ -79,9 +79,9 @@
             }
 
             .toc-arrow {
-                font-size: 13px;
+                font-size: 11px;
                 transition: transform 0.15s ease;
-                color: rgba(255, 255, 255, 0.5);
+                color: rgba(255, 255, 255, 0.4);
             }
 
             .toc-arrow.closed {
@@ -100,6 +100,7 @@
                 display: flex;
                 flex-direction: column;
                 width: 100%;
+                text-align: left;
             }
 
             .toc-sublist {
@@ -109,21 +110,24 @@
                 margin-top: 2px;
             }
 
+            /* Strictly left-aligned cards without centered placeholders */
             .toc-link-row {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                justify-content: flex-start;
+                gap: 6px;
                 width: 100%;
                 box-sizing: border-box;
                 font-family: "Inter", sans-serif;
                 text-decoration: none;
-                padding: 6px 12px;
+                padding: 5px 14px;
                 transition: background-color 0.12s ease;
                 line-height: 1.4;
                 border-left: 1px solid transparent;
                 margin-left: -1px;
                 border-radius: 4px;
                 cursor: pointer;
+                text-align: left;
             }
 
             .toc-link-row:hover {
@@ -131,44 +135,42 @@
                 border-left-color: transparent;
             }
 
-            /* Indent steps: each deeper level shifts right by 18px */
-            .toc-link-row.toc-h2 { padding-left: 8px; }
-            .toc-link-row.toc-h3 { padding-left: 26px; }
-            .toc-link-row.toc-h4 { padding-left: 44px; }
+            /* Indent steps locked strictly to the left */
+            .toc-link-row.toc-h2 { padding-left: 14px; }
+            .toc-link-row.toc-h3 { padding-left: 24px; }
+            .toc-link-row.toc-h4 { padding-left: 36px; }
 
-            /* Left icon container: guarantees perfectly straight vertical alignment */
+            /* When an arrow is added, pull padding back so text alignment never shifts right */
+            .toc-link-row.has-children.toc-h2 { padding-left: 0px; }
+            .toc-link-row.has-children.toc-h3 { padding-left: 10px; }
+            .toc-link-row.has-children.toc-h4 { padding-left: 22px; }
+
+            /* Left icon container: Full opacity arrows left-aligned in their slot */
             .toc-icon {
                 display: inline-flex;
                 align-items: center;
-                justify-content: center;
-                width: 18px;
-                height: 18px;
+                justify-content: flex-start;
+                width: 14px;
                 flex-shrink: 0;
                 user-select: none;
-                font-size: 14px;
-                transition: transform 0.15s ease, color 0.12s ease, background 0.12s ease;
-                border-radius: 3px;
+                font-size: 13px;
+                transition: transform 0.15s ease, color 0.12s ease;
             }
 
-            /* Clickable collapse arrows (▾) */
+            /* Clickable dropdown arrows (▾) at 100% full opacity */
             .toc-icon.toc-toggle-arrow {
-                color: rgba(255, 255, 255, 0.6);
+                color: rgba(255, 255, 255, 1);
                 cursor: pointer;
-            }
-
-            .toc-icon.toc-toggle-arrow:hover {
-                color: rgba(255, 255, 255, 0.95);
-                background: rgba(255, 255, 255, 0.1);
             }
 
             .toc-icon.toc-toggle-arrow.closed {
                 transform: rotate(-90deg);
             }
 
-            /* Static branch arrows (↳) that cover the indentation space of subdivisions */
+            /* Indentation branch arrows (↳) at 100% full opacity */
             .toc-icon.toc-sub-branch {
-                font-size: 13px;
-                color: rgba(255, 255, 255, 0.25);
+                font-size: 12px;
+                color: rgba(255, 255, 255, 1);
             }
 
             .toc-link {
@@ -177,33 +179,17 @@
                 text-decoration: none;
                 transition: color 0.12s ease;
                 display: block;
+                text-align: left;
             }
 
-            /* ── Strong Typographic Hierarchy per Level ── */
-
-            /* H2: Bright, bold, larger top-level section titles */
-            .toc-link-row.toc-h2 .toc-link {
-                font-size: 14px;
-                font-weight: 500;
-                color: rgba(255, 255, 255, 0.85);
-            }
-
-            /* H3: Medium gray, regular weight, clearly indented subdivision */
-            .toc-link-row.toc-h3 .toc-link {
-                font-size: 13px;
-                font-weight: 400;
-                color: rgba(255, 255, 255, 0.50);
-            }
-
-            /* H4: Quieter gray, smaller text for deep subdivisions */
-            .toc-link-row.toc-h4 .toc-link {
-                font-size: 12px;
-                font-weight: 400;
-                color: rgba(255, 255, 255, 0.35);
-            }
+            /* ── Reverted Low-Opacity, Quiet Text Hierarchy ── */
+            .toc-link-row.toc-h2 .toc-link { font-size: 14px; font-weight: 400; color: rgba(255, 255, 255, 0.5); }
+            .toc-link-row.toc-h3 .toc-link { font-size: 13.5px; font-weight: 400; color: rgba(255, 255, 255, 0.4); }
+            .toc-link-row.toc-h4 .toc-link { font-size: 13px; font-weight: 400; color: rgba(255, 255, 255, 0.3); }
 
             .toc-link-row:hover .toc-link {
-                color: rgba(255, 255, 255, 0.95);
+                color: rgba(255, 255, 255, 0.9);
+                text-shadow: none;
             }
 
             /* ── center column ── */
@@ -474,7 +460,6 @@
                 const list = document.getElementById("toc-list");
                 list.innerHTML = "";
 
-                // Stack keeps track of hierarchy levels to attach children to parents
                 const stack = [{ level: 1, container: list, itemDiv: null, linkRow: null, iconSpan: null }];
 
                 headings.forEach((h, i) => {
@@ -487,14 +472,14 @@
                     const linkRow = document.createElement("div");
                     linkRow.className = `toc-link-row toc-h${level}`;
 
-                    // Create fixed left icon slot
-                    const iconSpan = document.createElement("span");
-                    iconSpan.className = "toc-icon";
+                    let iconSpan = null;
 
-                    // If it is a subdivision (h3 or h4), inject an L-shaped branch arrow by default
+                    // Only attach an icon span immediately if it is a subdivision (h3/h4)
                     if (level > 2) {
+                        iconSpan = document.createElement("span");
+                        iconSpan.className = "toc-icon toc-sub-branch";
                         iconSpan.textContent = "↳";
-                        iconSpan.classList.add("toc-sub-branch");
+                        linkRow.appendChild(iconSpan);
                     }
 
                     const link = document.createElement("a");
@@ -502,11 +487,9 @@
                     link.href = `#${h.id}`;
                     link.textContent = h.textContent;
 
-                    linkRow.appendChild(iconSpan);
                     linkRow.appendChild(link);
                     itemDiv.appendChild(linkRow);
 
-                    // Clicking anywhere on the row scrolls smoothly to the section
                     linkRow.addEventListener("click", (e) => {
                         e.preventDefault();
                         h.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -525,11 +508,16 @@
                             sublist.className = "toc-sublist";
                             parent.itemDiv.appendChild(sublist);
 
-                            // When a parent receives its first child, upgrade its icon to an interactive collapse toggle arrow
+                            // If the parent has no icon yet (like an H2), create one now
+                            if (!parent.iconSpan) {
+                                parent.iconSpan = document.createElement("span");
+                                parent.linkRow.insertBefore(parent.iconSpan, parent.linkRow.firstChild);
+                            }
+
                             parent.iconSpan.textContent = "▾";
                             parent.iconSpan.className = "toc-icon toc-toggle-arrow";
+                            parent.linkRow.classList.add("has-children");
 
-                            // Clicking only the arrow toggles collapse without scrolling the page
                             parent.iconSpan.addEventListener("click", (e) => {
                                 e.stopPropagation();
                                 e.preventDefault();
