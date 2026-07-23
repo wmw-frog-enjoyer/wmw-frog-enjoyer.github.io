@@ -52,29 +52,29 @@
                 top: 80px;
                 width: 220px;
                 align-self: flex-start;
-                background: none;             /* Stripped the card background completely */
-                border: none;                 /* Removed the box boundary lines */
-                padding: 0;                   /* Reset padding to align perfectly to the left grid track */
-                box-shadow: none;             /* Eliminated the outer glow container */
+                background: none;
+                border: none;
+                padding: 0;
+                box-shadow: none;
             }
 
             .toc-toggle {
                 display: flex;
                 align-items: center;
-                gap: 6px;                     /* Tightened up spacing like Obsidian's folder toggles */
+                gap: 6px;
                 background: none;
                 border: none;
                 padding: 0 0 10px 0;
                 cursor: pointer;
                 color: rgba(255, 255, 255, 0.85);
                 font-family: "Inter", sans-serif;
-                font-size: 15px;              /* Snapped down to a crisp, precise utility scale */
+                font-size: 15px;
                 font-weight: 500;
                 letter-spacing: 0.03em;
-                text-transform: none;         /* Obsidian uses standard title casing rather than loud uppercase */
+                text-transform: none;
                 width: 100%;
                 text-align: left;
-                border-bottom: none;          /* Removed the divider rule */
+                border-bottom: none;
                 margin-bottom: 8px;
             }
 
@@ -88,46 +88,98 @@
                 transform: rotate(-90deg);
             }
 
-            /* left border track */
+            /* ── TOC Tree & Dropdowns ── */
             .toc-list {
                 display: flex;
                 flex-direction: column;
-                gap: 2px;                     /* Dense, clean list item spacing */
-                border-left: 1px solid rgba(255, 255, 255, 0.08); /* Minimal vertical guide line */
+                gap: 2px;
+                border-left: 1px solid rgba(255, 255, 255, 0.08);
             }
 
-            .toc-item {
-                display: block;
-                width: 100%;                  /* Ensures the hover background stretches fully */
-                box-sizing: border-box;       /* Prevents padding from breaking layout width */
+            .toc-node {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .toc-sublist {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                margin-top: 2px;
+            }
+
+            .toc-link-row {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                box-sizing: border-box;
                 font-family: "Inter", sans-serif;
-                font-size: 14px;
                 font-weight: 400;
-                color: rgba(255, 255, 255, 0.5);
                 text-decoration: none;
-                padding: 5px 14px 5px 14px;   /* Added 14px padding to both Left AND Right sides */
-                transition: color 0.12s ease, background-color 0.12s ease;
+                padding: 5px 14px;
+                transition: background-color 0.12s ease;
                 line-height: 1.4;
                 border-left: 1px solid transparent;
                 margin-left: -1px;
                 border-radius: 4px;
+                cursor: pointer;
             }
 
-            .toc-item:hover {
-                color: rgba(255, 255, 255, 0.9);
+            .toc-link-row:hover {
                 background: rgba(255, 255, 255, 0.06);
                 border-left-color: transparent;
-                text-shadow: none;
-                padding: 5px 14px 5px 14px;   /* Keeps right and left side perfectly balanced */
             }
 
-            /* indent levels */
-            .toc-h2 { font-size: 14px; }
-            .toc-h3 { font-size: 13.5px; padding: 5px 14px 5px 24px; color: rgba(255, 255, 255, 0.4); }
-            .toc-h4 { font-size: 13px; padding: 5px 14px 5px 36px; color: rgba(255, 255, 255, 0.3); }
+            /* Indent levels (text alignment stays locked at 14px, 26px, 38px) */
+            .toc-link-row.toc-h2 { padding-left: 14px; }
+            .toc-link-row.toc-h3 { padding-left: 26px; }
+            .toc-link-row.toc-h4 { padding-left: 38px; }
 
-            .toc-h3:hover { padding: 5px 14px 5px 24px; }
-            .toc-h4:hover { padding: 5px 14px 5px 36px; }
+            /* Automatically reduces padding when an arrow is added so heading text never shifts right */
+            .toc-link-row.has-children.toc-h2 { padding-left: 0px; }
+            .toc-link-row.has-children.toc-h3 { padding-left: 12px; }
+            .toc-link-row.has-children.toc-h4 { padding-left: 24px; }
+
+            .toc-subarrow {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 14px;
+                height: 14px;
+                margin-right: 0px;
+                font-size: 11px;
+                color: rgba(255, 255, 255, 0.35);
+                transition: transform 0.15s ease, color 0.12s ease;
+                flex-shrink: 0;
+                user-select: none;
+            }
+
+            .toc-subarrow:hover {
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            .toc-subarrow.closed {
+                transform: rotate(-90deg);
+            }
+
+            .toc-link {
+                flex: 1;
+                font-family: "Inter", sans-serif;
+                text-decoration: none;
+                transition: color 0.12s ease;
+                display: block;
+            }
+
+            /* Typography & Colors per level */
+            .toc-link-row.toc-h2 .toc-link { font-size: 14px; color: rgba(255, 255, 255, 0.5); }
+            .toc-link-row.toc-h3 .toc-link { font-size: 13.5px; color: rgba(255, 255, 255, 0.4); }
+            .toc-link-row.toc-h4 .toc-link { font-size: 13px; color: rgba(255, 255, 255, 0.3); }
+
+            .toc-link-row:hover .toc-link {
+                color: rgba(255, 255, 255, 0.9);
+                text-shadow: none;
+            }
 
             /* ── center column ── */
             .page-content {
@@ -139,19 +191,18 @@
             /* ── right column: stats stuck to right edge ── */
             .stats-column {
                 display: flex;
-                justify-content: center; /* Changes from flex-end to absolute center of gap2 */
-                padding-right: 0;        /* Clear out the padding so it relies purely on grid centering */
+                justify-content: center;
+                padding-right: 0;
             }
 
             .reading-stats {
-                position: sticky;          /* Makes it follow you as you scroll */
-                top: 80px;                 /* Aligns its top position perfectly with the TOC widget */
+                position: sticky;
+                top: 80px;
                 width: 110px;
                 display: flex;
                 flex-direction: column;
                 gap: 24px;
-                align-self: flex-start;    /* Required for sticky to work correctly inside a flex/grid container */
-                /* margin-top: 148px; */   /* REMOVE OR COMMENT THIS OUT so it aligns to the top */
+                align-self: flex-start;
             }
 
             .stat-item { display: flex; flex-direction: column; gap: 4px; }
@@ -159,7 +210,7 @@
                 font-family: "Inter", sans-serif;
                 font-size: 14px;
                 font-weight: 400;
-                color: rgba(255, 255, 255, 0.85); /* Promoted to crisp, readable off-white */
+                color: rgba(255, 255, 255, 0.85);
                 text-transform: uppercase;
                 letter-spacing: 0.07em;
             }
@@ -168,13 +219,12 @@
                 font-family: "Inter", sans-serif;
                 font-size: 24px;
                 font-weight: 300;
-                color: rgba(255, 255, 255, 0.35); /* Stepped down to a quiet, balanced gray track */
+                color: rgba(255, 255, 255, 0.35);
                 letter-spacing: -0.3px;
             }
 
             @media (max-width: 1100px) {
                 .reader-layout {
-                    /* Changes to a single column so .page-content takes the full space */
                     grid-template-columns: 1fr;
                 }
                 .toc-column, .stats-column {
@@ -248,19 +298,19 @@
                 position: fixed;
                 bottom: 32px;
                 right: 32px;
-                width: 52px;                  /* Snapped down slightly for a tighter profile */
+                width: 52px;
                 height: 52px;
-                background: rgba(255, 255, 255, 0.05); /* Very quiet, clean transparency */
-                border: 1px solid rgba(255, 255, 255, 0.2); /* Thin, sharp baseline boundary */
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 50%;
-                color: rgba(255, 255, 255, 0.6);            /* Subdued default arrow color */
+                color: rgba(255, 255, 255, 0.6);
                 cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 opacity: 0;
                 pointer-events: none;
-                transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Snappier, natural curve */
+                transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
                 z-index: 998;
             }
 
@@ -269,31 +319,26 @@
                 pointer-events: auto;
             }
 
-            /* Elegant, grounded interactive hover state */
             .scroll-top-btn:hover {
-                color: rgba(255, 255, 255, 0.95);           /* Arrow sharpens to clear white */
-                background: rgba(255, 255, 255, 0.1);        /* Solidifies base structure */
-                border-color: rgba(255, 255, 255, 0.45);      /* Clear perimeter highlight */
-                transform: translateY(-4px);                  /* Snappy vertical lift hint */
-
-                /* Low-profile, warm ambient shadow just to lift it off the page background */
+                color: rgba(255, 255, 255, 0.95);
+                background: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.45);
+                transform: translateY(-4px);
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
                             0 0 8px rgba(255, 255, 255, 0.08);
             }
 
-            /* Style for the inline SVG arrow */
             .scroll-top-btn svg {
                 width: 18px;
                 height: 18px;
                 stroke: currentColor;
-                stroke-width: 3; /* Firm, highly legible line thickness */
+                stroke-width: 3;
                 stroke-linecap: round;
                 stroke-linejoin: round;
                 fill: none;
                 transition: transform 0.2s ease;
             }
 
-            /* Subtle internal animation to hint action */
             .scroll-top-btn:hover svg {
                 transform: translateY(-1px);
             }
@@ -307,7 +352,6 @@
         <button class="scroll-top-btn" id="scroll-top-btn"
             onclick="window.scrollTo({top:0,behavior:'smooth'})"
             title="back to top">
-            <!-- Thicker vector arrow -->
             <svg viewBox="0 0 24 24">
                 <line x1="12" y1="19" x2="12" y2="5"></line>
                 <polyline points="5 12 12 5 19 12"></polyline>
@@ -389,7 +433,6 @@
             }
             window.addEventListener("scroll", updateProgress, { passive: true });
 
-            // open by default
             let tocOpen = true;
 
             function toggleToc() {
@@ -399,29 +442,79 @@
             }
 
             function buildToc() {
-                // pick up h2, h3, h4
                 const headings = document.getElementById("post-body")
                     .querySelectorAll("h2, h3, h4");
                 if (headings.length === 0) return;
 
                 const list = document.getElementById("toc-list");
+                list.innerHTML = "";
+
+                // Stack keeps track of hierarchy levels to attach children to parents
+                const stack = [{ level: 1, container: list }];
 
                 headings.forEach((h, i) => {
                     if (!h.id) h.id = `heading-${i}`;
-                    const level = parseInt(h.tagName[1]); // 2, 3, or 4
+                    const level = parseInt(h.tagName[1], 10);
+
+                    const itemDiv = document.createElement("div");
+                    itemDiv.className = `toc-node toc-node-h${level}`;
+
+                    const linkRow = document.createElement("div");
+                    linkRow.className = `toc-link-row toc-h${level}`;
 
                     const link = document.createElement("a");
-                    link.className = `toc-item toc-h${level}`;
+                    link.className = "toc-link";
                     link.href = `#${h.id}`;
                     link.textContent = h.textContent;
-                    link.addEventListener("click", (e) => {
+
+                    // Clicking anywhere on the row scrolls smoothly to the section
+                    linkRow.addEventListener("click", (e) => {
                         e.preventDefault();
                         h.scrollIntoView({ behavior: "smooth", block: "start" });
                     });
-                    list.appendChild(link);
+
+                    linkRow.appendChild(link);
+                    itemDiv.appendChild(linkRow);
+
+                    // Pop stack until the top item is at a higher hierarchy level (smaller number)
+                    while (stack.length > 1 && stack[stack.length - 1].level >= level) {
+                        stack.pop();
+                    }
+
+                    const parent = stack[stack.length - 1];
+
+                    if (parent.level > 1) {
+                        let sublist = parent.itemDiv.querySelector(".toc-sublist");
+                        if (!sublist) {
+                            sublist = document.createElement("div");
+                            sublist.className = "toc-sublist";
+                            parent.itemDiv.appendChild(sublist);
+
+                            // Inject the toggle arrow for parent items
+                            const toggleBtn = document.createElement("span");
+                            toggleBtn.className = "toc-subarrow";
+                            toggleBtn.textContent = "▾";
+
+                            // Clicking only the arrow toggles collapse without scrolling the page
+                            toggleBtn.addEventListener("click", (e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                const isClosed = sublist.style.display === "none";
+                                sublist.style.display = isClosed ? "flex" : "none";
+                                toggleBtn.classList.toggle("closed", !isClosed);
+                            });
+
+                            parent.linkRow.insertBefore(toggleBtn, parent.linkRow.firstChild);
+                            parent.linkRow.classList.add("has-children");
+                        }
+                        sublist.appendChild(itemDiv);
+                    } else {
+                        parent.container.appendChild(itemDiv);
+                    }
+
+                    stack.push({ level, container: null, itemDiv, linkRow });
                 });
 
-                // open by default
                 list.style.display = "flex";
                 document.getElementById("toc-widget").style.display = "block";
             }
