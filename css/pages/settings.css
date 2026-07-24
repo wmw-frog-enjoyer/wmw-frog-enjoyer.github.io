@@ -141,40 +141,42 @@ body {
 .settings-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     gap: 12px;
-    align-items: start;
 }
 
 .settings-info {
     min-width: 0;
+    grid-column: 1;
+    grid-row: 1 / 3;
 }
-
-/* Video container positioned right with button below */
-.settings-layout .video-container {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.03);
-    margin-bottom: 8px;
-}
-
-/* Action button positioned bottom right */
-.settings-layout .action-container {
-    display: flex !important;
-    justify-content: flex-end !important;
-    margin-top: 0 !important;
-}
-
-/* =====================================================
-   settings information grid — compact
-   ===================================================== */
 
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 6px;
     margin-bottom: 10px;
+}
+
+/* Move action-container to right column, bottom */
+.settings-layout .action-container {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    margin-top: 0 !important;
+}
+
+/* Video container positioned right column, top */
+.settings-layout .video-container {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    margin-bottom: 0 !important;
 }
 
 .stat-box {
