@@ -18,6 +18,16 @@ body {
 }
 
 /* =====================================================
+   card container — 2-wide grid layout
+   ===================================================== */
+
+#configs-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+/* =====================================================
    card header
    ===================================================== */
 
@@ -125,11 +135,14 @@ body {
 }
 
 /* =====================================================
-   COMPACT LAYOUT: Single column, minimal gaps
+   COMPACT LAYOUT: Settings + Video side-by-side
    ===================================================== */
 
 .settings-layout {
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: start;
 }
 
 .settings-info {
@@ -208,11 +221,15 @@ body {
 }
 
 /* =====================================================
-   video preview — hidden by default
+   video preview
    ===================================================== */
 
 .video-container {
-    display: none;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
 }
 
 /* =====================================================
@@ -222,10 +239,7 @@ body {
 @media (max-width: 900px) {
     .settings-layout {
         grid-template-columns: 1fr;
-    }
-
-    .video-container {
-        display: none;
+        gap: 10px;
     }
 }
 
@@ -270,7 +284,17 @@ body {
     }
 }
 
+@media (max-width: 900px) {
+    #configs-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 480px) {
+    #configs-container {
+        grid-template-columns: 1fr;
+    }
+
     .stats-grid {
         grid-template-columns: 1fr;
     }
