@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wmw-frog-enjoyer.github.io/sitemap.xml
