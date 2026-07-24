@@ -1,223 +1,241 @@
 body {
-    text-align: left;
+text-align: left;
 }
 
 /* =====================================================
-   settings — shared styles for index.html & reader.html
-   ===================================================== */
-
-/* override global style.css body rules */
-
-
-/* =====================================================
-   index.html — config list
-   ===================================================== */
-
+settings — main page
+===================================================== */
 
 .card-title {
-    font-family: "Inter", sans-serif;
-    font-size: 28px;
-    font-weight: 400;
-    margin-top: 10px;
-    margin-bottom: 20px;
+font-family: "Inter", sans-serif;
+font-size: 28px;
+font-weight: 400;
+margin-top: 10px;
+margin-bottom: 20px;
 }
 
 .card-author-row {
-    font-family: "Inter", sans-serif;
-    font-size: 17px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.55);
-    margin-bottom: 6px;
+font-family: "Inter", sans-serif;
+font-size: 17px;
+font-weight: 300;
+color: rgba(255, 255, 255, 0.55);
+margin-bottom: 6px;
 }
 
-
 /* =====================================================
-   format badges — used in both index and reader
-   ===================================================== */
+format badges
+===================================================== */
 
 .format-badge {
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 5px;
+font-family: "Inter", sans-serif;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+padding: 2px 8px;
+border-radius: 5px;
 }
 
 /* ss = Sound Space */
+
 .format-ss {
-    color: rgba(150, 200, 255, 0.9);
-    background: rgba(150, 200, 255, 0.1);
-    border: 1px solid rgba(150, 200, 255, 0.2);
+color: rgba(150, 200, 255, 0.9);
+background: rgba(150, 200, 255, 0.1);
+border: 1px solid rgba(150, 200, 255, 0.2);
 }
 
 /* ssp = Sound Space Plus */
+
 .format-ssp {
-    color: rgba(180, 150, 255, 0.9);
-    background: rgba(180, 150, 255, 0.1);
-    border: 1px solid rgba(180, 150, 255, 0.2);
+color: rgba(180, 150, 255, 0.9);
+background: rgba(180, 150, 255, 0.1);
+border: 1px solid rgba(180, 150, 255, 0.2);
 }
 
 /* =====================================================
-   tags — used in both index.html and reader.html
-   ===================================================== */
+settings card content
+===================================================== */
 
-
-/* =====================================================
-   reader.html — preface, stats grid, video
-   ===================================================== */
-
+.settings-card-content {
+width: 100%;
+}
 
 .post-preface {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+margin-bottom: 20px;
 }
 
 .preface-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+display: flex;
+align-items: center;
+gap: 10px;
 }
 
 .preface-number {
-    font-family: "Inter", sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.62);
-    letter-spacing: 0.04em;
+font-family: "Inter", sans-serif;
+font-size: 15px;
+font-weight: 300;
+color: rgba(255, 255, 255, 0.62);
+letter-spacing: 0.04em;
 }
 
 .preface-right {
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+display: flex;
+flex-direction: column;
+gap: 3px;
+text-align: right;
 }
 
 .preface-author {
-    font-family: "Inter", sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.72);
+font-family: "Inter", sans-serif;
+font-size: 15px;
+font-weight: 300;
+color: rgba(255, 255, 255, 0.72);
 }
 
 .preface-date {
-    font-family: "Inter", sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.62);
+font-family: "Inter", sans-serif;
+font-size: 14px;
+font-weight: 300;
+color: rgba(255, 255, 255, 0.62);
 }
 
 .preface-divider {
-    border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.09);
-    margin: 0 0 28px 0;
+border: none;
+border-top: 1px solid rgba(255, 255, 255, 0.09);
+margin: 0 0 28px 0;
 }
 
-/* grid of stat boxes displaying the settings values */
+/* =====================================================
+tags
+===================================================== */
+
+.preface-tags {
+margin-bottom: 28px;
+}
+
+/* =====================================================
+settings values
+===================================================== */
+
 .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
-    margin-bottom: 40px;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+gap: 12px;
+margin-bottom: 32px;
 }
 
 .stat-box {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    padding: 18px 20px;
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 10px;
+padding: 18px 20px;
 }
 
 .stat-label {
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.68);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 10px;
+font-family: "Inter", sans-serif;
+font-size: 12px;
+font-weight: 300;
+color: rgba(255, 255, 255, 0.68);
+text-transform: uppercase;
+letter-spacing: 0.06em;
+margin-bottom: 10px;
 }
 
 .stat-value {
-    font-family: "Inter", sans-serif;
-    font-size: 32px;
-    font-weight: 200;
-    color: white;
-    letter-spacing: -0.5px;
+font-family: "Inter", sans-serif;
+font-size: 32px;
+font-weight: 200;
+color: white;
+letter-spacing: -0.5px;
 }
 
-/* youtube embed */
+/* =====================================================
+youtube video
+===================================================== */
 
+.video-container {
+position: relative;
+width: 100%;
+aspect-ratio: 16 / 9;
+margin-bottom: 32px;
+overflow: hidden;
+border-radius: 10px;
+background: rgba(255, 255, 255, 0.03);
+}
+
+.video-embed {
+width: 100%;
+height: 100%;
+display: block;
+border: none;
+}
 
 /* =====================================================
-   action button — copy (ss) or download (ssp)
-   ===================================================== */
+action area
+===================================================== */
 
-#action-container {
-    text-align: center;
-    margin-top: 20px;
+.action-container {
+display: flex;
+justify-content: center;
+margin-top: 20px;
 }
 
 .action-btn {
-    display: inline-block;
-    font-family: "Inter", sans-serif;
-    font-size: 20px;
-    font-weight: 300;
-    color: white;
-    background-color: rgb(37, 105, 63);
-    border: none;
-    border-radius: 10px;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition:
-        transform 0.2s ease,
-        background-color 0.2s ease;
+display: inline-block;
+font-family: "Inter", sans-serif;
+font-size: 20px;
+font-weight: 300;
+color: white;
+background-color: rgb(37, 105, 63);
+border: none;
+border-radius: 10px;
+padding: 10px 15px;
+cursor: pointer;
+transition:
+transform 0.2s ease,
+background-color 0.2s ease;
 }
 
 .action-btn:hover {
-    transform: scale(1.05);
-    background-color: rgb(45, 133, 79);
+transform: scale(1.05);
+background-color: rgb(45, 133, 79);
 }
 
 /* =====================================================
-   mobile responsive overrides (< 768px viewports)
-   ===================================================== */
+mobile responsive overrides
+===================================================== */
+
 @media (max-width: 767px) {
-    
+.card-title {
+font-size: 22px;
+margin-bottom: 12px;
+}
+.stats-grid {
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(130px, 1fr)
+    );
+    gap: 10px;
+}
 
-    
+.stat-box {
+    padding: 12px 14px;
+}
 
-    .card-title {
-        font-size: 22px;
-        margin-bottom: 12px;
-    }
+.stat-value {
+    font-size: 24px;
+}
 
-    
+.post-preface {
+    flex-direction: column;
+    gap: 10px;
+}
 
-    /* Adapts the configuration dashboard grid for mobile views */
-    .stats-grid {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
-        gap: 10px !important;
-    }
+.preface-right {
+    text-align: left;
+}
 
-    .stat-box {
-        padding: 12px 14px !important;
-    }
-
-    .stat-value {
-        font-size: 24px !important;
-    }
-
-    .post-preface {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .preface-right {
-        text-align: left;
-    }
 }

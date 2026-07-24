@@ -2,7 +2,6 @@
 
 <html lang="en">
     <head>
-        <!-- FIX 1: Active viewport tracking parameters for media queries -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 ```
@@ -113,8 +112,68 @@
 
     <script>
         let allConfigs = [];
+
         const formatStates =
             window.AnsilianSearch.createToggleStateMap();
+
+        const SS_FIELDS = [
+            {
+                key: "ApproachRate",
+                label: "Approach Rate",
+            },
+            {
+                key: "ApproachDistance",
+                label: "Approach Distance",
+            },
+            {
+                key: "FadeInLength",
+                label: "Fade In Length",
+            },
+            {
+                key: "Parallax",
+                label: "Camera Parallax",
+            },
+        ];
+
+        const SSP_FIELDS = [
+            {
+                key: "approach_rate",
+                label: "Approach Rate",
+            },
+            {
+                key: "spawn_distance",
+                label: "Spawn Distance",
+            },
+            {
+                key: "fade_length",
+                label: "Fade In Length",
+            },
+            {
+                key: "parallax",
+                label: "Parallax",
+            },
+            {
+                key: "grid_parallax",
+                label: "Grid Parallax",
+            },
+            {
+                key: "ui_parallax",
+                label: "UI Parallax",
+            },
+        ];
+
+        function escapeHtml(value) {
+            const div = document.createElement("div");
+            div.textContent = value ?? "";
+            return div.innerHTML;
+        }
+
+        function getYouTubeEmbedUrl(url) {
+            return (
+                window.AnsilianUtils.getYouTubeData(url)?.embedUrl ||
+                null
+            );
+        }
 
         function buildFormatPills(configs) {
             const formats = [
@@ -134,11 +193,11 @@
                         <button
                             type="button"
                             class="type-pill"
-                            data-format="${format}"
+                            data-format="${escapeHtml(format)}"
                             aria-pressed="false"
-                            onclick="toggleFormat('${format}', this)"
+                            onclick="toggleFormat('${escapeHtml(format)}', this)"
                         >
-                            ${format}
+                            ${escapeHtml(format)}
                         </button>
                     `,
                 )
@@ -175,11 +234,288 @@
             );
         }
 
+        function renderStats(configData, format) {
+            const fields =
+                format === "ssp"
+                    ? SSP_FIELDS
+                    : SS_FIELDS;
+
+            return fields
+                .map(({ key, label }) => {
+                    const value = configData[key];
+
+                    if (
+                        value === undefined ||
+                        value === null
+                    ) {
+                        return "";
+                    }
+
+                    return `
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                ${escapeHtml(label)}
+                            </div>
+                            <div class="stat-value">
+                                ${escapeHtml(String(value))}
+                            </div>
+                        </div>
+                    `;
+                })
+                .join("");
+        }
+
+        function renderVideo(videoUrl) {
+            if (!videoUrl) {
+                return "";
+            }
+
+            const embedUrl =
+                getYouTubeEmbedUrl(videoUrl);
+
+            if (!embedUrl) {
+                return "";
+            }
+
+            return `
+                <div class="video-container">
+                    <iframe
+                        class="video-embed"
+                        src="${escapeHtml(embedUrl)}"
+                        frameborder="0"
+                        loading="lazy"
+                        allow="
+                            accelerometer;
+                            autoplay;
+                            clipboard-write;
+                            encrypted-media;
+                            gyroscope;
+                            picture-in-picture;
+                        "
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            `;
+        }
+
+        function addCopyButton(button, configData) {
+            button.addEventListener("click", () => {
+                navigator.clipboard
+                    .writeText(
+                        JSON.stringify(
+                            configData,
+                            null,
+                            2,
+                        ),
+                    )
+                    .then(() => {
+                        button.textContent =
+                            "copied!";
+
+                        setTimeout(() => {
+                            button.textContent =
+                                "copy config";
+                        }, 2000);
+                    })
+                    .catch(() => {
+                        button.textContent =
+                            "copy failed";
+
+                        setTimeout(() => {
+                            button.textContent =
+                                "copy config";
+                        }, 2000);
+                    });
+            });
+        }
+
+        function addDownloadButton(
+            button,
+            configData,
+            author,
+        ) {
+            button.addEventListener("click", () => {
+                const blob = new Blob(
+                    [
+                        JSON.stringify(
+                            configData,
+                            null,
+                            2,
+                        ),
+                    ],
+                    {
+                        type: "application/json",
+                    },
+                );
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                const anchor =
+                    document.createElement("a");
+
+                anchor.href = url;
+                anchor.download = `${author}-ssp-settings.json`;
+                anchor.click();
+
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        async function renderConfig(config) {
+            try {
+                const response = await fetch(
+                    `configs/${config.id}.json`,
+                );
+
+                if (!response.ok) {
+                    return `
+                        <p class="status-text">
+                            settings file not found.
+                        </p>
+                    `;
+                }
+
+                const configData =
+                    await response.json();
+
+                const actionLabel =
+                    config.format === "ss"
+                        ? "copy config"
+                        : "download config";
+
+                const actionButton = `
+                    <button
+                        type="button"
+                        class="action-btn"
+                        data-action="config"
+                    >
+                        ${actionLabel}
+                    </button>
+                `;
+
+                const card = await window.renderComponent(
+                    "article-card",
+                    {
+                        idAttr: `config-${config.id}`,
+                        href: "#",
+                        number: config.id,
+                        date: config.date,
+                        title:
+                            config.title ||
+                            config.author,
+                        metaHtml: `
+                            <span class="format-badge format-${escapeHtml(config.format)}">
+                                ${escapeHtml(config.format)}
+                            </span>
+                        `,
+                        descriptionHtml: `
+                            <div class="settings-card-content">
+                                <div class="post-preface">
+                                    <div class="preface-left">
+                                        <span class="preface-number">
+                                            #${escapeHtml(config.id)}
+                                        </span>
+
+                                        <span class="format-badge format-${escapeHtml(config.format)}">
+                                            ${escapeHtml(config.format)}
+                                        </span>
+                                    </div>
+
+                                    <div class="preface-right">
+                                        <span class="preface-author">
+                                            ${escapeHtml(config.author)}
+                                        </span>
+
+                                        <span class="preface-date">
+                                            ${escapeHtml(config.date)}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <hr class="preface-divider" />
+
+                                <div class="preface-tags">
+                                    ${window.AnsilianUtils.renderTags(
+                                        config.tags,
+                                    )}
+                                </div>
+
+                                <div class="stats-grid">
+                                    ${renderStats(
+                                        configData,
+                                        config.format,
+                                    )}
+                                </div>
+
+                                ${renderVideo(
+                                    config.video,
+                                )}
+
+                                <div class="action-container">
+                                    ${actionButton}
+                                </div>
+                            </div>
+                        `,
+                        authorHtml: "",
+                        bottomHtml: "",
+                    },
+                );
+
+                const wrapper =
+                    document.createElement("div");
+
+                wrapper.innerHTML = card;
+
+                const actionButtonElement =
+                    wrapper.querySelector(
+                        '[data-action="config"]',
+                    );
+
+                if (
+                    actionButtonElement &&
+                    config.format === "ss"
+                ) {
+                    addCopyButton(
+                        actionButtonElement,
+                        configData,
+                    );
+                }
+
+                if (
+                    actionButtonElement &&
+                    config.format === "ssp"
+                ) {
+                    addDownloadButton(
+                        actionButtonElement,
+                        configData,
+                        config.author,
+                    );
+                }
+
+                return wrapper.innerHTML;
+            } catch (error) {
+                console.error(
+                    `Could not load config ${config.id}:`,
+                    error,
+                );
+
+                return `
+                    <p class="status-text">
+                        could not load config.
+                    </p>
+                `;
+            }
+        }
+
         async function renderCards(filter) {
             const container =
-                document.getElementById("configs-container");
+                document.getElementById(
+                    "configs-container",
+                );
 
-            const query = filter.toLowerCase().trim();
+            const query =
+                filter.toLowerCase().trim();
 
             const included =
                 window.AnsilianSearch.selectedKeys(
@@ -193,39 +529,48 @@
                     "exclude",
                 );
 
-            const results = allConfigs.filter((config) => {
-                const matchesSearch =
-                    !query ||
-                    (config.title &&
-                        config.title
-                            .toLowerCase()
-                            .includes(query)) ||
-                    config.author
-                        .toLowerCase()
-                        .includes(query) ||
-                    config.format
-                        .toLowerCase()
-                        .includes(query) ||
-                    (config.tags &&
-                        config.tags.some((tag) =>
-                            tag
+            const results = allConfigs.filter(
+                (config) => {
+                    const matchesSearch =
+                        !query ||
+                        (config.title &&
+                            config.title
                                 .toLowerCase()
-                                .includes(query),
-                        ));
+                                .includes(query)) ||
+                        config.author
+                            .toLowerCase()
+                            .includes(query) ||
+                        config.format
+                            .toLowerCase()
+                            .includes(query) ||
+                        (config.tags &&
+                            config.tags.some(
+                                (tag) =>
+                                    tag
+                                        .toLowerCase()
+                                        .includes(
+                                            query,
+                                        ),
+                            ));
 
-                const notExcluded =
-                    !excluded.includes(config.format);
+                    const notExcluded =
+                        !excluded.includes(
+                            config.format,
+                        );
 
-                const matchesInclude =
-                    included.length === 0 ||
-                    included.includes(config.format);
+                    const matchesInclude =
+                        included.length === 0 ||
+                        included.includes(
+                            config.format,
+                        );
 
-                return (
-                    matchesSearch &&
-                    notExcluded &&
-                    matchesInclude
-                );
-            });
+                    return (
+                        matchesSearch &&
+                        notExcluded &&
+                        matchesInclude
+                    );
+                },
+            );
 
             container.innerHTML = "";
 
@@ -236,46 +581,18 @@
             }
 
             const cards = await Promise.all(
-                results.map((config) =>
-                    window.renderComponent(
-                        "article-card",
-                        {
-                            idAttr: `config-${config.id}`,
-                            href: `reader.html?config=${config.id}`,
-                            number: config.id,
-                            date: config.date,
-                            title:
-                                config.title ||
-                                config.author,
-                            metaHtml: `
-                                <span class="format-badge format-${config.format}">
-                                    ${config.format}
-                                </span>
-                            `,
-                            descriptionHtml: "",
-                            authorHtml: `
-                                <div class="card-author-row">
-                                    ${config.author}
-                                </div>
-                            `,
-                            bottomHtml: `
-                                <div class="card-tags">
-                                    ${window.AnsilianUtils.renderTags(
-                                        config.tags,
-                                    )}
-                                </div>
-                            `,
-                        },
-                    ),
-                ),
+                results.map(renderConfig),
             );
 
-            container.innerHTML = cards.join("");
+            container.innerHTML =
+                cards.join("");
         }
 
         async function loadConfigs() {
             const container =
-                document.getElementById("configs-container");
+                document.getElementById(
+                    "configs-container",
+                );
 
             try {
                 const response = await fetch(
@@ -292,14 +609,17 @@
 
                 allConfigs.sort(
                     (a, b) =>
-                        Number(b.id) - Number(a.id),
+                        Number(b.id) -
+                        Number(a.id),
                 );
 
                 buildFormatPills(allConfigs);
                 renderCards("");
 
                 document
-                    .getElementById("search-input")
+                    .getElementById(
+                        "search-input",
+                    )
                     .addEventListener(
                         "input",
                         (event) => {
@@ -321,4 +641,6 @@
 
     <div data-component="footer"></div>
 </body>
+```
+
 </html>
