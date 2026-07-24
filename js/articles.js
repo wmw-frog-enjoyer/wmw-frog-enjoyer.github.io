@@ -92,7 +92,7 @@
                 return `
                     <div class="video-card" data-video-url="${escapeHtml(post.video)}">
                         <div class="video-thumbnail-wrapper">
-                            <img src="${youtube.thumbnail}" alt="${escapeHtml(post.title)} video thumbnail" class="video-thumbnail" loading="lazy">
+                            <img src="${youtube.thumbnail}" alt="${escapeHtml(post.title)} video thumbnail" class="video-thumbnail" width="320" height="180" loading="lazy" decoding="async">
                             <div class="play-overlay">
                                 <span class="play-triangle">▶</span>
                             </div>

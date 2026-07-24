@@ -42,7 +42,7 @@
                     // Map through data and generate the exact HTML blocks your CSS expects
                     grid.innerHTML = archivers.map(user => `
                         <article class="card">
-                            <img class="pfp" src="${user.pfp}" alt="${user.name}'s pfp" />
+                            <img class="pfp" src="${user.pfp}" alt="${user.name}'s pfp" width="170" height="170" loading="lazy" decoding="async" />
                             <div class="card-content">
                                 <h1 class="card-title">${user.name}</h1>
                                 <p class="card-text">Role: ${user.role}</p>

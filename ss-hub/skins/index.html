@@ -94,6 +94,17 @@
                 return filename.split(".").pop();
             }
 
+            function getPreviewImage(file) {
+                const previewMap = {
+                    "002.png": { src: "002.webp", width: 150, height: 150 },
+                    "003.png": { src: "003.webp", width: 150, height: 150 },
+                    "006.png": { src: "006-preview.webp", width: 512, height: 512 },
+                    "007.png": { src: "007-preview.webp", width: 512, height: 512 },
+                    "008.png": { src: "008-preview.webp", width: 512, height: 512 },
+                };
+                return previewMap[file] || { src: file, width: "", height: "" };
+            }
+
             function buildTypePills(skins) {
                 const types = [...new Set(skins.map((s) => s.type))].sort();
                 const container = document.getElementById("type-pills");
@@ -136,17 +147,19 @@
                     if (embedUrl) {
                         preview = `
                             <div class="video-container">
-                                <iframe src="${embedUrl}" frameborder="0"
+                                <iframe src="${embedUrl}" frameborder="0" loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen></iframe>
                             </div>`;
                     }
                 } else if (skin.type === "ss-cursor") {
+                    const previewImage = getPreviewImage(skin.file);
                     preview = `
-                        <img class="asset-preview" src="assets/${skin.file}" loading="lazy" alt="${skin.title}" />
+                        <img class="asset-preview" src="assets/${previewImage.src}" width="${previewImage.width}" height="${previewImage.height}" loading="lazy" decoding="async" alt="${skin.title}" />
                         <div class="cursor-code">${skin.code}</div>`;
                 } else if (skin.type === "ssp-cursor") {
-                    preview = `<img class="asset-preview" src="assets/${skin.file}" loading="lazy" alt="${skin.title}" />`;
+                    const previewImage = getPreviewImage(skin.file);
+                    preview = `<img class="asset-preview" src="assets/${previewImage.src}" width="${previewImage.width}" height="${previewImage.height}" loading="lazy" decoding="async" alt="${skin.title}" />`;
                 } else if (
                     skin.type === "ssp-hit" ||
                     skin.type === "ssp-miss"
