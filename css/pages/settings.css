@@ -163,7 +163,7 @@ body {
     grid-column: 2 !important;
     grid-row: 2 !important;
     display: flex !important;
-    justify-content: flex-start !important;
+    justify-content: flex-end !important;   /* was flex-start */
     margin-top: 0 !important;
 }
 
