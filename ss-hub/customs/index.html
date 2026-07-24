@@ -18,7 +18,7 @@
         <script src="/js/components.js"></script>
         <script src="/js/nav.js"></script>
 
-        <main class="page-content">
+        <main id="main-content" class="page-content">
             <h1 class="page-title" style="margin-bottom: 24px;">customs</h1>
 
             <div class="pattern-filter" id="pattern-filter">
@@ -27,22 +27,24 @@
             </div>
 
             <div style="display: flex; gap: 12px; margin-bottom: 8px;">
+                <label class="sr-only" id="customs-search-label" for="search-input">Search customs by name, mapper, archiver, id, or pattern</label>
                 <input
                     type="text"
                     id="search-input"
                     class="search-input"
+                    aria-labelledby="customs-search-label"
                     placeholder="search by name, mapper, archiver, id, or pattern..."
                     autocomplete="off"
                     style="margin-bottom: 0; flex: 1;"
                 />
-                <button id="random-btn" class="action-btn" style="width: auto; padding: 14px 24px; white-space: nowrap; height: 100%; box-sizing: border-box;">Random Map</button>
+                <button type="button" id="random-btn" class="action-btn" style="width: auto; padding: 14px 24px; white-space: nowrap; height: 100%; box-sizing: border-box;">Random Map</button>
             </div>
 
             <div style="margin-bottom: 20px; padding-left: 4px;">
                 <span id="map-counter" class="status-text" style="font-size: 14px; font-weight: 400; color: rgba(255, 255, 255, 0.4);"></span>
             </div>
 
-            <div id="customs-container">
+            <div id="customs-container" aria-live="polite">
                 <p class="status-text">loading...</p>
             </div>
         </main>
@@ -98,7 +100,7 @@
                 pillsContainer.innerHTML = patterns
                     .map(
                         (p) => `
-                    <button class="pattern-pill" data-pattern="${p}" onclick="togglePattern('${p}', this)">
+                    <button type="button" class="pattern-pill" data-pattern="${p}" aria-pressed="false" onclick="togglePattern('${p}', this)">
                         ${p}
                     </button>
                 `,
@@ -114,6 +116,7 @@
                 btn.classList.remove("include", "exclude");
                 if (next === 1) btn.classList.add("include");
                 if (next === 2) btn.classList.add("exclude");
+                btn.setAttribute("aria-pressed", String(next !== 0));
 
                 renderCards(document.getElementById("search-input").value);
             }
@@ -145,7 +148,7 @@
                             <span class="card-rating rating-badge" style="color: ${colors.text}; background: ${colors.bg}; border: 1px solid ${colors.border}; padding: 3px 8px; border-radius: 5px; font-weight: 500; font-size: 13px;">⬦ ${custom.rating}</span>
                             <span class="card-archiver">archived by ${custom.archiver}</span>
                         </div>
-                        <button class="action-btn" onclick="copyLink('${custom.link}', this)">copy link</button>
+                        <button type="button" class="action-btn" onclick="copyLink('${custom.link}', this)">copy link</button>
                     </article>
                 `;
             }
@@ -216,6 +219,7 @@
                 patternStates.clear();
                 document.querySelectorAll('.pattern-pill').forEach(btn => {
                     btn.classList.remove('include', 'exclude');
+                                            btn.setAttribute('aria-pressed', 'false');
                 });
 
                 searchInput.value = selectedMap.id;

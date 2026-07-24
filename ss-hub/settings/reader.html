@@ -20,7 +20,8 @@
         <script src="/js/components.js"></script>
         <script src="/js/nav.js"></script>
 
-        <main class="page-content">
+        <main id="main-content" class="page-content">
+            <h1 class="sr-only" id="reader-title">Settings</h1>
             <a class="back-link" href="index.html">← back to settings</a>
 
             <div class="post-preface">
@@ -175,6 +176,7 @@
                     document.getElementById("preface-date").textContent =
                         meta.date;
                     document.title = `${meta.title || meta.author} — Ansilian`;
+                                        document.getElementById("reader-title").textContent = meta.title || `${meta.author} settings`;
 
                     const formatBadge =
                         document.getElementById("preface-format");

@@ -18,26 +18,26 @@
         <script src="/js/components.js"></script>
         <script src="/js/nav.js"></script>
 
-        <main class="main-layout-wrapper">
+        <main id="main-content" class="main-layout-wrapper">
 
             <!-- GAP 1: sidebar filters -->
             <aside class="sidebar-filters">
 
                 <!-- sort -->
                 <div class="filter-section">
-                    <button class="filter-section-toggle" onclick="toggleSection('sort')">
+                    <button type="button" class="filter-section-toggle" data-toggle-section="sort" aria-expanded="true" aria-controls="list-sort" onclick="toggleSection('sort')">
                         <span class="filter-arrow" id="arrow-sort">▾</span>
                         <span>sort</span>
                     </button>
                     <div class="filter-list" id="list-sort">
-                        <button class="filter-item sort-btn active" id="sort-newest" onclick="setSort('newest')">newest first</button>
-                        <button class="filter-item sort-btn" id="sort-oldest" onclick="setSort('oldest')">oldest first</button>
+                        <button type="button" class="filter-item sort-btn active" id="sort-newest" onclick="setSort('newest')">newest first</button>
+                        <button type="button" class="filter-item sort-btn" id="sort-oldest" onclick="setSort('oldest')">oldest first</button>
                     </div>
                 </div>
 
                 <!-- authors -->
                 <div class="filter-section">
-                    <button class="filter-section-toggle" onclick="toggleSection('authors')">
+                    <button type="button" class="filter-section-toggle" data-toggle-section="authors" aria-expanded="true" aria-controls="list-authors" onclick="toggleSection('authors')">
                         <span class="filter-arrow" id="arrow-authors">▾</span>
                         <span>authors</span>
                     </button>
@@ -46,7 +46,7 @@
 
                 <!-- tags -->
                 <div class="filter-section">
-                    <button class="filter-section-toggle" onclick="toggleSection('tags')">
+                    <button type="button" class="filter-section-toggle" data-toggle-section="tags" aria-expanded="true" aria-controls="list-tags" onclick="toggleSection('tags')">
                         <span class="filter-arrow" id="arrow-tags">▾</span>
                         <span>tags</span>
                     </button>
@@ -58,23 +58,25 @@
             <!-- CENTER: articles -->
             <section class="page-content" aria-labelledby="articles-title">
                 <h1 class="page-title" id="articles-title">articles</h1>
+                <label class="sr-only" id="articles-search-label" for="search-input">Search articles by title, author, or tag</label>
                 <input
                     type="text"
                     id="search-input"
                     class="search-input"
+                    aria-labelledby="articles-search-label"
                     placeholder="search by title, author or tag..."
                     autocomplete="off"
                 />
-                <div id="posts-container">
+                <div id="posts-container" aria-live="polite">
                     <p class="status-text">loading...</p>
                 </div>
             </section>
 
             <!-- Right Sidebar Columns: Media & Videos Feed -->
             <aside class="sidebar-media">
-                <h3 class="media-feed-title">
+                <h2 class="media-feed-title">
                     <span class="media-icon">▶</span> Attached Media
-                </h3>
+                </h2>
                 <div id="video-feed-container" class="video-feed">
                     <!-- JavaScript will populate media cards dynamically here -->
                 </div>

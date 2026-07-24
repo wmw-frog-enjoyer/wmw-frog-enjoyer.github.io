@@ -22,6 +22,9 @@
         const arrow = document.getElementById(`arrow-${key}`);
         if (list) list.style.display = state.sectionOpen[key] ? "flex" : "none";
         if (arrow) arrow.classList.toggle("closed", !state.sectionOpen[key]);
+        document
+            .querySelector(`[data-toggle-section="${key}"]`)
+            ?.setAttribute("aria-expanded", String(state.sectionOpen[key]));
     }
 
     function setSort(direction) {
@@ -44,6 +47,7 @@
 
     function buildFilterButton(label, map) {
         const button = document.createElement("button");
+        button.type = "button";
         button.className = "filter-item toggle-item state-neutral";
         button.textContent = label;
         button.addEventListener("click", () => cycleFilter(map, label, button));

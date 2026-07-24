@@ -86,7 +86,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 15px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.62);
     letter-spacing: 0.04em;
 }
 
@@ -101,14 +101,14 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 15px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.72);
 }
 
 .preface-date {
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.62);
 }
 
 .preface-divider {
@@ -136,7 +136,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 12px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.68);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     margin-bottom: 10px;

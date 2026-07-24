@@ -36,7 +36,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 17px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.48);
+    color: rgba(255, 255, 255, 0.72);
     margin-bottom: 8px;
 }
 
@@ -44,7 +44,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 15px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.68);
 }
 
 /* ==========================================================================
@@ -64,7 +64,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 15px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.62);
     letter-spacing: 0.04em;
 }
 
@@ -79,14 +79,14 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 15px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.72);
 }
 
 .preface-date {
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.62);
 }
 
 .preface-divider {
@@ -148,7 +148,7 @@ body {
     border-left: 2px solid rgba(255, 255, 255, 0.18);
     margin: 20px 0;
     padding: 2px 0 2px 18px;
-    color: rgba(255, 255, 255, 0.42);
+    color: rgba(255, 255, 255, 0.72);
     font-style: italic;
 }
 
@@ -278,7 +278,7 @@ body {
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.68);
 }
 
 /* Obsidian Dropdown Aesthetics */
@@ -291,7 +291,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 6px;
     padding: 8px 12px;
-    outline: none;
+    
     cursor: pointer;
     transition: background 0.15s ease, border-color 0.15s ease;
     appearance: none; /* Kills default browser arrow styling indicators */
@@ -303,11 +303,11 @@ body {
 
 .obsidian-dropdown:hover {
     background-color: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.72);
 }
 
 .obsidian-dropdown:focus {
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.68);
 }
 
 .obsidian-dropdown option {
@@ -397,14 +397,14 @@ body {
     letter-spacing: 0.03em;
     width: 100%;
     text-align: left;
-    outline: none;
+    
 }
 
 /* Obsidian Folder Arrow Management */
 .filter-arrow {
     font-size: 11px;
     transition: transform 0.15s ease;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.68);
     display: inline-block;
 }
 
@@ -428,13 +428,13 @@ body {
     box-sizing: border-box;
     background: none;
     border: none;
-    outline: none;
+    
     text-align: left;
     cursor: pointer;
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.72);
     padding: 5px 14px;
     transition: color 0.12s ease, background-color 0.12s ease;
     line-height: 1.4;
@@ -644,13 +644,13 @@ body {
 
 .video-card-author {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.68);
     display: block;
 }
 
 .no-media-text {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.68);
     font-style: italic;
     margin: 0;
 }

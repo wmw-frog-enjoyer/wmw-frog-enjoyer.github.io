@@ -297,11 +297,11 @@
             <div class="reading-progress-fill" id="progress-fill"></div>
         </div>
 
-        <button class="scroll-top-btn" id="scroll-top-btn"
+        <button type="button" class="scroll-top-btn" id="scroll-top-btn" aria-label="Back to top"
             onclick="window.scrollTo({top:0,behavior:'smooth'})"
             title="back to top">
             <!-- Thicker vector arrow -->
-            <svg viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <line x1="12" y1="19" x2="12" y2="5"></line>
                 <polyline points="5 12 12 5 19 12"></polyline>
             </svg>
@@ -312,12 +312,12 @@
         <script src="/js/components.js"></script>
         <script src="/js/nav.js"></script>
 
-        <main class="reader-layout">
+        <main id="main-content" class="reader-layout">
 
             <!-- left: TOC -->
             <aside class="toc-column">
                 <div class="toc-widget" id="toc-widget" style="display:none;">
-                    <button class="toc-toggle" onclick="toggleToc()">
+                    <button type="button" class="toc-toggle" aria-expanded="true" aria-controls="toc-list" onclick="toggleToc()">
                         <span class="toc-arrow" id="toc-arrow">▾</span>
                         <span>on this page</span>
                     </button>
@@ -327,6 +327,7 @@
 
             <!-- center: article -->
             <article class="page-content">
+                <h1 class="sr-only" id="reader-title">Article</h1>
                 <a class="back-link" href="index.html">← back to articles</a>
 
                 <div class="post-preface">
@@ -391,6 +392,7 @@
                 tocOpen = !tocOpen;
                 document.getElementById("toc-list").style.display = tocOpen ? "flex" : "none";
                 document.getElementById("toc-arrow").classList.toggle("closed", !tocOpen);
+                document.querySelector(".toc-toggle").setAttribute("aria-expanded", String(tocOpen));
             }
 
             function buildToc() {
@@ -472,6 +474,7 @@
                         document.getElementById("preface-author").textContent = meta.author;
                         document.getElementById("preface-date").textContent = meta.date;
                         document.title = `${meta.title} — Ansilian`;
+                                                document.getElementById("reader-title").textContent = meta.title;
 
                         if (meta.tags && meta.tags.length > 0) {
                             document.getElementById("preface-tags").innerHTML =

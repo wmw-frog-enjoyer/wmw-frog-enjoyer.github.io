@@ -16,7 +16,7 @@
         <script src="/js/components.js"></script>
         <script src="/js/nav.js"></script>
 
-        <main>
+        <main id="main-content">
             <h1 class="title">Archivers</h1>
         <p class="subtitle">
             we dont have enough archivers to need a search feature, use ctrl+f instead
@@ -25,7 +25,7 @@
         <!-- Empty grid container that JS will populate -->
             <section class="grid" id="archivers-grid" aria-label="Archivers list"></section>
 
-            <a class="button-apply" href="https://tally.so/r/kdJ616" target="_blank">
+            <a class="button-apply" href="https://tally.so/r/kdJ616" target="_blank" rel="noopener noreferrer">
             <p class="button-text">Apply to Ansilian!</p>
             </a>
         </main>
@@ -44,10 +44,10 @@
                         <article class="card">
                             <img class="pfp" src="${user.pfp}" alt="${user.name}'s pfp" width="170" height="170" loading="lazy" decoding="async" />
                             <div class="card-content">
-                                <h1 class="card-title">${user.name}</h1>
+                                <h2 class="card-title">${user.name}</h2>
                                 <p class="card-text">Role: ${user.role}</p>
                                 <p class="card-text">Archiver since: ${user.since}</p>
-                                <a class="discord" href="https://discordapp.com/users/${user.discordId}" target="_blank">Discord</a>
+                                <a class="discord" href="https://discordapp.com/users/${user.discordId}" target="_blank" rel="noopener noreferrer" aria-label="Open ${user.name}'s Discord profile">Discord</a>
                             </div>
                         </article>
                     `).join('');

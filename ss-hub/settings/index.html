@@ -20,8 +20,9 @@
         <script src="/js/components.js"></script>
         <script src="/js/nav.js"></script>
 
-        <main class="page-content">
+        <main id="main-content" class="page-content">
             <h1 class="page-title">settings</h1>
+            <label class="sr-only" id="settings-search-label" for="search-input">Search settings by title, author, format, or tag</label>
             <input
                 type="text"
                 id="search-input"
@@ -29,7 +30,7 @@
                 placeholder="search by title, author, format or tag..."
                 autocomplete="off"
             />
-            <div id="configs-container">
+            <div id="configs-container" aria-live="polite">
                 <p class="status-text">loading...</p>
             </div>
         </main>

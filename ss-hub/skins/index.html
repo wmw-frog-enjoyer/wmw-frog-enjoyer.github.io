@@ -20,7 +20,7 @@
         <script src="/js/components.js"></script>
         <script src="/js/nav.js"></script>
 
-        <main class="page-content">
+        <main id="main-content" class="page-content">
             <h1 class="page-title">Skins</h1>
 
             <!-- type toggle pills -->
@@ -29,6 +29,7 @@
                 <div class="type-pills" id="type-pills"></div>
             </div>
 
+            <label class="sr-only" id="skins-search-label" for="search-input">Search skins by title, author, type, or tag</label>
             <input
                 type="text"
                 id="search-input"
@@ -36,7 +37,7 @@
                 placeholder="search by title, author, type or tag..."
                 autocomplete="off"
             />
-            <div id="skins-container">
+            <div id="skins-container" aria-live="polite">
                 <p class="status-text">loading...</p>
             </div>
         </main>
@@ -112,7 +113,7 @@
                 container.innerHTML = types
                     .map(
                         (t) => `
-                    <button class="type-pill" data-type="${t}" onclick="toggleType('${t}', this)">
+                    <button type="button" class="type-pill" data-type="${t}" aria-pressed="false" onclick="toggleType('${t}', this)">
                         ${TYPE_LABELS[t] || t}
                     </button>
                 `,
@@ -128,6 +129,7 @@
                 btn.classList.remove("include", "exclude");
                 if (next === 1) btn.classList.add("include");
                 if (next === 2) btn.classList.add("exclude");
+                btn.setAttribute("aria-pressed", String(next !== 0));
 
                 renderCards(document.getElementById("search-input").value);
             }
@@ -171,12 +173,12 @@
 
                 let action = "";
                 if (skin.type === "ss-skin") {
-                    action = `<button class="action-btn" onclick="copyFile('assets/${skin.id}.json', this)">copy skin</button>`;
+                    action = `<button type="button" class="action-btn" onclick="copyFile('assets/${skin.id}.json', this)">copy skin</button>`;
                 } else if (skin.type === "ss-cursor") {
-                    action = `<button class="action-btn" onclick="copyText('${skin.code}', this)">copy cursor</button>`;
+                    action = `<button type="button" class="action-btn" onclick="copyText('${skin.code}', this)">copy cursor</button>`;
                 } else {
                     const filename = `${skin.title}.${getExt(skin.file)}`;
-                    action = `<button class="action-btn" onclick="downloadFile('assets/${skin.file}', '${filename}')">download</button>`;
+                    action = `<button type="button" class="action-btn" onclick="downloadFile('assets/${skin.file}', '${filename}')">download</button>`;
                 }
 
                 return `

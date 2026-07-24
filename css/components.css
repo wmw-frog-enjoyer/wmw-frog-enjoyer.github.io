@@ -11,7 +11,6 @@
     font-weight: 300;
     font-size: 17px;
     color: var(--text);
-    outline: none;
     transition:
         border-color 0.15s ease,
         background 0.15s ease;
@@ -24,6 +23,10 @@
 .search-input:focus {
     border-color: rgba(255, 255, 255, 0.25);
     background: rgba(255, 255, 255, 0.06);
+}
+
+.search-input:focus-visible {
+    border-color: var(--accent);
 }
 
 .card-top-row,
@@ -56,19 +59,19 @@
     font-family: var(--font-main);
     font-size: 15px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.62);
 }
 
 .card-dot {
     font-size: 20px;
-    color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .card-date {
     font-family: var(--font-main);
     font-size: 15px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.28);
+    color: rgba(255, 255, 255, 0.62);
 }
 
 .post-card,
@@ -102,7 +105,7 @@
     font-family: var(--font-main);
     font-size: 13px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.72);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--hairline);
     border-radius: 6px;
@@ -114,7 +117,7 @@
     font-family: var(--font-main);
     font-weight: 300;
     font-size: 15px;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.68);
     text-decoration: none;
     margin-bottom: 32px;
     transition: color 0.15s ease;
@@ -150,6 +153,17 @@
     background-color: var(--button-bg-hover);
 }
 
+.action-btn:focus-visible,
+.button-apply:focus-visible,
+.post-card:focus-visible,
+.back-link:focus-visible,
+.pattern-pill:focus-visible,
+.type-pill:focus-visible,
+.filter-item:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
 .pattern-filter,
 .type-filter {
     margin-bottom: var(--spacing);
@@ -182,7 +196,7 @@
     font-family: var(--font-main);
     font-size: 14px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.72);
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--hairline);
     border-radius: 8px;
@@ -198,7 +212,7 @@
 .type-pill:hover,
 .filter-item:hover {
     background: rgba(255, 255, 255, 0.07);
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.92);
 }
 
 .pattern-pill.include,
