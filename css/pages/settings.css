@@ -1,8 +1,3 @@
-/* ========================================================
-   COMPACT SETTINGS PAGE CSS
-   Reduces card bloat and ditches the reader layout
-   ======================================================== */
-
 body {
     text-align: left;
 }
@@ -151,32 +146,15 @@ body {
     grid-row: 1 / 3;
 }
 
+/* =====================================================
+   settings information grid — compact
+   ===================================================== */
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 6px;
     margin-bottom: 10px;
-}
-
-/* Move action-container to right column, bottom */
-.settings-layout .action-container {
-    grid-column: 2 !important;
-    grid-row: 2 !important;
-    display: flex !important;
-    justify-content: flex-start !important;
-    margin-top: 0 !important;
-}
-
-/* Video container positioned right column, top */
-.settings-layout .video-container {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.03);
-    margin-bottom: 0 !important;
 }
 
 .stat-box {
@@ -212,6 +190,14 @@ body {
    copy / download button — under video
    ===================================================== */
 
+.action-container {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0;
+}
+
 .action-btn {
     display: inline-block;
     font-family: "Inter", sans-serif;
@@ -234,13 +220,54 @@ body {
 }
 
 /* =====================================================
-   responsive layout — mobile optimizations
+   video preview
+   ===================================================== */
+
+.video-container {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.video-embed {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+}
+
+/* =====================================================
+   responsive layout
    ===================================================== */
 
 @media (max-width: 900px) {
+    #configs-container {
+        grid-template-columns: 1fr;
+    }
+
     .settings-layout {
         grid-template-columns: 1fr;
-        gap: 10px;
+        grid-template-rows: auto auto auto;
+    }
+
+    .settings-info {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .video-container {
+        grid-column: 1;
+        grid-row: 2;
+        max-width: 560px;
+    }
+
+    .action-container {
+        grid-column: 1;
+        grid-row: 3;
     }
 }
 
@@ -282,12 +309,6 @@ body {
     .action-btn {
         font-size: 14px;
         padding: 5px 10px;
-    }
-}
-
-@media (max-width: 900px) {
-    #configs-container {
-        grid-template-columns: 1fr;
     }
 }
 
