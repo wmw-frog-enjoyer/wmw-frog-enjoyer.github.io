@@ -1,0 +1,10 @@
+Project Rules
+
+- Do not create duplicate helper functions.
+- Shared CSS belongs in css/.
+- Shared JS belongs in js/.
+- Reuse components whenever possible.
+- Prefer JSON-driven content.
+- Do not change URLs unless explicitly asked.
+- Do not break GitHub Pages compatibility.
+- Keep the project framework-free.
