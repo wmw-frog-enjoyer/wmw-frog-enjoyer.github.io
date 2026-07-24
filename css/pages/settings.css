@@ -12,6 +12,10 @@ margin-left: auto;
 margin-right: auto;
 }
 
+/* =====================================================
+card header
+===================================================== */
+
 .card-title {
 font-family: "Inter", sans-serif;
 font-size: 28px;
@@ -115,44 +119,37 @@ margin-bottom: 28px;
 }
 
 /* =====================================================
-main horizontal settings layout
+horizontal settings layout
 ===================================================== */
 
 .settings-layout {
 display: grid;
-grid-template-columns: minmax(0, 1fr) 360px;
-gap: 36px;
+grid-template-columns: minmax(0, 1fr) 320px;
+gap: 32px;
 align-items: start;
 }
-
-/* =====================================================
-settings information
-===================================================== */
 
 .settings-info {
 min-width: 0;
 }
 
+/* =====================================================
+settings information grid
+===================================================== */
+
 .stats-grid {
 display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
 gap: 12px;
-margin-bottom: 24px;
-}
-
-.stats-grid:has(.stat-box:nth-child(6)) {
-grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.stats-grid:not(:has(.stat-box:nth-child(6))) {
-grid-template-columns: repeat(2, minmax(0, 1fr));
+margin-bottom: 20px;
 }
 
 .stat-box {
+min-width: 0;
+padding: 18px 20px;
 background: rgba(255, 255, 255, 0.03);
 border: 1px solid rgba(255, 255, 255, 0.08);
 border-radius: 10px;
-padding: 18px 20px;
-min-width: 0;
 }
 
 .stat-label {
@@ -174,7 +171,7 @@ letter-spacing: -0.5px;
 }
 
 /* =====================================================
-action area
+copy / download button
 ===================================================== */
 
 .action-container {
@@ -224,10 +221,10 @@ border: none;
 }
 
 /* =====================================================
-mobile responsive overrides
+responsive layout
 ===================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
 .settings-layout {
 grid-template-columns: 1fr;
 }
@@ -245,7 +242,7 @@ margin-bottom: 12px;
 }
 
 .stats-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
 }
 
@@ -265,4 +262,5 @@ margin-bottom: 12px;
 .preface-right {
     text-align: left;
 }
+
 }

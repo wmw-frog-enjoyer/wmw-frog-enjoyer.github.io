@@ -4,14 +4,17 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>settings</title>
+
     <meta
         name="description"
         content="Search archived Sound Space and Sound Space Plus settings by author, format, title, and tag."
     />
+
     <link
         rel="canonical"
         href="https://wmw-frog-enjoyer.github.io/ss-hub/settings/"
     />
+
     <meta property="og:title" content="Sound Space Settings | Ansilian" />
     <meta
         property="og:description"
@@ -27,6 +30,7 @@
         content="https://wmw-frog-enjoyer.github.io/assets/ansilian.webp"
     />
     <meta property="og:site_name" content="Ansilian" />
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta
         name="twitter:title"
@@ -60,7 +64,11 @@
     <link rel="icon" type="image/png" href="/assets/ansilian.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    />
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
@@ -83,6 +91,7 @@
 
         <div class="type-filter" id="format-filter">
             <span class="type-filter-label">formats</span>
+
             <div class="type-pills" id="format-pills"></div>
         </div>
 
@@ -161,15 +170,19 @@
         ];
 
         function escapeHtml(value) {
-            const div = document.createElement("div");
+            const div =
+                document.createElement("div");
+
             div.textContent = value ?? "";
+
             return div.innerHTML;
         }
 
         function getYouTubeEmbedUrl(url) {
             return (
-                window.AnsilianUtils.getYouTubeData(url)?.embedUrl ||
-                null
+                window.AnsilianUtils.getYouTubeData(
+                    url,
+                )?.embedUrl || null
             );
         }
 
@@ -177,29 +190,35 @@
             const formats = [
                 ...new Set(
                     configs
-                        .map((config) => config.format)
+                        .map(
+                            (config) =>
+                                config.format,
+                        )
                         .filter(Boolean),
                 ),
             ].sort();
 
             const pillsContainer =
-                document.getElementById("format-pills");
+                document.getElementById(
+                    "format-pills",
+                );
 
-            pillsContainer.innerHTML = formats
-                .map(
-                    (format) => `
-                        <button
-                            type="button"
-                            class="type-pill"
-                            data-format="${escapeHtml(format)}"
-                            aria-pressed="false"
-                            onclick="toggleFormat('${escapeHtml(format)}', this)"
-                        >
-                            ${escapeHtml(format)}
-                        </button>
-                    `,
-                )
-                .join("");
+            pillsContainer.innerHTML =
+                formats
+                    .map(
+                        (format) => `
+                            <button
+                                type="button"
+                                class="type-pill"
+                                data-format="${escapeHtml(format)}"
+                                aria-pressed="false"
+                                onclick="toggleFormat('${escapeHtml(format)}', this)"
+                            >
+                                ${escapeHtml(format)}
+                            </button>
+                        `,
+                    )
+                    .join("");
         }
 
         function toggleFormat(format, button) {
@@ -215,11 +234,15 @@
             );
 
             if (state === "include") {
-                button.classList.add("include");
+                button.classList.add(
+                    "include",
+                );
             }
 
             if (state === "exclude") {
-                button.classList.add("exclude");
+                button.classList.add(
+                    "exclude",
+                );
             }
 
             button.setAttribute(
@@ -228,38 +251,55 @@
             );
 
             renderCards(
-                document.getElementById("search-input").value,
+                document.getElementById(
+                    "search-input",
+                ).value,
             );
         }
 
-        function renderStats(configData, format) {
+        function renderStats(
+            configData,
+            format,
+        ) {
             const fields =
                 format === "ssp"
                     ? SSP_FIELDS
                     : SS_FIELDS;
 
             return fields
-                .map(({ key, label }) => {
-                    const value = configData[key];
+                .map(
+                    ({
+                        key,
+                        label,
+                    }) => {
+                        const value =
+                            configData[key];
 
-                    if (
-                        value === undefined ||
-                        value === null
-                    ) {
-                        return "";
-                    }
+                        if (
+                            value ===
+                                undefined ||
+                            value === null
+                        ) {
+                            return "";
+                        }
 
-                    return `
-                        <div class="stat-box">
-                            <div class="stat-label">
-                                ${escapeHtml(label)}
+                        return `
+                            <div class="stat-box">
+                                <div class="stat-label">
+                                    ${escapeHtml(label)}
+                                </div>
+
+                                <div class="stat-value">
+                                    ${escapeHtml(
+                                        String(
+                                            value,
+                                        ),
+                                    )}
+                                </div>
                             </div>
-                            <div class="stat-value">
-                                ${escapeHtml(String(value))}
-                            </div>
-                        </div>
-                    `;
-                })
+                        `;
+                    },
+                )
                 .join("");
         }
 
@@ -269,7 +309,9 @@
             }
 
             const embedUrl =
-                getYouTubeEmbedUrl(videoUrl);
+                getYouTubeEmbedUrl(
+                    videoUrl,
+                );
 
             if (!embedUrl) {
                 return "";
@@ -282,49 +324,54 @@
                         src="${escapeHtml(embedUrl)}"
                         frameborder="0"
                         loading="lazy"
-                        allow="
-                            accelerometer;
-                            autoplay;
-                            clipboard-write;
-                            encrypted-media;
-                            gyroscope;
-                            picture-in-picture;
-                        "
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
                     ></iframe>
                 </div>
             `;
         }
 
-        function addCopyButton(button, configData) {
-            button.addEventListener("click", () => {
-                navigator.clipboard
-                    .writeText(
-                        JSON.stringify(
-                            configData,
-                            null,
-                            2,
-                        ),
-                    )
-                    .then(() => {
-                        button.textContent =
-                            "copied!";
-
-                        setTimeout(() => {
+        function addCopyButton(
+            button,
+            configData,
+        ) {
+            button.addEventListener(
+                "click",
+                () => {
+                    navigator.clipboard
+                        .writeText(
+                            JSON.stringify(
+                                configData,
+                                null,
+                                2,
+                            ),
+                        )
+                        .then(() => {
                             button.textContent =
-                                "copy config";
-                        }, 2000);
-                    })
-                    .catch(() => {
-                        button.textContent =
-                            "copy failed";
+                                "copied!";
 
-                        setTimeout(() => {
+                            setTimeout(
+                                () => {
+                                    button.textContent =
+                                        "copy config";
+                                },
+                                2000,
+                            );
+                        })
+                        .catch(() => {
                             button.textContent =
-                                "copy config";
-                        }, 2000);
-                    });
-            });
+                                "copy failed";
+
+                            setTimeout(
+                                () => {
+                                    button.textContent =
+                                        "copy config";
+                                },
+                                2000,
+                            );
+                        });
+                },
+            );
         }
 
         function addDownloadButton(
@@ -332,39 +379,54 @@
             configData,
             author,
         ) {
-            button.addEventListener("click", () => {
-                const blob = new Blob(
-                    [
-                        JSON.stringify(
-                            configData,
-                            null,
-                            2,
-                        ),
-                    ],
-                    {
-                        type: "application/json",
-                    },
-                );
+            button.addEventListener(
+                "click",
+                () => {
+                    const blob =
+                        new Blob(
+                            [
+                                JSON.stringify(
+                                    configData,
+                                    null,
+                                    2,
+                                ),
+                            ],
+                            {
+                                type: "application/json",
+                            },
+                        );
 
-                const url =
-                    URL.createObjectURL(blob);
+                    const url =
+                        URL.createObjectURL(
+                            blob,
+                        );
 
-                const anchor =
-                    document.createElement("a");
+                    const anchor =
+                        document.createElement(
+                            "a",
+                        );
 
-                anchor.href = url;
-                anchor.download = `${author}-ssp-settings.json`;
-                anchor.click();
+                    anchor.href = url;
 
-                URL.revokeObjectURL(url);
-            });
+                    anchor.download = `${author}-ssp-settings.json`;
+
+                    anchor.click();
+
+                    URL.revokeObjectURL(
+                        url,
+                    );
+                },
+            );
         }
 
-        async function renderConfig(config) {
+        async function renderConfig(
+            config,
+        ) {
             try {
-                const response = await fetch(
-                    `configs/${config.id}.json`,
-                );
+                const response =
+                    await fetch(
+                        `configs/${config.id}.json`,
+                    );
 
                 if (!response.ok) {
                     return `
@@ -378,114 +440,157 @@
                     await response.json();
 
                 const actionLabel =
-                    config.format === "ss"
+                    config.format ===
+                    "ss"
                         ? "copy config"
                         : "download config";
 
-                const actionButton = `
-                    <button
-                        type="button"
-                        class="action-btn"
-                        data-action="config"
-                    >
-                        ${actionLabel}
-                    </button>
-                `;
+                const card =
+                    await window.renderComponent(
+                        "article-card",
+                        {
+                            idAttr: `config-${config.id}`,
 
-                const card = await window.renderComponent(
-                    "article-card",
-                    {
-                        idAttr: `config-${config.id}`,
-                        href: "#",
-                        number: config.id,
-                        date: config.date,
-                        title:
-                            config.title ||
-                            config.author,
-                        metaHtml: `
-                            <span class="format-badge format-${escapeHtml(config.format)}">
-                                ${escapeHtml(config.format)}
-                            </span>
-                        `,
-                        descriptionHtml: `
-                            <div class="settings-card-content">
-                                <div class="post-preface">
-                                    <div class="preface-left">
-                                        <span class="preface-number">
-                                            #${escapeHtml(config.id)}
-                                        </span>
+                            href: "#",
 
-                                        <span class="format-badge format-${escapeHtml(config.format)}">
-                                            ${escapeHtml(config.format)}
-                                        </span>
+                            number:
+                                config.id,
+
+                            date:
+                                config.date,
+
+                            title:
+                                config.title ||
+                                config.author,
+
+                            metaHtml: `
+                                <span class="format-badge format-${escapeHtml(config.format)}">
+                                    ${escapeHtml(config.format)}
+                                </span>
+                            `,
+
+                            descriptionHtml: `
+                                <div class="settings-card-content">
+
+                                    <div class="post-preface">
+
+                                        <div class="preface-left">
+
+                                            <span class="preface-number">
+                                                #${escapeHtml(
+                                                    config.id,
+                                                )}
+                                            </span>
+
+                                            <span class="format-badge format-${escapeHtml(
+                                                config.format,
+                                            )}">
+                                                ${escapeHtml(
+                                                    config.format,
+                                                )}
+                                            </span>
+
+                                        </div>
+
+                                        <div class="preface-right">
+
+                                            <span class="preface-author">
+                                                ${escapeHtml(
+                                                    config.author,
+                                                )}
+                                            </span>
+
+                                            <span class="preface-date">
+                                                ${escapeHtml(
+                                                    config.date,
+                                                )}
+                                            </span>
+
+                                        </div>
+
                                     </div>
 
-                                    <div class="preface-right">
-                                        <span class="preface-author">
-                                            ${escapeHtml(config.author)}
-                                        </span>
+                                    <hr class="preface-divider" />
 
-                                        <span class="preface-date">
-                                            ${escapeHtml(config.date)}
-                                        </span>
+                                    <div class="preface-tags">
+                                        ${window.AnsilianUtils.renderTags(
+                                            config.tags,
+                                        )}
                                     </div>
+
+                                    <div class="settings-layout">
+
+                                        <div class="settings-info">
+
+                                            <div class="stats-grid">
+                                                ${renderStats(
+                                                    configData,
+                                                    config.format,
+                                                )}
+                                            </div>
+
+                                            <div class="action-container">
+
+                                                <button
+                                                    type="button"
+                                                    class="action-btn"
+                                                    data-action="config"
+                                                >
+                                                    ${actionLabel}
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                        ${renderVideo(
+                                            config.video,
+                                        )}
+
+                                    </div>
+
                                 </div>
+                            `,
 
-                                <hr class="preface-divider" />
+                            authorHtml:
+                                "",
 
-                                <div class="preface-tags">
-                                    ${window.AnsilianUtils.renderTags(
-                                        config.tags,
-                                    )}
-                                </div>
-
-                                <div class="stats-grid">
-                                    ${renderStats(
-                                        configData,
-                                        config.format,
-                                    )}
-                                </div>
-
-                                ${renderVideo(
-                                    config.video,
-                                )}
-
-                                <div class="action-container">
-                                    ${actionButton}
-                                </div>
-                            </div>
-                        `,
-                        authorHtml: "",
-                        bottomHtml: "",
-                    },
-                );
+                            bottomHtml:
+                                "",
+                        },
+                    );
 
                 const wrapper =
-                    document.createElement("div");
+                    document.createElement(
+                        "div",
+                    );
 
-                wrapper.innerHTML = card;
+                wrapper.innerHTML =
+                    card;
 
-                const actionButtonElement =
+                const actionButton =
                     wrapper.querySelector(
                         '[data-action="config"]',
                     );
 
                 if (
-                    actionButtonElement &&
-                    config.format === "ss"
+                    actionButton &&
+                    config.format ===
+                        "ss"
                 ) {
                     addCopyButton(
-                        actionButtonElement,
+                        actionButton,
                         configData,
                     );
                 }
 
                 if (
-                    actionButtonElement &&
-                    config.format === "ssp"
+                    actionButton &&
+                    config.format ===
+                        "ssp"
                 ) {
                     addDownloadButton(
-                        actionButtonElement,
+                        actionButton,
                         configData,
                         config.author,
                     );
@@ -506,14 +611,18 @@
             }
         }
 
-        async function renderCards(filter) {
+        async function renderCards(
+            filter,
+        ) {
             const container =
                 document.getElementById(
                     "configs-container",
                 );
 
             const query =
-                filter.toLowerCase().trim();
+                filter
+                    .toLowerCase()
+                    .trim();
 
             const included =
                 window.AnsilianSearch.selectedKeys(
@@ -527,60 +636,78 @@
                     "exclude",
                 );
 
-            const results = allConfigs.filter(
-                (config) => {
-                    const matchesSearch =
-                        !query ||
-                        (config.title &&
-                            config.title
+            const results =
+                allConfigs.filter(
+                    (config) => {
+                        const matchesSearch =
+                            !query ||
+                            (config.title &&
+                                config.title
+                                    .toLowerCase()
+                                    .includes(
+                                        query,
+                                    )) ||
+                            config.author
                                 .toLowerCase()
-                                .includes(query)) ||
-                        config.author
-                            .toLowerCase()
-                            .includes(query) ||
-                        config.format
-                            .toLowerCase()
-                            .includes(query) ||
-                        (config.tags &&
-                            config.tags.some(
-                                (tag) =>
-                                    tag
-                                        .toLowerCase()
-                                        .includes(
-                                            query,
-                                        ),
-                            ));
+                                .includes(
+                                    query,
+                                ) ||
+                            config.format
+                                .toLowerCase()
+                                .includes(
+                                    query,
+                                ) ||
+                            (config.tags &&
+                                config.tags.some(
+                                    (
+                                        tag,
+                                    ) =>
+                                        tag
+                                            .toLowerCase()
+                                            .includes(
+                                                query,
+                                            ),
+                                ));
 
-                    const notExcluded =
-                        !excluded.includes(
-                            config.format,
+                        const notExcluded =
+                            !excluded.includes(
+                                config.format,
+                            );
+
+                        const matchesInclude =
+                            included.length ===
+                                0 ||
+                            included.includes(
+                                config.format,
+                            );
+
+                        return (
+                            matchesSearch &&
+                            notExcluded &&
+                            matchesInclude
                         );
+                    },
+                );
 
-                    const matchesInclude =
-                        included.length === 0 ||
-                        included.includes(
-                            config.format,
-                        );
+            container.innerHTML =
+                "";
 
-                    return (
-                        matchesSearch &&
-                        notExcluded &&
-                        matchesInclude
-                    );
-                },
-            );
-
-            container.innerHTML = "";
-
-            if (results.length === 0) {
+            if (
+                results.length ===
+                0
+            ) {
                 container.innerHTML =
                     '<p class="status-text">no configs found.</p>';
+
                 return;
             }
 
-            const cards = await Promise.all(
-                results.map(renderConfig),
-            );
+            const cards =
+                await Promise.all(
+                    results.map(
+                        renderConfig,
+                    ),
+                );
 
             container.innerHTML =
                 cards.join("");
@@ -593,15 +720,21 @@
                 );
 
             try {
-                const response = await fetch(
-                    "configs/index.json",
-                );
+                const response =
+                    await fetch(
+                        "configs/index.json",
+                    );
 
-                allConfigs = await response.json();
+                allConfigs =
+                    await response.json();
 
-                if (allConfigs.length === 0) {
+                if (
+                    allConfigs.length ===
+                    0
+                ) {
                     container.innerHTML =
                         '<p class="status-text">nothing here yet.</p>';
+
                     return;
                 }
 
@@ -611,7 +744,10 @@
                         Number(a.id),
                 );
 
-                buildFormatPills(allConfigs);
+                buildFormatPills(
+                    allConfigs,
+                );
+
                 renderCards("");
 
                 document
@@ -622,7 +758,8 @@
                         "input",
                         (event) => {
                             renderCards(
-                                event.target.value,
+                                event.target
+                                    .value,
                             );
                         },
                     );
@@ -630,7 +767,9 @@
                 container.innerHTML =
                     '<p class="status-text">could not load configs.</p>';
 
-                console.error(error);
+                console.error(
+                    error,
+                );
             }
         }
 
