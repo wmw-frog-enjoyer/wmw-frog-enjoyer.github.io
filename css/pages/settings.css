@@ -1,3 +1,8 @@
+/* ========================================================
+   COMPACT SETTINGS PAGE CSS
+   Reduces card bloat and ditches the reader layout
+   ======================================================== */
+
 body {
     text-align: left;
 }
@@ -18,18 +23,18 @@ body {
 
 .card-title {
     font-family: "Inter", sans-serif;
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 400;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 8px;
+    margin-bottom: 12px;
 }
 
 .card-author-row {
     font-family: "Inter", sans-serif;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.55);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 /* =====================================================
@@ -38,7 +43,7 @@ body {
 
 .format-badge {
     font-family: "Inter", sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -70,18 +75,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    gap: 12px;
 }
 
 .preface-left {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .preface-number {
     font-family: "Inter", sans-serif;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.62);
     letter-spacing: 0.04em;
@@ -96,14 +102,14 @@ body {
 
 .preface-author {
     font-family: "Inter", sans-serif;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.72);
 }
 
 .preface-date {
     font-family: "Inter", sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.62);
 }
@@ -111,22 +117,19 @@ body {
 .preface-divider {
     border: none;
     border-top: 1px solid rgba(255, 255, 255, 0.09);
-    margin: 0 0 14px 0;
+    margin: 0 0 10px 0;
 }
 
 .preface-tags {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 }
 
 /* =====================================================
-   horizontal settings layout
+   COMPACT LAYOUT: Single column, minimal gaps
    ===================================================== */
 
 .settings-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
-    gap: 24px;
-    align-items: start;
+    display: block;
 }
 
 .settings-info {
@@ -134,47 +137,47 @@ body {
 }
 
 /* =====================================================
-   settings information grid
+   settings information grid — compact
    ===================================================== */
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 180px);
-    gap: 8px;
-    margin-bottom: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
 }
 
 .stat-box {
-    width: 180px;
-    min-height: 100px;
+    width: 100%;
+    min-height: 80px;
     box-sizing: border-box;
-    padding: 12px 20px;
+    padding: 10px 12px;
     text-align: center;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .stat-label {
     font-family: "Inter", sans-serif;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.68);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .stat-value {
     font-family: "Inter", sans-serif;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 200;
     color: white;
     letter-spacing: -0.5px;
 }
 
 /* =====================================================
-   copy / download button
+   copy / download button — compact
    ===================================================== */
 
 .action-container {
@@ -186,13 +189,13 @@ body {
 .action-btn {
     display: inline-block;
     font-family: "Inter", sans-serif;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 300;
     color: white;
     background-color: rgb(37, 105, 63);
     border: none;
-    border-radius: 10px;
-    padding: 8px 15px;
+    border-radius: 8px;
+    padding: 6px 12px;
     cursor: pointer;
     transition:
         transform 0.2s ease,
@@ -205,26 +208,15 @@ body {
 }
 
 /* =====================================================
-   video preview
+   video preview — hidden by default
    ===================================================== */
 
 .video-container {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.03);
-}
-
-.video-embed {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border: none;
+    display: none;
 }
 
 /* =====================================================
-   responsive layout
+   responsive layout — mobile optimizations
    ===================================================== */
 
 @media (max-width: 900px) {
@@ -233,37 +225,61 @@ body {
     }
 
     .video-container {
-        max-width: 560px;
+        display: none;
     }
 }
 
 @media (max-width: 767px) {
     .card-title {
-        font-size: 22px;
-        margin-bottom: 12px;
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 
     .stats-grid {
-        grid-template-columns: repeat(2, 140px);
-        gap: 8px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
     }
 
     .stat-box {
-        width: 140px;
-        min-height: 90px;
-        padding: 12px 16px;
+        width: 100%;
+        min-height: 75px;
+        padding: 8px 10px;
+    }
+
+    .stat-label {
+        font-size: 9px;
+        margin-bottom: 2px;
     }
 
     .stat-value {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .post-preface {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
     }
 
     .preface-right {
         text-align: left;
+    }
+
+    .action-btn {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-box {
+        min-height: 70px;
+    }
+
+    .card-title {
+        font-size: 16px;
     }
 }
