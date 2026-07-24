@@ -22,113 +22,226 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css?v=1" />
-    </head>
-    <body>
-        <div data-component="navbar"></div>
-        <script src="/js/utils.js"></script>
-        <script src="/js/components.js"></script>
-        <script src="/js/nav.js"></script>
+</head>
+<body>
+    <div data-component="navbar"></div>
+    <script src="/js/utils.js"></script>
+    <script src="/js/components.js"></script>
+    <script src="/js/nav.js"></script>
 
-        <main id="main-content" class="page-content">
-            <h1 class="page-title">settings</h1>
-            <label class="sr-only" id="settings-search-label" for="search-input">Search settings by title, author, format, or tag</label>
-            <input
-                type="text"
-                id="search-input"
-                class="search-input"
-                placeholder="search by title, author, format or tag..."
-                autocomplete="off"
-            />
-            <div id="configs-container" aria-live="polite">
-                <p class="status-text">loading...</p>
-            </div>
-        </main>
+    <main id="main-content" class="page-content">
+        <h1 class="page-title">settings</h1>
 
-        <script>
-            let allConfigs = [];
+        <div class="format-filter" id="format-filter">
+            <span class="format-filter-label">formats</span>
+            <div class="format-pills" id="format-pills"></div>
+        </div>
 
-            async function renderCards(filter) {
-                const container = document.getElementById("configs-container");
-                const query = filter.toLowerCase().trim();
+        <label
+            class="sr-only"
+            id="settings-search-label"
+            for="search-input"
+        >
+            Search settings by title, author, format, or tag
+        </label>
 
-                const results = query
-                    ? allConfigs.filter((c) => {
-                          const inTitle =
-                              c.title && c.title.toLowerCase().includes(query);
-                          const inAuthor = c.author
-                              .toLowerCase()
-                              .includes(query);
-                          const inFormat = c.format
-                              .toLowerCase()
-                              .includes(query);
-                          const inTags =
-                              c.tags &&
-                              c.tags.some((t) =>
-                                  t.toLowerCase().includes(query),
-                              );
-                          return inTitle || inAuthor || inFormat || inTags;
-                      })
-                    : allConfigs;
+        <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="search by title, author, format or tag..."
+            autocomplete="off"
+        />
 
-                container.innerHTML = "";
+        <div id="configs-container" aria-live="polite">
+            <p class="status-text">loading...</p>
+        </div>
+    </main>
 
-                if (results.length === 0) {
-                    container.innerHTML =
-                        '<p class="status-text">no configs found.</p>';
-                    return;
-                }
+    <script>
+        let allConfigs = [];
+        let formatStates = new Map();
 
-                const cards = await Promise.all(results.map((config) =>
+        function buildFormatPills(configs) {
+            const formats = [
+                ...new Set(
+                    configs
+                        .map((config) => config.format)
+                        .filter(Boolean),
+                ),
+            ].sort();
+
+            const pillsContainer =
+                document.getElementById("format-pills");
+
+            pillsContainer.innerHTML = formats
+                .map(
+                    (format) => `
+                <button
+                    type="button"
+                    class="format-pill format-${format}"
+                    data-format="${format}"
+                    aria-pressed="false"
+                    onclick="toggleFormat('${format}', this)"
+                >
+                    ${format}
+                </button>
+            `,
+                )
+                .join("");
+        }
+
+        function toggleFormat(format, btn) {
+            const current = formatStates.get(format) || 0;
+            const next = (current + 1) % 3;
+
+            formatStates.set(format, next);
+
+            btn.classList.remove("include", "exclude");
+
+            if (next === 1) {
+                btn.classList.add("include");
+            }
+
+            if (next === 2) {
+                btn.classList.add("exclude");
+            }
+
+            btn.setAttribute(
+                "aria-pressed",
+                String(next !== 0),
+            );
+
+            renderCards(
+                document.getElementById("search-input").value,
+            );
+        }
+
+        async function renderCards(filter) {
+            const container =
+                document.getElementById("configs-container");
+
+            const query = filter.toLowerCase().trim();
+
+            const included = [...formatStates.entries()]
+                .filter(([, state]) => state === 1)
+                .map(([format]) => format);
+
+            const excluded = [...formatStates.entries()]
+                .filter(([, state]) => state === 2)
+                .map(([format]) => format);
+
+            const results = allConfigs.filter((config) => {
+                const matchesSearch =
+                    !query ||
+                    (config.title &&
+                        config.title
+                            .toLowerCase()
+                            .includes(query)) ||
+                    config.author
+                        .toLowerCase()
+                        .includes(query) ||
+                    config.format
+                        .toLowerCase()
+                        .includes(query) ||
+                    (config.tags &&
+                        config.tags.some((tag) =>
+                            tag.toLowerCase().includes(query),
+                        ));
+
+                const notExcluded = !excluded.includes(
+                    config.format,
+                );
+
+                const matchesInclude =
+                    included.length === 0 ||
+                    included.includes(config.format);
+
+                return (
+                    matchesSearch &&
+                    notExcluded &&
+                    matchesInclude
+                );
+            });
+
+            container.innerHTML = "";
+
+            if (results.length === 0) {
+                container.innerHTML =
+                    '<p class="status-text">no configs found.</p>';
+                return;
+            }
+
+            const cards = await Promise.all(
+                results.map((config) =>
                     window.renderComponent("article-card", {
                         idAttr: `config-${config.id}`,
                         href: `reader.html?config=${config.id}`,
                         number: config.id,
                         date: config.date,
-                        title: config.title || config.author,
+                        title:
+                            config.title || config.author,
                         metaHtml: `<span class="format-badge format-${config.format}">${config.format}</span>`,
                         descriptionHtml: "",
                         authorHtml: `<div class="card-author-row">${config.author}</div>`,
                         bottomHtml: `<div class="card-tags">${window.AnsilianUtils.renderTags(config.tags)}</div>`,
-                    })
-                ));
+                    }),
+                ),
+            );
 
-                container.innerHTML = cards.join("");
-            }
+            container.innerHTML = cards.join("");
+        }
 
-            async function loadConfigs() {
-                const container = document.getElementById("configs-container");
+        async function loadConfigs() {
+            const container =
+                document.getElementById("configs-container");
 
-                try {
-                    const response = await fetch("configs/index.json");
-                    allConfigs = await response.json();
+            try {
+                const response = await fetch(
+                    "configs/index.json",
+                );
 
-                    if (allConfigs.length === 0) {
-                        container.innerHTML =
-                            '<p class="status-text">nothing here yet.</p>';
-                        return;
-                    }
+                allConfigs = await response.json();
 
-                    allConfigs.sort((a, b) => Number(b.id) - Number(a.id));
-                    renderCards("");
-
-                    document
-                        .getElementById("search-input")
-                        .addEventListener("input", (e) => {
-                            renderCards(e.target.value);
-                        });
-                } catch (error) {
+                if (allConfigs.length === 0) {
                     container.innerHTML =
-                        '<p class="status-text">could not load configs.</p>';
-                    console.error(error);
+                        '<p class="status-text">nothing here yet.</p>';
+                    return;
                 }
-            }
 
-            loadConfigs();
-        </script>
-        <div data-component="footer"></div>
-    </body>
+                allConfigs.sort(
+                    (a, b) =>
+                        Number(b.id) - Number(a.id),
+                );
+
+                buildFormatPills(allConfigs);
+                renderCards("");
+
+                document
+                    .getElementById("search-input")
+                    .addEventListener(
+                        "input",
+                        (e) => {
+                            renderCards(e.target.value);
+                        },
+                    );
+            } catch (error) {
+                container.innerHTML =
+                    '<p class="status-text">could not load configs.</p>';
+
+                console.error(error);
+            }
+        }
+
+        loadConfigs();
+    </script>
+
+    <div data-component="footer"></div>
+</body>
+```
+
 </html>
