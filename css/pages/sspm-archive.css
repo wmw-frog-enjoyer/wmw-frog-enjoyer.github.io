@@ -17,7 +17,7 @@ body {
     font-family: "Inter", sans-serif;
     font-weight: 300;
     font-size: 17px;
-    color: rgba(255, 255, 255, 0.68);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .page-title {
@@ -41,7 +41,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 13px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.68);
+    color: rgba(255, 255, 255, 0.3);
     display: block;
     margin-bottom: 8px;
     text-transform: uppercase;
@@ -58,7 +58,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.5);
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
@@ -106,18 +106,18 @@ body {
     font-weight: 300;
     font-size: 17px;
     color: white;
-    
+    outline: none;
     transition:
         border-color 0.15s ease,
         background 0.15s ease;
 }
 
 .search-input::placeholder {
-    color: rgba(255, 255, 255, 0.62);
+    color: rgba(255, 255, 255, 0.22);
 }
 
 .search-input:focus {
-    border-color: rgba(255, 255, 255, 0.62);
+    border-color: rgba(255, 255, 255, 0.25);
     background: rgba(255, 255, 255, 0.06);
 }
 
@@ -162,19 +162,19 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.62);
+    color: rgba(255, 255, 255, 0.25);
 }
 
 .card-dot {
     font-size: 16px;
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.15);
 }
 
 .card-date {
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.62);
+    color: rgba(255, 255, 255, 0.28);
 }
 
 .pattern-badge {
@@ -202,7 +202,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 15px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 12px;
 }
 
@@ -226,7 +226,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 13px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.68);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .action-btn {
@@ -255,7 +255,7 @@ body {
 /* state when link is successfully copied */
 .action-btn.copied {
     background-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.68);
+    color: rgba(255, 255, 255, 0.4);
     cursor: default;
     transform: none;
 }
