@@ -137,23 +137,23 @@ body {
    settings information grid
    ===================================================== */
 
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
-    justify-content: start;
-    gap: 12px;
-    margin-bottom: 20px;
-}
+   .stats-grid {
+       display: grid;
+       grid-template-columns: repeat(2, 180px);
+       gap: 12px;
+       margin-bottom: 20px;
+   }
 
-.stat-box {
-    width: fit-content;
-    min-width: 140px;
-    padding: 12px 20px;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-}
+   .stat-box {
+       width: 180px;
+       min-height: 100px;
+       box-sizing: border-box;
+       padding: 12px 20px;
+       text-align: center;
+       background: rgba(255, 255, 255, 0.03);
+       border: 1px solid rgba(255, 255, 255, 0.08);
+       border-radius: 10px;
+   }
 
 .stat-label {
     font-family: "Inter", sans-serif;
