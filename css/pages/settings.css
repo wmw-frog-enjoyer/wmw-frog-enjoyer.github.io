@@ -181,9 +181,13 @@ body {
 
 .stat-box {
     width: 100%;
-    min-height: 80px;
+    height: 80px;
     box-sizing: border-box;
     padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -221,7 +225,7 @@ body {
     background-color: rgb(37, 105, 63);
     border: none;
     border-radius: 8px;
-    padding: 6px 12px;
+    padding: 12px 12px;
     cursor: pointer;
     transition:
         transform 0.2s ease,
@@ -257,7 +261,7 @@ body {
 
     .stat-box {
         width: 100%;
-        min-height: 75px;
+        height: 75px;
         padding: 8px 10px;
     }
 
@@ -281,7 +285,7 @@ body {
 
     .action-btn {
         font-size: 14px;
-        padding: 5px 10px;
+        padding: 10px 10px;
     }
 }
 
@@ -301,7 +305,7 @@ body {
     }
 
     .stat-box {
-        min-height: 70px;
+        height: 70px;
     }
 
     .card-title {
