@@ -30,8 +30,6 @@
         <script src="/js/utils.js"></script>
         <script src="/js/components.js"></script>
         <script src="/js/nav.js"></script>
-        <script src="/js/search.js"></script>
-        <script src="/js/global-search.js"></script>
 
         <main id="main-content" class="page-content">
             <h1 class="page-title" style="margin-bottom: 24px;">customs</h1>
@@ -258,7 +256,7 @@
                     allCustoms.sort((a, b) => Number(b.id) - Number(a.id));
 
                     buildPatternPills(allCustoms);
-                    renderCards(window.AnsilianSearch.prefillFromUrl("search-input"));
+                    renderCards("");
 
                     document
                         .getElementById("search-input")

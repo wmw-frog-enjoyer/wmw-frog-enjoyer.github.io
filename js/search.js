@@ -29,20 +29,11 @@
         return uniqueSorted(items.flatMap(getter));
     }
 
-    function prefillFromUrl(inputId, paramName = "q") {
-        const input = document.getElementById(inputId);
-        if (!input) return "";
-        const value = new URLSearchParams(window.location.search).get(paramName);
-        if (value) input.value = value;
-        return input.value;
-    }
-
     window.AnsilianSearch = {
         createToggleStateMap,
         cycleThreeState,
         selectedKeys,
         matchesTextQuery,
         collectUnique,
-        prefillFromUrl,
     };
 })();
