@@ -29,7 +29,7 @@
 .universal-search-toolbar {
     flex: 0 0 auto;
     padding-bottom: 18px;
-    background: var(--bg);
+    background: transparent;
     position: relative;
     z-index: 1;
 }
