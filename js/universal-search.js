@@ -6,6 +6,7 @@
         query: "",
         datasets: [],
         filters: new Map(),
+        enabledDatasets: new Map(),
     };
 
     const DATASETS = [
@@ -22,6 +23,20 @@
             date: item => item.date,
             id: item => Number(item.id) || 0,
             render: renderArticle,
+        },
+        {
+            key: "ssArticles",
+            label: "SS Hub Articles",
+            page: "/ss-hub/articles/",
+            source: "/ss-hub/articles/posts/posts.json",
+            filterGroups: [
+                { key: "author", label: "authors", values: item => [item.author] },
+                { key: "tags", label: "tags", values: item => item.tags || [] },
+            ],
+            searchable: item => [item.title, item.author, item.description, ...(item.tags || [])],
+            date: item => item.date,
+            id: item => Number(item.id) || 0,
+            render: renderSSArticle,
         },
         {
             key: "customs",
@@ -71,17 +86,19 @@
             render: renderMap,
         },
         {
-            key: "archivers",
-            label: "Archivers",
-            page: "/archivers/",
-            source: "/archivers/archivers.json",
+            key: "settings",
+            label: "Settings",
+            page: "/ss-hub/settings/",
+            source: "/ss-hub/settings/configs/index.json",
             filterGroups: [
-                { key: "role", label: "roles", values: item => [item.role] },
+                { key: "format", label: "formats", values: item => [item.format] },
+                { key: "author", label: "authors", values: item => [item.author] },
+                { key: "tags", label: "tags", values: item => item.tags || [] },
             ],
-            searchable: item => [item.name, item.role, item.since],
-            date: item => item.since,
-            id: () => 0,
-            render: renderArchiver,
+            searchable: item => [item.title, item.author, item.format, item.id, ...(item.tags || [])],
+            date: item => item.date,
+            id: item => Number(item.id) || 0,
+            render: renderSetting,
         },
     ];
 
@@ -109,25 +126,34 @@
 
     function renderFilters() {
         const container = document.getElementById("universal-filters");
-        container.innerHTML = state.datasets.map(dataset => `
-            <details class="universal-search-filter-group" open>
-                <summary>${escapeHtml(dataset.label)}</summary>
-                ${dataset.filterGroups.map(group => {
-                    const values = filterValues(dataset, group);
-                    if (!values.length) return "";
-                    return `
-                        <div style="margin-bottom:10px;">
-                            <span class="filter-label">${escapeHtml(group.label)}</span>
-                            <div class="universal-search-filter-list">
-                                ${values.map(value => {
-                                    const filterState = getState(dataset.key, group.key, value);
-                                    return `<button type="button" class="universal-search-filter state-${filterState}" data-dataset="${escapeHtml(dataset.key)}" data-group="${escapeHtml(group.key)}" data-value="${escapeHtml(value)}">${escapeHtml(value)}</button>`;
-                                }).join("")}
-                            </div>
-                        </div>`;
-                }).join("")}
-            </details>
-        `).join("");
+        container.innerHTML = state.datasets.map(dataset => {
+            const enabled = state.enabledDatasets.get(dataset.key) !== false;
+            return `
+                <details class="universal-search-filter-group" open>
+                    <summary>
+                        <span>${escapeHtml(dataset.label)}</span>
+                        <label class="universal-search-section-toggle" title="Include ${escapeHtml(dataset.label)} in search results">
+                            <input type="checkbox" data-dataset-toggle="${escapeHtml(dataset.key)}" ${enabled ? "checked" : ""} />
+                            <span class="universal-search-toggle-track" aria-hidden="true"></span>
+                        </label>
+                    </summary>
+                    ${enabled ? dataset.filterGroups.map(group => {
+                        const values = filterValues(dataset, group);
+                        if (!values.length) return "";
+                        return `
+                            <div style="margin-bottom:10px;">
+                                <span class="filter-label">${escapeHtml(group.label)}</span>
+                                <div class="universal-search-filter-list">
+                                    ${values.map(value => {
+                                        const filterState = getState(dataset.key, group.key, value);
+                                        return `<button type="button" class="universal-search-filter state-${filterState}" data-dataset="${escapeHtml(dataset.key)}" data-group="${escapeHtml(group.key)}" data-value="${escapeHtml(value)}">${escapeHtml(value)}</button>`;
+                                    }).join("")}
+                                </div>
+                            </div>`;
+                    }).join("") : '<p class="universal-search-section-disabled">section disabled</p>'}
+                </details>
+            `;
+        }).join("");
 
         container.querySelectorAll(".universal-search-filter").forEach(button => {
             button.addEventListener("click", () => cycleFilter(
@@ -135,6 +161,15 @@
                 button.dataset.group,
                 button.dataset.value,
             ));
+        });
+
+        container.querySelectorAll("[data-dataset-toggle]").forEach(toggle => {
+            toggle.addEventListener("click", event => event.stopPropagation());
+            toggle.addEventListener("change", () => {
+                state.enabledDatasets.set(toggle.dataset.datasetToggle, toggle.checked);
+                renderFilters();
+                renderResults();
+            });
         });
     }
 
@@ -152,7 +187,7 @@
         const container = document.getElementById("universal-results");
         const query = state.query.trim();
 
-        const groups = state.datasets.map(dataset => {
+        const groups = state.datasets.filter(dataset => state.enabledDatasets.get(dataset.key) !== false).map(dataset => {
             const results = dataset.items
                 .filter(item => matchesTextQuery(query, dataset.searchable(item)))
                 .filter(item => matchesFilters(dataset, item))
@@ -202,6 +237,14 @@
         );
     }
 
+    function renderSSArticle(item) {
+        return cardShell(item,
+            `<span class="card-number">#${escapeHtml(item.id)}</span><span class="card-dot">·</span><span class="card-date">${escapeHtml(item.date)}</span>`,
+            { title: escapeHtml(item.title), meta: `${escapeHtml(item.author || "")}${item.tags?.length ? ` · ${renderTags(item.tags)}` : ""}` },
+            `<a href="/ss-hub/articles/reader.html?post=${encodeURIComponent(item.id)}">open article</a>`,
+        );
+    }
+
     function renderMap(item) {
         const patterns = Array.isArray(item.pattern) ? item.pattern : item.pattern ? [item.pattern] : [];
         return cardShell(item,
@@ -237,12 +280,16 @@
         );
     }
 
-    function renderArchiver(item) {
+    function renderSetting(item) {
+        const youtube = getYouTubeData(item.video);
+        const preview = youtube
+            ? `<iframe src="${youtube.embedUrl}" loading="lazy" allowfullscreen title="${escapeHtml(item.title)} preview"></iframe>`
+            : "";
         return cardShell(item,
-            `<span class="card-date">archiver since ${escapeHtml(item.since)}</span>`,
-            { title: escapeHtml(item.name), meta: escapeHtml(item.role) },
-            `<a href="https://discordapp.com/users/${encodeURIComponent(item.discordId)}" target="_blank" rel="noopener noreferrer">open Discord profile</a>`,
-            `<img src="${escapeHtml(item.pfp)}" alt="${escapeHtml(item.name)} profile picture" loading="lazy">`,
+            `<span class="card-number">#${escapeHtml(item.id)}</span><span class="card-dot">·</span><span class="card-date">${escapeHtml(item.date)}</span><span class="card-tag">${escapeHtml(item.format)}</span>`,
+            { title: escapeHtml(item.title), meta: `${escapeHtml(item.author || "")}${item.tags?.length ? ` · ${renderTags(item.tags)}` : ""}` },
+            `<a href="/ss-hub/settings/?config=${encodeURIComponent(item.id)}">open settings</a>`,
+            preview,
         );
     }
 
@@ -289,6 +336,7 @@
         }));
 
         state.datasets = results;
+        state.datasets.forEach(dataset => state.enabledDatasets.set(dataset.key, true));
         renderFilters();
         renderResults();
 
