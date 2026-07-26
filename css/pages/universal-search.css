@@ -96,13 +96,13 @@ body.universal-search-page .universal-search-layout {
 .universal-search-section-toggle {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     flex: 0 0 auto;
     cursor: pointer;
-}
-.universal-search-section-toggle input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
 }
 .universal-search-toggle-track {
     width: 34px;
@@ -124,15 +124,15 @@ body.universal-search-page .universal-search-layout {
     background: var(--subtle-text);
     transition: transform .15s ease, background .15s ease;
 }
-.universal-search-section-toggle input:checked + .universal-search-toggle-track {
+.universal-search-section-toggle[aria-pressed="true"] .universal-search-toggle-track {
     background: rgba(37,105,63,.35);
     border-color: rgba(45,133,79,.6);
 }
-.universal-search-section-toggle input:checked + .universal-search-toggle-track::after {
+.universal-search-section-toggle[aria-pressed="true"] .universal-search-toggle-track::after {
     transform: translateX(16px);
     background: rgba(150,255,180,.95);
 }
-.universal-search-section-toggle input:focus-visible + .universal-search-toggle-track {
+.universal-search-section-toggle:focus-visible .universal-search-toggle-track {
     outline: 2px solid currentColor;
     outline-offset: 2px;
 }
@@ -308,11 +308,11 @@ body.universal-search-page .universal-search-layout {
 }
 
 /* Universal search dataset toggles: green when enabled, red when disabled. */
-.universal-search-section-toggle input:not(:checked) + .universal-search-toggle-track {
+.universal-search-section-toggle[aria-pressed="false"] .universal-search-toggle-track {
     background: rgba(150, 45, 45, .35);
     border-color: rgba(190, 65, 65, .7);
 }
 
-.universal-search-section-toggle input:not(:checked) + .universal-search-toggle-track::after {
+.universal-search-section-toggle[aria-pressed="false"] .universal-search-toggle-track::after {
     background: rgba(255, 165, 165, .95);
 }

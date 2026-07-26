@@ -137,10 +137,9 @@
                 <details class="universal-search-filter-group${enabled ? "" : " is-disabled"}" data-dataset-section="${escapeHtml(dataset.key)}" open>
                     <summary>
                         <span>${escapeHtml(dataset.label)}</span>
-                        <label class="universal-search-section-toggle" title="Include ${escapeHtml(dataset.label)} in search results">
-                            <input type="checkbox" data-dataset-toggle="${escapeHtml(dataset.key)}" ${enabled ? "checked" : ""} />
+                        <button type="button" class="universal-search-section-toggle" data-dataset-toggle="${escapeHtml(dataset.key)}" aria-label="Toggle ${escapeHtml(dataset.label)}" aria-pressed="${enabled ? "true" : "false"}">
                             <span class="universal-search-toggle-track" aria-hidden="true"></span>
-                        </label>
+                        </button>
                     </summary>
                     <div class="universal-search-filter-content" data-dataset-content="${escapeHtml(dataset.key)}"${enabled ? "" : " hidden"}>
                         ${dataset.filterGroups.map(group => {
@@ -162,13 +161,40 @@
             `;
         }).join("");
 
-        // Capture toggle clicks before <summary> can toggle the <details> element.
-        // The section switch must only enable/disable the dataset, never collapse
-        // or expand the filter section as a side effect.
+        // Section toggles are buttons inside <summary>. Handle them explicitly so
+        // clicking a toggle never invokes the native <details> disclosure action.
         container.addEventListener("click", event => {
             const toggle = event.target.closest("[data-dataset-toggle]");
             if (toggle) {
+                event.preventDefault();
                 event.stopPropagation();
+
+                const datasetKey = toggle.dataset.datasetToggle;
+                const enabled = state.enabledDatasets.get(datasetKey) !== false;
+                const nextEnabled = !enabled;
+                state.enabledDatasets.set(datasetKey, nextEnabled);
+                toggle.setAttribute("aria-pressed", String(nextEnabled));
+
+                const section = container.querySelector(`[data-dataset-section="${CSS.escape(datasetKey)}"]`);
+                const content = container.querySelector(`[data-dataset-content="${CSS.escape(datasetKey)}"]`);
+
+                if (section) section.classList.toggle("is-disabled", !nextEnabled);
+                if (content) content.hidden = !nextEnabled;
+
+                // If the panel was scrolled near the bottom, hiding a section can
+                // reduce its scroll height. Clamp it immediately after layout so
+                // the browser cannot preserve an invalid scroll position.
+                const clamp = () => {
+                    const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight);
+                    if (container.scrollTop > maxScroll) container.scrollTop = maxScroll;
+                };
+                clamp();
+                requestAnimationFrame(() => {
+                    clamp();
+                    requestAnimationFrame(clamp);
+                });
+
+                renderResults();
                 return;
             }
 
@@ -182,23 +208,6 @@
                 );
             }
         }, true);
-
-        container.addEventListener("change", event => {
-            const toggle = event.target.closest("[data-dataset-toggle]");
-            if (!toggle) return;
-
-            const datasetKey = toggle.dataset.datasetToggle;
-            const enabled = toggle.checked;
-            state.enabledDatasets.set(datasetKey, enabled);
-
-            const section = container.querySelector(`[data-dataset-section="${CSS.escape(datasetKey)}"]`);
-            const content = container.querySelector(`[data-dataset-content="${CSS.escape(datasetKey)}"]`);
-
-            if (section) section.classList.toggle("is-disabled", !enabled);
-            if (content) content.hidden = !enabled;
-
-            renderResults();
-        });
     }
 
     function matchesFilters(dataset, item) {
