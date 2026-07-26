@@ -245,3 +245,13 @@
         position: static;
     }
 }
+
+/* Universal search dataset toggles: green when enabled, red when disabled. */
+.universal-search-section-toggle input:not(:checked) + .universal-search-toggle-track {
+    background: rgba(150, 45, 45, .35);
+    border-color: rgba(190, 65, 65, .7);
+}
+
+.universal-search-section-toggle input:not(:checked) + .universal-search-toggle-track::after {
+    background: rgba(255, 165, 165, .95);
+}
