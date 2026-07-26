@@ -110,13 +110,16 @@
         return state.filters.get(filterKey(datasetKey, groupKey, value)) || "neutral";
     }
 
-    function cycleFilter(datasetKey, groupKey, value) {
+    function cycleFilter(datasetKey, groupKey, value, button) {
         const current = getState(datasetKey, groupKey, value);
         const next = current === "neutral" ? "include" : current === "include" ? "exclude" : "neutral";
         const key = filterKey(datasetKey, groupKey, value);
+
         if (next === "neutral") state.filters.delete(key);
         else state.filters.set(key, next);
-        renderFilters();
+
+        button.classList.remove("state-neutral", "state-include", "state-exclude");
+        button.classList.add(`state-${next}`);
         renderResults();
     }
 
@@ -126,11 +129,12 @@
 
     function renderFilters() {
         const container = document.getElementById("universal-filters");
-        const previousScrollTop = container.scrollTop;
+
         container.innerHTML = state.datasets.map(dataset => {
             const enabled = state.enabledDatasets.get(dataset.key) !== false;
+
             return `
-                <details class="universal-search-filter-group" open>
+                <details class="universal-search-filter-group${enabled ? "" : " is-disabled"}" data-dataset-section="${escapeHtml(dataset.key)}" open>
                     <summary>
                         <span>${escapeHtml(dataset.label)}</span>
                         <label class="universal-search-section-toggle" title="Include ${escapeHtml(dataset.label)} in search results">
@@ -138,50 +142,63 @@
                             <span class="universal-search-toggle-track" aria-hidden="true"></span>
                         </label>
                     </summary>
-                    ${enabled ? dataset.filterGroups.map(group => {
-                        const values = filterValues(dataset, group);
-                        if (!values.length) return "";
-                        return `
-                            <div style="margin-bottom:10px;">
-                                <span class="filter-label">${escapeHtml(group.label)}</span>
-                                <div class="universal-search-filter-list">
-                                    ${values.map(value => {
-                                        const filterState = getState(dataset.key, group.key, value);
-                                        return `<button type="button" class="universal-search-filter state-${filterState}" data-dataset="${escapeHtml(dataset.key)}" data-group="${escapeHtml(group.key)}" data-value="${escapeHtml(value)}">${escapeHtml(value)}</button>`;
-                                    }).join("")}
-                                </div>
-                            </div>`;
-                    }).join("") : '<p class="universal-search-section-disabled">section disabled</p>'}
+                    <div class="universal-search-filter-content" data-dataset-content="${escapeHtml(dataset.key)}"${enabled ? "" : " hidden"}>
+                        ${dataset.filterGroups.map(group => {
+                            const values = filterValues(dataset, group);
+                            if (!values.length) return "";
+                            return `
+                                <div class="universal-search-filter-group-block">
+                                    <span class="filter-label">${escapeHtml(group.label)}</span>
+                                    <div class="universal-search-filter-list">
+                                        ${values.map(value => {
+                                            const filterState = getState(dataset.key, group.key, value);
+                                            return `<button type="button" class="universal-search-filter state-${filterState}" data-dataset="${escapeHtml(dataset.key)}" data-group="${escapeHtml(group.key)}" data-value="${escapeHtml(value)}">${escapeHtml(value)}</button>`;
+                                        }).join("")}
+                                    </div>
+                                </div>`;
+                        }).join("")}
+                    </div>
                 </details>
             `;
         }).join("");
 
-        container.querySelectorAll(".universal-search-filter").forEach(button => {
-            button.addEventListener("click", () => cycleFilter(
-                button.dataset.dataset,
-                button.dataset.group,
-                button.dataset.value,
-            ));
-        });
+        // Capture toggle clicks before <summary> can toggle the <details> element.
+        // The section switch must only enable/disable the dataset, never collapse
+        // or expand the filter section as a side effect.
+        container.addEventListener("click", event => {
+            const toggle = event.target.closest("[data-dataset-toggle]");
+            if (toggle) {
+                event.stopPropagation();
+                return;
+            }
 
-        container.querySelectorAll("[data-dataset-toggle]").forEach(toggle => {
-            toggle.addEventListener("click", event => event.stopPropagation());
-            toggle.addEventListener("change", () => {
-                state.enabledDatasets.set(toggle.dataset.datasetToggle, toggle.checked);
-                renderFilters();
-                renderResults();
-            });
-        });
+            const button = event.target.closest(".universal-search-filter");
+            if (button) {
+                cycleFilter(
+                    button.dataset.dataset,
+                    button.dataset.group,
+                    button.dataset.value,
+                    button,
+                );
+            }
+        }, true);
 
-        // Re-rendering can make the filter pane shorter than its previous
-        // scroll position. Clamp it to the new maximum so the viewport never
-        // ends up beyond the content after a section is toggled.
-        const restoreScrollPosition = () => {
-            const maxScrollTop = Math.max(0, container.scrollHeight - container.clientHeight);
-            container.scrollTop = Math.min(previousScrollTop, maxScrollTop);
-        };
-        restoreScrollPosition();
-        requestAnimationFrame(restoreScrollPosition);
+        container.addEventListener("change", event => {
+            const toggle = event.target.closest("[data-dataset-toggle]");
+            if (!toggle) return;
+
+            const datasetKey = toggle.dataset.datasetToggle;
+            const enabled = toggle.checked;
+            state.enabledDatasets.set(datasetKey, enabled);
+
+            const section = container.querySelector(`[data-dataset-section="${CSS.escape(datasetKey)}"]`);
+            const content = container.querySelector(`[data-dataset-content="${CSS.escape(datasetKey)}"]`);
+
+            if (section) section.classList.toggle("is-disabled", !enabled);
+            if (content) content.hidden = !enabled;
+
+            renderResults();
+        });
     }
 
     function matchesFilters(dataset, item) {

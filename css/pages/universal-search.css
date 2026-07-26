@@ -144,6 +144,24 @@ body.universal-search-page .universal-search-layout {
     font-size: 13px;
     margin: 4px 0 0;
 }
+
+
+.universal-search-filter-group-block {
+    margin-bottom: 10px;
+}
+
+.universal-search-filter-group-block:last-child {
+    margin-bottom: 0;
+}
+
+.universal-search-filter-content[hidden] {
+    display: none;
+}
+
+.universal-search-filter-group.is-disabled {
+    opacity: 0.95;
+}
+
 .universal-search-filter-list {
     display: flex;
     flex-wrap: wrap;
