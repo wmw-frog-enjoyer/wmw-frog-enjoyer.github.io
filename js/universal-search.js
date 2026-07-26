@@ -134,7 +134,7 @@
             const enabled = state.enabledDatasets.get(dataset.key) !== false;
 
             return `
-                <details class="universal-search-filter-group${enabled ? "" : " is-disabled"}" data-dataset-section="${escapeHtml(dataset.key)}" open>
+                <details class="universal-search-filter-group${enabled ? "" : " is-disabled"}" data-dataset-section="${escapeHtml(dataset.key)}">
                     <summary>
                         <span>${escapeHtml(dataset.label)}</span>
                         <button type="button" class="universal-search-section-toggle" data-dataset-toggle="${escapeHtml(dataset.key)}" aria-label="Toggle ${escapeHtml(dataset.label)}" aria-pressed="${enabled ? "true" : "false"}">
