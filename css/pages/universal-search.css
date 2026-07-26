@@ -1,39 +1,4 @@
 
-/* Universal search */
-.universal-search-button {
-    position: absolute;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--text);
-    text-decoration: none;
-    font-family: var(--font-main);
-    font-weight: 300;
-    font-size: 15px;
-    padding: 8px 12px;
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.03);
-    transition: background 0.15s ease, border-color 0.15s ease;
-}
-.universal-search-button:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.18);
-}
-.universal-search-icon {
-    display: block;
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-}
-.universal-search-button:focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: 3px;
-}
-
 .page-content:has(.universal-search-layout) {
     width: min(100%, 1200px);
     max-width: 1200px;
@@ -57,15 +22,25 @@
 .universal-search-results {
     min-width: 0;
     min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.universal-search-toolbar {
+    flex: 0 0 auto;
+    padding-bottom: 18px;
+    background: var(--bg);
+    position: relative;
+    z-index: 1;
+}
+.universal-search-toolbar .search-input {
+    margin-bottom: 0;
+}
+.universal-search-results-scroll {
+    min-height: 0;
     overflow-y: auto;
     padding-right: 8px;
     scrollbar-gutter: stable;
-}
-.universal-search-results > .search-input {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    margin-bottom: 18px;
 }
 .universal-search-filter-group {
     border-bottom: 1px solid var(--hairline);
@@ -198,11 +173,6 @@
     padding: 18px 0;
 }
 @media (max-width: 767px) {
-    .universal-search-button {
-        right: 12px;
-        padding: 7px 9px;
-    }
-    .universal-search-button .nav-text { display: none; }
     .universal-search-layout {
         grid-template-columns: 1fr;
         height: auto;
@@ -212,6 +182,9 @@
     .universal-search-filters,
     .universal-search-results {
         max-height: 60vh;
+    }
+    .universal-search-results-scroll {
+        max-height: 50vh;
     }
     .universal-search-filters {
         position: static;

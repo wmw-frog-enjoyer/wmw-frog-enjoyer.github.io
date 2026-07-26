@@ -9,6 +9,39 @@
     box-sizing: border-box;
 }
 
+
+.universal-search-button {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+}
+
+.universal-search-button:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.universal-search-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.universal-search-button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
 .center-nav {
     display: flex;
     gap: 15px;
@@ -78,6 +111,12 @@
 
     .home-logo {
         width: 35px !important;
+    }
+
+    .universal-search-button {
+        right: 8px;
+        width: 40px;
+        height: 40px;
     }
 
     .nav-text,

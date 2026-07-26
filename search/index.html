@@ -26,15 +26,17 @@
             <aside class="universal-search-filters" id="universal-filters" aria-label="Search filters"></aside>
 
             <section class="universal-search-results" aria-label="Search results">
-                <label class="sr-only" for="universal-search-input">Search all Ansilian content</label>
-                <input
-                    type="search"
-                    id="universal-search-input"
-                    class="search-input"
-                    placeholder="search everything..."
-                    autocomplete="off"
-                />
-                <div id="universal-results" aria-live="polite">
+                <div class="universal-search-toolbar">
+                    <label class="sr-only" for="universal-search-input">Search all Ansilian content</label>
+                    <input
+                        type="search"
+                        id="universal-search-input"
+                        class="search-input"
+                        placeholder="search everything..."
+                        autocomplete="off"
+                    />
+                </div>
+                <div class="universal-search-results-scroll" id="universal-results" aria-live="polite">
                     <p class="status-text">loading...</p>
                 </div>
             </section>
