@@ -85,6 +85,7 @@
     <script src="/js/components.js"></script>
     <script src="/js/nav.js"></script>
     <script src="/js/search.js"></script>
+    <script src="/js/global-search.js"></script>
 
     <main id="main-content" class="page-content">
         <h1 class="page-title">settings</h1>
@@ -748,7 +749,7 @@
                     allConfigs,
                 );
 
-                renderCards("");
+                renderCards(window.AnsilianSearch.prefillFromUrl("search-input"));
 
                 document
                     .getElementById(

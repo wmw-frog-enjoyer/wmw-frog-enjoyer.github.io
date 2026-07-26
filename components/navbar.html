@@ -36,4 +36,48 @@
             />
         </a>
     </nav>
+    <button type="button" class="search-trigger" id="global-search-trigger" aria-haspopup="dialog" aria-controls="global-search-overlay" aria-label="Search Ansilian">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+    </button>
 </header>
+
+<div class="search-overlay" id="global-search-overlay" role="dialog" aria-modal="true" aria-label="Search Ansilian">
+    <div class="search-modal">
+        <div class="search-modal-header">
+            <label class="sr-only" id="global-search-label" for="global-search-input">Search the entire site by title, author, tag, or id</label>
+            <input
+                type="text"
+                id="global-search-input"
+                class="search-input"
+                aria-labelledby="global-search-label"
+                placeholder="search articles, customs, skins, settings, sspm maps, archivers..."
+                autocomplete="off"
+            />
+            <button type="button" class="search-close-btn" id="global-search-close">close ✕</button>
+        </div>
+        <div class="search-modal-body">
+            <div id="global-search-results" class="search-results-list" aria-live="polite">
+                <p class="search-status-text">loading...</p>
+            </div>
+            <aside class="search-filters">
+                <div class="filter-section">
+                    <button type="button" class="filter-section-toggle" data-toggle-section="global-type" aria-expanded="true" aria-controls="list-global-type" onclick="window.AnsilianGlobalSearch.toggleSection('type')">
+                        <span class="filter-arrow" id="arrow-global-type">▾</span>
+                        <span>type</span>
+                    </button>
+                    <div class="filter-list" id="list-global-type"></div>
+                </div>
+                <div class="filter-section">
+                    <button type="button" class="filter-section-toggle" data-toggle-section="global-tags" aria-expanded="true" aria-controls="list-global-tags" onclick="window.AnsilianGlobalSearch.toggleSection('tags')">
+                        <span class="filter-arrow" id="arrow-global-tags">▾</span>
+                        <span>tags</span>
+                    </button>
+                    <div class="filter-list" id="list-global-tags"></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
