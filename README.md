@@ -53,6 +53,17 @@ The general rule is simple:
 
 ---
 
+
+# Universal Search
+
+The topbar Search button opens `/search/`, the universal search page.
+
+The page loads the JSON indexes for articles, customs, skins, SSPM maps, and archivers. Each category has its own collapsible filter section, with the same three-state include/exclude filter behavior used by the archive pages. Results are sorted newest-first by their content date.
+
+Universal search cards preserve the important actions from their source pages, including opening article readers, downloading maps and assets, copying skin/cursor data, opening media previews, and opening archiver profiles.
+
+When adding a new JSON-driven content section, add a dataset definition to `js/universal-search.js` with its source, searchable fields, filter groups, date/id sorting, and renderer.
+
 # How I add a new article
 
 1. Write the article in Obsidian.
