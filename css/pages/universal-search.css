@@ -1,4 +1,37 @@
 
+/* Keep the search workspace locked to the viewport. Only the filters and results panes scroll. */
+html:has(body.universal-search-page),
+body.universal-search-page {
+    height: 100%;
+    overflow: hidden;
+}
+
+body.universal-search-page {
+    display: flex;
+    flex-direction: column;
+}
+
+body.universal-search-page [data-component="footer"] {
+    display: none;
+}
+
+body.universal-search-page #main-content {
+    width: min(100%, 1200px);
+    max-width: 1200px;
+    height: calc(100vh - 74px);
+    min-height: 0;
+    margin: 28px auto 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+body.universal-search-page .universal-search-layout {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+}
+
 .page-content:has(.universal-search-layout) {
     width: min(100%, 1200px);
     max-width: 1200px;
@@ -228,19 +261,29 @@
     padding: 18px 0;
 }
 @media (max-width: 767px) {
+    body.universal-search-page #main-content {
+        height: calc(100vh - 70px);
+        margin-top: 20px;
+    }
+
     .universal-search-layout {
         grid-template-columns: 1fr;
+        grid-template-rows: minmax(0, 1fr) minmax(0, 1.4fr);
         height: auto;
         min-height: 0;
-        overflow: visible;
+        overflow: hidden;
     }
+
     .universal-search-filters,
     .universal-search-results {
-        max-height: 60vh;
+        max-height: none;
+        min-height: 0;
     }
+
     .universal-search-results-scroll {
-        max-height: 50vh;
+        max-height: none;
     }
+
     .universal-search-filters {
         position: static;
     }
