@@ -126,6 +126,7 @@
 
     function renderFilters() {
         const container = document.getElementById("universal-filters");
+        const previousScrollTop = container.scrollTop;
         container.innerHTML = state.datasets.map(dataset => {
             const enabled = state.enabledDatasets.get(dataset.key) !== false;
             return `
@@ -171,6 +172,16 @@
                 renderResults();
             });
         });
+
+        // Re-rendering can make the filter pane shorter than its previous
+        // scroll position. Clamp it to the new maximum so the viewport never
+        // ends up beyond the content after a section is toggled.
+        const restoreScrollPosition = () => {
+            const maxScrollTop = Math.max(0, container.scrollHeight - container.clientHeight);
+            container.scrollTop = Math.min(previousScrollTop, maxScrollTop);
+        };
+        restoreScrollPosition();
+        requestAnimationFrame(restoreScrollPosition);
     }
 
     function matchesFilters(dataset, item) {
