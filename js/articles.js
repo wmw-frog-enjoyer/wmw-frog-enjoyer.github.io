@@ -192,7 +192,19 @@
             const response = await fetch("posts/posts.json");
             if (!response.ok) throw new Error("Could not load posts index.");
 
-            state.allPosts = await response.json();
+            const rawPosts = await response.json();
+
+            // Normalize tags so a malformed entry (string instead of array,
+            // missing field, etc.) in posts.json can't break rendering for
+            // every other post.
+            state.allPosts = rawPosts.map((post) => ({
+                ...post,
+                tags: Array.isArray(post.tags)
+                    ? post.tags
+                    : post.tags
+                      ? [post.tags]
+                      : [],
+            }));
 
             if (state.allPosts.length === 0) {
                 if (container) {
