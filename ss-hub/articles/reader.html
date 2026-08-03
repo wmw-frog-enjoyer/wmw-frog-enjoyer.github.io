@@ -26,8 +26,14 @@
         <link rel="stylesheet" href="style.css?v=1" />
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
 
         <style>
+            /* ── math rendering ── */
+            .katex { font-size: 1.05em; color: inherit; }
+            .katex-display { margin: 1.2em 0; overflow-x: auto; overflow-y: hidden; }
             /* ── progress bar ── */
             .reading-progress-track {
                 position: fixed;
@@ -586,6 +592,43 @@
                 document.getElementById("reader-footer").style.display = "block";
             }
 
+            // Pull $...$ / $$...$$ segments out before markdown processing
+            // touches them — marked's emphasis/line-break rules can mangle
+            // raw LaTeX (backslashes, underscores, etc). Placeholders are
+            // restored after marked.parse, then KaTeX typesets them.
+            function protectMath(markdown) {
+                const store = [];
+                const stash = (text, regex) =>
+                    text.replace(regex, (match) => {
+                        store.push(match);
+                        return `\u0000MATH${store.length - 1}\u0000`;
+                    });
+                // block math ($$...$$) must be stashed before inline ($...$)
+                // so a block delimiter isn't split into two inline ones
+                let out = stash(markdown, /\$\$[\s\S]+?\$\$/g);
+                out = stash(out, /\$[^\n$]+?\$/g);
+                return { text: out, store };
+            }
+
+            function restoreMath(html, store) {
+                return html.replace(
+                    /\u0000MATH(\d+)\u0000/g,
+                    (_, i) => store[Number(i)],
+                );
+            }
+
+            function renderMath(container) {
+                if (window.renderMathInElement) {
+                    renderMathInElement(container, {
+                        delimiters: [
+                            { left: "$$", right: "$$", display: true },
+                            { left: "$", right: "$", display: false },
+                        ],
+                        throwOnError: false,
+                    });
+                }
+            }
+
             async function loadPost() {
                 const postBody = document.getElementById("post-body");
                 const params = new URLSearchParams(window.location.search);
@@ -626,8 +669,12 @@
                     document.getElementById("stat-chars").textContent = chars.toLocaleString();
                     document.getElementById("stat-time").textContent = timeLabel;
 
-                    const processed = markdown.replace(/([^\n])\n([^\n])/g, "$1  \n$2");
-                    postBody.innerHTML = marked.parse(processed);
+                    const { text: safeMarkdown, store } = protectMath(markdown);
+                    const processed = safeMarkdown.replace(/([^\n])\n([^\n])/g, "$1  \n$2");
+                    let html = marked.parse(processed);
+                    html = restoreMath(html, store);
+                    postBody.innerHTML = html;
+                    renderMath(postBody);
 
                     buildToc();
                     updateProgress();
