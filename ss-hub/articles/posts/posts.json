@@ -5,7 +5,7 @@
     "date": "2026-06-19",
     "description": "A small rant and analysis on why customs are becoming flooded with stream slops.",
     "author": "Melo",
-    "tags": ["sound space", "rhythia"],
+    "tags": "",
     "video": "https://youtu.be/HNiyy4QW5Lw?si=TBPJUXou3yfrRynx"
   },
   {
@@ -14,7 +14,7 @@
     "date": "2026-03-10",
     "description": "A reflection on overcoming the toxic culture of comparison and ego in Sound Space by shifting the focus back to personal enjoyment and supporting fellow players.",
     "author": "Melo",
-    "tags": ["sound space", "rhythia", "mediocrity"]
+    "tags": "mediocrity"
   },
   {
     "id": "003",
@@ -22,7 +22,7 @@
     "date": "2026-07-06",
     "description": "How hidden settings like fade, AR, and AD change how you read patterns without touching your actual multiplier.",
     "author": "Melo",
-    "tags": ["sound space", "rhythia", "technical"]
+    "tags": "technical"
   },
   {
     "id": "004",
@@ -30,7 +30,7 @@
     "date": "2026-07-07",
     "description": "How incentives changed the way people map.",
     "author": "Melo",
-    "tags": ["sound space", "rhythia"]
+    "tags": ""
   },
   {
     "id": "005",
@@ -38,7 +38,7 @@
     "date": "2026-07-07",
     "description": "How every player develops a comfort map set, and why stepping outside of it matters.",
     "author": "Melo",
-    "tags": ["sound space", "rhythia"]
+    "tags": ""
   },
   {
     "id": "006",
@@ -46,6 +46,14 @@
     "date": "2026-07-19",
     "description": "Learn how representation, pattern variety, density, and song choice come together to create maps that feel genuinely enjoyable.",
     "author": "Melo",
-    "tags": ["sound space", "rhythia", "technical"]
+    "tags": ["technical"]
+  },
+  {
+    "id": "008",
+    "title": "The Beginner's Guide to Sound Space Settings",
+    "date": "2026-08-02",
+    "description": "A clearer, beginner-focused guide to configuring Sound Space the right way.",
+    "author": "Melo",
+    "tags": ["technical"]
   }
 ]
