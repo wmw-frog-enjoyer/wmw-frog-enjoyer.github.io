@@ -1,3 +1,259 @@
-<!doctype html><html><head><meta charset='utf-8'><title>Official Maps</title><link rel='stylesheet' href='style.css'></head><body><h1>Official Maps</h1><div id='cards'></div><script>
-fetch('maps.json').then(r=>r.json()).then(ms=>{const c=document.getElementById('cards');ms.forEach(m=>{let d=document.createElement('div');d.className='card';d.innerHTML=`<h2>${m.name}</h2><p>${m.artist}</p><p>Mapper: ${m.mapper}</p><p>Rating: ${m.rating}</p><p>${m.patterns.join(', ')}</p><a href='${m.video}'>Showcase</a>`;c.appendChild(d);});});
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Official Maps | Ansilian</title>
+
+    <meta name="description" content="Browse official Sound Space maps, filterable by patterns, mapper, and artist." />
+    <link rel="canonical" href="https://wmw-frog-enjoyer.github.io/ss-hub/official-maps/" />
+
+    <meta property="og:title" content="Official Sound Space Maps | Ansilian" />
+    <meta property="og:description" content="Browse official Sound Space maps." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wmw-frog-enjoyer.github.io/ss-hub/official-maps/" />
+    <meta property="og:image" content="https://wmw-frog-enjoyer.github.io/assets/ansilian.webp" />
+
+    <link rel="icon" type="image/png" href="/assets/ansilian.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css?v=1" />
+</head>
+<body>
+    <div data-component="navbar"></div>
+
+    <script src="/js/utils.js"></script>
+    <script src="/js/components.js"></script>
+    <script src="/js/nav.js"></script>
+    <script src="/js/search.js"></script>
+
+    <main id="main-content" class="page-content">
+        <h1 class="page-title">official maps</h1>
+
+        <!-- 3-State Filter for Patterns -->
+        <div class="type-filter" id="pattern-filter">
+            <span class="type-filter-label">patterns</span>
+            <div class="type-pills" id="pattern-pills"></div>
+        </div>
+
+        <label class="sr-only" id="maps-search-label" for="search-input">
+            Search official maps by name, artist, mapper, or pattern
+        </label>
+
+        <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            aria-labelledby="maps-search-label"
+            placeholder="search by name, artist, mapper or pattern..."
+            autocomplete="off"
+        />
+
+        <div id="maps-container" aria-live="polite">
+            <p class="status-text">loading maps...</p>
+        </div>
+    </main>
+
+    <script>
+        let allMaps = [];
+        const patternStates = window.AnsilianSearch.createToggleStateMap();
+
+        function escapeHtml(value) {
+            const div = document.createElement("div");
+            div.textContent = value ?? "";
+            return div.innerHTML;
+        }
+
+        function getYouTubeEmbedUrl(url) {
+            return window.AnsilianUtils.getYouTubeData(url)?.embedUrl || null;
+        }
+
+        function buildPatternPills(maps) {
+            const patterns = [
+                ...new Set(
+                    maps.flatMap((map) => map.patterns || []).filter(Boolean)
+                ),
+            ].sort();
+
+            const pillsContainer = document.getElementById("pattern-pills");
+            pillsContainer.innerHTML = patterns
+                .map(
+                    (pattern) => `
+                        <button
+                            type="button"
+                            class="type-pill"
+                            data-pattern="${escapeHtml(pattern)}"
+                            aria-pressed="false"
+                            onclick="togglePattern('${escapeHtml(pattern)}', this)"
+                        >
+                            ${escapeHtml(pattern)}
+                        </button>
+                    `
+                )
+                .join("");
+        }
+
+        function togglePattern(pattern, button) {
+            const state = window.AnsilianSearch.cycleThreeState(patternStates, pattern);
+
+            button.classList.remove("include", "exclude");
+            if (state === "include") button.classList.add("include");
+            if (state === "exclude") button.classList.add("exclude");
+
+            button.setAttribute("aria-pressed", String(state !== "neutral"));
+            renderCards(document.getElementById("search-input").value);
+        }
+
+        function renderMedia(videoUrl, thumbnailUrl) {
+            if (videoUrl) {
+                const embedUrl = getYouTubeEmbedUrl(videoUrl);
+                if (embedUrl) {
+                    return `
+                        <div class="video-container">
+                            <iframe
+                                class="video-embed"
+                                src="${escapeHtml(embedUrl)}"
+                                frameborder="0"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    `;
+                }
+            }
+
+            if (thumbnailUrl) {
+                return `
+                    <div class="video-container" style="background-image: url('/${escapeHtml(thumbnailUrl)}'); background-size: cover; background-position: center;">
+                    </div>
+                `;
+            }
+
+            return "";
+        }
+
+        async function renderMapCard(map, index) {
+            try {
+                // Using map.name to generate a fallback download link if you add a file field later
+                const downloadUrl = map.file ? `maps/${map.file}` : "#";
+
+                const card = await window.renderComponent("article-card", {
+                    idAttr: `map-${index}`,
+                    href: "#",
+                    number: index + 1,
+                    date: "",
+                    title: map.name,
+                    metaHtml: `
+                        <span class="map-artist-sub">by ${escapeHtml(map.artist)}</span>
+                    `,
+                    descriptionHtml: `
+                        <div class="settings-card-content">
+                            <div class="post-preface">
+                                <div class="preface-left">
+                                    <span class="difficulty-badge">★ ${escapeHtml(String(map.rating || "0.0"))}</span>
+                                </div>
+                                <div class="preface-right">
+                                    <span class="preface-author">Mapped by ${escapeHtml(map.mapper)}</span>
+                                </div>
+                            </div>
+
+                            <hr class="preface-divider" />
+
+                            <div class="preface-tags">
+                                ${window.AnsilianUtils.renderTags(map.patterns || [])}
+                            </div>
+
+                            <div class="settings-layout">
+                                <div class="settings-info">
+                                    ${renderMedia(map.video, map.thumbnail)}
+                                </div>
+
+                                <div class="action-container">
+                                    <a href="${escapeHtml(downloadUrl)}" class="action-btn" download>
+                                        download map
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    authorHtml: "",
+                    bottomHtml: "",
+                });
+
+                return card;
+            } catch (error) {
+                console.error(`Could not render map ${map.name}:`, error);
+                return `<p class="status-text">could not load map ${map.name}.</p>`;
+            }
+        }
+
+        async function renderCards(filterQuery) {
+            const container = document.getElementById("maps-container");
+            const query = filterQuery.toLowerCase().trim();
+
+            const included = window.AnsilianSearch.selectedKeys(patternStates, "include");
+            const excluded = window.AnsilianSearch.selectedKeys(patternStates, "exclude");
+
+            const results = allMaps.filter((map) => {
+                const matchesSearch =
+                    !query ||
+                    (map.name && map.name.toLowerCase().includes(query)) ||
+                    (map.artist && map.artist.toLowerCase().includes(query)) ||
+                    (map.mapper && map.mapper.toLowerCase().includes(query)) ||
+                    (map.patterns && map.patterns.some((p) => p.toLowerCase().includes(query)));
+
+                const mapPatterns = map.patterns || [];
+                const notExcluded = !excluded.some((p) => mapPatterns.includes(p));
+                const matchesInclude =
+                    included.length === 0 ||
+                    included.some((p) => mapPatterns.includes(p));
+
+                return matchesSearch && notExcluded && matchesInclude;
+            });
+
+            container.innerHTML = "";
+
+            if (results.length === 0) {
+                container.innerHTML = '<p class="status-text">no maps found.</p>';
+                return;
+            }
+
+            const cards = await Promise.all(results.map((map, index) => renderMapCard(map, index)));
+            container.innerHTML = cards.join("");
+        }
+
+        async function loadMaps() {
+            const container = document.getElementById("maps-container");
+
+            try {
+                const response = await fetch("maps/index.json");
+                if (!response.ok) throw new Error("maps/index.json not found");
+
+                allMaps = await response.json();
+
+                if (allMaps.length === 0) {
+                    container.innerHTML = '<p class="status-text">no official maps available yet.</p>';
+                    return;
+                }
+
+                buildPatternPills(allMaps);
+                renderCards("");
+
+                document.getElementById("search-input").addEventListener("input", (e) => {
+                    renderCards(e.target.value);
+                });
+            } catch (error) {
+                container.innerHTML = '<p class="status-text">could not load map index.</p>';
+                console.error(error);
+            }
+        }
+
+        loadMaps();
+    </script>
+
+    <div data-component="footer"></div>
+</body>
+</html>

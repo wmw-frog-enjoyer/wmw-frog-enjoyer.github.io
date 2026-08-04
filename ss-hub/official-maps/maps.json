@@ -1,13 +1,11 @@
-[
+ [
   {
-    "name": "Example Map",
-    "artist": "Example Artist",
-    "mapper": "Example Mapper",
+    "name": "Reality Check",
+    "artist": "Camellia",
+    "mapper": "Example",
     "rating": 4.5,
-    "patterns": [
-      "Streams",
-      "Jumps"
-    ],
-    "video": "https://youtu.be/"
+    "patterns": ["Streams", "Jumps", "Tech"],
+    "video": "https://youtu.be/...",
+    "thumbnail": "assets/reality-check.webp"
   }
 ]

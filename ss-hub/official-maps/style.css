@@ -1,1 +1,6 @@
-.card{border:1px solid #555;padding:1rem;margin:1rem;border-radius:8px}
+/* Compatibility wrapper: shared CSS lives in /css/ */
+@import url("../../css/base.css");
+@import url("../../css/typography.css");
+@import url("../../css/layout.css");
+@import url("../../css/components.css");
+@import url("../../css/pages/official-maps.css");
