@@ -1,11 +1,10 @@
  [
   {
-    "name": "Reality Check",
-    "artist": "Camellia",
-    "mapper": "Example",
-    "rating": 4.5,
-    "patterns": ["Streams", "Jumps", "Tech"],
-    "video": "https://youtu.be/...",
-    "thumbnail": "assets/reality-check.webp"
+    "name": "polybreak",
+    "artist": "metahumanboi",
+    "mapper": "divetek",
+    "rating": 9,
+    "patterns": ["slide", "jump"],
+    "video": "https://youtu.be/XSNlw3LsKAo?si=vqdht44VpSH0IPDU"
   }
 ]
