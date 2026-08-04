@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Example Map",
+    "artist": "Example Artist",
+    "mapper": "Example Mapper",
+    "rating": 4.5,
+    "patterns": [
+      "Streams",
+      "Jumps"
+    ],
+    "video": "https://youtu.be/"
+  }
+]
