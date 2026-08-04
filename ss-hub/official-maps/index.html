@@ -226,30 +226,31 @@
         }
 
         async function loadMaps() {
-            const container = document.getElementById("maps-container");
+                    const container = document.getElementById("maps-container");
 
-            try {
-                const response = await fetch("maps/index.json");
-                if (!response.ok) throw new Error("maps/index.json not found");
+                    try {
+                        // Changed from "maps/index.json" to "maps.json"
+                        const response = await fetch("maps.json");
+                        if (!response.ok) throw new Error("maps.json not found");
 
-                allMaps = await response.json();
+                        allMaps = await response.json();
 
-                if (allMaps.length === 0) {
-                    container.innerHTML = '<p class="status-text">no official maps available yet.</p>';
-                    return;
+                        if (allMaps.length === 0) {
+                            container.innerHTML = '<p class="status-text">no official maps available yet.</p>';
+                            return;
+                        }
+
+                        buildPatternPills(allMaps);
+                        renderCards("");
+
+                        document.getElementById("search-input").addEventListener("input", (e) => {
+                            renderCards(e.target.value);
+                        });
+                    } catch (error) {
+                        container.innerHTML = '<p class="status-text">could not load map index.</p>';
+                        console.error(error);
+                    }
                 }
-
-                buildPatternPills(allMaps);
-                renderCards("");
-
-                document.getElementById("search-input").addEventListener("input", (e) => {
-                    renderCards(e.target.value);
-                });
-            } catch (error) {
-                container.innerHTML = '<p class="status-text">could not load map index.</p>';
-                console.error(error);
-            }
-        }
 
         loadMaps();
     </script>
