@@ -137,58 +137,32 @@
 
         async function renderMapCard(map, index) {
             try {
-                // Using map.name to generate a fallback download link if you add a file field later
-                const downloadUrl = map.file ? `maps/${map.file}` : "#";
-
-                const card = await window.renderComponent("article-card", {
-                    idAttr: `map-${index}`,
-                    href: "#",
-                    number: index + 1,
-                    date: "",
-                    title: map.name,
-                    metaHtml: `
-                        <span class="map-artist-sub">by ${escapeHtml(map.artist)}</span>
-                    `,
-                    descriptionHtml: `
-                        <div class="settings-card-content">
-                            <div class="post-preface">
-                                <div class="preface-left">
-                                    <span class="difficulty-badge">★ ${escapeHtml(String(map.rating || "0.0"))}</span>
-                                </div>
-                                <div class="preface-right">
-                                    <span class="preface-author">Mapped by ${escapeHtml(map.mapper)}</span>
-                                </div>
+                return `
+                    <article class="map-card" id="map-${index}">
+                        <div class="map-card-header">
+                            <div>
+                                <h2 class="map-title">${escapeHtml(map.name)}</h2>
+                                <span class="map-artist-sub">by ${escapeHtml(map.artist)}</span>
                             </div>
-
-                            <hr class="preface-divider" />
-
-                            <div class="preface-tags">
-                                ${window.AnsilianUtils.renderTags(map.patterns || [])}
-                            </div>
-
-                            <div class="settings-layout">
-                                <div class="settings-info">
-                                    ${renderMedia(map.video, map.thumbnail)}
-                                </div>
-
-                                <div class="action-container">
-                                    <a href="${escapeHtml(downloadUrl)}" class="action-btn" download>
-                                        download map
-                                    </a>
-                                </div>
-                            </div>
+                            <span class="difficulty-badge">★ ${escapeHtml(String(map.rating || "0.0"))}</span>
                         </div>
-                    `,
-                    authorHtml: "",
-                    bottomHtml: "",
-                });
 
-                return card;
-            } catch (error) {
-                console.error(`Could not render map ${map.name}:`, error);
-                return `<p class="status-text">could not load map ${map.name}.</p>`;
+                        <div class="map-mapper-text">Mapped by ${escapeHtml(map.mapper)}</div>
+
+                        <div class="preface-tags">
+                            ${window.AnsilianUtils.renderTags(map.patterns || [])}
+                        </div>
+
+                        <div class="video-wrapper">
+                            ${renderMedia(map.video, map.thumbnail)}
+                        </div>
+                    </article>
+                        `;
+                    } catch (error) {
+                        console.error(`Could not render map ${map.name}:`, error);
+                        return `<p class="status-text">could not load map ${map.name}.</p>`;
+                    }
             }
-        }
 
         async function renderCards(filterQuery) {
             const container = document.getElementById("maps-container");
