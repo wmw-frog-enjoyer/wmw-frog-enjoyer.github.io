@@ -119,6 +119,7 @@
 
         <script>
             let allConfigs = [];
+            const configDataCache = new Map();
 
             const formatStates =
                 window.AnsilianSearch.createToggleStateMap();
@@ -331,72 +332,71 @@
                 `;
             }
 
-            function addCopyButton(button, configData) {
-                button.addEventListener("click", async (event) => {
-                    // Prevent the surrounding article link from navigating.
-                    event.preventDefault();
-                    event.stopPropagation();
+            function attachActionButtons(container) {
+                container
+                    .querySelectorAll('[data-action="config"]')
+                    .forEach((button) => {
+                        button.addEventListener("click", async (event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
 
-                    const configText = JSON.stringify(
-                        configData,
-                        null,
-                        2,
-                    );
+                            const id = button.dataset.configId;
+                            const format = button.dataset.format;
+                            const configData = configDataCache.get(id);
 
-                    const success =
-                        await window.AnsilianUtils.copyText(
-                            configText,
-                        );
+                            if (!configData) {
+                                button.textContent = "config unavailable";
+                                setTimeout(() => {
+                                    button.textContent =
+                                        format === "ss"
+                                            ? "copy config"
+                                            : "download config";
+                                }, 2000);
+                                return;
+                            }
 
-                    if (success) {
-                        button.textContent = "copied!";
+                            if (format === "ss") {
+                                const success =
+                                    await window.AnsilianUtils.copyText(
+                                        JSON.stringify(configData, null, 2),
+                                    );
 
-                        setTimeout(() => {
-                            button.textContent = "copy config";
-                        }, 2000);
-                    } else {
-                        button.textContent = "copy failed";
+                                button.textContent = success
+                                    ? "copied!"
+                                    : "copy failed";
 
-                        setTimeout(() => {
-                            button.textContent = "copy config";
-                        }, 2000);
-                    }
-                });
-            }
+                                setTimeout(() => {
+                                    button.textContent = "copy config";
+                                }, 2000);
 
-            function addDownloadButton(
-                button,
-                configData,
-                author,
-            ) {
-                button.addEventListener("click", (event) => {
-                    // Prevent the surrounding article link from navigating.
-                    event.preventDefault();
-                    event.stopPropagation();
+                                return;
+                            }
 
-                    const filename =
-                        `${author}-ssp-settings.json`;
+                            if (format === "ssp") {
+                                const config = allConfigs.find(
+                                    (item) => String(item.id) === String(id),
+                                );
 
-                    const success =
-                        window.AnsilianUtils.downloadText(
-                            JSON.stringify(
-                                configData,
-                                null,
-                                2,
-                            ),
-                            filename,
-                            "application/json;charset=utf-8",
-                        );
+                                const filename = `${
+                                    config?.author || "settings"
+                                }-ssp-settings.json`;
 
-                    if (!success) {
-                        console.error(
-                            "Could not download settings file.",
-                        );
-                    }
-                });
-            }
-                    },
-                );
+                                const success =
+                                    window.AnsilianUtils.downloadText(
+                                        JSON.stringify(configData, null, 2),
+                                        filename,
+                                        "application/json;charset=utf-8",
+                                    );
+
+                                if (!success) {
+                                    button.textContent = "download failed";
+                                    setTimeout(() => {
+                                        button.textContent = "download config";
+                                    }, 2000);
+                                }
+                            }
+                        });
+                    });
             }
 
             async function renderConfig(
@@ -418,6 +418,7 @@
 
                     const configData =
                         await response.json();
+                    configDataCache.set(String(config.id), configData);
 
                     const actionLabel =
                         config.format ===
@@ -521,6 +522,8 @@
                                                     type="button"
                                                     class="action-btn"
                                                     data-action="config"
+                                                    data-config-id="${escapeHtml(config.id)}"
+                                                    data-format="${escapeHtml(config.format)}"
                                                 >
                                                     ${actionLabel}
                                                 </button>
@@ -540,16 +543,7 @@
                             },
                         );
 
-                    // Return the rendered HTML together with the already
-                    // loaded config data. Event handlers must be attached
-                    // after the HTML is inserted into the real document;
-                    // serializing wrapper.innerHTML would otherwise discard
-                    // the listeners.
-                    return {
-                        html: card,
-                        configData,
-                        config,
-                    };
+                    return card;
                 } catch (error) {
                     console.error(
                         `Could not load config ${config.id}:`,
@@ -663,42 +657,8 @@
                     );
 
                 container.innerHTML =
-                    cards.map((card) => card.html).join("");
-
-                // Bind actions after insertion. This is important because
-                // assigning container.innerHTML creates new DOM nodes and
-                // removes any listeners that were attached to temporary
-                // elements before insertion.
-                cards.forEach(
-                    ({
-                        configData,
-                        config,
-                    }) => {
-                        const actionButton =
-                            document.querySelector(
-                                `#config-${CSS.escape(String(config.id))} [data-action="config"]`,
-                            );
-
-                        if (!actionButton) {
-                            return;
-                        }
-
-                        if (config.format === "ss") {
-                            addCopyButton(
-                                actionButton,
-                                configData,
-                            );
-                        }
-
-                        if (config.format === "ssp") {
-                            addDownloadButton(
-                                actionButton,
-                                configData,
-                                config.author,
-                            );
-                        }
-                    },
-                );
+                    cards.join("");
+                attachActionButtons(container);
             }
 
             async function loadConfigs() {
@@ -767,4 +727,3 @@
         <div data-component="footer"></div>
     </body>
 </html>
-```
