@@ -20,7 +20,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css?v=2" />
@@ -68,13 +68,13 @@
 
             // Muted, matte palette calibrated for deep visual separation
             const ratingColors = {
-                's---': { text: '#3b5278', bg: 'rgba(59, 82, 120, 0.12)',  border: 'rgba(59, 82, 120, 0.25)' }, // Deep slate blue
-                's--':  { text: '#4dabf7', bg: 'rgba(77, 171, 247, 0.08)',  border: 'rgba(77, 171, 247, 0.2)' },  // Mid denim blue
-                's-':   { text: '#a5d8ff', bg: 'rgba(165, 216, 255, 0.06)', border: 'rgba(165, 216, 255, 0.15)' }, // Light ice blue
-                'nm':   { text: '#ffffff', bg: 'rgba(255, 255, 255, 0.06)', border: 'rgba(255, 255, 255, 0.15)' }, // Neutral white
-                's+':   { text: '#2f9e44', bg: 'rgba(47, 158, 68, 0.1)',    border: 'rgba(47, 158, 68, 0.22)' },  // True flat green
-                's++':  { text: '#fcc419', bg: 'rgba(252, 196, 25, 0.06)',  border: 'rgba(252, 196, 25, 0.18)' },  // Muted gold yellow
-                's+++': { text: '#fa5252', bg: 'rgba(250, 82, 82, 0.08)',   border: 'rgba(250, 82, 82, 0.18)' },   // Flat matte red
+                's---': { text: '#3b5278', bg: 'rgba(59, 82, 120, 0.12)',  border: 'rgba(59, 82, 120, 0.25)' },
+                's--':  { text: '#4dabf7', bg: 'rgba(77, 171, 247, 0.08)',  border: 'rgba(77, 171, 247, 0.2)' },
+                's-':   { text: '#a5d8ff', bg: 'rgba(165, 216, 255, 0.06)', border: 'rgba(165, 216, 255, 0.15)' },
+                'nm':   { text: '#ffffff', bg: 'rgba(255, 255, 255, 0.06)', border: 'rgba(255, 255, 255, 0.15)' },
+                's+':   { text: '#2f9e44', bg: 'rgba(47, 158, 68, 0.1)',    border: 'rgba(47, 158, 68, 0.22)' },
+                's++':  { text: '#fcc419', bg: 'rgba(252, 196, 25, 0.06)',  border: 'rgba(252, 196, 25, 0.18)' },
+                's+++': { text: '#fa5252', bg: 'rgba(250, 82, 82, 0.08)',   border: 'rgba(250, 82, 82, 0.18)' },
                 'default': { text: 'rgba(255, 255, 255, 0.8)', bg: 'rgba(255, 255, 255, 0.04)', border: 'rgba(255, 255, 255, 0.1)' }
             };
 
@@ -85,10 +85,11 @@
             }
 
             async function copyLink(link, btn) {
-                try {
-                    await navigator.clipboard.writeText(link);
-                    const original = btn.textContent;
+                const original = btn.textContent;
 
+                const success = await AnsilianUtils.copyText(link);
+
+                if (success) {
                     btn.textContent = "copied!";
                     btn.classList.add("copied");
 
@@ -96,9 +97,12 @@
                         btn.textContent = original;
                         btn.classList.remove("copied");
                     }, 2000);
-                } catch {
+                } else {
                     btn.textContent = "copy failed";
-                    setTimeout(() => (btn.textContent = "copy link"), 2000);
+
+                    setTimeout(() => {
+                        btn.textContent = original;
+                    }, 2000);
                 }
             }
 
@@ -232,7 +236,7 @@
                 patternStates.clear();
                 document.querySelectorAll('.pattern-pill').forEach(btn => {
                     btn.classList.remove('include', 'exclude');
-                                            btn.setAttribute('aria-pressed', 'false');
+                    btn.setAttribute('aria-pressed', 'false');
                 });
 
                 searchInput.value = selectedMap.id;

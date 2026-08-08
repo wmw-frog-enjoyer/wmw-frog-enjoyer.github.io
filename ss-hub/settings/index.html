@@ -1,352 +1,357 @@
+```html
 <!doctype html>
 
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>settings</title>
+        <title>settings</title>
 
-    <meta
-        name="description"
-        content="Search archived Sound Space and Sound Space Plus settings by author, format, title, and tag."
-    />
-
-    <link
-        rel="canonical"
-        href="https://wmw-frog-enjoyer.github.io/ss-hub/settings/"
-    />
-
-    <meta property="og:title" content="Sound Space Settings | Ansilian" />
-    <meta
-        property="og:description"
-        content="Search archived Sound Space and Sound Space Plus settings by author, format, title, and tag."
-    />
-    <meta property="og:type" content="website" />
-    <meta
-        property="og:url"
-        content="https://wmw-frog-enjoyer.github.io/ss-hub/settings/"
-    />
-    <meta
-        property="og:image"
-        content="https://wmw-frog-enjoyer.github.io/assets/ansilian.webp"
-    />
-    <meta property="og:site_name" content="Ansilian" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-        name="twitter:title"
-        content="Sound Space Settings | Ansilian"
-    />
-    <meta
-        name="twitter:description"
-        content="Search archived Sound Space and Sound Space Plus settings by author, format, title, and tag."
-    />
-    <meta
-        name="twitter:image"
-        content="https://wmw-frog-enjoyer.github.io/assets/ansilian.webp"
-    />
-
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Sound Space Settings | Ansilian",
-            "description": "Search archived Sound Space and Sound Space Plus settings by author, format, title, and tag.",
-            "url": "https://wmw-frog-enjoyer.github.io/ss-hub/settings/",
-            "image": "https://wmw-frog-enjoyer.github.io/assets/ansilian.webp",
-            "isPartOf": {
-                "@type": "WebSite",
-                "name": "Ansilian",
-                "url": "https://wmw-frog-enjoyer.github.io/"
-            }
-        }
-    </script>
-
-    <link rel="icon" type="image/png" href="/assets/ansilian.png" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    />
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
-        rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="style.css?v=1" />
-</head>
-
-<body>
-    <div data-component="navbar"></div>
-
-    <script src="/js/utils.js"></script>
-    <script src="/js/components.js"></script>
-    <script src="/js/nav.js"></script>
-    <script src="/js/search.js"></script>
-
-    <main id="main-content" class="page-content">
-        <h1 class="page-title">settings</h1>
-
-        <div class="type-filter" id="format-filter">
-            <span class="type-filter-label">formats</span>
-
-            <div class="type-pills" id="format-pills"></div>
-        </div>
-
-        <label
-            class="sr-only"
-            id="settings-search-label"
-            for="search-input"
-        >
-            Search settings by title, author, format, or tag
-        </label>
-
-        <input
-            type="text"
-            id="search-input"
-            class="search-input"
-            aria-labelledby="settings-search-label"
-            placeholder="search by title, author, format or tag..."
-            autocomplete="off"
+        <meta
+            name="description"
+            content="Search archived Sound Space and Sound Space Plus settings by author, format, title, and tag."
         />
 
-        <div id="configs-container" aria-live="polite">
-            <p class="status-text">loading...</p>
-        </div>
-    </main>
+        <link
+            rel="canonical"
+            href="https://wmw-frog-enjoyer.github.io/ss-hub/settings/"
+        />
 
-    <script>
-        let allConfigs = [];
+        <meta property="og:title" content="Sound Space Settings | Ansilian" />
+        <meta
+            property="og:description"
+            content="Search archived Sound Space and Sound Space Plus settings by author, format, title, and tag."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:url"
+            content="https://wmw-frog-enjoyer.github.io/ss-hub/settings/"
+        />
+        <meta
+            property="og:image"
+            content="https://wmw-frog-enjoyer.github.io/assets/ansilian.webp"
+        />
+        <meta property="og:site_name" content="Ansilian" />
 
-        const formatStates =
-            window.AnsilianSearch.createToggleStateMap();
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Sound Space Settings | Ansilian"
+        />
+        <meta
+            name="twitter:description"
+            content="Search archived Sound Space and Sound Space Plus settings by author, format, title, and tag."
+        />
+        <meta
+            name="twitter:image"
+            content="https://wmw-frog-enjoyer.github.io/assets/ansilian.webp"
+        />
 
-        const SS_FIELDS = [
+        <script type="application/ld+json">
             {
-                key: "ApproachRate",
-                label: "Approach Rate",
-            },
-            {
-                key: "ApproachDistance",
-                label: "Approach Distance",
-            },
-            {
-                key: "FadeInLength",
-                label: "Fade In Length",
-            },
-            {
-                key: "Parallax",
-                label: "Camera Parallax",
-            },
-        ];
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "Sound Space Settings | Ansilian",
+                "description": "Search archived Sound Space and Sound Space Plus settings by author, format, title, and tag.",
+                "url": "https://wmw-frog-enjoyer.github.io/ss-hub/settings/",
+                "image": "https://wmw-frog-enjoyer.github.io/assets/ansilian.webp",
+                "isPartOf": {
+                    "@type": "WebSite",
+                    "name": "Ansilian",
+                    "url": "https://wmw-frog-enjoyer.github.io/"
+                }
+            }
+        </script>
 
-        const SSP_FIELDS = [
-            {
-                key: "approach_rate",
-                label: "Approach Rate",
-            },
-            {
-                key: "spawn_distance",
-                label: "Spawn Distance",
-            },
-            {
-                key: "fade_length",
-                label: "Fade In Length",
-            },
-            {
-                key: "parallax",
-                label: "Parallax",
-            },
-            {
-                key: "grid_parallax",
-                label: "Grid Parallax",
-            },
-            {
-                key: "ui_parallax",
-                label: "UI Parallax",
-            },
-        ];
+        <link rel="icon" type="image/png" href="/assets/ansilian.png" />
 
-        function escapeHtml(value) {
-            const div =
-                document.createElement("div");
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
 
-            div.textContent = value ?? "";
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+            rel="stylesheet"
+        />
 
-            return div.innerHTML;
-        }
+        <link rel="stylesheet" href="style.css?v=1" />
+    </head>
 
-        function getYouTubeEmbedUrl(url) {
-            return (
-                window.AnsilianUtils.getYouTubeData(
-                    url,
-                )?.embedUrl || null
-            );
-        }
+    <body>
+        <div data-component="navbar"></div>
 
-        function buildFormatPills(configs) {
-            const formats = [
-                ...new Set(
-                    configs
-                        .map(
-                            (config) =>
-                                config.format,
-                        )
-                        .filter(Boolean),
-                ),
-            ].sort();
+        <script src="/js/utils.js"></script>
+        <script src="/js/components.js"></script>
+        <script src="/js/nav.js"></script>
+        <script src="/js/search.js"></script>
 
-            const pillsContainer =
-                document.getElementById(
-                    "format-pills",
-                );
+        <main id="main-content" class="page-content">
+            <h1 class="page-title">settings</h1>
 
-            pillsContainer.innerHTML =
-                formats
-                    .map(
-                        (format) => `
-                            <button
-                                type="button"
-                                class="type-pill"
-                                data-format="${escapeHtml(format)}"
-                                aria-pressed="false"
-                                onclick="toggleFormat('${escapeHtml(format)}', this)"
-                            >
-                                ${escapeHtml(format)}
-                            </button>
-                        `,
-                    )
-                    .join("");
-        }
+            <div class="type-filter" id="format-filter">
+                <span class="type-filter-label">formats</span>
 
-        function toggleFormat(format, button) {
-            const state =
-                window.AnsilianSearch.cycleThreeState(
-                    formatStates,
-                    format,
-                );
+                <div class="type-pills" id="format-pills"></div>
+            </div>
 
-            button.classList.remove(
-                "include",
-                "exclude",
-            );
+            <label
+                class="sr-only"
+                id="settings-search-label"
+                for="search-input"
+            >
+                Search settings by title, author, format, or tag
+            </label>
 
-            if (state === "include") {
-                button.classList.add(
-                    "include",
+            <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                aria-labelledby="settings-search-label"
+                placeholder="search by title, author, format or tag..."
+                autocomplete="off"
+            />
+
+            <div id="configs-container" aria-live="polite">
+                <p class="status-text">loading...</p>
+            </div>
+        </main>
+
+        <script>
+            let allConfigs = [];
+
+            const formatStates =
+                window.AnsilianSearch.createToggleStateMap();
+
+            const SS_FIELDS = [
+                {
+                    key: "ApproachRate",
+                    label: "Approach Rate",
+                },
+                {
+                    key: "ApproachDistance",
+                    label: "Approach Distance",
+                },
+                {
+                    key: "FadeInLength",
+                    label: "Fade In Length",
+                },
+                {
+                    key: "Parallax",
+                    label: "Camera Parallax",
+                },
+            ];
+
+            const SSP_FIELDS = [
+                {
+                    key: "approach_rate",
+                    label: "Approach Rate",
+                },
+                {
+                    key: "spawn_distance",
+                    label: "Spawn Distance",
+                },
+                {
+                    key: "fade_length",
+                    label: "Fade In Length",
+                },
+                {
+                    key: "parallax",
+                    label: "Parallax",
+                },
+                {
+                    key: "grid_parallax",
+                    label: "Grid Parallax",
+                },
+                {
+                    key: "ui_parallax",
+                    label: "UI Parallax",
+                },
+            ];
+
+            function escapeHtml(value) {
+                const div =
+                    document.createElement("div");
+
+                div.textContent = value ?? "";
+
+                return div.innerHTML;
+            }
+
+            function getYouTubeEmbedUrl(url) {
+                return (
+                    window.AnsilianUtils.getYouTubeData(
+                        url,
+                    )?.embedUrl || null
                 );
             }
 
-            if (state === "exclude") {
-                button.classList.add(
+            function buildFormatPills(configs) {
+                const formats = [
+                    ...new Set(
+                        configs
+                            .map(
+                                (config) =>
+                                    config.format,
+                            )
+                            .filter(Boolean),
+                    ),
+                ].sort();
+
+                const pillsContainer =
+                    document.getElementById(
+                        "format-pills",
+                    );
+
+                pillsContainer.innerHTML =
+                    formats
+                        .map(
+                            (format) => `
+                                <button
+                                    type="button"
+                                    class="type-pill"
+                                    data-format="${escapeHtml(format)}"
+                                    aria-pressed="false"
+                                    onclick="toggleFormat('${escapeHtml(format)}', this)"
+                                >
+                                    ${escapeHtml(format)}
+                                </button>
+                            `,
+                        )
+                        .join("");
+            }
+
+            function toggleFormat(format, button) {
+                const state =
+                    window.AnsilianSearch.cycleThreeState(
+                        formatStates,
+                        format,
+                    );
+
+                button.classList.remove(
+                    "include",
                     "exclude",
                 );
-            }
 
-            button.setAttribute(
-                "aria-pressed",
-                String(state !== "neutral"),
-            );
+                if (state === "include") {
+                    button.classList.add(
+                        "include",
+                    );
+                }
 
-            renderCards(
-                document.getElementById(
-                    "search-input",
-                ).value,
-            );
-        }
+                if (state === "exclude") {
+                    button.classList.add(
+                        "exclude",
+                    );
+                }
 
-        function renderStats(
-            configData,
-            format,
-        ) {
-            const fields =
-                format === "ssp"
-                    ? SSP_FIELDS
-                    : SS_FIELDS;
-
-            return fields
-                .map(
-                    ({
-                        key,
-                        label,
-                    }) => {
-                        const value =
-                            configData[key];
-
-                        if (
-                            value ===
-                                undefined ||
-                            value === null
-                        ) {
-                            return "";
-                        }
-
-                        return `
-                            <div class="stat-box">
-                                <div class="stat-label">
-                                    ${escapeHtml(label)}
-                                </div>
-
-                                <div class="stat-value">
-                                    ${escapeHtml(
-                                        String(
-                                            value,
-                                        ),
-                                    )}
-                                </div>
-                            </div>
-                        `;
-                    },
-                )
-                .join("");
-        }
-
-        function renderVideo(videoUrl) {
-            if (!videoUrl) {
-                return "";
-            }
-
-            const embedUrl =
-                getYouTubeEmbedUrl(
-                    videoUrl,
+                button.setAttribute(
+                    "aria-pressed",
+                    String(state !== "neutral"),
                 );
 
-            if (!embedUrl) {
-                return "";
+                renderCards(
+                    document.getElementById(
+                        "search-input",
+                    ).value,
+                );
             }
 
-            return `
-                <div class="video-container">
-                    <iframe
-                        class="video-embed"
-                        src="${escapeHtml(embedUrl)}"
-                        frameborder="0"
-                        loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                    ></iframe>
-                </div>
-            `;
-        }
+            function renderStats(
+                configData,
+                format,
+            ) {
+                const fields =
+                    format === "ssp"
+                        ? SSP_FIELDS
+                        : SS_FIELDS;
 
-        function addCopyButton(
-            button,
-            configData,
-        ) {
-            button.addEventListener(
-                "click",
-                () => {
-                    navigator.clipboard
-                        .writeText(
+                return fields
+                    .map(
+                        ({
+                            key,
+                            label,
+                        }) => {
+                            const value =
+                                configData[key];
+
+                            if (
+                                value ===
+                                    undefined ||
+                                value === null
+                            ) {
+                                return "";
+                            }
+
+                            return `
+                                <div class="stat-box">
+                                    <div class="stat-label">
+                                        ${escapeHtml(label)}
+                                    </div>
+
+                                    <div class="stat-value">
+                                        ${escapeHtml(
+                                            String(
+                                                value,
+                                            ),
+                                        )}
+                                    </div>
+                                </div>
+                            `;
+                        },
+                    )
+                    .join("");
+            }
+
+            function renderVideo(videoUrl) {
+                if (!videoUrl) {
+                    return "";
+                }
+
+                const embedUrl =
+                    getYouTubeEmbedUrl(
+                        videoUrl,
+                    );
+
+                if (!embedUrl) {
+                    return "";
+                }
+
+                return `
+                    <div class="video-container">
+                        <iframe
+                            class="video-embed"
+                            src="${escapeHtml(embedUrl)}"
+                            frameborder="0"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                `;
+            }
+
+            function addCopyButton(
+                button,
+                configData,
+            ) {
+                button.addEventListener(
+                    "click",
+                    async () => {
+                        const configText =
                             JSON.stringify(
                                 configData,
                                 null,
                                 2,
-                            ),
-                        )
-                        .then(() => {
+                            );
+
+                        const success =
+                            await window.AnsilianUtils.copyText(
+                                configText,
+                            );
+
+                        if (success) {
                             button.textContent =
                                 "copied!";
 
@@ -357,8 +362,7 @@
                                 },
                                 2000,
                             );
-                        })
-                        .catch(() => {
+                        } else {
                             button.textContent =
                                 "copy failed";
 
@@ -369,413 +373,400 @@
                                 },
                                 2000,
                             );
-                        });
-                },
-            );
-        }
+                        }
+                    },
+                );
+            }
 
-        function addDownloadButton(
-            button,
-            configData,
-            author,
-        ) {
-            button.addEventListener(
-                "click",
-                () => {
-                    const blob =
-                        new Blob(
-                            [
+            function addDownloadButton(
+                button,
+                configData,
+                author,
+            ) {
+                button.addEventListener(
+                    "click",
+                    () => {
+                        const filename =
+                            `${author}-ssp-settings.json`;
+
+                        const success =
+                            window.AnsilianUtils.downloadText(
                                 JSON.stringify(
                                     configData,
                                     null,
                                     2,
                                 ),
-                            ],
+                                filename,
+                                "application/json;charset=utf-8",
+                            );
+
+                        if (!success) {
+                            console.error(
+                                "Could not download settings file.",
+                            );
+                        }
+                    },
+                );
+            }
+
+            async function renderConfig(
+                config,
+            ) {
+                try {
+                    const response =
+                        await fetch(
+                            `configs/${config.id}.json`,
+                        );
+
+                    if (!response.ok) {
+                        return `
+                            <p class="status-text">
+                                settings file not found.
+                            </p>
+                        `;
+                    }
+
+                    const configData =
+                        await response.json();
+
+                    const actionLabel =
+                        config.format ===
+                        "ss"
+                            ? "copy config"
+                            : "download config";
+
+                    const card =
+                        await window.renderComponent(
+                            "article-card",
                             {
-                                type: "application/json",
-                            },
-                        );
+                                idAttr: `config-${config.id}`,
 
-                    const url =
-                        URL.createObjectURL(
-                            blob,
-                        );
+                                href: "#",
 
-                    const anchor =
-                        document.createElement(
-                            "a",
-                        );
+                                number:
+                                    config.id,
 
-                    anchor.href = url;
+                                date:
+                                    config.date,
 
-                    anchor.download = `${author}-ssp-settings.json`;
+                                title:
+                                    config.title ||
+                                    config.author,
 
-                    anchor.click();
+                                metaHtml: `
+                                    <span class="format-badge format-${escapeHtml(config.format)}">
+                                        ${escapeHtml(config.format)}
+                                    </span>
+                                `,
 
-                    URL.revokeObjectURL(
-                        url,
-                    );
-                },
-            );
-        }
+                                descriptionHtml: `
+                                    <div class="settings-card-content">
 
-        async function renderConfig(
-            config,
-        ) {
-            try {
-                const response =
-                    await fetch(
-                        `configs/${config.id}.json`,
-                    );
+                                        <div class="post-preface">
 
-                if (!response.ok) {
-                    return `
-                        <p class="status-text">
-                            settings file not found.
-                        </p>
-                    `;
-                }
+                                            <div class="preface-left">
 
-                const configData =
-                    await response.json();
+                                                <span class="preface-number">
+                                                    #${escapeHtml(
+                                                        config.id,
+                                                    )}
+                                                </span>
 
-                const actionLabel =
-                    config.format ===
-                    "ss"
-                        ? "copy config"
-                        : "download config";
-
-                const card =
-                    await window.renderComponent(
-                        "article-card",
-                        {
-                            idAttr: `config-${config.id}`,
-
-                            href: "#",
-
-                            number:
-                                config.id,
-
-                            date:
-                                config.date,
-
-                            title:
-                                config.title ||
-                                config.author,
-
-                            metaHtml: `
-                                <span class="format-badge format-${escapeHtml(config.format)}">
-                                    ${escapeHtml(config.format)}
-                                </span>
-                            `,
-
-                            descriptionHtml: `
-                                <div class="settings-card-content">
-
-                                    <div class="post-preface">
-
-                                        <div class="preface-left">
-
-                                            <span class="preface-number">
-                                                #${escapeHtml(
-                                                    config.id,
-                                                )}
-                                            </span>
-
-                                            <span class="format-badge format-${escapeHtml(
-                                                config.format,
-                                            )}">
-                                                ${escapeHtml(
+                                                <span class="format-badge format-${escapeHtml(
                                                     config.format,
-                                                )}
-                                            </span>
+                                                )}">
+                                                    ${escapeHtml(
+                                                        config.format,
+                                                    )}
+                                                </span>
 
-                                        </div>
+                                            </div>
 
-                                        <div class="preface-right">
+                                            <div class="preface-right">
 
-                                            <span class="preface-author">
-                                                ${escapeHtml(
-                                                    config.author,
-                                                )}
-                                            </span>
+                                                <span class="preface-author">
+                                                    ${escapeHtml(
+                                                        config.author,
+                                                    )}
+                                                </span>
 
-                                            <span class="preface-date">
-                                                ${escapeHtml(
-                                                    config.date,
-                                                )}
-                                            </span>
+                                                <span class="preface-date">
+                                                    ${escapeHtml(
+                                                        config.date,
+                                                    )}
+                                                </span>
 
-                                        </div>
-
-                                    </div>
-
-                                    <hr class="preface-divider" />
-
-                                    <div class="preface-tags">
-                                        ${window.AnsilianUtils.renderTags(
-                                            config.tags,
-                                        )}
-                                    </div>
-
-                                    <div class="settings-layout">
-
-                                        <div class="settings-info">
-
-                                            <div class="stats-grid">
-                                                ${renderStats(
-                                                    configData,
-                                                    config.format,
-                                                )}
                                             </div>
 
                                         </div>
 
-                                        ${renderVideo(
-                                            config.video,
-                                        )}
+                                        <hr class="preface-divider" />
 
-                                        <div class="action-container">
+                                        <div class="preface-tags">
+                                            ${window.AnsilianUtils.renderTags(
+                                                config.tags,
+                                            )}
+                                        </div>
 
-                                            <button
-                                                type="button"
-                                                class="action-btn"
-                                                data-action="config"
-                                            >
-                                                ${actionLabel}
-                                            </button>
+                                        <div class="settings-layout">
+
+                                            <div class="settings-info">
+
+                                                <div class="stats-grid">
+                                                    ${renderStats(
+                                                        configData,
+                                                        config.format,
+                                                    )}
+                                                </div>
+
+                                            </div>
+
+                                            ${renderVideo(
+                                                config.video,
+                                            )}
+
+                                            <div class="action-container">
+
+                                                <button
+                                                    type="button"
+                                                    class="action-btn"
+                                                    data-action="config"
+                                                >
+                                                    ${actionLabel}
+                                                </button>
+
+                                            </div>
 
                                         </div>
 
                                     </div>
+                                `,
 
-                                </div>
-                            `,
+                                authorHtml:
+                                    "",
 
-                            authorHtml:
-                                "",
+                                bottomHtml:
+                                    "",
+                            },
+                        );
 
-                            bottomHtml:
-                                "",
-                        },
+                    const wrapper =
+                        document.createElement(
+                            "div",
+                        );
+
+                    wrapper.innerHTML =
+                        card;
+
+                    const actionButton =
+                        wrapper.querySelector(
+                            '[data-action="config"]',
+                        );
+
+                    if (
+                        actionButton &&
+                        config.format ===
+                            "ss"
+                    ) {
+                        addCopyButton(
+                            actionButton,
+                            configData,
+                        );
+                    }
+
+                    if (
+                        actionButton &&
+                        config.format ===
+                            "ssp"
+                    ) {
+                        addDownloadButton(
+                            actionButton,
+                            configData,
+                            config.author,
+                        );
+                    }
+
+                    return wrapper.innerHTML;
+                } catch (error) {
+                    console.error(
+                        `Could not load config ${config.id}:`,
+                        error,
                     );
 
-                const wrapper =
-                    document.createElement(
-                        "div",
-                    );
-
-                wrapper.innerHTML =
-                    card;
-
-                const actionButton =
-                    wrapper.querySelector(
-                        '[data-action="config"]',
-                    );
-
-                if (
-                    actionButton &&
-                    config.format ===
-                        "ss"
-                ) {
-                    addCopyButton(
-                        actionButton,
-                        configData,
-                    );
+                    return `
+                        <p class="status-text">
+                            could not load config.
+                        </p>
+                    `;
                 }
-
-                if (
-                    actionButton &&
-                    config.format ===
-                        "ssp"
-                ) {
-                    addDownloadButton(
-                        actionButton,
-                        configData,
-                        config.author,
-                    );
-                }
-
-                return wrapper.innerHTML;
-            } catch (error) {
-                console.error(
-                    `Could not load config ${config.id}:`,
-                    error,
-                );
-
-                return `
-                    <p class="status-text">
-                        could not load config.
-                    </p>
-                `;
             }
-        }
 
-        async function renderCards(
-            filter,
-        ) {
-            const container =
-                document.getElementById(
-                    "configs-container",
-                );
+            async function renderCards(
+                filter,
+            ) {
+                const container =
+                    document.getElementById(
+                        "configs-container",
+                    );
 
-            const query =
-                filter
-                    .toLowerCase()
-                    .trim();
+                const query =
+                    filter
+                        .toLowerCase()
+                        .trim();
 
-            const included =
-                window.AnsilianSearch.selectedKeys(
-                    formatStates,
-                    "include",
-                );
+                const included =
+                    window.AnsilianSearch.selectedKeys(
+                        formatStates,
+                        "include",
+                    );
 
-            const excluded =
-                window.AnsilianSearch.selectedKeys(
-                    formatStates,
-                    "exclude",
-                );
+                const excluded =
+                    window.AnsilianSearch.selectedKeys(
+                        formatStates,
+                        "exclude",
+                    );
 
-            const results =
-                allConfigs.filter(
-                    (config) => {
-                        const matchesSearch =
-                            !query ||
-                            (config.title &&
-                                config.title
+                const results =
+                    allConfigs.filter(
+                        (config) => {
+                            const matchesSearch =
+                                !query ||
+                                (config.title &&
+                                    config.title
+                                        .toLowerCase()
+                                        .includes(
+                                            query,
+                                        )) ||
+                                config.author
                                     .toLowerCase()
                                     .includes(
                                         query,
-                                    )) ||
-                            config.author
-                                .toLowerCase()
-                                .includes(
-                                    query,
-                                ) ||
-                            config.format
-                                .toLowerCase()
-                                .includes(
-                                    query,
-                                ) ||
-                            (config.tags &&
-                                config.tags.some(
-                                    (
-                                        tag,
-                                    ) =>
-                                        tag
-                                            .toLowerCase()
-                                            .includes(
-                                                query,
-                                            ),
-                                ));
+                                    ) ||
+                                config.format
+                                    .toLowerCase()
+                                    .includes(
+                                        query,
+                                    ) ||
+                                (config.tags &&
+                                    config.tags.some(
+                                        (
+                                            tag,
+                                        ) =>
+                                            tag
+                                                .toLowerCase()
+                                                .includes(
+                                                    query,
+                                                ),
+                                    ));
 
-                        const notExcluded =
-                            !excluded.includes(
-                                config.format,
+                            const notExcluded =
+                                !excluded.includes(
+                                    config.format,
+                                );
+
+                            const matchesInclude =
+                                included.length ===
+                                    0 ||
+                                included.includes(
+                                    config.format,
+                                );
+
+                            return (
+                                matchesSearch &&
+                                notExcluded &&
+                                matchesInclude
                             );
-
-                        const matchesInclude =
-                            included.length ===
-                                0 ||
-                            included.includes(
-                                config.format,
-                            );
-
-                        return (
-                            matchesSearch &&
-                            notExcluded &&
-                            matchesInclude
-                        );
-                    },
-                );
-
-            container.innerHTML =
-                "";
-
-            if (
-                results.length ===
-                0
-            ) {
-                container.innerHTML =
-                    '<p class="status-text">no configs found.</p>';
-
-                return;
-            }
-
-            const cards =
-                await Promise.all(
-                    results.map(
-                        renderConfig,
-                    ),
-                );
-
-            container.innerHTML =
-                cards.join("");
-        }
-
-        async function loadConfigs() {
-            const container =
-                document.getElementById(
-                    "configs-container",
-                );
-
-            try {
-                const response =
-                    await fetch(
-                        "configs/index.json",
+                        },
                     );
 
-                allConfigs =
-                    await response.json();
+                container.innerHTML =
+                    "";
 
                 if (
-                    allConfigs.length ===
+                    results.length ===
                     0
                 ) {
                     container.innerHTML =
-                        '<p class="status-text">nothing here yet.</p>';
+                        '<p class="status-text">no configs found.</p>';
 
                     return;
                 }
 
-                allConfigs.sort(
-                    (a, b) =>
-                        Number(b.id) -
-                        Number(a.id),
-                );
-
-                buildFormatPills(
-                    allConfigs,
-                );
-
-                renderCards("");
-
-                document
-                    .getElementById(
-                        "search-input",
-                    )
-                    .addEventListener(
-                        "input",
-                        (event) => {
-                            renderCards(
-                                event.target
-                                    .value,
-                            );
-                        },
+                const cards =
+                    await Promise.all(
+                        results.map(
+                            renderConfig,
+                        ),
                     );
-            } catch (error) {
+
                 container.innerHTML =
-                    '<p class="status-text">could not load configs.</p>';
-
-                console.error(
-                    error,
-                );
+                    cards.join("");
             }
-        }
 
-        loadConfigs();
-    </script>
+            async function loadConfigs() {
+                const container =
+                    document.getElementById(
+                        "configs-container",
+                    );
 
-    <div data-component="footer"></div>
-</body>
+                try {
+                    const response =
+                        await fetch(
+                            "configs/index.json",
+                        );
+
+                    allConfigs =
+                        await response.json();
+
+                    if (
+                        allConfigs.length ===
+                        0
+                    ) {
+                        container.innerHTML =
+                            '<p class="status-text">nothing here yet.</p>';
+
+                        return;
+                    }
+
+                    allConfigs.sort(
+                        (a, b) =>
+                            Number(b.id) -
+                            Number(a.id),
+                    );
+
+                    buildFormatPills(
+                        allConfigs,
+                    );
+
+                    renderCards("");
+
+                    document
+                        .getElementById(
+                            "search-input",
+                        )
+                        .addEventListener(
+                            "input",
+                            (event) => {
+                                renderCards(
+                                    event.target
+                                        .value,
+                                );
+                            },
+                        );
+                } catch (error) {
+                    container.innerHTML =
+                        '<p class="status-text">could not load configs.</p>';
+
+                    console.error(
+                        error,
+                    );
+                }
+            }
+
+            loadConfigs();
+        </script>
+
+        <div data-component="footer"></div>
+    </body>
 </html>
+```
