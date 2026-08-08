@@ -331,50 +331,37 @@
                 `;
             }
 
-            function addCopyButton(
-                button,
-                configData,
-            ) {
-                button.addEventListener(
-                    "click",
-                    async () => {
-                        const configText =
-                            JSON.stringify(
-                                configData,
-                                null,
-                                2,
-                            );
+            function addCopyButton(button, configData) {
+                button.addEventListener("click", async (event) => {
+                    // Prevent the surrounding article link from navigating.
+                    event.preventDefault();
+                    event.stopPropagation();
 
-                        const success =
-                            await window.AnsilianUtils.copyText(
-                                configText,
-                            );
+                    const configText = JSON.stringify(
+                        configData,
+                        null,
+                        2,
+                    );
 
-                        if (success) {
-                            button.textContent =
-                                "copied!";
+                    const success =
+                        await window.AnsilianUtils.copyText(
+                            configText,
+                        );
 
-                            setTimeout(
-                                () => {
-                                    button.textContent =
-                                        "copy config";
-                                },
-                                2000,
-                            );
-                        } else {
-                            button.textContent =
-                                "copy failed";
+                    if (success) {
+                        button.textContent = "copied!";
 
-                            setTimeout(
-                                () => {
-                                    button.textContent =
-                                        "copy config";
-                                },
-                                2000,
-                            );
-                        }
-                    },
-                );
+                        setTimeout(() => {
+                            button.textContent = "copy config";
+                        }, 2000);
+                    } else {
+                        button.textContent = "copy failed";
+
+                        setTimeout(() => {
+                            button.textContent = "copy config";
+                        }, 2000);
+                    }
+                });
             }
 
             function addDownloadButton(
@@ -382,28 +369,32 @@
                 configData,
                 author,
             ) {
-                button.addEventListener(
-                    "click",
-                    () => {
-                        const filename =
-                            `${author}-ssp-settings.json`;
+                button.addEventListener("click", (event) => {
+                    // Prevent the surrounding article link from navigating.
+                    event.preventDefault();
+                    event.stopPropagation();
 
-                        const success =
-                            window.AnsilianUtils.downloadText(
-                                JSON.stringify(
-                                    configData,
-                                    null,
-                                    2,
-                                ),
-                                filename,
-                                "application/json;charset=utf-8",
-                            );
+                    const filename =
+                        `${author}-ssp-settings.json`;
 
-                        if (!success) {
-                            console.error(
-                                "Could not download settings file.",
-                            );
-                        }
+                    const success =
+                        window.AnsilianUtils.downloadText(
+                            JSON.stringify(
+                                configData,
+                                null,
+                                2,
+                            ),
+                            filename,
+                            "application/json;charset=utf-8",
+                        );
+
+                    if (!success) {
+                        console.error(
+                            "Could not download settings file.",
+                        );
+                    }
+                });
+            }
                     },
                 );
             }
@@ -549,43 +540,16 @@
                             },
                         );
 
-                    const wrapper =
-                        document.createElement(
-                            "div",
-                        );
-
-                    wrapper.innerHTML =
-                        card;
-
-                    const actionButton =
-                        wrapper.querySelector(
-                            '[data-action="config"]',
-                        );
-
-                    if (
-                        actionButton &&
-                        config.format ===
-                            "ss"
-                    ) {
-                        addCopyButton(
-                            actionButton,
-                            configData,
-                        );
-                    }
-
-                    if (
-                        actionButton &&
-                        config.format ===
-                            "ssp"
-                    ) {
-                        addDownloadButton(
-                            actionButton,
-                            configData,
-                            config.author,
-                        );
-                    }
-
-                    return wrapper.innerHTML;
+                    // Return the rendered HTML together with the already
+                    // loaded config data. Event handlers must be attached
+                    // after the HTML is inserted into the real document;
+                    // serializing wrapper.innerHTML would otherwise discard
+                    // the listeners.
+                    return {
+                        html: card,
+                        configData,
+                        config,
+                    };
                 } catch (error) {
                     console.error(
                         `Could not load config ${config.id}:`,
@@ -699,7 +663,42 @@
                     );
 
                 container.innerHTML =
-                    cards.join("");
+                    cards.map((card) => card.html).join("");
+
+                // Bind actions after insertion. This is important because
+                // assigning container.innerHTML creates new DOM nodes and
+                // removes any listeners that were attached to temporary
+                // elements before insertion.
+                cards.forEach(
+                    ({
+                        configData,
+                        config,
+                    }) => {
+                        const actionButton =
+                            document.querySelector(
+                                `#config-${CSS.escape(String(config.id))} [data-action="config"]`,
+                            );
+
+                        if (!actionButton) {
+                            return;
+                        }
+
+                        if (config.format === "ss") {
+                            addCopyButton(
+                                actionButton,
+                                configData,
+                            );
+                        }
+
+                        if (config.format === "ssp") {
+                            addDownloadButton(
+                                actionButton,
+                                configData,
+                                config.author,
+                            );
+                        }
+                    },
+                );
             }
 
             async function loadConfigs() {
