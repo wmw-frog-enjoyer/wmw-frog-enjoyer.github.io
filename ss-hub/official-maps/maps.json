@@ -1,514 +1,560 @@
 [
-  {
-    "name": "polybreak",
-    "artist": "metahumanboi",
-    "mapper": "divetek",
-    "rating": "good",
-    "patterns": ["slide", "jump"],
-    "video": "https://youtu.be/YZ8fybrrfsg"
-  },
- {
-     "name": "Adrenaline",
-     "artist": "Velocity Music",
-     "mapper": "00D4RKSlDE",
-     "rating": "good",
-     "patterns": ["jump", "stream"],
-     "star-rating": "9",
-     "video": "https://youtu.be/mfdX02ebjl8"
- },
- {
-     "name": "WaterWater",
-     "artist": "Rizum",
-     "mapper": "Zumibo",
-     "rating": "mid",
-     "patterns": ["jump", "slide"],
-     "star-rating": "9",
-     "video": "https://youtu.be/0kaWKuGsPMo"
- },
- {
-     "name": "Darkness",
-     "artist": "Velocity Music",
-     "mapper": "SnivyTrueForm",
-     "rating": "good",
-     "patterns": ["jump", "slide", "vibro"],
-     "star-rating": "9",
-     "video": "https://youtu.be/yteioLV2UzQ"
- },
- {
-     "name": "SAVE YOU",
-     "artist": "WAUNT X BLUNDER",
-     "mapper": "Zumibo",
-     "rating": "good",
-     "patterns": ["stream", "spin"],
-     "star-rating": "9+",
-     "video": "https://youtu.be/xay_oRVQRWk"
- },
- {
-     "name": "/along/the/mystic/lands//",
-     "artist": "Vizunavé",
-     "mapper": "Zumibo & ZitroNitro",
-     "rating": "good",
-     "patterns": ["quantum", "unconventional", "slide"],
-     "star-rating": "10",
-     "video": "https://youtu.be/L2lbANoAqWI"
- },
- {
-     "name": "Gaming Girl",
-     "artist": "Rizum",
-     "mapper": "divetek",
-     "rating": "good",
-     "patterns": ["stream", "jump", "burst"],
-     "star-rating": "10",
-     "video": "https://youtu.be/chKYtTzwxlo"
- },
- {
-     "name": "Hydrangea",
-     "artist": "Karmadylo",
-     "mapper": "Zumibo",
-     "rating": "mid",
-     "patterns": ["stream", "quantum", "jump", "burst"],
-     "star-rating": "10",
-     "video": "https://youtu.be/eanGtP6ekHQ"
- },
- {
-     "name": "Venturing into the Unknown",
-     "artist": "aerokii",
-     "mapper": "blusiveQ",
-     "rating": "good",
-     "patterns": ["jump", "stack", "slide", "burst", "stamina"],
-     "star-rating": "10",
-     "video": "https://youtu.be/BbOMfEeI5xc"
- },
- {
-     "name": "Hello Daddy",
-     "artist": "Korsio",
-     "mapper": "Zumbio",
-     "rating": "mid",
-     "patterns": ["stream", "slide"],
-     "star-rating": "10",
-     "video": "https://youtu.be/aqipNQ5toWY"
- },
- {
-     "name": "For You",
-     "artist": "Xeon Diversity",
-     "mapper": "Zumbio",
-     "rating": "mid",
-     "patterns": ["slide"],
-     "star-rating": "10",
-     "video": "https://youtu.be/9-LIQ4-pA78"
- },
- {
-     "name": "bass guitar waltz i have no idea",
-     "artist": "AZALI",
-     "mapper": "ZitroNitro",
-     "rating": "bad",
-     "patterns": ["quantum", "unconventional", "stack", "slide"],
-     "star-rating": "10",
-     "video": "https://youtu.be/UsHE_wM1mOs"
- },
- {
-     "name": "More Than Friends",
-     "artist": "Kazuya",
-     "mapper": "Flvxify & Cruwev",
-     "rating": "mid",
-     "patterns": ["quantum", "jump", "slide"],
-     "star-rating": "10+",
-     "video": "https://youtu.be/TCarhgDqD5I"
- },
- {
-     "name": "Yosha",
-     "artist": "Xeon Diversity",
-     "mapper": "Rakhalsnoob",
-     "rating": "good",
-     "patterns": ["jump", "slide"],
-     "star-rating": "10+",
-     "video": "https://youtu.be/lfGN8fJw9Rc"
- },
- {
-     "name": "LoveSick! (ft. Isabel)",
-     "artist": "kuNarU x Kitsune",
-     "mapper": "Zumibo",
-     "rating": "bad",
-     "patterns": ["vibro", "stamina"],
-     "star-rating": "10+",
-     "video": "https://youtu.be/dR5GLQ00yXY"
- },
- {
-     "name": "Gluestick",
-     "artist": "Velocity Music",
-     "mapper": "Flvxify",
-     "rating": "mid",
-     "patterns": ["jump", "burst"],
-     "star-rating": "10+",
-     "video": "https://youtu.be/8e3-YN-1iXM"
- },
- {
-     "name": "Sonic Blaster",
-     "artist": "F-777",
-     "mapper": "Cruwev & saelmore",
-     "rating": "good",
-     "patterns": ["slide"],
-     "star-rating": "10+",
-     "video": "https://youtu.be/8e3-YN-1iXM"
- },
- {
-     "name": "Grimoire",
-     "artist": "Gardens",
-     "mapper": "ob1cb",
-     "rating": "good",
-     "patterns": ["unconventional", "spin", "tech"],
-     "star-rating": "11",
-     "video": "https://youtu.be/kzw184MCsX4"
- },
- {
-     "name": "Never Give Up",
-     "artist": "Xeon Diversity",
-     "mapper": "divetek",
-     "rating": "good",
-     "patterns": ["jump", "slide", "quantum"],
-     "star-rating": "11",
-     "video": "https://youtu.be/nJfPiqNHTfE"
- },
- {
-     "name": "Tuesday",
-     "artist": "Rutra",
-     "mapper": "Zumbio",
-     "rating": "good",
-     "patterns": ["tech", "slide", "quantum"],
-     "star-rating": "11",
-     "video": "https://youtu.be/rvdK-F_xY4k"
- },
- {
-     "name": "redo",
-     "artist": "MetaHumanBoi",
-     "mapper": "Noobourn",
-     "rating": "good",
-     "patterns": ["tech", "slide", "spin"],
-     "star-rating": "11",
-     "video": "https://youtu.be/__8xGX56asE"
- },
- {
-     "name": "Singularity",
-     "artist": "Galaxyless",
-     "mapper": "Zumbio",
-     "rating": "good",
-     "patterns": ["jump", "slide", "quantum"],
-     "star-rating": "11",
-     "video": "https://youtu.be/UCT2WxQuOww"
- },
- {
-     "name": "Virus",
-     "artist": "Galaxyless",
-     "mapper": "Zumbio",
-     "rating": "good",
-     "patterns": ["slide", "quantum", "spin", "stream", "unconventional"],
-     "star-rating": "11",
-     "video": "https://youtu.be/THMvBuURgJQ"
- },
- {
-     "name": "UFO Catchers",
-     "artist": "Rizum",
-     "mapper": "Zumbio",
-     "rating": "mid",
-     "patterns": ["stream", "slide"],
-     "star-rating": "11",
-     "video": "https://youtu.be/kacyf5-cVJI"
- },
- {
-     "name": "SORAIRO-Planet",
-     "artist": "Rizum",
-     "mapper": "SnivyTrueForm",
-     "rating": "mid",
-     "patterns": ["stream", "stamina", "slide", "jump", "burst"],
-     "star-rating": "11",
-     "video": "https://youtu.be/M_NWLjq56WQ"
- },
- {
-     "name": "Flowers",
-     "artist": "EbenAP",
-     "mapper": "00D4RKSlDE",
-     "rating": "good",
-     "patterns": ["quantum", "spin", "slide"],
-     "star-rating": "11",
-     "video": "https://youtu.be/5Umri28NUB0"
- },
- {
-     "name": "Run It Back",
-     "artist": "kuNarU x Wind",
-     "mapper": "SnivyTrueForm",
-     "rating": "good",
-     "patterns": ["jump", "slide", "vibro"],
-     "star-rating": "11",
-     "video": "https://youtu.be/92fRdaR5tHo"
- },
- {
-     "name": "DIVINITY DISSONANT",
-     "artist": "AZALI",
-     "mapper": "Noobourn",
-     "rating": "bad",
-     "patterns": ["quantum", "unconventional", "tech", "slide"],
-     "star-rating": "11",
-     "video": "https://youtu.be/3DF6urstX5M"
- },
- {
-     "name": "AetheR Kingdom",
-     "artist": "Nstryder",
-     "mapper": "Xilpyy",
-     "rating": "good",
-     "patterns": ["quantum", "jump", "stamina", "slide"],
-     "star-rating": "11",
-     "video": "https://youtu.be/f2J8xQD5cMs"
- },
- {
-     "name": "Chaotic Universe",
-     "artist": "Underscore",
-     "mapper": "Zumbio",
-     "rating": "mid",
-     "patterns": ["quantum", "slide", "spin", "tech", "vibro"],
-     "star-rating": "11",
-     "video": "https://youtu.be/rhvn91ReqG4"
- },
- {
-     "name": "Psyched Fevereiro",
-     "artist": "t+pazolite",
-     "mapper": "Xilpyy",
-     "rating": "good",
-     "patterns": ["quantum", "jump", "stamina", "slide"],
-     "star-rating": "11",
-     "video": "https://youtu.be/VI_SA7cmvto"
- },
- {
-     "name": "Defragmentation Of The Glass Dimension",
-     "artist": "Vizunavé",
-     "mapper": "Flvxify & 9 others",
-     "rating": "good",
-     "patterns": ["quantum", "unconventional", "tech", "slide", "jump", "stream"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/Risvkv6sXpg"
- },
- {
-     "name": "Schadenfreude",
-     "artist": "ZxNX",
-     "mapper": "classicisty",
-     "rating": "mid",
-     "patterns": ["slide", "jump", "spin", "burst"],
-     "star-rating": "12+",
-     "video": "https://youtu.be/wq7HLngdekA"
- },
- {
-     "name": "No More Shinikuen",
-     "artist": "Korsio",
-     "mapper": "classicisty & Avibahlofe",
-     "rating": "good",
-     "patterns": ["stream", "jump"],
-     "star-rating": "13",
-     "video": "https://youtu.be/2r0Hal92M8Y"
- },
- {
-     "name": "S L I T",
-     "artist": "needhollow",
-     "mapper": "00D4RKSlDE",
-     "rating": "good",
-     "patterns": ["slide", "jump", "stream"],
-     "star-rating": "13",
-     "video": "https://youtu.be/LM9t9ivHubs"
- },
- {
-     "name": "field of flowers",
-     "artist": "log() & Ethereal_Winter",
-     "mapper": "Zumibo",
-     "rating": "good",
-     "patterns": ["slide", "stream", "tech"],
-     "star-rating": "13",
-     "video": "https://youtu.be/MhVJgVoE-Dc"
- },
- {
-     "name": "psyKore Delirium",
-     "artist": "KawaiiKittyKore",
-     "mapper": "Zumibo",
-     "rating": "good",
-     "patterns": ["spin", "slide", "tech", "unconventional"],
-     "star-rating": "14+",
-     "video": "https://youtu.be/vj11sK3wLlA"
- },
- {
-     "name": "Critical",
-     "artist": "iveski",
-     "mapper": "Zumibo",
-     "rating": "good",
-     "patterns": ["slide", "tech"],
-     "star-rating": "10+",
-     "video": "https://youtu.be/-3OdmQqWTyE"
- },
- {
-     "name": "RESISTANCE",
-     "artist": "MetaHumanBoi",
-     "mapper": "ob1cb",
-     "rating": "good",
-     "patterns": ["slide", "jump", "stack", "stamina", "wall"],
-     "star-rating": "11",
-     "video": "https://youtu.be/vQXI3hOYRJs"
- },
- {
-     "name": "Supernova",
-     "artist": "Galaxyless",
-     "mapper": "Zumbio",
-     "rating": "mid",
-     "patterns": ["slide", "jump", "stamina"],
-     "star-rating": "11",
-     "video": "https://youtu.be/xAC8-pBWk8I"
- },
- {
-     "name": "Blue Corgi",
-     "artist": "Korsio",
-     "mapper": "Flvxify",
-     "rating": "good",
-     "patterns": ["vibro", "jump", "stamina"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/7KpdHVNy9kA"
- },
- {
-     "name": "catch me",
-     "artist": "luvnyte",
-     "mapper": "blusiveQ",
-     "rating": "bad",
-     "patterns": ["vibro", "jump", "stamina", "quantum", "stream"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/vh2ZjJoClAM"
- },
- {
-     "name": "There For You",
-     "artist": "kuNarU",
-     "mapper": "divetek",
-     "rating": "good",
-     "patterns": ["jump", "slide"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/nRiPvGVgI7U"
- },
- {
-     "name": "There For You",
-     "artist": "kuNarU",
-     "mapper": "divetek",
-     "rating": "good",
-     "patterns": ["jump", "slide"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/nRiPvGVgI7U"
- },
- {
-     "name": "The Impaler",
-     "artist": "Nstryder",
-     "mapper": "Zumbio",
-     "rating": "good",
-     "patterns": ["jump", "vibro", "slide", "stamina"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/UdAx9f3OPkY"
- },
- {
-     "name": "Solar Strike",
-     "artist": "MetaHumanBoi",
-     "mapper": "Noobourn",
-     "rating": "mid",
-     "patterns": ["jump", "tech", "slide", "quantum"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/5s80odP6K1Q"
- },
- {
-     "name": "Darkstar",
-     "artist": "Galaxyless",
-     "mapper": "Zumbio",
-     "rating": "mid",
-     "patterns": ["stream", "slide", "stamina"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/W__aRf--Bvc"
- },
- {
-     "name": "Velocity",
-     "artist": "Rutra",
-     "mapper": "fth_ful",
-     "rating": "mid",
-     "patterns": ["stream", "slide"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/b7Y-U3csb84"
- },
- {
-     "name": "Dont Say Goodbye",
-     "artist": "X3ll3n & Astedroid",
-     "mapper": "Zumbio",
-     "rating": "mid",
-     "patterns": ["jump", "slide", "stamina"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/5s80odP6K1Q"
- },
- {
-     "name": "Arcade Blasters",
-     "artist": "Velocity Music",
-     "mapper": "Xilpyy",
-     "rating": "mid",
-     "patterns": ["jump", "slide", "quantum", "stack", "stamina"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/JJ3krd5sZAk"
- },
- {
-     "name": "Madness 2022",
-     "artist": "X3ll3n",
-     "mapper": "Haramshii",
-     "rating": "mid",
-     "patterns": ["slide", "quantum", "stamina"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/cC6fOGhu05o"
- },
- {
-     "name": "Digital Complexity",
-     "artist": "Antrix",
-     "mapper": "5nBy",
-     "rating": "good",
-     "patterns": ["jump", "stamina"],
-     "star-rating": "11+",
-     "video": "https://youtu.be/t_vZLFJodvU"
- },
- {
-     "name": "Chartreuse Green",
-     "artist": "t+pazolite",
-     "mapper": "classicisty",
-     "rating": "good",
-     "patterns": ["jump", "slide", "stream", "burst"],
-     "star-rating": "12",
-     "video": "https://youtu.be/Z71-gUD36qk"
- },
-{
-     "name": "Broken Faith",
-     "artist": "Korsio",
-     "mapper": "blusiveQ",
-     "rating": "good",
-     "patterns": ["jump", "stamina"],
-     "star-rating": "12",
-     "video": "https://youtu.be/VR8mzi5VrAk"
- },
-{
-     "name": "Chip Heaven",
-     "artist": "Korsio",
-     "mapper": "classicisty",
-     "rating": "good",
-     "patterns": ["jump", "quantum", "stamina"],
-     "star-rating": "12",
-     "video": "https://youtu.be/j8wsFecrDwU"
- },
-{
-     "name": "Stuffed Jackal",
-     "artist": "Korsio",
-     "mapper": "Rakhalsnoob",
-     "rating": "good",
-     "patterns": ["jump", "spin", "stamina", "sidestep"],
-     "star-rating": "12",
-     "video": "https://youtu.be/jbgSOqMBZWs"
- },
-{
-     "name": "Fly Wit Me",
-     "artist": "Camellia",
-     "mapper": "Zumbio",
-     "rating": "good",
-     "patterns": ["jump", "slide", "stamina", "quantum"],
-     "star-rating": "12",
-     "video": "https://youtu.be/Om_ztBqKYtg"
- }
+    {
+        "name": "Adrenaline",
+        "artist": "Velocity Music",
+        "mapper": "00D4RKSlDE",
+        "rating": "good",
+        "patterns": ["jump", "stream"],
+        "star-rating": "9",
+        "video": "https://youtu.be/mfdX02ebjl8"
+    },
+    {
+        "name": "WaterWater",
+        "artist": "Rizum",
+        "mapper": "Zumibo",
+        "rating": "mid",
+        "patterns": ["jump", "slide"],
+        "star-rating": "9",
+        "video": "https://youtu.be/0kaWKuGsPMo"
+    },
+    {
+        "name": "Darkness",
+        "artist": "Velocity Music",
+        "mapper": "SnivyTrueForm",
+        "rating": "good",
+        "patterns": ["jump", "slide", "vibro"],
+        "star-rating": "9",
+        "video": "https://youtu.be/yteioLV2UzQ"
+    },
+    {
+        "name": "SAVE YOU",
+        "artist": "WAUNT X BLUNDER",
+        "mapper": "Zumibo",
+        "rating": "good",
+        "patterns": ["stream", "spin"],
+        "star-rating": "9+",
+        "video": "https://youtu.be/xay_oRVQRWk"
+    },
+    {
+        "name": "/along/the/mystic/lands//",
+        "artist": "Vizunavé",
+        "mapper": "Zumibo & ZitroNitro",
+        "rating": "good",
+        "patterns": ["quantum", "unconventional", "slide"],
+        "star-rating": "10",
+        "video": "https://youtu.be/L2lbANoAqWI"
+    },
+    {
+        "name": "Gaming Girl",
+        "artist": "Rizum",
+        "mapper": "divetek",
+        "rating": "good",
+        "patterns": ["stream", "jump", "burst"],
+        "star-rating": "10",
+        "video": "https://youtu.be/chKYtTzwxlo"
+    },
+    {
+        "name": "Hydrangea",
+        "artist": "Karmadylo",
+        "mapper": "Zumibo",
+        "rating": "mid",
+        "patterns": ["stream", "quantum", "jump", "burst"],
+        "star-rating": "10",
+        "video": "https://youtu.be/eanGtP6ekHQ"
+    },
+    {
+        "name": "Venturing into the Unknown",
+        "artist": "aerokii",
+        "mapper": "blusiveQ",
+        "rating": "good",
+        "patterns": ["jump", "stack", "slide", "burst", "stamina"],
+        "star-rating": "10",
+        "video": "https://youtu.be/BbOMfEeI5xc"
+    },
+    {
+        "name": "Hello Daddy",
+        "artist": "Korsio",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["stream", "slide"],
+        "star-rating": "10",
+        "video": "https://youtu.be/aqipNQ5toWY"
+    },
+    {
+        "name": "For You",
+        "artist": "Xeon Diversity",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["slide"],
+        "star-rating": "10",
+        "video": "https://youtu.be/9-LIQ4-pA78"
+    },
+    {
+        "name": "bass guitar waltz i have no idea",
+        "artist": "AZALI",
+        "mapper": "ZitroNitro",
+        "rating": "bad",
+        "patterns": ["quantum", "unconventional", "stack", "slide"],
+        "star-rating": "10",
+        "video": "https://youtu.be/UsHE_wM1mOs"
+    },
+    {
+        "name": "More Than Friends",
+        "artist": "Kazuya",
+        "mapper": "Flvxify & Cruwev",
+        "rating": "mid",
+        "patterns": ["quantum", "jump", "slide"],
+        "star-rating": "10+",
+        "video": "https://youtu.be/TCarhgDqD5I"
+    },
+    {
+        "name": "Yosha",
+        "artist": "Xeon Diversity",
+        "mapper": "Rakhalsnoob",
+        "rating": "good",
+        "patterns": ["jump", "slide"],
+        "star-rating": "10+",
+        "video": "https://youtu.be/lfGN8fJw9Rc"
+    },
+    {
+        "name": "LoveSick! (ft. Isabel)",
+        "artist": "kuNarU x Kitsune",
+        "mapper": "Zumibo",
+        "rating": "bad",
+        "patterns": ["vibro", "stamina"],
+        "star-rating": "10+",
+        "video": "https://youtu.be/dR5GLQ00yXY"
+    },
+    {
+        "name": "Gluestick",
+        "artist": "Velocity Music",
+        "mapper": "Flvxify",
+        "rating": "mid",
+        "patterns": ["jump", "burst"],
+        "star-rating": "10+",
+        "video": "https://youtu.be/8e3-YN-1iXM"
+    },
+    {
+        "name": "Sonic Blaster",
+        "artist": "F-777",
+        "mapper": "Cruwev & saelmore",
+        "rating": "good",
+        "patterns": ["slide"],
+        "star-rating": "10+",
+        "video": "https://youtu.be/qOGCOuzyUPc"
+    },
+    {
+        "name": "Grimoire",
+        "artist": "Gardens",
+        "mapper": "ob1cb",
+        "rating": "good",
+        "patterns": ["unconventional", "spin", "tech"],
+        "star-rating": "11",
+        "video": "https://youtu.be/kzw184MCsX4"
+    },
+    {
+        "name": "Never Give Up",
+        "artist": "Xeon Diversity",
+        "mapper": "divetek",
+        "rating": "good",
+        "patterns": ["jump", "slide", "quantum"],
+        "star-rating": "11",
+        "video": "https://youtu.be/nJfPiqNHTfE"
+    },
+    {
+        "name": "Tuesday",
+        "artist": "Rutra",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["tech", "slide", "quantum"],
+        "star-rating": "11",
+        "video": "https://youtu.be/rvdK-F_xY4k"
+    },
+    {
+        "name": "redo",
+        "artist": "MetaHumanBoi",
+        "mapper": "Noobourn",
+        "rating": "good",
+        "patterns": ["tech", "slide", "spin"],
+        "star-rating": "11",
+        "video": "https://youtu.be/__8xGX56asE"
+    },
+    {
+        "name": "Singularity",
+        "artist": "Galaxyless",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["jump", "slide", "quantum"],
+        "star-rating": "11",
+        "video": "https://youtu.be/UCT2WxQuOww"
+    },
+    {
+        "name": "Virus",
+        "artist": "Galaxyless",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["slide", "quantum", "spin", "stream", "unconventional"],
+        "star-rating": "11",
+        "video": "https://youtu.be/THMvBuURgJQ"
+    },
+    {
+        "name": "UFO Catchers",
+        "artist": "Rizum",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["stream", "slide"],
+        "star-rating": "11",
+        "video": "https://youtu.be/kacyf5-cVJI"
+    },
+    {
+        "name": "SORAIRO-Planet",
+        "artist": "Rizum",
+        "mapper": "SnivyTrueForm",
+        "rating": "mid",
+        "patterns": ["stream", "stamina", "slide", "jump", "burst"],
+        "star-rating": "11",
+        "video": "https://youtu.be/M_NWLjq56WQ"
+    },
+    {
+        "name": "Flowers",
+        "artist": "EbenAP",
+        "mapper": "00D4RKSlDE",
+        "rating": "good",
+        "patterns": ["quantum", "spin", "slide"],
+        "star-rating": "11",
+        "video": "https://youtu.be/5Umri28NUB0"
+    },
+    {
+        "name": "Run It Back",
+        "artist": "kuNarU x Wind",
+        "mapper": "SnivyTrueForm",
+        "rating": "good",
+        "patterns": ["jump", "slide", "vibro"],
+        "star-rating": "11",
+        "video": "https://youtu.be/92fRdaR5tHo"
+    },
+    {
+        "name": "DIVINITY DISSONANT",
+        "artist": "AZALI",
+        "mapper": "Noobourn",
+        "rating": "bad",
+        "patterns": ["quantum", "unconventional", "tech", "slide"],
+        "star-rating": "11",
+        "video": "https://youtu.be/3DF6urstX5M"
+    },
+    {
+        "name": "AetheR Kingdom",
+        "artist": "Nstryder",
+        "mapper": "Xilpyy",
+        "rating": "good",
+        "patterns": ["quantum", "jump", "stamina", "slide"],
+        "star-rating": "11",
+        "video": "https://youtu.be/f2J8xQD5cMs"
+    },
+    {
+        "name": "Chaotic Universe",
+        "artist": "Underscore",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["quantum", "slide", "spin", "tech", "vibro"],
+        "star-rating": "11",
+        "video": "https://youtu.be/rhvn91ReqG4"
+    },
+    {
+        "name": "Psyched Fevereiro",
+        "artist": "t+pazolite",
+        "mapper": "Xilpyy",
+        "rating": "good",
+        "patterns": ["quantum", "jump", "stamina", "slide"],
+        "star-rating": "11",
+        "video": "https://youtu.be/VI_SA7cmvto"
+    },
+    {
+        "name": "Defragmentation Of The Glass Dimension",
+        "artist": "Vizunavé",
+        "mapper": "Flvxify & 9 others",
+        "rating": "good",
+        "patterns": ["quantum", "unconventional", "tech", "slide", "jump", "stream"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/Risvkv6sXpg"
+    },
+    {
+        "name": "Schadenfreude",
+        "artist": "ZxNX",
+        "mapper": "classicisty",
+        "rating": "mid",
+        "patterns": ["slide", "jump", "spin", "burst"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/wq7HLngdekA"
+    },
+    {
+        "name": "No More Shinikuen",
+        "artist": "Korsio",
+        "mapper": "classicisty & Avibahlofe",
+        "rating": "good",
+        "patterns": ["stream", "jump"],
+        "star-rating": "13",
+        "video": "https://youtu.be/2r0Hal92M8Y"
+    },
+    {
+        "name": "S L I T",
+        "artist": "needhollow",
+        "mapper": "00D4RKSlDE",
+        "rating": "good",
+        "patterns": ["slide", "jump", "stream"],
+        "star-rating": "13",
+        "video": "https://youtu.be/LM9t9ivHubs"
+    },
+    {
+        "name": "field of flowers",
+        "artist": "log() & Ethereal_Winter",
+        "mapper": "Zumibo",
+        "rating": "good",
+        "patterns": ["slide", "stream", "tech"],
+        "star-rating": "13",
+        "video": "https://youtu.be/MhVJgVoE-Dc"
+    },
+    {
+        "name": "psyKore Delirium",
+        "artist": "KawaiiKittyKore",
+        "mapper": "Zumibo",
+        "rating": "good",
+        "patterns": ["spin", "slide", "tech", "unconventional"],
+        "star-rating": "14+",
+        "video": "https://youtu.be/vj11sK3wLlA"
+    },
+    {
+        "name": "Critical",
+        "artist": "iveski",
+        "mapper": "Zumibo",
+        "rating": "good",
+        "patterns": ["slide", "tech"],
+        "star-rating": "10+",
+        "video": "https://youtu.be/-3OdmQqWTyE"
+    },
+    {
+        "name": "RESISTANCE",
+        "artist": "MetaHumanBoi",
+        "mapper": "ob1cb",
+        "rating": "good",
+        "patterns": ["slide", "jump", "stack", "stamina", "wall"],
+        "star-rating": "11",
+        "video": "https://youtu.be/vQXI3hOYRJs"
+    },
+    {
+        "name": "Supernova",
+        "artist": "Galaxyless",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["slide", "jump", "stamina"],
+        "star-rating": "11",
+        "video": "https://youtu.be/xAC8-pBWk8I"
+    },
+    {
+        "name": "Blue Corgi",
+        "artist": "Korsio",
+        "mapper": "Flvxify",
+        "rating": "good",
+        "patterns": ["vibro", "jump", "stamina"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/7KpdHVNy9kA"
+    },
+    {
+        "name": "catch me",
+        "artist": "luvnyte",
+        "mapper": "blusiveQ",
+        "rating": "bad",
+        "patterns": ["vibro", "jump", "stamina", "quantum", "stream"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/vh2ZjJoClAM"
+    },
+    {
+        "name": "There For You",
+        "artist": "kuNarU",
+        "mapper": "divetek",
+        "rating": "good",
+        "patterns": ["jump", "slide"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/nRiPvGVgI7U"
+    },
+    {
+        "name": "The Impaler",
+        "artist": "Nstryder",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["jump", "vibro", "slide", "stamina"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/UdAx9f3OPkY"
+    },
+    {
+        "name": "Solar Strike",
+        "artist": "MetaHumanBoi",
+        "mapper": "Noobourn",
+        "rating": "mid",
+        "patterns": ["jump", "tech", "slide", "quantum"],
+        "star-rating": "13",
+        "video": "https://youtu.be/5s80odP6K1Q"
+    },
+    {
+        "name": "Darkstar",
+        "artist": "Galaxyless",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["stream", "slide", "stamina"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/W__aRf--Bvc"
+    },
+    {
+        "name": "Velocity",
+        "artist": "Rutra",
+        "mapper": "fth_ful",
+        "rating": "mid",
+        "patterns": ["stream", "slide"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/b7Y-U3csb84"
+    },
+    {
+        "name": "Dont Say Goodbye",
+        "artist": "X3ll3n & Astedroid",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["jump", "slide", "stamina"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/43YVunholtc"
+    },
+    {
+        "name": "Arcade Blasters",
+        "artist": "Velocity Music",
+        "mapper": "Xilpyy",
+        "rating": "mid",
+        "patterns": ["jump", "slide", "quantum", "stack", "stamina"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/JJ3krd5sZAk"
+    },
+    {
+        "name": "Madness 2022",
+        "artist": "X3ll3n",
+        "mapper": "catdopamine",
+        "rating": "mid",
+        "patterns": ["slide", "quantum", "stamina"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/cC6fOGhu05o"
+    },
+    {
+        "name": "Digital Complexity",
+        "artist": "Antrix",
+        "mapper": "5nBy",
+        "rating": "good",
+        "patterns": ["jump", "stamina"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/t_vZLFJodvU"
+    },
+    {
+        "name": "Chartreuse Green",
+        "artist": "t+pazolite",
+        "mapper": "classicisty",
+        "rating": "good",
+        "patterns": ["jump", "slide", "stream", "burst"],
+        "star-rating": "12",
+        "video": "https://youtu.be/Z71-gUD36qk"
+    },
+   {
+        "name": "Broken Faith",
+        "artist": "Korsio",
+        "mapper": "blusiveQ",
+        "rating": "good",
+        "patterns": ["jump", "stamina"],
+        "star-rating": "12",
+        "video": "https://youtu.be/VR8mzi5VrAk"
+    },
+   {
+        "name": "Chip Heaven",
+        "artist": "Korsio",
+        "mapper": "classicisty",
+        "rating": "good",
+        "patterns": ["jump", "quantum", "stamina"],
+        "star-rating": "12",
+        "video": "https://youtu.be/j8wsFecrDwU"
+    },
+   {
+        "name": "Stuffed Jackal",
+        "artist": "Korsio",
+        "mapper": "Rakhalsnoob",
+        "rating": "good",
+        "patterns": ["jump", "spin", "stamina", "sidestep"],
+        "star-rating": "12",
+        "video": "https://youtu.be/jbgSOqMBZWs"
+    },
+   {
+        "name": "Fly Wit Me",
+        "artist": "Camellia",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["jump", "slide", "stamina", "quantum"],
+        "star-rating": "12",
+        "video": "https://youtu.be/Om_ztBqKYtg"
+    },
+   {
+        "name": "Flamewall",
+        "artist": "Camellia",
+        "mapper": "divetek",
+        "rating": "mid",
+        "patterns": ["jump", "stamina"],
+        "star-rating": "13",
+        "video": "https://youtu.be/GNvtsHrUU6o"
+    },
+   {
+        "name": "Panic Doggo Festival",
+        "artist": "Korsio",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["jump", "stamina", "slide"],
+        "star-rating": "12",
+        "video": "https://youtu.be/42E4r2R59FY"
+    },
+    {
+        "name": "Bestest Frenemy!",
+        "artist": "MYUKKE.",
+        "mapper": "catdrenaline",
+        "rating": "good",
+        "patterns": ["tech", "unconventional", "slide", "jump"],
+        "star-rating": "13",
+        "video": "https://youtu.be/TrSKW2DAaZ4"
+    },
+    {
+        "name": "WETOPiA!!!",
+        "artist": "MYUKKE.",
+        "mapper": "Xilpyy",
+        "rating": "good",
+        "patterns": ["tech", "slide", "jump"],
+        "star-rating": "13",
+        "video": "https://youtu.be/yF1_bsm7mFk"
+    },
+    {
+        "name": "Corrupted System",
+        "artist": "caffeinecrvsh",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["unconventional", "slide"],
+        "star-rating": "13+",
+        "video": "https://youtu.be/GbU5Tgg58hg"
+    },
+    {
+        "name": "Stellar Sky",
+        "artist": "log()",
+        "mapper": "5nBy",
+        "rating": "mid",
+        "patterns": ["stream", "slide", "stamina"],
+        "star-rating": "13+",
+        "video": "https://youtu.be/gqC1GvSHybM"
+    },
+    {
+        "name": "Threshold",
+        "artist": "Underscore",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["stream", "wall", "burst", "quantum"],
+        "star-rating": "14",
+        "video": "https://youtu.be/qusRIapfXqA"
+    }
 ]
