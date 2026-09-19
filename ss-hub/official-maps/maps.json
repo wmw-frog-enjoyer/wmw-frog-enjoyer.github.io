@@ -4,7 +4,7 @@
         "artist": "Velocity Music",
         "mapper": "00D4RKSlDE",
         "rating": "good",
-        "patterns": ["jump", "stream"],
+        "patterns": ["jump", "light quantum", "slide"],
         "star-rating": "9",
         "video": "https://youtu.be/mfdX02ebjl8"
     },
@@ -13,7 +13,7 @@
         "artist": "Rizum",
         "mapper": "Zumibo",
         "rating": "mid",
-        "patterns": ["jump", "slide"],
+        "patterns": ["light jump", "slide"],
         "star-rating": "9",
         "video": "https://youtu.be/0kaWKuGsPMo"
     },
@@ -22,7 +22,7 @@
         "artist": "Velocity Music",
         "mapper": "SnivyTrueForm",
         "rating": "good",
-        "patterns": ["jump", "slide", "vibro"],
+        "patterns": ["jump", "slide", "stack", "vibro"],
         "star-rating": "9",
         "video": "https://youtu.be/yteioLV2UzQ"
     },
@@ -31,7 +31,7 @@
         "artist": "WAUNT X BLUNDER",
         "mapper": "Zumibo",
         "rating": "good",
-        "patterns": ["stream", "spin"],
+        "patterns": ["burst", "slide", "stream", "spin"],
         "star-rating": "9+",
         "video": "https://youtu.be/xay_oRVQRWk"
     },
@@ -40,7 +40,7 @@
         "artist": "Vizunavé",
         "mapper": "Zumibo & ZitroNitro",
         "rating": "good",
-        "patterns": ["quantum", "unconventional", "slide"],
+        "patterns": ["quantum", "slide", "unconventional"],
         "star-rating": "10",
         "video": "https://youtu.be/L2lbANoAqWI"
     },
@@ -49,7 +49,7 @@
         "artist": "Rizum",
         "mapper": "divetek",
         "rating": "good",
-        "patterns": ["stream", "jump", "burst"],
+        "patterns": ["burst", "jump", "stamina", "stream"],
         "star-rating": "10",
         "video": "https://youtu.be/chKYtTzwxlo"
     },
@@ -58,7 +58,7 @@
         "artist": "Karmadylo",
         "mapper": "Zumibo",
         "rating": "mid",
-        "patterns": ["stream", "quantum", "jump", "burst"],
+        "patterns": ["jump", "quantum", "slide"],
         "star-rating": "10",
         "video": "https://youtu.be/eanGtP6ekHQ"
     },
@@ -67,7 +67,7 @@
         "artist": "aerokii",
         "mapper": "blusiveQ",
         "rating": "good",
-        "patterns": ["jump", "stack", "slide", "burst", "stamina"],
+        "patterns": ["burst", "jump", "slide", "stack", "stamina"],
         "star-rating": "10",
         "video": "https://youtu.be/BbOMfEeI5xc"
     },
@@ -76,7 +76,7 @@
         "artist": "Korsio",
         "mapper": "Zumbio",
         "rating": "mid",
-        "patterns": ["stream", "slide"],
+        "patterns": ["light jump", "slide", "stamina", "stream"],
         "star-rating": "10",
         "video": "https://youtu.be/aqipNQ5toWY"
     },
@@ -85,7 +85,7 @@
         "artist": "Xeon Diversity",
         "mapper": "Zumbio",
         "rating": "mid",
-        "patterns": ["slide"],
+        "patterns": ["light jump", "slide"],
         "star-rating": "10",
         "video": "https://youtu.be/9-LIQ4-pA78"
     },
@@ -94,16 +94,25 @@
         "artist": "AZALI",
         "mapper": "ZitroNitro",
         "rating": "bad",
-        "patterns": ["quantum", "unconventional", "stack", "slide"],
+        "patterns": ["quantum", "slide", "stack", "tech"],
         "star-rating": "10",
         "video": "https://youtu.be/UsHE_wM1mOs"
+    },
+    {
+        "name": "Achiga",
+        "artist": "睡眠",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["jump", "quantum", "stamina", "vibro"],
+        "star-rating": "10",
+        "video": "https://youtu.be/v9d_wGYrKVM"
     },
     {
         "name": "More Than Friends",
         "artist": "Kazuya",
         "mapper": "Flvxify & Cruwev",
         "rating": "mid",
-        "patterns": ["quantum", "jump", "slide"],
+        "patterns": ["jump", "quantum", "slide"],
         "star-rating": "10+",
         "video": "https://youtu.be/TCarhgDqD5I"
     },
@@ -121,7 +130,7 @@
         "artist": "kuNarU x Kitsune",
         "mapper": "Zumibo",
         "rating": "bad",
-        "patterns": ["vibro", "stamina"],
+        "patterns": ["vibro"],
         "star-rating": "10+",
         "video": "https://youtu.be/dR5GLQ00yXY"
     },
@@ -130,7 +139,7 @@
         "artist": "Velocity Music",
         "mapper": "Flvxify",
         "rating": "mid",
-        "patterns": ["jump", "burst"],
+        "patterns": ["burst", "jump"],
         "star-rating": "10+",
         "video": "https://youtu.be/8e3-YN-1iXM"
     },
@@ -144,20 +153,38 @@
         "video": "https://youtu.be/qOGCOuzyUPc"
     },
     {
+        "name": "Critical",
+        "artist": "iveski",
+        "mapper": "Zumibo",
+        "rating": "good",
+        "patterns": ["light tech", "slide"],
+        "star-rating": "10+",
+        "video": "https://youtu.be/-3OdmQqWTyE"
+    },
+    {
         "name": "Grimoire",
         "artist": "Gardens",
         "mapper": "ob1cb",
         "rating": "good",
-        "patterns": ["unconventional", "spin", "tech"],
+        "patterns": ["light quantum", "slide", "spin",  "stream", "unconventional"],
         "star-rating": "11",
         "video": "https://youtu.be/kzw184MCsX4"
+    },
+    {
+        "name": "RESISTANCE",
+        "artist": "MetaHumanBoi",
+        "mapper": "ob1cb",
+        "rating": "good",
+        "patterns": ["jump", "slide", "stack", "stamina", "wall"],
+        "star-rating": "11",
+        "video": "https://youtu.be/vQXI3hOYRJs"
     },
     {
         "name": "Never Give Up",
         "artist": "Xeon Diversity",
         "mapper": "divetek",
         "rating": "good",
-        "patterns": ["jump", "slide", "quantum"],
+        "patterns": ["jump", "quantum", "slide", "stamina"],
         "star-rating": "11",
         "video": "https://youtu.be/nJfPiqNHTfE"
     },
@@ -166,7 +193,7 @@
         "artist": "Rutra",
         "mapper": "Zumbio",
         "rating": "good",
-        "patterns": ["tech", "slide", "quantum"],
+        "patterns": ["light tech", "quantum", "slide"],
         "star-rating": "11",
         "video": "https://youtu.be/rvdK-F_xY4k"
     },
@@ -175,7 +202,7 @@
         "artist": "MetaHumanBoi",
         "mapper": "Noobourn",
         "rating": "good",
-        "patterns": ["tech", "slide", "spin"],
+        "patterns": ["jump", "slide", "tech"],
         "star-rating": "11",
         "video": "https://youtu.be/__8xGX56asE"
     },
@@ -184,7 +211,7 @@
         "artist": "Galaxyless",
         "mapper": "Zumbio",
         "rating": "good",
-        "patterns": ["jump", "slide", "quantum"],
+        "patterns": ["jump", "quantum", "slide"],
         "star-rating": "11",
         "video": "https://youtu.be/UCT2WxQuOww"
     },
@@ -193,7 +220,7 @@
         "artist": "Galaxyless",
         "mapper": "Zumbio",
         "rating": "good",
-        "patterns": ["slide", "quantum", "spin", "stream", "unconventional"],
+        "patterns": ["light tech", "quantum", "slide", "spin", "stream", "unconventional"],
         "star-rating": "11",
         "video": "https://youtu.be/THMvBuURgJQ"
     },
@@ -202,7 +229,7 @@
         "artist": "Rizum",
         "mapper": "Zumbio",
         "rating": "mid",
-        "patterns": ["stream", "slide"],
+        "patterns": ["slide", "stream"],
         "star-rating": "11",
         "video": "https://youtu.be/kacyf5-cVJI"
     },
@@ -211,7 +238,7 @@
         "artist": "Rizum",
         "mapper": "SnivyTrueForm",
         "rating": "mid",
-        "patterns": ["stream", "stamina", "slide", "jump", "burst"],
+        "patterns": ["jump", "slide", "stamina", "stream"],
         "star-rating": "11",
         "video": "https://youtu.be/M_NWLjq56WQ"
     },
@@ -220,7 +247,7 @@
         "artist": "EbenAP",
         "mapper": "00D4RKSlDE",
         "rating": "good",
-        "patterns": ["quantum", "spin", "slide"],
+        "patterns": ["light jump", "quantum", "slide", "spin"],
         "star-rating": "11",
         "video": "https://youtu.be/5Umri28NUB0"
     },
@@ -238,7 +265,7 @@
         "artist": "AZALI",
         "mapper": "Noobourn",
         "rating": "bad",
-        "patterns": ["quantum", "unconventional", "tech", "slide"],
+        "patterns": ["quantum", "slide", "tech", "unconventional"],
         "star-rating": "11",
         "video": "https://youtu.be/3DF6urstX5M"
     },
@@ -247,7 +274,7 @@
         "artist": "Nstryder",
         "mapper": "Xilpyy",
         "rating": "good",
-        "patterns": ["quantum", "jump", "stamina", "slide"],
+        "patterns": ["jump", "quantum", "slide", "stamina"],
         "star-rating": "11",
         "video": "https://youtu.be/f2J8xQD5cMs"
     },
@@ -256,7 +283,7 @@
         "artist": "Underscore",
         "mapper": "Zumbio",
         "rating": "mid",
-        "patterns": ["quantum", "slide", "spin", "tech", "vibro"],
+        "patterns": ["jump", "light tech", "light vibro", "slide"],
         "star-rating": "11",
         "video": "https://youtu.be/rhvn91ReqG4"
     },
@@ -265,88 +292,16 @@
         "artist": "t+pazolite",
         "mapper": "Xilpyy",
         "rating": "good",
-        "patterns": ["quantum", "jump", "stamina", "slide"],
+        "patterns": ["jump", "light quantum", "slide", "stack", "stamina"],
         "star-rating": "11",
         "video": "https://youtu.be/VI_SA7cmvto"
-    },
-    {
-        "name": "Defragmentation Of The Glass Dimension",
-        "artist": "Vizunavé",
-        "mapper": "Flvxify & 9 others",
-        "rating": "good",
-        "patterns": ["quantum", "unconventional", "tech", "slide", "jump", "stream"],
-        "star-rating": "11+",
-        "video": "https://youtu.be/Risvkv6sXpg"
-    },
-    {
-        "name": "Schadenfreude",
-        "artist": "ZxNX",
-        "mapper": "classicisty",
-        "rating": "mid",
-        "patterns": ["slide", "jump", "spin", "burst"],
-        "star-rating": "12+",
-        "video": "https://youtu.be/wq7HLngdekA"
-    },
-    {
-        "name": "No More Shinikuen",
-        "artist": "Korsio",
-        "mapper": "classicisty & Avibahlofe",
-        "rating": "good",
-        "patterns": ["stream", "jump"],
-        "star-rating": "13",
-        "video": "https://youtu.be/2r0Hal92M8Y"
-    },
-    {
-        "name": "S L I T",
-        "artist": "needhollow",
-        "mapper": "00D4RKSlDE",
-        "rating": "good",
-        "patterns": ["slide", "jump", "stream"],
-        "star-rating": "13",
-        "video": "https://youtu.be/LM9t9ivHubs"
-    },
-    {
-        "name": "field of flowers",
-        "artist": "log() & Ethereal_Winter",
-        "mapper": "Zumibo",
-        "rating": "good",
-        "patterns": ["slide", "stream", "tech"],
-        "star-rating": "13",
-        "video": "https://youtu.be/MhVJgVoE-Dc"
-    },
-    {
-        "name": "psyKore Delirium",
-        "artist": "KawaiiKittyKore",
-        "mapper": "Zumibo",
-        "rating": "good",
-        "patterns": ["spin", "slide", "tech", "unconventional"],
-        "star-rating": "14+",
-        "video": "https://youtu.be/vj11sK3wLlA"
-    },
-    {
-        "name": "Critical",
-        "artist": "iveski",
-        "mapper": "Zumibo",
-        "rating": "good",
-        "patterns": ["slide", "tech"],
-        "star-rating": "10+",
-        "video": "https://youtu.be/-3OdmQqWTyE"
-    },
-    {
-        "name": "RESISTANCE",
-        "artist": "MetaHumanBoi",
-        "mapper": "ob1cb",
-        "rating": "good",
-        "patterns": ["slide", "jump", "stack", "stamina", "wall"],
-        "star-rating": "11",
-        "video": "https://youtu.be/vQXI3hOYRJs"
     },
     {
         "name": "Supernova",
         "artist": "Galaxyless",
         "mapper": "Zumbio",
         "rating": "mid",
-        "patterns": ["slide", "jump", "stamina"],
+        "patterns": ["jump", "slide", "stack", "stamina"],
         "star-rating": "11",
         "video": "https://youtu.be/xAC8-pBWk8I"
     },
@@ -355,7 +310,7 @@
         "artist": "Korsio",
         "mapper": "Flvxify",
         "rating": "good",
-        "patterns": ["vibro", "jump", "stamina"],
+        "patterns": ["jump", "vibro"],
         "star-rating": "11+",
         "video": "https://youtu.be/7KpdHVNy9kA"
     },
@@ -364,7 +319,7 @@
         "artist": "luvnyte",
         "mapper": "blusiveQ",
         "rating": "bad",
-        "patterns": ["vibro", "jump", "stamina", "quantum", "stream"],
+        "patterns": ["jump", "light quantum", "light slide", "vibro"],
         "star-rating": "11+",
         "video": "https://youtu.be/vh2ZjJoClAM"
     },
@@ -382,25 +337,25 @@
         "artist": "Nstryder",
         "mapper": "Zumbio",
         "rating": "good",
-        "patterns": ["jump", "vibro", "slide", "stamina"],
+        "patterns": ["jump", "slide", "stamina", "vibro"],
         "star-rating": "11+",
         "video": "https://youtu.be/UdAx9f3OPkY"
     },
     {
-        "name": "Solar Strike",
-        "artist": "MetaHumanBoi",
-        "mapper": "Noobourn",
-        "rating": "mid",
-        "patterns": ["jump", "tech", "slide", "quantum"],
-        "star-rating": "13",
-        "video": "https://youtu.be/5s80odP6K1Q"
+        "name": "Defragmentation Of The Glass Dimension",
+        "artist": "Vizunavé",
+        "mapper": "Flvxify & 9 others",
+        "rating": "good",
+        "patterns": ["jump", "quantum", "slide", "stream", "tech", "unconventional"],
+        "star-rating": "11+",
+        "video": "https://youtu.be/Risvkv6sXpg"
     },
     {
         "name": "Darkstar",
         "artist": "Galaxyless",
         "mapper": "Zumbio",
         "rating": "mid",
-        "patterns": ["stream", "slide", "stamina"],
+        "patterns": ["burst", "slide", "stamina", "stream"],
         "star-rating": "11+",
         "video": "https://youtu.be/W__aRf--Bvc"
     },
@@ -409,7 +364,7 @@
         "artist": "Rutra",
         "mapper": "fth_ful",
         "rating": "mid",
-        "patterns": ["stream", "slide"],
+        "patterns": ["light jump", "slide", "stamina", "stream"],
         "star-rating": "11+",
         "video": "https://youtu.be/b7Y-U3csb84"
     },
@@ -427,7 +382,7 @@
         "artist": "Velocity Music",
         "mapper": "Xilpyy",
         "rating": "mid",
-        "patterns": ["jump", "slide", "quantum", "stack", "stamina"],
+        "patterns": ["jump", "quantum", "slide", "stack", "stamina"],
         "star-rating": "11+",
         "video": "https://youtu.be/JJ3krd5sZAk"
     },
@@ -436,7 +391,7 @@
         "artist": "X3ll3n",
         "mapper": "catdopamine",
         "rating": "mid",
-        "patterns": ["slide", "quantum", "stamina"],
+        "patterns": ["slide", "quantum", "unconventional"],
         "star-rating": "11+",
         "video": "https://youtu.be/cC6fOGhu05o"
     },
@@ -454,11 +409,11 @@
         "artist": "t+pazolite",
         "mapper": "classicisty",
         "rating": "good",
-        "patterns": ["jump", "slide", "stream", "burst"],
+        "patterns": ["burst", "jump", "slide", "stream"],
         "star-rating": "12",
         "video": "https://youtu.be/Z71-gUD36qk"
     },
-   {
+    {
         "name": "Broken Faith",
         "artist": "Korsio",
         "mapper": "blusiveQ",
@@ -467,7 +422,7 @@
         "star-rating": "12",
         "video": "https://youtu.be/VR8mzi5VrAk"
     },
-   {
+    {
         "name": "Chip Heaven",
         "artist": "Korsio",
         "mapper": "classicisty",
@@ -476,25 +431,196 @@
         "star-rating": "12",
         "video": "https://youtu.be/j8wsFecrDwU"
     },
-   {
+    {
         "name": "Stuffed Jackal",
         "artist": "Korsio",
         "mapper": "Rakhalsnoob",
         "rating": "good",
-        "patterns": ["jump", "spin", "stamina", "sidestep"],
+        "patterns": ["jump", "spin"],
         "star-rating": "12",
         "video": "https://youtu.be/jbgSOqMBZWs"
     },
-   {
+    {
         "name": "Fly Wit Me",
         "artist": "Camellia",
         "mapper": "Zumbio",
         "rating": "good",
-        "patterns": ["jump", "slide", "stamina", "quantum"],
+        "patterns": ["jump", "quantum", "slide", "stamina"],
         "star-rating": "12",
         "video": "https://youtu.be/Om_ztBqKYtg"
     },
-   {
+    {
+       "name": "Panic Doggo Festival",
+        "artist": "Korsio",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["jump", "slide"],
+        "star-rating": "12",
+        "video": "https://youtu.be/42E4r2R59FY"
+    },
+    {
+        "name": "Overclocked",
+        "artist": "DeBisco",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["light tech", "slide", "stream", "unconventional"],
+        "star-rating": "12",
+        "video": "https://youtu.be/68AlyWOI_sI"
+    },
+    {
+        "name": "Hoshiroza",
+        "artist": "Rizum",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["jump", "slide", "stamina"],
+        "star-rating": "12",
+        "video": "https://youtu.be/2_0GxoaxUFc"
+    },
+    {
+        "name": "BAD ACCESS FROM A MOE MAID",
+        "artist": "Camellia",
+        "mapper": "Noobourn",
+        "rating": "good",
+        "patterns": ["light jump", "slide", "stamina"],
+        "star-rating": "12",
+        "video": "https://youtu.be/fD9nqoqytZA"
+    },
+    {
+        "name": "i still feel more alone than i ever have been when you aren't here",
+        "artist": "633397",
+        "mapper": "SnivyTrueForm",
+        "rating": "good",
+        "patterns": ["burst", "jump"],
+        "star-rating": "12",
+        "video": "https://youtu.be/MrF2UP092So"
+    },
+    {
+        "name": "CITYSCAPES",
+        "artist": "Zoumi.",
+        "mapper": "5nBy",
+        "rating": "good",
+        "patterns": ["jump", "slide", "stamina"],
+        "star-rating": "12",
+        "video": "https://youtu.be/rA741GL6V1g"
+    },
+    {
+        "name": "Swing or Die",
+        "artist": "Hookington",
+        "mapper": "Zumbio",
+        "rating": "mid",
+        "patterns": ["slide", "stream", "unconventional"],
+        "star-rating": "12",
+        "video": "https://youtu.be/F0td8kr5fmQ"
+    },
+    {
+        "name": "Feel The Same",
+        "artist": "Gardens",
+        "mapper": "blusiveQ",
+        "rating": "good",
+        "patterns": ["jump", "quantum", "slide"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/_VNhdjCzg4k"
+    },
+    {
+        "name": "Schadenfreude",
+        "artist": "ZxNX",
+        "mapper": "classicisty",
+        "rating": "mid",
+        "patterns": ["burst", "jump", "slide", "spin"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/wq7HLngdekA"
+    },
+    {
+        "name": "Insane",
+        "artist": "Sound Space",
+        "mapper": "Cruwev & classicisty",
+        "rating": "mid",
+        "patterns": ["burst", "slide", "stack", "stream"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/imDFmTGEW-8"
+    },
+    {
+        "name": "1nput This 2 Y0ur Spine",
+        "artist": "Camellia",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["jump", "slide", "stamina", "vibro"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/CL48GCrJIzQ"
+    },
+    {
+        "name": "Body F10ating in the Zero Gravity Space",
+        "artist": "Camellia",
+        "mapper": "saelmore",
+        "rating": "good",
+        "patterns": ["jump", "slide", "stamina", "stream"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/kaHMOhcGs5I"
+    },
+    {
+        "name": "Glow Mind",
+        "artist": "Rutra",
+        "mapper": "blusiveQ",
+        "rating": "good",
+        "patterns": ["jump", "quantum", "slide", "stamina"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/yelWvlmiTFI"
+    },
+    {
+        "name": "Gravity Switch",
+        "artist": "Velocity Music",
+        "mapper": "fth_ful",
+        "rating": "good",
+        "patterns": ["quantum", "slide", "spin", "stream"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/Ay761-q5Xng"
+    },
+    {
+        "name": "Arcade Frenzy",
+        "artist": "Velocity Music",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["jump", "quantum", "slide"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/GwHkwftgysQ"
+    },
+    {
+        "name": "Chocolate Shotgun",
+        "artist": "MetaHumanBoi",
+        "mapper": "Noobourn",
+        "rating": "good",
+        "patterns": ["jump", "light quantum", "light tech", "slide"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/cpgjHp2ujUA"
+    },
+    {
+        "name": "The Alure Of Disturbia",
+        "artist": "Blair Richmond",
+        "mapper": "Noobourn",
+        "rating": "good",
+        "patterns": ["jump", "slide", "tech", "vibro"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/JLsSIlFCIfU"
+    },
+    {
+        "name": "abusing my ability to make music",
+        "artist": "AZALI",
+        "mapper": "catdopamine",
+        "rating": "good",
+        "patterns": ["jump", "quantum", "slide", "stack", "stream", "unconventional"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/y8Wqr0oYgOM"
+    },
+    {
+        "name": "No More Shinikuen",
+        "artist": "Korsio",
+        "mapper": "classicisty & Avibahlofe",
+        "rating": "good",
+        "patterns": ["jump", "stream"],
+        "star-rating": "13",
+        "video": "https://youtu.be/2r0Hal92M8Y"
+    },
+    {
         "name": "Flamewall",
         "artist": "Camellia",
         "mapper": "divetek",
@@ -503,21 +629,39 @@
         "star-rating": "13",
         "video": "https://youtu.be/GNvtsHrUU6o"
     },
-   {
-        "name": "Panic Doggo Festival",
-        "artist": "Korsio",
-        "mapper": "Zumbio",
+    {
+        "name": "Solar Strike",
+        "artist": "MetaHumanBoi",
+        "mapper": "Noobourn",
+        "rating": "bad",
+        "patterns": ["light jump", "light quantum", "slide", "tech", "unconventional"],
+        "star-rating": "13",
+        "video": "https://youtu.be/byW71esK2GU"
+    },
+    {
+        "name": "S L I T",
+        "artist": "needhollow",
+        "mapper": "00D4RKSlDE",
         "rating": "good",
-        "patterns": ["jump", "stamina", "slide"],
-        "star-rating": "12",
-        "video": "https://youtu.be/42E4r2R59FY"
+        "patterns": ["jump", "slide", "stream"],
+        "star-rating": "13",
+        "video": "https://youtu.be/LM9t9ivHubs"
+    },
+    {
+        "name": "field of flowers",
+        "artist": "log() & Ethereal_Winter",
+        "mapper": "Zumibo",
+        "rating": "good",
+        "patterns": ["light tech", "slide", "stream"],
+        "star-rating": "13",
+        "video": "https://youtu.be/MhVJgVoE-Dc"
     },
     {
         "name": "Bestest Frenemy!",
         "artist": "MYUKKE.",
         "mapper": "catdrenaline",
         "rating": "good",
-        "patterns": ["tech", "unconventional", "slide", "jump"],
+        "patterns": ["jump", "slide", "tech", "unconventional"],
         "star-rating": "13",
         "video": "https://youtu.be/TrSKW2DAaZ4"
     },
@@ -526,7 +670,7 @@
         "artist": "MYUKKE.",
         "mapper": "Xilpyy",
         "rating": "good",
-        "patterns": ["tech", "slide", "jump"],
+        "patterns": ["jump", "slide", "tech"],
         "star-rating": "13",
         "video": "https://youtu.be/yF1_bsm7mFk"
     },
@@ -535,7 +679,7 @@
         "artist": "caffeinecrvsh",
         "mapper": "Zumbio",
         "rating": "mid",
-        "patterns": ["unconventional", "slide"],
+        "patterns": ["slide", "unconventional"],
         "star-rating": "13+",
         "video": "https://youtu.be/GbU5Tgg58hg"
     },
@@ -544,7 +688,7 @@
         "artist": "log()",
         "mapper": "5nBy",
         "rating": "mid",
-        "patterns": ["stream", "slide", "stamina"],
+        "patterns": ["slide", "stamina", "stream"],
         "star-rating": "13+",
         "video": "https://youtu.be/gqC1GvSHybM"
     },
@@ -553,8 +697,17 @@
         "artist": "Underscore",
         "mapper": "Zumbio",
         "rating": "good",
-        "patterns": ["stream", "wall", "burst", "quantum"],
+        "patterns": ["burst", "quantum", "stream", "wall"],
         "star-rating": "14",
         "video": "https://youtu.be/qusRIapfXqA"
+    },
+    {
+        "name": "psyKore Delirium",
+        "artist": "KawaiiKittyKore",
+        "mapper": "Zumibo",
+        "rating": "good",
+        "patterns": ["slide", "spin", "tech", "unconventional"],
+        "star-rating": "14+",
+        "video": "https://youtu.be/vj11sK3wLlA"
     }
 ]
