@@ -729,6 +729,15 @@
         "video": "https://youtu.be/olBR-licVi0"
     },
     {
+        "name": "A New World",
+        "artist": "Frypt",
+        "mapper": "Zumbio",
+        "rating": "good",
+        "patterns": ["quantum", "slide", "stream"],
+        "star-rating": "12+",
+        "video": "https://youtu.be/kJtawJapWfM"
+    },
+    {
         "name": "Light Into Scheetlite",
         "artist": "MYUKKE.",
         "mapper": "Xilpyy",
@@ -922,7 +931,7 @@
         "artist": "MYUKKE.",
         "mapper": "catdrenaline",
         "rating": "good",
-        "patterns": ["jump", "slide", "tech", "unconventional"],
+        "patterns": ["jump", "slide", "tech"],
         "star-rating": "13",
         "video": "https://youtu.be/TrSKW2DAaZ4"
     },
@@ -1098,6 +1107,69 @@
         "video": "https://youtu.be/JjcoCFsOA-o"
     },
     {
+        "name": "With My Crew",
+        "artist": "Velocity Music",
+        "mapper": "Flvxify",
+        "rating": "good",
+        "patterns": ["jump", "quantum", "stream"],
+        "star-rating": "14",
+        "video": "https://youtu.be/RpmMt4fvvjw"
+    },
+    {
+        "name": "run away with me to a land beyond the sea",
+        "artist": "633397",
+        "mapper": "divetek",
+        "rating": "good",
+        "patterns": ["burst", "jump"],
+        "star-rating": "14",
+        "video": "https://youtu.be/Bc2mDLiiDjU"
+    },
+    {
+        "name": "REST",
+        "artist": "dive-TEK",
+        "mapper": "5nBy",
+        "rating": "good",
+        "patterns": ["stamina", "stream"],
+        "star-rating": "14",
+        "video": "https://youtu.be/D8xGbWg5UQ0"
+    },
+    {
+        "name": "Fracture",
+        "artist": "needhollow",
+        "mapper": "Flvxify & Pyxenity_0",
+        "rating": "mid",
+        "patterns": ["jump", "quantum", "slide", "unconventional"],
+        "star-rating": "14",
+        "video": "https://youtu.be/ZoN2gCrDXQ0"
+    },
+    {
+        "name": "GOD",
+        "artist": "log()",
+        "mapper": "Flvxify & RakhalsNoob",
+        "rating": "good",
+        "patterns": ["jump", "slide", "stamina"],
+        "star-rating": "14",
+        "video": "https://youtu.be/zz9BPCsYBEA"
+    },
+    {
+        "name": "TRANSFORMATION",
+        "artist": "Zoumi.",
+        "mapper": "Nate10993",
+        "rating": "good",
+        "patterns": ["jump", "light quantum", "slide", "tech"],
+        "star-rating": "14",
+        "video": "https://youtu.be/N_U88qADn_k"
+    },
+    {
+        "name": "The 13th",
+        "artist": "ED$ANE",
+        "mapper": "fth_ful",
+        "rating": "mid",
+        "patterns": ["burst", "stream"],
+        "star-rating": "14",
+        "video": "https://youtu.be/N_mTJCVaqRw"
+    },
+    {
         "name": "psyKore Delirium",
         "artist": "KawaiiKittyKore",
         "mapper": "Zumibo",
@@ -1105,5 +1177,50 @@
         "patterns": ["slide", "spin", "tech", "unconventional"],
         "star-rating": "14+",
         "video": "https://youtu.be/vj11sK3wLlA"
+    },
+    {
+        "name": "Filter Focus",
+        "artist": "Frypt",
+        "mapper": "Flvxify & unrestrainedemotions",
+        "rating": "good",
+        "patterns": ["quantum", "slide", "stamina", "stream"],
+        "star-rating": "14+",
+        "video": "https://youtu.be/lCNUwB5QcJk"
+    },
+    {
+        "name": "Dance with Silence",
+        "artist": "Camellia",
+        "mapper": "Picrazo",
+        "rating": "good",
+        "patterns": ["jump", "quantum", "slide", "stack", "stamina", "tech", "unconventional"],
+        "star-rating": "14+",
+        "video": "https://youtu.be/k8C0hUvAjmg"
+    },
+    {
+        "name": "Kyzaghan",
+        "artist": "Underscore",
+        "mapper": "Xilpyy",
+        "rating": "good",
+        "patterns": ["stamina", "stream"],
+        "star-rating": "14+",
+        "video": "https://youtu.be/yeo9ewqdUz0"
+    },
+    {
+        "name": "Kalis Mind",
+        "artist": "MYUKKE.",
+        "mapper": "Xilpyy",
+        "rating": "good",
+        "patterns": ["jump", "light quantum", "slide"],
+        "star-rating": "14+",
+        "video": "https://youtu.be/edLynBEbSdQ"
+    },
+    {
+        "name": "ultimatum",
+        "artist": "jackuw",
+        "mapper": "SnivyTrueForm",
+        "rating": "mid",
+        "patterns": ["jump", "slide", "stack", "stamina"],
+        "star-rating": "14+",
+        "video": "https://youtu.be/31Sr4wRanuw"
     }
 ]
